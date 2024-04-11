@@ -4,3 +4,4 @@ Dieses Repo enthält alle Dateien für den Inhalt und die Steuerung der Erzeugun
 
 [Coding-info](https://iqb-berlin.github.io/coding-info)
 
+Technische und inhaltliche Fragen zu den Inhalten können Sie an die [IT des IQB](mailto:iqb-it@hu-berlin.de) richten.
