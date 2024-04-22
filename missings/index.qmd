@@ -3,7 +3,7 @@ lang: de
 title: Missings
 ---
 
-# Was ist ein Missing?
+# Begriff
 
 Mit dem Begriff "Missings" werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.
 
@@ -33,3 +33,23 @@ flowchart TD
 
 ```
 
+| ID | Label | Beschreibung | Code-Value |
+|---|---|---------|--:|
+| mir | missing invalid response | (1) Item wurde bearbeitet und (2a) leere Antwort oder (2b) sonstwie ungültige (Spaß-)Antwort | -98 |
+| mbi | missing by intention | (1) Item wurde gesehen (2a) Item wurde nicht bearbeitet oder (2b) wurde bearbeitet, aber wieder zurückgesetzt und (3) es gibt nachfolgend Items, die bearbeitet wurden | -99 |
+| mnr | missing not reached | (1a) Item wurde nicht gesehen oder (1b) Item wurde gesehen und nicht bearbeitet und (2) es folgen nur Items mit demselben Status | -96 |
+| mci | missing coding impossible | (1) Item müsste/könnte bearbeitet worden sein und (2) Antwort ist aufgrund technischer Probleme nicht auswertbar | -97 |
+| mbd | missing by design | Antwort liegt nicht vor, weil das Item der Testperson planmäßig nicht präsentiert wurde | -94 |
+
+: IQB-Missings {.striped}
+
+# Wann werden Missings gesetzt?
+
+Die TBA-Webanwendung IQB-Testcenter sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein Status geliefert. Im Rahmen der Kodierung kann der Status `INVALID` gesetzt werden, was grob dem Missing `invalid response` entspricht.
+
+Vor der Datenanalyse müssen die Codes bzw. Scores aller Antworten sowie die jeweilige Status-Information zu einem einzelnen numerischen Wert transformiert werden. Dadurch entsteht die erforderliche zweidimensionale Datenmatrix (Person x Item). An dieser Stelle - also für die Vorbereitung der Analyse - werden Missings gesetzt: als numerische Werte, nach Konvention negativ (s. Tabelle oben). 
+
+Der Wert für `invalid response` ist bereits direkt verfügbar. Die anderen Missing-Werte erfordern zusätzliche Informationen:
+
+* Das Testheft - also die zeitliche Abfolge der Items - liefert die Information, welche Items nach dem jeweiligen Item folgen. Darüber kann dann `not reached` gesetzt werden.
+* Die Protokolle der Testdurchführung liefern die Information, ob es technische Probleme gegeben hat.
