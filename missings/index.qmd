@@ -12,7 +12,7 @@ Mit dem Begriff "Missings" werden Zustände in den Daten kodiert, die von einer 
 ```{mermaid}
 flowchart TD
     C{Antwort im System\ngespeichert?} -->|JA| A{Item wurde\ngesehen?}
-    A -->|JA| F{Item wurde \nbeabeitet?}
+    A -->|JA| F{Item wurde \nbearbeitet?}
     A -->|NEIN| G[missing\nnot reached]
     style G fill:#ff9
     F -->|JA| H{Antwort ungültig,\nleer oder Spaßantwort?}
