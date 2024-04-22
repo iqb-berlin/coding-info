@@ -26,6 +26,9 @@ website:
     contents:
       - href: index.qmd
         text: Start
+      - href: missings/index.qmd
+        text: Missings
+
 
 format:
   html:

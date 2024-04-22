@@ -1,0 +1,35 @@
+---
+lang: de
+title: Missings
+---
+
+# Was ist ein Missing?
+
+Mit dem Begriff "Missings" werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.
+
+# Standard-Missings des IQB
+
+```{mermaid}
+flowchart TD
+    C{Antwort im System\ngespeichert?} -->|JA| A{Item wurde\ngesehen?}
+    A -->|JA| F{Item wurde \nbeabeitet?}
+    A -->|NEIN| G[missing\nnot reached]
+    style G fill:#ff9
+    F -->|JA| H{Antwort ungültig,\nleer oder Spaßantwort?}
+    F -->|NEIN| I{nachfolgend\nbearbeitete Items?}
+    I -->|JA| J[missing\nby intention]
+    style J fill:#ff9
+    I -->|NEIN| G
+    H -->|JA| K[missing\ninvalid response]
+    style K fill:#ff9
+    H -->|NEIN| L["Gültige Antwort\nAuswertung möglich"]
+    style L fill:#af8
+    
+    C -->|NEIN| B{Technisches\nProblem?}
+    B -->|JA| D[missing\ncoding impossible]
+    style D fill:#ff9
+    B -->|NEIN| E[missing\nby design]
+    style E fill:#ff9
+
+```
+
