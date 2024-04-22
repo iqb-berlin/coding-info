@@ -8,5 +8,15 @@
     "crumbs": [
       "Start"
     ]
+  },
+  {
+    "objectID": "missings/index.html",
+    "href": "missings/index.html",
+    "title": "Missings",
+    "section": "",
+    "text": "Was ist ein Missing?\nMit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.\n\n\nStandard-Missings des IQB\n\n\n\n\n\nflowchart TD\n    C{Antwort im System\\ngespeichert?} --&gt;|JA| A{Item wurde\\ngesehen?}\n    A --&gt;|JA| F{Item wurde \\nbeabeitet?}\n    A --&gt;|NEIN| G[missing\\nnot reached]\n    style G fill:#ff9\n    F --&gt;|JA| H{Antwort ungültig,\\nleer oder Spaßantwort?}\n    F --&gt;|NEIN| I{nachfolgend\\nbearbeitete Items?}\n    I --&gt;|JA| J[missing\\nby intention]\n    style J fill:#ff9\n    I --&gt;|NEIN| G\n    H --&gt;|JA| K[missing\\ninvalid response]\n    style K fill:#ff9\n    H --&gt;|NEIN| L[\"Gültige Antwort\\nAuswertung möglich\"]\n    style L fill:#af8\n    \n    C --&gt;|NEIN| B{Technisches\\nProblem?}\n    B --&gt;|JA| D[missing\\ncoding impossible]\n    style D fill:#ff9\n    B --&gt;|NEIN| E[missing\\nby design]\n    style E fill:#ff9",
+    "crumbs": [
+      "Missings"
+    ]
   }
 ]
