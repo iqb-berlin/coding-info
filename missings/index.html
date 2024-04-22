@@ -142,8 +142,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#was-ist-ein-missing" id="toc-was-ist-ein-missing" class="nav-link active" data-scroll-target="#was-ist-ein-missing">Was ist ein Missing?</a></li>
+  <li><a href="#begriff" id="toc-begriff" class="nav-link active" data-scroll-target="#begriff">Begriff</a></li>
   <li><a href="#standard-missings-des-iqb" id="toc-standard-missings-des-iqb" class="nav-link" data-scroll-target="#standard-missings-des-iqb">Standard-Missings des IQB</a></li>
+  <li><a href="#wann-werden-missings-gesetzt" id="toc-wann-werden-missings-gesetzt" class="nav-link" data-scroll-target="#wann-werden-missings-gesetzt">Wann werden Missings gesetzt?</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/iqb-berlin/coding-info/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -169,8 +170,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="was-ist-ein-missing" class="level1">
-<h1>Was ist ein Missing?</h1>
+<section id="begriff" class="level1">
+<h1>Begriff</h1>
 <p>Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.</p>
 </section>
 <section id="standard-missings-des-iqb" class="level1">
@@ -207,6 +208,65 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<table class="table-striped table">
+<caption>IQB-Missings</caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 50%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Label</th>
+<th>Beschreibung</th>
+<th style="text-align: right;">Code-Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>mir</td>
+<td>missing invalid response</td>
+<td>(1) Item wurde bearbeitet und (2a) leere Antwort oder (2b) sonstwie ungültige (Spaß-)Antwort</td>
+<td style="text-align: right;">-98</td>
+</tr>
+<tr class="even">
+<td>mbi</td>
+<td>missing by intention</td>
+<td>(1) Item wurde gesehen (2a) Item wurde nicht bearbeitet oder (2b) wurde bearbeitet, aber wieder zurückgesetzt und (3) es gibt nachfolgend Items, die bearbeitet wurden</td>
+<td style="text-align: right;">-99</td>
+</tr>
+<tr class="odd">
+<td>mnr</td>
+<td>missing not reached</td>
+<td>(1a) Item wurde nicht gesehen oder (1b) Item wurde gesehen und nicht bearbeitet und (2) es folgen nur Items mit demselben Status</td>
+<td style="text-align: right;">-96</td>
+</tr>
+<tr class="even">
+<td>mci</td>
+<td>missing coding impossible</td>
+<td>(1) Item müsste/könnte bearbeitet worden sein und (2) Antwort ist aufgrund technischer Probleme nicht auswertbar</td>
+<td style="text-align: right;">-97</td>
+</tr>
+<tr class="odd">
+<td>mbd</td>
+<td>missing by design</td>
+<td>Antwort liegt nicht vor, weil das Item der Testperson planmäßig nicht präsentiert wurde</td>
+<td style="text-align: right;">-94</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="wann-werden-missings-gesetzt" class="level1">
+<h1>Wann werden Missings gesetzt?</h1>
+<p>Die TBA-Webanwendung IQB-Testcenter sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein Status geliefert. Im Rahmen der Kodierung kann der Status <code>INVALID</code> gesetzt werden, was grob dem Missing <code>invalid response</code> entspricht.</p>
+<p>Vor der Datenanalyse müssen die Codes bzw. Scores aller Antworten sowie die jeweilige Status-Information zu einem einzelnen numerischen Wert transformiert werden. Dadurch entsteht die erforderliche zweidimensionale Datenmatrix (Person x Item). An dieser Stelle - also für die Vorbereitung der Analyse - werden Missings gesetzt: als numerische Werte, nach Konvention negativ (s. Tabelle oben).</p>
+<p>Der Wert für <code>invalid response</code> ist bereits direkt verfügbar. Die anderen Missing-Werte erfordern zusätzliche Informationen:</p>
+<ul>
+<li>Das Testheft - also die zeitliche Abfolge der Items - liefert die Information, welche Items nach dem jeweiligen Item folgen. Darüber kann dann <code>not reached</code> gesetzt werden.</li>
+<li>Die Protokolle der Testdurchführung liefern die Information, ob es technische Probleme gegeben hat.</li>
+</ul>
 
 
 </section>
