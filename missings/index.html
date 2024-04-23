@@ -184,13 +184,13 @@ ul.task-list li input[type="checkbox"] {
 <pre class="mermaid mermaid-js">flowchart TD
     C{Antwort im System\ngespeichert?} --&gt;|JA| A{Item wurde\ngesehen?}
     A --&gt;|JA| F{Item wurde \nbearbeitet?}
-    A --&gt;|NEIN| G[missing\nnot reached]
     style G fill:#ff9
     F --&gt;|JA| H{Antwort ungültig,\nleer oder Spaßantwort?}
-    F --&gt;|NEIN| I{nachfolgend\nbearbeitete Items?}
-    I --&gt;|JA| J[missing\nby intention]
+    A --&gt;|NEIN| I{nachfolgend\nbearbeitete oder\ngesehene Items?}
+    F --&gt;|NEIN| J[missing\nby intention]
+    I --&gt;|JA| J
+    I --&gt;|NEIN| G[missing\nnot reached]
     style J fill:#ff9
-    I --&gt;|NEIN| G
     H --&gt;|JA| K[missing\ninvalid response]
     style K fill:#ff9
     H --&gt;|NEIN| L["Gültige Antwort\nAuswertung möglich"]
@@ -234,13 +234,13 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td>mbi</td>
 <td>missing by intention</td>
-<td>(1) Item wurde gesehen (2a) Item wurde nicht bearbeitet oder (2b) wurde bearbeitet, aber wieder zurückgesetzt und (3) es gibt nachfolgend Items, die bearbeitet wurden</td>
+<td>Item wurde nicht bearbeitet aber gesehen oder es gibt nachfolgend gesehene oder bearbeitete Items</td>
 <td style="text-align: right;">-99</td>
 </tr>
 <tr class="odd">
 <td>mnr</td>
 <td>missing not reached</td>
-<td>(1a) Item wurde nicht gesehen oder (1b) Item wurde gesehen und nicht bearbeitet und (2) es folgen nur Items mit demselben Status</td>
+<td>(1) Item wurde nicht gesehen und (2) es folgen nur nicht gesehene Items</td>
 <td style="text-align: right;">-96</td>
 </tr>
 <tr class="even">
