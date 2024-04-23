@@ -36,7 +36,7 @@ flowchart TD
 | ID | Label | Beschreibung | Code-Value |
 |---|---|---------|--:|
 | mir | missing invalid response | (1) Item wurde bearbeitet und (2a) leere Antwort oder (2b) sonstwie ungültige (Spaß-)Antwort | -98 |
-| mbi | missing by intention | Item wurde nicht bearbeitet aber gesehen oder es gibt nachfolgend gesehene oder bearbeitete Items | -99 |
+| mbi | missing by intention | Item wurde nicht bearbeitet aber gesehen oder es wurde nicht gesehen, aber gibt nachfolgend gesehene oder bearbeitete Items | -99 |
 | mnr | missing not reached | (1) Item wurde nicht gesehen und (2) es folgen nur nicht gesehene Items | -96 |
 | mci | missing coding impossible | (1) Item müsste/könnte bearbeitet worden sein und (2) Antwort ist aufgrund technischer Probleme nicht auswertbar | -97 |
 | mbd | missing by design | Antwort liegt nicht vor, weil das Item der Testperson planmäßig nicht präsentiert wurde | -94 |
