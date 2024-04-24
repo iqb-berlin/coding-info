@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>coding-info - Datenstruktur</title>
+<title>coding-info - Datenstrukturen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -171,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Datenstruktur</h1>
+<h1 class="title">Datenstrukturen</h1>
 </div>
 
 
@@ -248,13 +248,17 @@ ul.task-list li input[type="checkbox"] {
     subgraph Unit
         subgraph Testdurchführung
             A(Basisvariablen)
+            style A fill:white
             B(Logvariablen)
+            style B fill:white
         end
         style Testdurchführung fill:#b3b3cc
         E[Kodierung\nAbleitung]
         style E fill:#ff9
         C(Kodierschema)
+        style C fill:white
         J(Itemliste)
+        style J fill:white
     end
     style Unit fill:#e0e0eb
     H(Person)
@@ -265,7 +269,6 @@ ul.task-list li input[type="checkbox"] {
     A --&gt; E
     B --&gt; E
     C --&gt; E
-    style C fill:white
     G[Analysedatensatz\nPerson x Item]
     D --&gt; G
     F(Missingschema) --&gt; G
