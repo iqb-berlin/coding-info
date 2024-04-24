@@ -53,3 +53,29 @@ Der Wert für `invalid response` ist bereits direkt verfügbar. Die anderen Miss
 
 * Das Testheft - also die zeitliche Abfolge der Items - liefert die Information, welche Items nach dem jeweiligen Item folgen. Darüber kann dann `not reached` gesetzt werden.
 * Die Protokolle der Testdurchführung liefern die Information, ob es technische Probleme gegeben hat.
+
+Weitere Informationen [zu Datenstrukturen](../data-structures/).
+
+# Technische Diskurse
+
+## Missing by Intention wenn leer?
+
+Wenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:
+
+* Bei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.
+* Der Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option 'leer' gibt es nicht.
+* Bei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.
+
+## Status `DISPLAYED ` überspringen?
+
+Das IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status `DISPLAYED`. Wenn eine Interaktion erfolgte, wird der Status `VALUE_CHANGED` gesetzt (zum Status einer Antwort siehe [hier](response.qmd)). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status `VALUE_CHANGED` ausgewertet.
+
+## Wo ist das Item?
+
+Wenn es als 17. Teilaufgabe ein Item mit der Instruktion "markiere im Text" gibt, weicht der Ort der Beantwortung (also die Interaktion "Markieren" im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.
+
+## Item-Status `VALUE_CHANGED` ableiten aus Variablen?
+
+Ein Item ist kein Strukturelement während der Beantwortung, sondern es wird mit Hilfe einer Variablen nachträglich konstruiert. Ob das Item bearbeitet wurde, ergibt sich also sinnvollerweise daraus, ob mindestens eine an der Itemwertbildung beteiligten Variablen einen geänderten Wert hat. Nun könnte es Fälle in der Kodierung geben, wo dies irreführend wäre.
+
+Ein Beispiel: Die Kodierung eines Items, das sich auf einen Hörtext bezieht, ist nur dann sinnvoll, wenn der Hörtext auch abgespielt wurde. Daher müsste die Itemvariable berücksichtigen, dass die Audio-Variable einen Mindestwert z. B. von 0,8 hat (80% der Audiosequenz wurden gespielt). Technisch ist das kein Problem, die Itemvariable leitet sich teilweise aus der Audio-Variablen ab. Allerdings würden dann automatisch alle Items als bearbeitet gelten, die die Audio-Variable berücksichtigen (also alle?), nur weil die Audio-Sequenz gespielt wurde.
