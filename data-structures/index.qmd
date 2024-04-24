@@ -1,6 +1,6 @@
 ---
 lang: de
-title: Datenstruktur
+title: Datenstrukturen
 ---
 
 # Sicht der Datenanalyse
@@ -54,13 +54,17 @@ flowchart TD
     subgraph Unit
         subgraph Testdurchführung
             A(Basisvariablen)
+            style A fill:white
             B(Logvariablen)
+            style B fill:white
         end
         style Testdurchführung fill:#b3b3cc
         E[Kodierung\nAbleitung]
         style E fill:#ff9
         C(Kodierschema)
+        style C fill:white
         J(Itemliste)
+        style J fill:white
     end
     style Unit fill:#e0e0eb
     H(Person)
@@ -71,7 +75,6 @@ flowchart TD
     A --> E
     B --> E
     C --> E
-    style C fill:white
     G[Analysedatensatz\nPerson x Item]
     D --> G
     F(Missingschema) --> G
