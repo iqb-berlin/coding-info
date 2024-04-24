@@ -2,20 +2,141 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Coding-info",
+    "title": "Kodieren",
     "section": "",
-    "text": "Achtung: Webseite in Entwicklung\n\n\n\nDiese Webseite ist im Aufbau. Die Inhalte sind unvollständig und eventuell nicht korrekt.\n\n\n\nWillkommen\nAuf diesen Webseiten finden Sie Erläuterungen zu der Verarbeitung von Antworten aus Lernstandserhebungen des IQB.\n\n\nLizenz\nAlle Texte sind unter der Lizenz CC0 veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. DFG-pdf) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.\n\n\nHaftungsausschluss\nAuf diesen Webseiten sind Links auf externe Webseiten in besonderer Weise gekennzeichnet (s. oben die Links zum IQB und zur KMK). Wir prüfen diese Quellen regelmäßig, können aber für diese Seiten und die dort hinterlegten Zusatzmaterialien keine Haftung für Richtigkeit, Vollständigkeit und Aktualität übernehmen. Dafür sind ausschließlich deren Betreiber verantwortlich.\n\n\nTechnische Realisierung\nDieser Webauftritt basiert auf Texten in einer einfachen Syntax Markdown, die anschließend in Html und CSS umgesetzt werden. Hierzu wird Quarto verwendet. Sämtliche Dateien für den Inhalt und die Steuerung sind in einem öffentlich zugänglichen Codeverwaltungssystem gespeichert.\n\n\nKontakt\nTechnische und inhaltliche Fragen zu den Inhalten können Sie an die IT des IQB richten.\nWenn Sie Probleme melden möchten, können Sie auch die Funktion “Problem melden” nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.",
+    "text": "Achtung: Webseite in Entwicklung\n\n\n\nDiese Webseite ist im Aufbau. Die Inhalte sind unvollständig und werden ständig revidiert.\n\n\n\nWillkommen\nIn Studien zur Feststellung von Leistungsständen im Bildungswesen liegt der Arbeitsschritt “Kodieren” zwischen der Datenerhebung - also der Durchführung eines Assessments - und der Datenanalyse. Rohantworten führen zu komplexen Datenstrukturen mit einem großen Wertespektrum, die so kaum auswertbar sind. Kodierung heißt hier, diese Werte einfachen Kategorien (“Codes”) zuzuordnen, die die Antwort im Sinne der Studienzielstellung symbolisieren. Anschließend lassen sich Häufigkeiten für diese Kategorien ermitteln, Zusammenhänge modellieren, und letztlich können empirisch begründete Empfehlungen gegeben werden.\nMit der schrittweisen Nutzung von Computern für Leistungserhebungen eröffnen sich neue Möglichkeiten, die Kodierung zu automatisieren und zu standardisieren. Hierzu entwickelt das IQB Datenstrukturen und Prozesse, die auf diesen Webseiten beschrieben sind.\n\n\nLizenz\nAlle Texte sind unter der Lizenz CC0 veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. DFG-pdf) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.\n\n\nHaftungsausschluss\nAuf diesen Webseiten sind Links auf externe Webseiten in besonderer Weise gekennzeichnet (s. oben die Links zum IQB und zur KMK). Wir prüfen diese Quellen regelmäßig, können aber für diese Seiten und die dort hinterlegten Zusatzmaterialien keine Haftung für Richtigkeit, Vollständigkeit und Aktualität übernehmen. Dafür sind ausschließlich deren Betreiber verantwortlich.\n\n\nTechnische Realisierung\nDieser Webauftritt basiert auf Texten in einer einfachen Syntax Markdown, die anschließend in Html und CSS umgesetzt werden. Hierzu wird Quarto verwendet. Sämtliche Dateien für den Inhalt und die Steuerung sind in einem öffentlich zugänglichen Codeverwaltungssystem gespeichert.\n\n\nKontakt\nTechnische und inhaltliche Fragen zu den Inhalten können Sie an die IT des IQB richten.\nWenn Sie Probleme melden möchten, können Sie auch die Funktion “Problem melden” nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.",
     "crumbs": [
       "Start"
     ]
   },
   {
-    "objectID": "missings/index.html",
-    "href": "missings/index.html",
+    "objectID": "data-structures/index.html",
+    "href": "data-structures/index.html",
+    "title": "Datenstruktur",
+    "section": "",
+    "text": "Sicht der Datenanalyse\nWenn Datenanalysen durchgeführt werden, benötigen sie im Kern eine zweidimensionale Matrix der Antwortdaten Testperson x Item. Die Testperson wird durch eine ID gekennzeichnet, das Item hat ebenfalls eine ID, und im Kreuzungspunkt findet sich ein Wert, der die Antwort der Testperson repräsentiert. Dann kann man Unterschiede der Personen und der Items analysieren.\nBei der Analyse spielen außerdem zusätzliche Daten eine Rolle, die entweder die Person oder die Items näher beschreiben. So ist z. B. wichtig, in welchem sozioökonomischen Umfeld sich die Schule der Testperson befindet, an welcher Stelle des Testheftes das Item auftauchte oder wie schwer dieses Item ist. Die folgende Grafik veranschaulicht grob eine solche Datenstruktur.\n\n\n\n\n\nclassDiagram\n    direction LR\n    class StudentGroup{\n        String: ID\n        String: Testgruppe\n        List~any~: Metadaten\n    }\n    class Student{\n        String: ID\n        String: Testgruppe\n        List~any~: Metadaten\n    }\n    class Booklet{\n        String: ID\n        String: Label\n        List~any~: Metadaten\n    }\n    class Unit{\n        String: ID\n        String: Label\n        List~any~: Metadaten\n    }\n    class Item{\n        String: ID\n        List~any~: Metadaten\n        int: Value\n    }\n    StudentGroup \"1..*\" &lt;--&gt; \"1..*\" Student\n    Student \"1\" --&gt; \"1..*\" Booklet\n    Booklet \"1\" --&gt; \"1..*\" Unit\n    Unit \"1\" --&gt; \"1..*\" Item\n\n\n\n\n\n\nFür diese Dokumentation spielt dies allerdings keine Rolle. Alle Texte beziehen sich auf die Frage, wo der Wert für das Item herkommt.\n\n\nSicht des Testsystems\nDie Quelle für die Antworten sind vor allem die Interaktionselemente der Aufgabe (Eingabefelder, Ankreuzkästchen, Ablegelisten usw.). Außerdem können Ereignisse (zeitbezogene Zustandsänderungen) Informationen liefern, die in Variablen gespeichert werden (Logvariablen).\n\n\n\n\n\nflowchart TD\n    subgraph Unit\n        subgraph Testdurchführung\n            A(Basisvariablen)\n            B(Logvariablen)\n        end\n        style Testdurchführung fill:#b3b3cc\n        E[Kodierung\\nAbleitung]\n        style E fill:#ff9\n        C(Kodierschema)\n        J(Itemliste)\n    end\n    style Unit fill:#e0e0eb\n    H(Person)\n    style H fill:white\n    D[Primärdatensatz]\n    H--&gt;D\n    E --&gt; D\n    A --&gt; E\n    B --&gt; E\n    C --&gt; E\n    style C fill:white\n    G[Analysedatensatz\\nPerson x Item]\n    D --&gt; G\n    F(Missingschema) --&gt; G\n    style F fill:white\n    K(Unitposition\\nim Testheft) --&gt; G\n    style K fill:white\n    J --&gt; G\n    L(Metadaten\\naus versch. Quellen) --&gt; G\n    style L fill:white\n\n\n\n\n\n\nDie Antworten werden in einer einheitlichen Datenstruktur “Variable” gespeichert. Neben dem Antwortwert ist hier eine Information zum Status zu finden, also ob z. B. das Interaktionselement gesehen wurde, ob eine Bearbeitung stattgefunden hat usw.\nEin Kodierschema enthält alle Informationen für die manuelle oder automatische Kodierung. Die Status der Variablen im Kodierprozess wird über eine Statusänderung angezeigt, und nach Abschluss der Kodierung sind die Werte “Code” und “Score” für die Variable gesetzt.\n\n\nItemwert\nZunächst besteht der Itemwert aus dem Score-Wert einer Variablen. Für jedes Item ist hierzu in einer Itemliste eine Variable benannt. Dies kann eine Basisvariable oder eine abgeleitete Variable sein. Der Score-Wert ergibt sich nach der Kodierung, also nach der vollständigen Anwendung des Kodierschemas. Üblicherweise handelt es sich bei dem Scorewert um eine ganze Zahl, i. d. R. 0 oder 1.\nSollten allerdings für die Itemvariable keine gültigen Antwortwerte vorliegen, wird eine negative Zahl für den Itemwert gesetzt. Diese Zahl symbolisiert nach einer allgemeinen Konvention verschiedene Missing-Zustände, die nicht nur aus den Antworten einer Unit ermittelt werden können, sondern zusätzliche Informationen erfordern.\nIn der Tradition der Kompetenzdiagnostik werden zwar zunächst Analysen gerechnet, später jedoch die Missing-Werte rekodiert: Zu 0 = falsch oder zu einem allgemeinen Missing-Wert, der vom verwendeten Analysesystem abhängt (sog. sysmis).",
+    "crumbs": [
+      "Datenstrukturen"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html",
+    "href": "data-structures/response.html",
+    "title": "Datenstruktur “Antwort”",
+    "section": "",
+    "text": "Para- meter\nerfor- derlich\nBeschreibung / mögliche Werte\nBeispiele\n\n\n\n\nid\nx\nString; identifiziert die Variable innerhalb der Unit; zulässig: ^[0-9a-zA-Z_]+$\n“01a”\n\n\nstatus\nx\nString aus einer Aufzählung; s. u.\n“NOT_REACHED”\n\n\nvalue\nx\nkann verschiedene Datentypen annehmen, s. u.\n[“9”, null]\n\n\nsubform\n-\nString; wird benutzt, um das ggf. mehrfache Auftreten der Variablen (z. B. in Kopien bei Unterformularen) zu kennzeichnen\n“p01”\n\n\ncode\n-\nInteger; steht für die zutreffende Kategorie entspr. Antwortschema\n2\n\n\nscore\n-\nInteger; steht für die Bewertung des Codes, also die Übereinstimmung mit einer als “richtig” angenommenen Antwort\n0",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#im-testsystem",
+    "href": "data-structures/response.html#im-testsystem",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Im Testsystem",
+    "text": "Im Testsystem\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nUNSET\nNeue Variable im technischen Prozess\n\n\nNOT_REACHED\nTestperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre.\n\n\nDISPLAYED\nDas Interaktionselement wurde der Testperson angezeigt1.\n\n\nVALUE_CHANGED\nTestperson hat den Wert geändert.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#bei-ableitung",
+    "href": "data-structures/response.html#bei-ableitung",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Bei Ableitung",
+    "text": "Bei Ableitung\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nSOURCE_MISSING\nMindestens eine der Quellvariablen fehlt oder hat einen Status, der für die Ableitung nicht erlaubt ist2.\n\n\nDERIVE_ERROR\nWährend der Ableitung ist ein Fehler aufgetreten.\n\n\nVALUE_DERIVED\nFür die abgeleitete Variable wurde erfolgreich ein Wert ermittelt.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#bei-kodierung",
+    "href": "data-structures/response.html#bei-kodierung",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Bei Kodierung",
+    "text": "Bei Kodierung\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nNO_CODING\nEs gibt im Kodierschema keine Vorschriften oder Anweisungen für die Kodierung.\n\n\nINVALID\nDer Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED).\n\n\nCODING_INCOMPLETE\nDie Regeln der automatischen Kodierung wurden angewendet, haben aber keinen zutreffenden Code ermitteln können.\n\n\nCODING_ERROR\nBeim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen.\n\n\nCODING_COMPLETE\nEin Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#verknüpfung-prozesse-und-status",
+    "href": "data-structures/response.html#verknüpfung-prozesse-und-status",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Verknüpfung Prozesse und Status",
+    "text": "Verknüpfung Prozesse und Status\n\n\nEin geänderter Wert geht in die Kodierung ein.\nEin geänderter Wert kann Quelle für eine Ableitung sein: COPY_VALUE. Achtung: Die Variable kann später Fehlerzustände bekommen. Ihr Wert kann trotzdem Quelle einer Ableitung sein.\nEin neu gebildeter (abgeleiteter) Wert geht in die Kodierung.\nCode und Score können nach erfolgreicher Kodierung Quelle für eine Ableitung sein.\nSollte die automatische Kodierung einen Fehler ergeben haben oder unvollständig sein, wird der Wert Gegenstand der manuellen Kodierung.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#footnotes",
+    "href": "data-structures/response.html#footnotes",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Fußnoten",
+    "text": "Fußnoten\n\n\nFür bestimmte Interaktionselemente (z. B. Ankreuzen Ja/Nein) wird statt DISPLAYED gleich VALUE_CHANGED gesetzt, da der Default-Wert eventuell von der Testperson gewünscht ist und keine Interaktion erfolgt.↩︎\nBei der Ableitung COPY_VALUE sind folgende Stati nicht erlaubt: UNSET, NOT_REACHED, DISPLAYED, SOURCE_MISSING und DERIVE_ERROR. Alle anderen sind zulässig. Für alle anderen Ableitungsmethoden CONCAT_CODE, SUM_CODE und SUM_SCORE ist der Status CODING_COMPLETE erforderlich.↩︎",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html",
+    "href": "data-structures/missings.html",
     "title": "Missings",
     "section": "",
-    "text": "Begriff\nMit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.\n\n\nStandard-Missings des IQB\n\n\n\n\n\nflowchart TD\n    C{Antwort im System\\ngespeichert?} --&gt;|JA| A{Item wurde\\ngesehen?}\n    A --&gt;|JA| F{Item wurde \\nbearbeitet?}\n    style G fill:#ff9\n    F --&gt;|JA| H{Antwort ungültig,\\nleer oder Spaßantwort?}\n    A --&gt;|NEIN| I{nachfolgend\\nbearbeitete oder\\ngesehene Items?}\n    F --&gt;|NEIN| J[missing\\nby intention]\n    I --&gt;|JA| J\n    I --&gt;|NEIN| G[missing\\nnot reached]\n    style J fill:#ff9\n    H --&gt;|JA| K[missing\\ninvalid response]\n    style K fill:#ff9\n    H --&gt;|NEIN| L[\"Gültige Antwort\\nAuswertung möglich\"]\n    style L fill:#af8\n    \n    C --&gt;|NEIN| B{Technisches\\nProblem?}\n    B --&gt;|JA| D[missing\\ncoding impossible]\n    style D fill:#ff9\n    B --&gt;|NEIN| E[missing\\nby design]\n    style E fill:#ff9\n\n\n\n\n\n\n\n\nIQB-Missings\n\n\n\n\n\n\n\n\nID\nLabel\nBeschreibung\nCode-Value\n\n\n\n\nmir\nmissing invalid response\n(1) Item wurde bearbeitet und (2a) leere Antwort oder (2b) sonstwie ungültige (Spaß-)Antwort\n-98\n\n\nmbi\nmissing by intention\nItem wurde nicht bearbeitet aber gesehen oder es wurde nicht gesehen, aber es gibt nachfolgend gesehene oder bearbeitete Items\n-99\n\n\nmnr\nmissing not reached\n(1) Item wurde nicht gesehen und (2) es folgen nur nicht gesehene Items\n-96\n\n\nmci\nmissing coding impossible\n(1) Item müsste/könnte bearbeitet worden sein und (2) Antwort ist aufgrund technischer Probleme nicht auswertbar\n-97\n\n\nmbd\nmissing by design\nAntwort liegt nicht vor, weil das Item der Testperson planmäßig nicht präsentiert wurde\n-94\n\n\n\n\n\nWann werden Missings gesetzt?\nDie TBA-Webanwendung IQB-Testcenter sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein Status geliefert. Im Rahmen der Kodierung kann der Status INVALID gesetzt werden, was grob dem Missing invalid response entspricht.\nVor der Datenanalyse müssen die Codes bzw. Scores aller Antworten sowie die jeweilige Status-Information zu einem einzelnen numerischen Wert transformiert werden. Dadurch entsteht die erforderliche zweidimensionale Datenmatrix (Person x Item). An dieser Stelle - also für die Vorbereitung der Analyse - werden Missings gesetzt: als numerische Werte, nach Konvention negativ (s. Tabelle oben).\nDer Wert für invalid response ist bereits direkt verfügbar. Die anderen Missing-Werte erfordern zusätzliche Informationen:\n\nDas Testheft - also die zeitliche Abfolge der Items - liefert die Information, welche Items nach dem jeweiligen Item folgen. Darüber kann dann not reached gesetzt werden.\nDie Protokolle der Testdurchführung liefern die Information, ob es technische Probleme gegeben hat.",
+    "text": "Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.",
     "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#missing-by-intention-wenn-leer",
+    "href": "data-structures/missings.html#missing-by-intention-wenn-leer",
+    "title": "Missings",
+    "section": "Missing by Intention wenn leer?",
+    "text": "Missing by Intention wenn leer?\nWenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:\n\nBei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.\nDer Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option ‘leer’ gibt es nicht.\nBei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#status-displayed-überspringen",
+    "href": "data-structures/missings.html#status-displayed-überspringen",
+    "title": "Missings",
+    "section": "Status DISPLAYED überspringen?",
+    "text": "Status DISPLAYED überspringen?\nDas IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status DISPLAYED. Wenn eine Interaktion erfolgte, wird der Status VALUE_CHANGED gesetzt (zum Status einer Antwort siehe hier). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status VALUE_CHANGED ausgewertet.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#wo-ist-das-item",
+    "href": "data-structures/missings.html#wo-ist-das-item",
+    "title": "Missings",
+    "section": "Wo ist das Item?",
+    "text": "Wo ist das Item?\nWenn es als 17. Teilaufgabe ein Item mit der Instruktion “markiere im Text” gibt, weicht der Ort der Beantwortung (also die Interaktion “Markieren” im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#item-status-value_changed-ableiten-aus-variablen",
+    "href": "data-structures/missings.html#item-status-value_changed-ableiten-aus-variablen",
+    "title": "Missings",
+    "section": "Item-Status VALUE_CHANGED ableiten aus Variablen?",
+    "text": "Item-Status VALUE_CHANGED ableiten aus Variablen?\nEin Item ist kein Strukturelement während der Beantwortung, sondern es wird mit Hilfe einer Variablen nachträglich konstruiert. Ob das Item bearbeitet wurde, ergibt sich also sinnvollerweise daraus, ob mindestens eine an der Itemwertbildung beteiligten Variablen einen geänderten Wert hat. Nun könnte es Fälle in der Kodierung geben, wo dies irreführend wäre.\nEin Beispiel: Die Kodierung eines Items, das sich auf einen Hörtext bezieht, ist nur dann sinnvoll, wenn der Hörtext auch abgespielt wurde. Daher müsste die Itemvariable berücksichtigen, dass die Audio-Variable einen Mindestwert z. B. von 0,8 hat (80% der Audiosequenz wurden gespielt). Technisch ist das kein Problem, die Itemvariable leitet sich teilweise aus der Audio-Variablen ab. Allerdings würden dann automatisch alle Items als bearbeitet gelten, die die Audio-Variable berücksichtigen (also alle?), nur weil die Audio-Sequenz gespielt wurde.",
+    "crumbs": [
+      "Datenstrukturen",
       "Missings"
     ]
   }
