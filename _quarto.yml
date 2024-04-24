@@ -3,7 +3,7 @@ project:
 
 website:
   site-url: https://iqb-berlin.github.io/coding-info/
-  title: "Coding-info"
+  title: "coding-info"
   favicon: favicon.ico
   page-navigation: true
   repo-url: https://github.com/iqb-berlin/coding-info/
@@ -26,8 +26,13 @@ website:
     contents:
       - href: index.qmd
         text: Start
-      - href: missings/index.qmd
-        text: Missings
+      - section: Datenstrukturen
+        href: data-structures/index.qmd
+        contents:        
+          - href: data-structures/response.qmd
+            text: Antwort/Variable
+          - href: data-structures/missings.qmd
+            text: Missings
 
 
 format:

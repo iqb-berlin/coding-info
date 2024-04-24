@@ -1,0 +1,96 @@
+---
+lang: de
+title: Datenstruktur
+---
+
+# Sicht der Datenanalyse
+
+Wenn Datenanalysen durchgeführt werden, benötigen sie im Kern eine zweidimensionale Matrix der Antwortdaten Testperson x Item. Die Testperson wird durch eine ID gekennzeichnet, das Item hat ebenfalls eine ID, und im Kreuzungspunkt findet sich ein Wert, der die Antwort der Testperson repräsentiert. Dann kann man Unterschiede der Personen und der Items analysieren.
+
+Bei der Analyse spielen außerdem zusätzliche Daten eine Rolle, die entweder die Person oder die Items näher beschreiben. So ist z. B. wichtig, in welchem sozioökonomischen Umfeld sich die Schule der Testperson befindet, an welcher Stelle des Testheftes das Item auftauchte oder wie schwer dieses Item ist. Die folgende Grafik veranschaulicht grob eine solche Datenstruktur.
+
+```{mermaid}
+classDiagram
+    direction LR
+    class StudentGroup{
+        String: ID
+        String: Testgruppe
+        List~any~: Metadaten
+    }
+    class Student{
+        String: ID
+        String: Testgruppe
+        List~any~: Metadaten
+    }
+    class Booklet{
+        String: ID
+        String: Label
+        List~any~: Metadaten
+    }
+    class Unit{
+        String: ID
+        String: Label
+        List~any~: Metadaten
+    }
+    class Item{
+        String: ID
+        List~any~: Metadaten
+        int: Value
+    }
+    StudentGroup "1..*" <--> "1..*" Student
+    Student "1" --> "1..*" Booklet
+    Booklet "1" --> "1..*" Unit
+    Unit "1" --> "1..*" Item
+```
+
+Für diese Dokumentation spielt dies allerdings **keine Rolle**. Alle Texte beziehen sich auf die Frage, wo der Wert für das Item herkommt.
+
+# Sicht des Testsystems
+
+Die Quelle für die Antworten sind vor allem die Interaktionselemente der Aufgabe (Eingabefelder, Ankreuzkästchen, Ablegelisten usw.). Außerdem können Ereignisse (zeitbezogene Zustandsänderungen) Informationen liefern, die in Variablen gespeichert werden (Logvariablen).
+ 
+```{mermaid}
+flowchart TD
+    subgraph Unit
+        subgraph Testdurchführung
+            A(Basisvariablen)
+            B(Logvariablen)
+        end
+        style Testdurchführung fill:#b3b3cc
+        E[Kodierung\nAbleitung]
+        style E fill:#ff9
+        C(Kodierschema)
+        J(Itemliste)
+    end
+    style Unit fill:#e0e0eb
+    H(Person)
+    style H fill:white
+    D[Primärdatensatz]
+    H-->D
+    E --> D
+    A --> E
+    B --> E
+    C --> E
+    style C fill:white
+    G[Analysedatensatz\nPerson x Item]
+    D --> G
+    F(Missingschema) --> G
+    style F fill:white
+    K(Unitposition\nim Testheft) --> G
+    style K fill:white
+    J --> G
+    L(Metadaten\naus versch. Quellen) --> G
+    style L fill:white
+```
+
+Die Antworten werden in einer einheitlichen Datenstruktur "Variable" gespeichert. Neben dem Antwortwert ist hier eine Information zum Status zu finden, also ob z. B. das Interaktionselement gesehen wurde, ob eine Bearbeitung stattgefunden hat usw.
+
+Ein Kodierschema enthält alle Informationen für die manuelle oder automatische Kodierung. Die Status der Variablen im Kodierprozess wird über eine Statusänderung angezeigt, und nach Abschluss der Kodierung sind die Werte "Code" und "Score" für die Variable gesetzt.
+
+# Itemwert
+
+Zunächst besteht der Itemwert aus dem Score-Wert einer Variablen. Für jedes Item ist hierzu in einer Itemliste eine Variable benannt. Dies kann eine Basisvariable oder eine abgeleitete Variable sein. Der Score-Wert ergibt sich nach der Kodierung, also nach der vollständigen Anwendung des Kodierschemas. Üblicherweise handelt es sich bei dem Scorewert um eine ganze Zahl, i. d. R. 0 oder 1.
+
+Sollten allerdings für die Itemvariable keine gültigen Antwortwerte vorliegen, wird eine negative Zahl für den Itemwert gesetzt. Diese Zahl symbolisiert nach einer allgemeinen Konvention verschiedene Missing-Zustände, die nicht nur aus den Antworten einer Unit ermittelt werden können, sondern zusätzliche Informationen erfordern.
+
+In der Tradition der Kompetenzdiagnostik werden zwar zunächst Analysen gerechnet, später jedoch die Missing-Werte rekodiert: Zu 0 = falsch oder zu einem allgemeinen Missing-Wert, der vom verwendeten Analysesystem abhängt (sog. sysmis).

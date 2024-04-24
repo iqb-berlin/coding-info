@@ -1,0 +1,68 @@
+---
+lang: de
+title: Datenstruktur "Antwort"
+---
+
+# Übersicht
+
+| Para- meter | erfor- derlich | Beschreibung / mögliche Werte | Beispiele |
+|--|:-:|-------------|:--:|
+| id | x | String; identifiziert die Variable innerhalb der Unit; zulässig: `^[0-9a-zA-Z_]+$` | "01a" |
+| status | x | String aus einer Aufzählung; s. u. | "NOT_REACHED" |
+| value | x | kann verschiedene Datentypen annehmen, s. u. | ["9", null] |
+| subform | - | String; wird benutzt, um das ggf. mehrfache Auftreten der Variablen (z. B. in Kopien bei Unterformularen) zu kennzeichnen | "p01" |
+| code | - | Integer; steht für die zutreffende Kategorie entspr. Antwortschema | 2 |
+| score | - | Integer; steht für die Bewertung des Codes, also die Übereinstimmung mit einer als "richtig" angenommenen Antwort | 0 |
+
+# Status
+
+## Im Testsystem
+
+| Wert | Beschreibung |
+|--|-------------|
+| `UNSET` | Neue Variable im technischen Prozess |
+|`NOT_REACHED` | Testperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre. |
+| `DISPLAYED` | Das Interaktionselement wurde der Testperson angezeigt[^1]. |
+| `VALUE_CHANGED` | Testperson hat den Wert geändert. |
+
+## Bei Ableitung
+
+| Wert | Beschreibung |
+|--|-------------|
+| `SOURCE_MISSING` | Mindestens eine der Quellvariablen fehlt oder hat einen Status, der für die Ableitung nicht erlaubt ist[^2]. |
+| `DERIVE_ERROR` | Während der Ableitung ist ein Fehler aufgetreten. |
+| `VALUE_DERIVED` | Für die abgeleitete Variable wurde erfolgreich ein Wert ermittelt. |
+
+## Bei Kodierung
+
+| Wert | Beschreibung |
+|--|-------------|
+| `NO_CODING` | Es gibt im Kodierschema keine Vorschriften oder Anweisungen für die Kodierung. |
+| `INVALID` | Der Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED). |
+| `CODING_INCOMPLETE` | Die Regeln der automatischen Kodierung wurden angewendet, haben aber keinen zutreffenden Code ermitteln können. |
+| `CODING_ERROR` | Beim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen. |
+| `CODING_COMPLETE` | Ein Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden. |
+
+## Verknüpfung Prozesse und Status
+
+![](stati-changes.png)
+
+1. Ein geänderter Wert geht in die Kodierung ein.
+1. Ein geänderter Wert kann Quelle für eine Ableitung sein: COPY_VALUE. Achtung: Die Variable kann später Fehlerzustände bekommen. Ihr Wert kann trotzdem Quelle einer Ableitung sein.
+1. Ein neu gebildeter (abgeleiteter) Wert geht in die Kodierung.
+1. Code und Score können nach erfolgreicher Kodierung Quelle für eine Ableitung sein.
+1. Sollte die automatische Kodierung einen Fehler ergeben haben oder unvollständig sein, wird der Wert Gegenstand der manuellen Kodierung.
+
+# Value Types
+
+* array<string | null>
+* array<number | null>
+* array<boolean | null>
+* number
+* string
+* null
+* boolean
+
+
+[^1]: Für bestimmte Interaktionselemente (z. B. Ankreuzen Ja/Nein) wird statt DISPLAYED gleich VALUE_CHANGED gesetzt, da der Default-Wert eventuell von der Testperson gewünscht ist und keine Interaktion erfolgt.
+[^2]: Bei der Ableitung COPY_VALUE sind folgende Stati nicht erlaubt: UNSET, NOT_REACHED, DISPLAYED, SOURCE_MISSING und DERIVE_ERROR. Alle anderen sind zulässig. Für alle anderen Ableitungsmethoden CONCAT_CODE, SUM_CODE und SUM_SCORE ist der Status CODING_COMPLETE erforderlich.
