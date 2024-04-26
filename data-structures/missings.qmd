@@ -16,7 +16,7 @@ flowchart TD
     style G fill:#ff9
     F -->|JA| H{Antwort ungültig,\nleer oder Spaßantwort?}
     A -->|NEIN| I{nachfolgend\nbearbeitete oder\ngesehene Items?}
-    F -->|NEIN| J[missing\nby intention]
+    F -->|NEIN| J[missing\nby omission]
     I -->|JA| J
     I -->|NEIN| G[missing\nnot reached]
     style J fill:#ff9
@@ -36,7 +36,7 @@ flowchart TD
 | ID | Label | Beschreibung | Code-Value |
 |---|---|---------|--:|
 | mir | missing invalid response | (1) Item wurde bearbeitet und (2a) leere Antwort oder (2b) sonstwie ungültige (Spaß-)Antwort | -98 |
-| mbi | missing by intention | Item wurde nicht bearbeitet aber gesehen oder es wurde nicht gesehen, aber es gibt nachfolgend gesehene oder bearbeitete Items | -99 |
+| mbo | missing by omission | Item wurde nicht bearbeitet aber gesehen oder es wurde nicht gesehen, aber es gibt nachfolgend gesehene oder bearbeitete Items | -99 |
 | mnr | missing not reached | (1) Item wurde nicht gesehen und (2) es folgen nur nicht gesehene Items | -96 |
 | mci | missing coding impossible | (1) Item müsste/könnte bearbeitet worden sein und (2) Antwort ist aufgrund technischer Probleme nicht auswertbar | -97 |
 | mbd | missing by design | Antwort liegt nicht vor, weil das Item der Testperson planmäßig nicht präsentiert wurde | -94 |
@@ -58,24 +58,53 @@ Weitere Informationen [zu Datenstrukturen](../data-structures/).
 
 # Technische Diskurse
 
-## Missing by Intention wenn leer?
+## Missing by Omission wenn leer?
 
-Wenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:
+Wenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung (Omission) anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:
 
 * Bei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.
 * Der Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option 'leer' gibt es nicht.
 * Bei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.
 
+::: {.callout-caution}
+## Umsetzung
+
+Ein bearbeiteter, aber leerer Wert wird als invalid bewertet.
+:::
+
 ## Status `DISPLAYED ` überspringen?
 
 Das IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status `DISPLAYED`. Wenn eine Interaktion erfolgte, wird der Status `VALUE_CHANGED` gesetzt (zum Status einer Antwort siehe [hier](response.qmd)). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status `VALUE_CHANGED` ausgewertet.
 
+::: {.callout-caution}
+## Mögliche Umsetzung
+
+Es könnte eine Option im Kodierschema geben, mit der man für eine Variable festlegen kann, dass der Wert auch bei `DISPLAYED` ausgewertet wird, also dann wie `VALUE_CHANGED` behandelt wird.
+:::
+
 ## Wo ist das Item?
 
 Wenn es als 17. Teilaufgabe ein Item mit der Instruktion "markiere im Text" gibt, weicht der Ort der Beantwortung (also die Interaktion "Markieren" im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.
+
+::: {.callout-caution}
+## Mögliche Umsetzung
+
+Man könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.
+:::
+
 
 ## Item-Status `VALUE_CHANGED` ableiten aus Variablen?
 
 Ein Item ist kein Strukturelement während der Beantwortung, sondern es wird mit Hilfe einer Variablen nachträglich konstruiert. Ob das Item bearbeitet wurde, ergibt sich also sinnvollerweise daraus, ob mindestens eine an der Itemwertbildung beteiligten Variablen einen geänderten Wert hat. Nun könnte es Fälle in der Kodierung geben, wo dies irreführend wäre.
 
 Ein Beispiel: Die Kodierung eines Items, das sich auf einen Hörtext bezieht, ist nur dann sinnvoll, wenn der Hörtext auch abgespielt wurde. Daher müsste die Itemvariable berücksichtigen, dass die Audio-Variable einen Mindestwert z. B. von 0,8 hat (80% der Audiosequenz wurden gespielt). Technisch ist das kein Problem, die Itemvariable leitet sich teilweise aus der Audio-Variablen ab. Allerdings würden dann automatisch alle Items als bearbeitet gelten, die die Audio-Variable berücksichtigen (also alle?), nur weil die Audio-Sequenz gespielt wurde.
+
+::: {.callout-caution}
+## Mögliche Umsetzung
+
+Der Status einer abgeleiteten Variablen leitet sich aus der Verarbeitung der Quellvariablen ab. Wenn eine der Quellvariablen den Status `NOT_REACHED` oder `DISPLAYED` hat, bekommt die abgeleitete Variable den Status `SOURCE_MISSING`. Aber auch wenn die Kodierung der Quellvariablen einen Fehler erzeugt (`CODING_ERROR`) oder unvollständig ist (`CODING_INCOMPLETE`), erhält die abgeleitete Variable den Status `SOURCE_MISSING`.
+
+Das ist eigentlich nicht so schlau. Die für die Missing-Setzung wichtige Information geht verloren. Besser wäre, den kleinsten Status aller Quellvariablen für die abgeleitete Variable zu setzen: `UNSET < NOT_REACHED < DISPLAYED < VALUE_CHANGED < CODING_INCOMPLETE < CODING_ERROR < NO_CODING`.
+
+Jedenfalls kann man dann im Kodierschema für eine Quellvariable eine Option vorsehen, die steuert, dass der Status dieser Variablen bei der Ermittlung des Status' der abgeleiteten Variablen ignoriert wird.
+:::
