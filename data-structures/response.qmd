@@ -3,15 +3,17 @@ lang: de
 title: Datenstruktur "Antwort"
 ---
 
+Die Spezifikation in englischer Sprache finden Sie [hier](https://iqb-berlin.github.io/responses).
+
 # Übersicht
 
-| Para- meter | erfor- derlich | Beschreibung / mögliche Werte | Beispiele |
-|--|:-:|-------------|:--:|
+| Parameter | erforderlich | Beschreibung / mögliche Werte | Beispiele |
+|--|:-:|------------------|:--:|
 | id | x | String; identifiziert die Variable innerhalb der Unit; zulässig: `^[0-9a-zA-Z_]+$` | "01a" |
 | status | x | String aus einer Aufzählung; s. u. | "NOT_REACHED" |
 | value | x | kann verschiedene Datentypen annehmen, s. u. | ["9", null] |
 | subform | - | String; wird benutzt, um das ggf. mehrfache Auftreten der Variablen (z. B. in Kopien bei Unterformularen) zu kennzeichnen | "p01" |
-| code | - | Integer; steht für die zutreffende Kategorie entspr. Antwortschema | 2 |
+| code | - | Integer; steht für die zutreffende Kategorie entspr. Kodierschema | 2 |
 | score | - | Integer; steht für die Bewertung des Codes, also die Übereinstimmung mit einer als "richtig" angenommenen Antwort | 0 |
 
 # Status
@@ -69,8 +71,6 @@ Wenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden
 | `CODING_COMPLETE` | Ein Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden. |
 
 Die Kodierung folgt zunächst den Festlegungen der automatischen Kodierung (regelbasiert). Sollte kein zutreffender Code gefunden werden, dann wird der Code `CODING_INCOMPLETE` gesetzt. Dann -- und auch bei einem Kodierfehler `CODING_ERROR` -- folgt die Sichtung der Antwort und eine manuelle Kodierung. Hier können wiederum die Stati `CODING_COMPLETE` oder `INVALID` gesetzt werden.
-
-## Verknüpfung Prozesse und Status
 
 # Value Types
 

@@ -1,0 +1,49 @@
+---
+lang: de
+title: Kodierschema
+---
+
+Auf dieser Seite sind in komprimierter Form alle Parameter und möglichen Werte eines Kodierschemas beschrieben. Andere Quellen:
+
+* Die Spezifikation in englischer Sprache finden Sie [hier](https://iqb-berlin.github.io/responses)
+* Ein JSON-Schema zur Validierung sowie Klassendefinitionen für TypeScript finden Sie [hier](https://github.com/iqb-berlin/responses#readme).
+* Ausführliche Erläuterungen der Nutzung des Schemas (Kodierung) finden Sie [hier](../coding).
+* Komponenten für Frontends für die Arbeit mit dem Kodierschema finden Sie [hier](https://github.com/iqb-berlin/coding-components#readme)
+
+# Liste von `VariableCodingData`
+
+Im Kern ist ein Kodierschema eine Liste von Objekten, wobei jedes Objekt für die Kodierung einer einzelnen Variable steht. Diese Objekt wird in den TypeScript-Klassen `VariableCodingData` genannt und wird nachfolgend beschrieben. Es muss aber stets die gesamte Liste verfügbar sein, da sich oft die Definitionen aufeinander beziehen.
+
+Die Liste der Kodierungsvorschriften für Variablen ist **stets an eine Unit gebunden**. Daher finden sich in den Datenstrukturen keine Angaben zur Unit und alle IDs sind eindeutig nur innerhalb der Liste. Die Antworten werden auch stets pro Unit gespeichert, so dass im Kodierprozess jeweils ein Kodierschema auf alle Unit-Antworten angewendet wird.
+
+# `id`
+
+Die möglichen Werte hier sind recht weit gefasst. Es sind zwar nur Buchstaben, Ziffern und '_' erlaubt, aber es gibt keine Mindestlänge und die ID kann nur aus Ziffern bestehen.
+
+Als Quelle der Variablen-ID fungieren zunächst die Basisvariablen -- also die Variablen, die als Interaktionselemente in der Unit-Definition angelegt sind. Darüber hinaus können abgeleitete Variablen Teil des Kodierschemas sein, deren ID lediglich eindeutig innerhalb der Liste sein muss.
+
+# `label`
+
+Diese Angabe ist meist unnötig, wird also leer gelassen. Erforderlich könnte sie werden, wenn der Ort der Variablen nicht eindeutig ist, weil es viele kleine Interaktionselemente gibt. Dann kann man hier 'Spalte 2 Zeile 5' eintragen, um bei der manuellen Kodierung oder der Datenauswertung die Fehlerrate zu senken.
+
+# `sourceType`
+
+Hier wird festgelegt, woher der Wert der Variablen kommt:
+
+* `BASE`: Es handelt sich um eine Basisvariable. Der Wert stammt also aus der Interaktion der Testperson mit dem Testsystem.
+* `COPY_VALUE`: Der Wert dieser abgeleiteten Variable ist eine identische Kopie eines Wertes einer anderen Variable. Dies ist erforderlich, wenn ein Eingabewert nicht nur eine isolierte Information liefern soll, sondern mehrere Aspekte des Wertes getrennt analysiert und also kodiert werden sollen. Beispiel: Es soll getrennt bewertet werden, ob die Großschreibung eingehalten und das Dehnungs-H richtig gesetzt wurde (Orthografie-Items).
+* `CONCAT_CODE`: Der Wert dieser abgeleiteten Variable setzt sich aus den Codes anderer Variablen zusammen. Die Integer-Werte der Codes werden mit dem Trennzeichen '_' aneinander gekettet. Der neue Wert der Variablen ist also ein String.
+* `SUM_CODE`: Der Wert dieser abgeleiteten Variable ist der Summenwert der Codes anderer Variablen. Durch geschicktes Festlegen der Codes lassen sich gut zusammenfassende Werte bilden. Der neue Wert der Variablen ist also ein Integer.
+* `SUM_SCORE`: Der Wert dieser abgeleiteten Variable ist der Summenwert der Scores anderer Variablen. Damit wird meistens die Bewertung mehrerer Antworten für ein Item zusammengefasst. Ein Item gilt also dann als richtig beantwortet, wenn einige Teilleistungen richtig sind. Der neue Wert der Variablen ist ein Integer.
+* `UNIQUE_VALUES`: Der Wert dieser abgeleiteten Variablen ist ein Boolscher Wert true/false mit dem festgestellt werden kann, ob die Werte der Quellvariablen eindeutig sind. Sowie einer der Werte mehrfach vorkommt, wird false gesetzt. Bei dieser Ableitung reicht es, wenn eine der Quellvariablen den Status `VALUE_CHANGED` hat. 
+* `SOLVER`: Diese Ableitung setzt numerische Werte bei den Quellvariablen voraus und verknüpft diese mit einem mathematischen Ausdruck, der als separater Parameter übergeben werden muss (s. u.). Es entsteht wieder ein numerischer Wert.
+
+# `sourceParameters`
+
+Über diese Parameter wird die Ableitung gesteuert bzw. der Wert nocheinmal verändert vor der Kodierung.
+
+* `solverExpression`: Hier ist der Ausdruck zu übergeben, mit dem die Werte bei der Ableitung `SOLVER` verknüpft werden. Es müssen für alle Variablenwerte Platzhalter existieren in der Form `${var04}`. Diese Stelle wird ersetzt durch den Wert der Variablen var04, bevor der Ausdruck an die Bibliothek [math.js](https://mathjs.org) zur Auswertung übergeben wird. Der Funktionsumfang richtet sich nach der Funktion [math.evaluate()](https://mathjs.org/docs/expressions/parsing.html#evaluate).
+* `processing`: Diese Schalter regeln spezielle Umformungen, die die anschließende Kodierung vorbereitet. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf 'ON' setzt:
+  + `TAKE_DISPLAYED_AS_VALUE_CHANGED`: Nur für Basisvariablen; legt fest, dass der Wert der Variablen auch ausgewertet wird, wenn die Variable den Status `DISPLAYED` hat. Ansonsten werden nur Variablen berücksichtigt, deren Status auf `VALUE_CHANGED` gesetzt ist.
+  + `REMOVE_ALL_SPACES`, `REMOVE_DISPENSABLE_SPACES`, `TO_NUMBER`, `TO_LOWER_CASE`: Nur für Ableitung `UNIQUE_VALUES`; die Werte werden vor der Gleichheitsprüfung transformiert. So kann man verhindern, dass ein führendes Leerzeichen oder eine vorgesetzte '0' eine Verschiedenheit vortäuscht.
+  + `SORT`: Nur für Ableitung `CONCAT_CODE`; wenn es egal ist, welche Variable welchen Code liefert, erleichtert eine Sortierung die Kodierung.

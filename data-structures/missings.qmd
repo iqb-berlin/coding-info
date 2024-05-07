@@ -77,9 +77,9 @@ Ein bearbeiteter, aber leerer Wert wird als invalid bewertet.
 Das IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status `DISPLAYED`. Wenn eine Interaktion erfolgte, wird der Status `VALUE_CHANGED` gesetzt (zum Status einer Antwort siehe [hier](response.qmd)). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status `VALUE_CHANGED` ausgewertet.
 
 ::: {.callout-caution}
-## Mögliche Umsetzung
+## Umsetzung
 
-Es könnte eine Option im Kodierschema geben, mit der man für eine Variable festlegen kann, dass der Wert auch bei `DISPLAYED` ausgewertet wird, also dann wie `VALUE_CHANGED` behandelt wird.
+Im Kodierschema gibt es eine Option, mit der man für eine Variable festlegen kann, dass der Wert auch bei `DISPLAYED` ausgewertet wird, also dann wie `VALUE_CHANGED` behandelt wird.
 :::
 
 ## Wo ist das Item?
@@ -90,21 +90,4 @@ Wenn es als 17. Teilaufgabe ein Item mit der Instruktion "markiere im Text" gibt
 ## Mögliche Umsetzung
 
 Man könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.
-:::
-
-
-## Item-Status `VALUE_CHANGED` ableiten aus Variablen?
-
-Ein Item ist kein Strukturelement während der Beantwortung, sondern es wird mit Hilfe einer Variablen nachträglich konstruiert. Ob das Item bearbeitet wurde, ergibt sich also sinnvollerweise daraus, ob mindestens eine an der Itemwertbildung beteiligten Variablen einen geänderten Wert hat. Nun könnte es Fälle in der Kodierung geben, wo dies irreführend wäre.
-
-Ein Beispiel: Die Kodierung eines Items, das sich auf einen Hörtext bezieht, ist nur dann sinnvoll, wenn der Hörtext auch abgespielt wurde. Daher müsste die Itemvariable berücksichtigen, dass die Audio-Variable einen Mindestwert z. B. von 0,8 hat (80% der Audiosequenz wurden gespielt). Technisch ist das kein Problem, die Itemvariable leitet sich teilweise aus der Audio-Variablen ab. Allerdings würden dann automatisch alle Items als bearbeitet gelten, die die Audio-Variable berücksichtigen (also alle?), nur weil die Audio-Sequenz gespielt wurde.
-
-::: {.callout-caution}
-## Mögliche Umsetzung
-
-Der Status einer abgeleiteten Variablen leitet sich aus der Verarbeitung der Quellvariablen ab. Wenn eine der Quellvariablen den Status `NOT_REACHED` oder `DISPLAYED` hat, bekommt die abgeleitete Variable den Status `SOURCE_MISSING`. Aber auch wenn die Kodierung der Quellvariablen einen Fehler erzeugt (`CODING_ERROR`) oder unvollständig ist (`CODING_INCOMPLETE`), erhält die abgeleitete Variable den Status `SOURCE_MISSING`.
-
-Das ist eigentlich nicht so schlau. Die für die Missing-Setzung wichtige Information geht verloren. Besser wäre, den kleinsten Status aller Quellvariablen für die abgeleitete Variable zu setzen: `UNSET < NOT_REACHED < DISPLAYED < VALUE_CHANGED < CODING_INCOMPLETE < CODING_ERROR < NO_CODING`.
-
-Jedenfalls kann man dann im Kodierschema für eine Quellvariable eine Option vorsehen, die steuert, dass der Status dieser Variablen bei der Ermittlung des Status' der abgeleiteten Variablen ignoriert wird.
 :::
