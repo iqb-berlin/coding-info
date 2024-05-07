@@ -16,22 +16,47 @@ title: Datenstruktur "Antwort"
 
 # Status
 
-## Im Testsystem
+Der Status-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess.
+
+## Neu als Informationseinheit angelegt
+
+Wenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den Status `UNSET`. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.
 
 | Wert | Beschreibung |
 |--|-------------|
 | `UNSET` | Neue Variable im technischen Prozess |
-|`NOT_REACHED` | Testperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre. |
-| `DISPLAYED` | Das Interaktionselement wurde der Testperson angezeigt[^1]. |
-| `VALUE_CHANGED` | Testperson hat den Wert geändert. |
 
-## Bei Ableitung
+## Im Testsystem
+
+Während der Durchführung eines Tests bzw. einer Befragung werden Variablenwerte als Antwortdaten gesetzt.
 
 | Wert | Beschreibung |
 |--|-------------|
-| `SOURCE_MISSING` | Mindestens eine der Quellvariablen fehlt oder hat einen Status, der für die Ableitung nicht erlaubt ist[^2]. |
+|`NOT_REACHED` | Testperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre. |
+| `DISPLAYED` | Das Interaktionselement wurde der Testperson angezeigt. |
+| `VALUE_CHANGED` | Testperson hat den Wert geändert. |
+
+Andere Werte sind im Testsystem nur möglich, wenn eine Antwortverarbeitung angestoßen wurde (wie z. B. beim adaptiven Testen).
+
+Für die Verarbeitung des Antwortwertes ist es erforderlich, dass der Status `VALUE_CHANGED` gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.
+
+Im Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der Status `DISPLAYED` eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert `false/unchecked` vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion "Kreuze alle Säugetiere an!" muss die Auswahl "Amsel" unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.
+
+## Bei Ableitung
+
+Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:
+
+* Variablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status `VALUE_CHANGED` haben. Es ist auch der Status `DISPLAYED` möglich, wenn dies bei der Quellvariablen markiert wurde.
+* Variablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status `CODING_COMPLETE` haben.
+
+| Wert | Beschreibung |
+|--|-------------|
 | `DERIVE_ERROR` | Während der Ableitung ist ein Fehler aufgetreten. |
-| `VALUE_DERIVED` | Für die abgeleitete Variable wurde erfolgreich ein Wert ermittelt. |
+| `VALUE_CHANGED` | Für die abgeleitete Variable wurde erfolgreich ein Wert ermittelt. |
+
+Wenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable `null`und es wird der Status auf den kleinsten Status gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:
+
+`UNSET` {{< fa chevron-right >}} `NOT_REACHED` {{< fa chevron-right >}} `DISPLAYED` {{< fa chevron-right >}} `DERIVE_ERROR` {{< fa chevron-right >}} `NO_CODING` {{< fa chevron-right >}} `INVALID` {{< fa chevron-right >}} `CODING_INCOMPLETE` {{< fa chevron-right >}} `CODING_ERROR`
 
 ## Bei Kodierung
 
@@ -43,15 +68,9 @@ title: Datenstruktur "Antwort"
 | `CODING_ERROR` | Beim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen. |
 | `CODING_COMPLETE` | Ein Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden. |
 
+Die Kodierung folgt zunächst den Festlegungen der automatischen Kodierung (regelbasiert). Sollte kein zutreffender Code gefunden werden, dann wird der Code `CODING_INCOMPLETE` gesetzt. Dann -- und auch bei einem Kodierfehler `CODING_ERROR` -- folgt die Sichtung der Antwort und eine manuelle Kodierung. Hier können wiederum die Stati `CODING_COMPLETE` oder `INVALID` gesetzt werden.
+
 ## Verknüpfung Prozesse und Status
-
-![](stati-changes.png)
-
-1. Ein geänderter Wert geht in die Kodierung ein.
-1. Ein geänderter Wert kann Quelle für eine Ableitung sein: COPY_VALUE. Achtung: Die Variable kann später Fehlerzustände bekommen. Ihr Wert kann trotzdem Quelle einer Ableitung sein.
-1. Ein neu gebildeter (abgeleiteter) Wert geht in die Kodierung.
-1. Code und Score können nach erfolgreicher Kodierung Quelle für eine Ableitung sein.
-1. Sollte die automatische Kodierung einen Fehler ergeben haben oder unvollständig sein, wird der Wert Gegenstand der manuellen Kodierung.
 
 # Value Types
 
@@ -62,7 +81,3 @@ title: Datenstruktur "Antwort"
 * string
 * null
 * boolean
-
-
-[^1]: Für bestimmte Interaktionselemente (z. B. Ankreuzen Ja/Nein) wird statt DISPLAYED gleich VALUE_CHANGED gesetzt, da der Default-Wert eventuell von der Testperson gewünscht ist und keine Interaktion erfolgt.
-[^2]: Bei der Ableitung COPY_VALUE sind folgende Stati nicht erlaubt: UNSET, NOT_REACHED, DISPLAYED, SOURCE_MISSING und DERIVE_ERROR. Alle anderen sind zulässig. Für alle anderen Ableitungsmethoden CONCAT_CODE, SUM_CODE und SUM_SCORE ist der Status CODING_COMPLETE erforderlich.
