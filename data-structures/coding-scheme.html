@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>coding-info - Datenstruktur “Antwort”</title>
+<title>coding-info - Kodierschema</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../data-structures/missings.html" rel="next">
-<link href="../data-structures/index.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -42,8 +40,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data-structures/index.html">Datenstrukturen</a></li><li class="breadcrumb-item"><a href="../data-structures/response.html">Antwort/Variable</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Kodierschema</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -137,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data-structures/response.html" class="sidebar-item-text sidebar-link active">
+  <a href="../data-structures/response.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Antwort/Variable</span></a>
   </div>
 </li>
@@ -159,24 +155,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#übersicht" id="toc-übersicht" class="nav-link active" data-scroll-target="#übersicht">Übersicht</a></li>
-  <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status">Status</a>
-  <ul class="collapse">
-  <li><a href="#neu-als-informationseinheit-angelegt" id="toc-neu-als-informationseinheit-angelegt" class="nav-link" data-scroll-target="#neu-als-informationseinheit-angelegt">Neu als Informationseinheit angelegt</a></li>
-  <li><a href="#im-testsystem" id="toc-im-testsystem" class="nav-link" data-scroll-target="#im-testsystem">Im Testsystem</a></li>
-  <li><a href="#bei-ableitung" id="toc-bei-ableitung" class="nav-link" data-scroll-target="#bei-ableitung">Bei Ableitung</a></li>
-  <li><a href="#bei-kodierung" id="toc-bei-kodierung" class="nav-link" data-scroll-target="#bei-kodierung">Bei Kodierung</a></li>
-  </ul></li>
-  <li><a href="#value-types" id="toc-value-types" class="nav-link" data-scroll-target="#value-types">Value Types</a></li>
+  <li><a href="#liste-von-variablecodingdata" id="toc-liste-von-variablecodingdata" class="nav-link active" data-scroll-target="#liste-von-variablecodingdata">Liste von <code>VariableCodingData</code></a></li>
+  <li><a href="#id" id="toc-id" class="nav-link" data-scroll-target="#id"><code>id</code></a></li>
+  <li><a href="#label" id="toc-label" class="nav-link" data-scroll-target="#label"><code>label</code></a></li>
+  <li><a href="#sourcetype" id="toc-sourcetype" class="nav-link" data-scroll-target="#sourcetype"><code>sourceType</code></a></li>
+  <li><a href="#sourceparameters" id="toc-sourceparameters" class="nav-link" data-scroll-target="#sourceparameters"><code>sourceParameters</code></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/iqb-berlin/coding-info/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data-structures/index.html">Datenstrukturen</a></li><li class="breadcrumb-item"><a href="../data-structures/response.html">Antwort/Variable</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Datenstruktur “Antwort”</h1>
+<h1 class="title">Kodierschema</h1>
 </div>
 
 
@@ -193,199 +185,51 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Die Spezifikation in englischer Sprache finden Sie <a href="https://iqb-berlin.github.io/responses">hier</a>.</p>
-<section id="übersicht" class="level1">
-<h1>Übersicht</h1>
-<table class="table">
-<colgroup>
-<col style="width: 7%">
-<col style="width: 11%">
-<col style="width: 66%">
-<col style="width: 14%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th style="text-align: center;">erforderlich</th>
-<th>Beschreibung / mögliche Werte</th>
-<th style="text-align: center;">Beispiele</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>id</td>
-<td style="text-align: center;">x</td>
-<td>String; identifiziert die Variable innerhalb der Unit; zulässig: <code>^[0-9a-zA-Z_]+$</code></td>
-<td style="text-align: center;">“01a”</td>
-</tr>
-<tr class="even">
-<td>status</td>
-<td style="text-align: center;">x</td>
-<td>String aus einer Aufzählung; s. u.</td>
-<td style="text-align: center;">“NOT_REACHED”</td>
-</tr>
-<tr class="odd">
-<td>value</td>
-<td style="text-align: center;">x</td>
-<td>kann verschiedene Datentypen annehmen, s. u.</td>
-<td style="text-align: center;">[“9”, null]</td>
-</tr>
-<tr class="even">
-<td>subform</td>
-<td style="text-align: center;">-</td>
-<td>String; wird benutzt, um das ggf. mehrfache Auftreten der Variablen (z. B. in Kopien bei Unterformularen) zu kennzeichnen</td>
-<td style="text-align: center;">“p01”</td>
-</tr>
-<tr class="odd">
-<td>code</td>
-<td style="text-align: center;">-</td>
-<td>Integer; steht für die zutreffende Kategorie entspr. Kodierschema</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="even">
-<td>score</td>
-<td style="text-align: center;">-</td>
-<td>Integer; steht für die Bewertung des Codes, also die Übereinstimmung mit einer als “richtig” angenommenen Antwort</td>
-<td style="text-align: center;">0</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="status" class="level1">
-<h1>Status</h1>
-<p>Der Status-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess.</p>
-<section id="neu-als-informationseinheit-angelegt" class="level2">
-<h2 class="anchored" data-anchor-id="neu-als-informationseinheit-angelegt">Neu als Informationseinheit angelegt</h2>
-<p>Wenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den Status <code>UNSET</code>. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Wert</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>UNSET</code></td>
-<td>Neue Variable im technischen Prozess</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="im-testsystem" class="level2">
-<h2 class="anchored" data-anchor-id="im-testsystem">Im Testsystem</h2>
-<p>Während der Durchführung eines Tests bzw. einer Befragung werden Variablenwerte als Antwortdaten gesetzt.</p>
-<table class="table">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 86%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Wert</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>NOT_REACHED</code></td>
-<td>Testperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre.</td>
-</tr>
-<tr class="even">
-<td><code>DISPLAYED</code></td>
-<td>Das Interaktionselement wurde der Testperson angezeigt.</td>
-</tr>
-<tr class="odd">
-<td><code>VALUE_CHANGED</code></td>
-<td>Testperson hat den Wert geändert.</td>
-</tr>
-</tbody>
-</table>
-<p>Andere Werte sind im Testsystem nur möglich, wenn eine Antwortverarbeitung angestoßen wurde (wie z. B. beim adaptiven Testen).</p>
-<p>Für die Verarbeitung des Antwortwertes ist es erforderlich, dass der Status <code>VALUE_CHANGED</code> gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.</p>
-<p>Im Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der Status <code>DISPLAYED</code> eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert <code>false/unchecked</code> vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion “Kreuze alle Säugetiere an!” muss die Auswahl “Amsel” unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.</p>
-</section>
-<section id="bei-ableitung" class="level2">
-<h2 class="anchored" data-anchor-id="bei-ableitung">Bei Ableitung</h2>
-<p>Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:</p>
+<p>Auf dieser Seite sind in komprimierter Form alle Parameter und möglichen Werte eines Kodierschemas beschrieben. Andere Quellen:</p>
 <ul>
-<li>Variablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status <code>VALUE_CHANGED</code> haben. Es ist auch der Status <code>DISPLAYED</code> möglich, wenn dies bei der Quellvariablen markiert wurde.</li>
-<li>Variablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status <code>CODING_COMPLETE</code> haben.</li>
+<li>Die Spezifikation in englischer Sprache finden Sie <a href="https://iqb-berlin.github.io/responses">hier</a></li>
+<li>Ein JSON-Schema zur Validierung sowie Klassendefinitionen für TypeScript finden Sie <a href="https://github.com/iqb-berlin/responses#readme">hier</a>.</li>
+<li>Ausführliche Erläuterungen der Nutzung des Schemas (Kodierung) finden Sie <a href="../coding">hier</a>.</li>
+<li>Komponenten für Frontends für die Arbeit mit dem Kodierschema finden Sie <a href="https://github.com/iqb-berlin/coding-components#readme">hier</a></li>
 </ul>
-<table class="table">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 86%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Wert</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>DERIVE_ERROR</code></td>
-<td>Während der Ableitung ist ein Fehler aufgetreten.</td>
-</tr>
-<tr class="even">
-<td><code>VALUE_CHANGED</code></td>
-<td>Für die abgeleitete Variable wurde erfolgreich ein Wert ermittelt.</td>
-</tr>
-</tbody>
-</table>
-<p>Wenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable <code>null</code>und es wird der Status auf den kleinsten Status gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:</p>
-<p><code>UNSET</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>NOT_REACHED</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>DISPLAYED</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>DERIVE_ERROR</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>NO_CODING</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>INVALID</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>CODING_INCOMPLETE</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>CODING_ERROR</code></p>
+<section id="liste-von-variablecodingdata" class="level1">
+<h1>Liste von <code>VariableCodingData</code></h1>
+<p>Im Kern ist ein Kodierschema eine Liste von Objekten, wobei jedes Objekt für die Kodierung einer einzelnen Variable steht. Diese Objekt wird in den TypeScript-Klassen <code>VariableCodingData</code> genannt und wird nachfolgend beschrieben. Es muss aber stets die gesamte Liste verfügbar sein, da sich oft die Definitionen aufeinander beziehen.</p>
+<p>Die Liste der Kodierungsvorschriften für Variablen ist <strong>stets an eine Unit gebunden</strong>. Daher finden sich in den Datenstrukturen keine Angaben zur Unit und alle IDs sind eindeutig nur innerhalb der Liste. Die Antworten werden auch stets pro Unit gespeichert, so dass im Kodierprozess jeweils ein Kodierschema auf alle Unit-Antworten angewendet wird.</p>
 </section>
-<section id="bei-kodierung" class="level2">
-<h2 class="anchored" data-anchor-id="bei-kodierung">Bei Kodierung</h2>
-<table class="table">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 86%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Wert</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>NO_CODING</code></td>
-<td>Es gibt im Kodierschema keine Vorschriften oder Anweisungen für die Kodierung.</td>
-</tr>
-<tr class="even">
-<td><code>INVALID</code></td>
-<td>Der Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED).</td>
-</tr>
-<tr class="odd">
-<td><code>CODING_INCOMPLETE</code></td>
-<td>Die Regeln der automatischen Kodierung wurden angewendet, haben aber keinen zutreffenden Code ermitteln können.</td>
-</tr>
-<tr class="even">
-<td><code>CODING_ERROR</code></td>
-<td>Beim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen.</td>
-</tr>
-<tr class="odd">
-<td><code>CODING_COMPLETE</code></td>
-<td>Ein Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden.</td>
-</tr>
-</tbody>
-</table>
-<p>Die Kodierung folgt zunächst den Festlegungen der automatischen Kodierung (regelbasiert). Sollte kein zutreffender Code gefunden werden, dann wird der Code <code>CODING_INCOMPLETE</code> gesetzt. Dann – und auch bei einem Kodierfehler <code>CODING_ERROR</code> – folgt die Sichtung der Antwort und eine manuelle Kodierung. Hier können wiederum die Stati <code>CODING_COMPLETE</code> oder <code>INVALID</code> gesetzt werden.</p>
+<section id="id" class="level1">
+<h1><code>id</code></h1>
+<p>Die möglichen Werte hier sind recht weit gefasst. Es sind zwar nur Buchstaben, Ziffern und ’_’ erlaubt, aber es gibt keine Mindestlänge und die ID kann nur aus Ziffern bestehen.</p>
+<p>Als Quelle der Variablen-ID fungieren zunächst die Basisvariablen – also die Variablen, die als Interaktionselemente in der Unit-Definition angelegt sind. Darüber hinaus können abgeleitete Variablen Teil des Kodierschemas sein, deren ID lediglich eindeutig innerhalb der Liste sein muss.</p>
 </section>
+<section id="label" class="level1">
+<h1><code>label</code></h1>
+<p>Diese Angabe ist meist unnötig, wird also leer gelassen. Erforderlich könnte sie werden, wenn der Ort der Variablen nicht eindeutig ist, weil es viele kleine Interaktionselemente gibt. Dann kann man hier ‘Spalte 2 Zeile 5’ eintragen, um bei der manuellen Kodierung oder der Datenauswertung die Fehlerrate zu senken.</p>
 </section>
-<section id="value-types" class="level1">
-<h1>Value Types</h1>
+<section id="sourcetype" class="level1">
+<h1><code>sourceType</code></h1>
+<p>Hier wird festgelegt, woher der Wert der Variablen kommt:</p>
 <ul>
-<li>array&lt;string | null&gt;</li>
-<li>array&lt;number | null&gt;</li>
-<li>array&lt;boolean | null&gt;</li>
-<li>number</li>
-<li>string</li>
-<li>null</li>
-<li>boolean</li>
+<li><code>BASE</code>: Es handelt sich um eine Basisvariable. Der Wert stammt also aus der Interaktion der Testperson mit dem Testsystem.</li>
+<li><code>COPY_VALUE</code>: Der Wert dieser abgeleiteten Variable ist eine identische Kopie eines Wertes einer anderen Variable. Dies ist erforderlich, wenn ein Eingabewert nicht nur eine isolierte Information liefern soll, sondern mehrere Aspekte des Wertes getrennt analysiert und also kodiert werden sollen. Beispiel: Es soll getrennt bewertet werden, ob die Großschreibung eingehalten und das Dehnungs-H richtig gesetzt wurde (Orthografie-Items).</li>
+<li><code>CONCAT_CODE</code>: Der Wert dieser abgeleiteten Variable setzt sich aus den Codes anderer Variablen zusammen. Die Integer-Werte der Codes werden mit dem Trennzeichen ’_’ aneinander gekettet. Der neue Wert der Variablen ist also ein String.</li>
+<li><code>SUM_CODE</code>: Der Wert dieser abgeleiteten Variable ist der Summenwert der Codes anderer Variablen. Durch geschicktes Festlegen der Codes lassen sich gut zusammenfassende Werte bilden. Der neue Wert der Variablen ist also ein Integer.</li>
+<li><code>SUM_SCORE</code>: Der Wert dieser abgeleiteten Variable ist der Summenwert der Scores anderer Variablen. Damit wird meistens die Bewertung mehrerer Antworten für ein Item zusammengefasst. Ein Item gilt also dann als richtig beantwortet, wenn einige Teilleistungen richtig sind. Der neue Wert der Variablen ist ein Integer.</li>
+<li><code>UNIQUE_VALUES</code>: Der Wert dieser abgeleiteten Variablen ist ein Boolscher Wert true/false mit dem festgestellt werden kann, ob die Werte der Quellvariablen eindeutig sind. Sowie einer der Werte mehrfach vorkommt, wird false gesetzt. Bei dieser Ableitung reicht es, wenn eine der Quellvariablen den Status <code>VALUE_CHANGED</code> hat.</li>
+<li><code>SOLVER</code>: Diese Ableitung setzt numerische Werte bei den Quellvariablen voraus und verknüpft diese mit einem mathematischen Ausdruck, der als separater Parameter übergeben werden muss (s. u.). Es entsteht wieder ein numerischer Wert.</li>
+</ul>
+</section>
+<section id="sourceparameters" class="level1">
+<h1><code>sourceParameters</code></h1>
+<p>Über diese Parameter wird die Ableitung gesteuert bzw. der Wert nocheinmal verändert vor der Kodierung.</p>
+<ul>
+<li><code>solverExpression</code>: Hier ist der Ausdruck zu übergeben, mit dem die Werte bei der Ableitung <code>SOLVER</code> verknüpft werden. Es müssen für alle Variablenwerte Platzhalter existieren in der Form <code>${var04}</code>. Diese Stelle wird ersetzt durch den Wert der Variablen var04, bevor der Ausdruck an die Bibliothek <a href="https://mathjs.org">math.js</a> zur Auswertung übergeben wird. Der Funktionsumfang richtet sich nach der Funktion <a href="https://mathjs.org/docs/expressions/parsing.html#evaluate">math.evaluate()</a>.</li>
+<li><code>processing</code>: Diese Schalter regeln spezielle Umformungen, die die anschließende Kodierung vorbereitet. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf ‘ON’ setzt:
+<ul>
+<li><code>TAKE_DISPLAYED_AS_VALUE_CHANGED</code>: Nur für Basisvariablen; legt fest, dass der Wert der Variablen auch ausgewertet wird, wenn die Variable den Status <code>DISPLAYED</code> hat. Ansonsten werden nur Variablen berücksichtigt, deren Status auf <code>VALUE_CHANGED</code> gesetzt ist.</li>
+<li><code>REMOVE_ALL_SPACES</code>, <code>REMOVE_DISPENSABLE_SPACES</code>, <code>TO_NUMBER</code>, <code>TO_LOWER_CASE</code>: Nur für Ableitung <code>UNIQUE_VALUES</code>; die Werte werden vor der Gleichheitsprüfung transformiert. So kann man verhindern, dass ein führendes Leerzeichen oder eine vorgesetzte ‘0’ eine Verschiedenheit vortäuscht.</li>
+<li><code>SORT</code>: Nur für Ableitung <code>CONCAT_CODE</code>; wenn es egal ist, welche Variable welchen Code liefert, erleichtert eine Sortierung die Kodierung.</li>
+</ul></li>
 </ul>
 
 
@@ -808,18 +652,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../data-structures/index.html" class="pagination-link" aria-label="Datenstrukturen">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Datenstrukturen</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../data-structures/missings.html" class="pagination-link" aria-label="Missings">
-        <span class="nav-page-text">Missings</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

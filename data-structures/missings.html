@@ -167,7 +167,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#missing-by-omission-wenn-leer" id="toc-missing-by-omission-wenn-leer" class="nav-link" data-scroll-target="#missing-by-omission-wenn-leer">Missing by Omission wenn leer?</a></li>
   <li><a href="#status-displayed-überspringen" id="toc-status-displayed-überspringen" class="nav-link" data-scroll-target="#status-displayed-überspringen">Status <code>DISPLAYED</code> überspringen?</a></li>
   <li><a href="#wo-ist-das-item" id="toc-wo-ist-das-item" class="nav-link" data-scroll-target="#wo-ist-das-item">Wo ist das Item?</a></li>
-  <li><a href="#item-status-value_changed-ableiten-aus-variablen" id="toc-item-status-value_changed-ableiten-aus-variablen" class="nav-link" data-scroll-target="#item-status-value_changed-ableiten-aus-variablen">Item-Status <code>VALUE_CHANGED</code> ableiten aus Variablen?</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/iqb-berlin/coding-info/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
@@ -326,11 +325,11 @@ Umsetzung
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Mögliche Umsetzung
+Umsetzung
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Es könnte eine Option im Kodierschema geben, mit der man für eine Variable festlegen kann, dass der Wert auch bei <code>DISPLAYED</code> ausgewertet wird, also dann wie <code>VALUE_CHANGED</code> behandelt wird.</p>
+<p>Im Kodierschema gibt es eine Option, mit der man für eine Variable festlegen kann, dass der Wert auch bei <code>DISPLAYED</code> ausgewertet wird, also dann wie <code>VALUE_CHANGED</code> behandelt wird.</p>
 </div>
 </div>
 </section>
@@ -348,26 +347,6 @@ Mögliche Umsetzung
 </div>
 <div class="callout-body-container callout-body">
 <p>Man könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.</p>
-</div>
-</div>
-</section>
-<section id="item-status-value_changed-ableiten-aus-variablen" class="level2">
-<h2 class="anchored" data-anchor-id="item-status-value_changed-ableiten-aus-variablen">Item-Status <code>VALUE_CHANGED</code> ableiten aus Variablen?</h2>
-<p>Ein Item ist kein Strukturelement während der Beantwortung, sondern es wird mit Hilfe einer Variablen nachträglich konstruiert. Ob das Item bearbeitet wurde, ergibt sich also sinnvollerweise daraus, ob mindestens eine an der Itemwertbildung beteiligten Variablen einen geänderten Wert hat. Nun könnte es Fälle in der Kodierung geben, wo dies irreführend wäre.</p>
-<p>Ein Beispiel: Die Kodierung eines Items, das sich auf einen Hörtext bezieht, ist nur dann sinnvoll, wenn der Hörtext auch abgespielt wurde. Daher müsste die Itemvariable berücksichtigen, dass die Audio-Variable einen Mindestwert z. B. von 0,8 hat (80% der Audiosequenz wurden gespielt). Technisch ist das kein Problem, die Itemvariable leitet sich teilweise aus der Audio-Variablen ab. Allerdings würden dann automatisch alle Items als bearbeitet gelten, die die Audio-Variable berücksichtigen (also alle?), nur weil die Audio-Sequenz gespielt wurde.</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Mögliche Umsetzung
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Der Status einer abgeleiteten Variablen leitet sich aus der Verarbeitung der Quellvariablen ab. Wenn eine der Quellvariablen den Status <code>NOT_REACHED</code> oder <code>DISPLAYED</code> hat, bekommt die abgeleitete Variable den Status <code>SOURCE_MISSING</code>. Aber auch wenn die Kodierung der Quellvariablen einen Fehler erzeugt (<code>CODING_ERROR</code>) oder unvollständig ist (<code>CODING_INCOMPLETE</code>), erhält die abgeleitete Variable den Status <code>SOURCE_MISSING</code>.</p>
-<p>Das ist eigentlich nicht so schlau. Die für die Missing-Setzung wichtige Information geht verloren. Besser wäre, den kleinsten Status aller Quellvariablen für die abgeleitete Variable zu setzen: <code>UNSET &lt; NOT_REACHED &lt; DISPLAYED &lt; VALUE_CHANGED &lt; CODING_INCOMPLETE &lt; CODING_ERROR &lt; NO_CODING</code>.</p>
-<p>Jedenfalls kann man dann im Kodierschema für eine Quellvariable eine Option vorsehen, die steuert, dass der Status dieser Variablen bei der Ermittlung des Status’ der abgeleiteten Variablen ignoriert wird.</p>
 </div>
 </div>
 

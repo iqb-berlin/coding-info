@@ -20,11 +20,55 @@
     ]
   },
   {
+    "objectID": "data-structures/missings.html",
+    "href": "data-structures/missings.html",
+    "title": "Missings",
+    "section": "",
+    "text": "Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#missing-by-omission-wenn-leer",
+    "href": "data-structures/missings.html#missing-by-omission-wenn-leer",
+    "title": "Missings",
+    "section": "Missing by Omission wenn leer?",
+    "text": "Missing by Omission wenn leer?\nWenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung (Omission) anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:\n\nBei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.\nDer Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option ‘leer’ gibt es nicht.\nBei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.\n\n\n\n\n\n\n\nUmsetzung\n\n\n\nEin bearbeiteter, aber leerer Wert wird als invalid bewertet.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#status-displayed-überspringen",
+    "href": "data-structures/missings.html#status-displayed-überspringen",
+    "title": "Missings",
+    "section": "Status DISPLAYED überspringen?",
+    "text": "Status DISPLAYED überspringen?\nDas IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status DISPLAYED. Wenn eine Interaktion erfolgte, wird der Status VALUE_CHANGED gesetzt (zum Status einer Antwort siehe hier). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status VALUE_CHANGED ausgewertet.\n\n\n\n\n\n\nUmsetzung\n\n\n\nIm Kodierschema gibt es eine Option, mit der man für eine Variable festlegen kann, dass der Wert auch bei DISPLAYED ausgewertet wird, also dann wie VALUE_CHANGED behandelt wird.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#wo-ist-das-item",
+    "href": "data-structures/missings.html#wo-ist-das-item",
+    "title": "Missings",
+    "section": "Wo ist das Item?",
+    "text": "Wo ist das Item?\nWenn es als 17. Teilaufgabe ein Item mit der Instruktion “markiere im Text” gibt, weicht der Ort der Beantwortung (also die Interaktion “Markieren” im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.\n\n\n\n\n\n\nMögliche Umsetzung\n\n\n\nMan könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
     "objectID": "data-structures/response.html",
     "href": "data-structures/response.html",
     "title": "Datenstruktur “Antwort”",
     "section": "",
-    "text": "Para- meter\nerfor- derlich\nBeschreibung / mögliche Werte\nBeispiele\n\n\n\n\nid\nx\nString; identifiziert die Variable innerhalb der Unit; zulässig: ^[0-9a-zA-Z_]+$\n“01a”\n\n\nstatus\nx\nString aus einer Aufzählung; s. u.\n“NOT_REACHED”\n\n\nvalue\nx\nkann verschiedene Datentypen annehmen, s. u.\n[“9”, null]\n\n\nsubform\n-\nString; wird benutzt, um das ggf. mehrfache Auftreten der Variablen (z. B. in Kopien bei Unterformularen) zu kennzeichnen\n“p01”\n\n\ncode\n-\nInteger; steht für die zutreffende Kategorie entspr. Antwortschema\n2\n\n\nscore\n-\nInteger; steht für die Bewertung des Codes, also die Übereinstimmung mit einer als “richtig” angenommenen Antwort\n0",
+    "text": "Die Spezifikation in englischer Sprache finden Sie hier.",
     "crumbs": [
       "Datenstrukturen",
       "Antwort/Variable"
@@ -75,69 +119,10 @@
     ]
   },
   {
-    "objectID": "data-structures/response.html#verknüpfung-prozesse-und-status",
-    "href": "data-structures/response.html#verknüpfung-prozesse-und-status",
-    "title": "Datenstruktur “Antwort”",
-    "section": "Verknüpfung Prozesse und Status",
-    "text": "Verknüpfung Prozesse und Status",
-    "crumbs": [
-      "Datenstrukturen",
-      "Antwort/Variable"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html",
-    "href": "data-structures/missings.html",
-    "title": "Missings",
+    "objectID": "data-structures/coding-scheme.html",
+    "href": "data-structures/coding-scheme.html",
+    "title": "Kodierschema",
     "section": "",
-    "text": "Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#missing-by-omission-wenn-leer",
-    "href": "data-structures/missings.html#missing-by-omission-wenn-leer",
-    "title": "Missings",
-    "section": "Missing by Omission wenn leer?",
-    "text": "Missing by Omission wenn leer?\nWenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung (Omission) anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:\n\nBei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.\nDer Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option ‘leer’ gibt es nicht.\nBei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.\n\n\n\n\n\n\n\nUmsetzung\n\n\n\nEin bearbeiteter, aber leerer Wert wird als invalid bewertet.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#status-displayed-überspringen",
-    "href": "data-structures/missings.html#status-displayed-überspringen",
-    "title": "Missings",
-    "section": "Status DISPLAYED überspringen?",
-    "text": "Status DISPLAYED überspringen?\nDas IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status DISPLAYED. Wenn eine Interaktion erfolgte, wird der Status VALUE_CHANGED gesetzt (zum Status einer Antwort siehe hier). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status VALUE_CHANGED ausgewertet.\n\n\n\n\n\n\nMögliche Umsetzung\n\n\n\nEs könnte eine Option im Kodierschema geben, mit der man für eine Variable festlegen kann, dass der Wert auch bei DISPLAYED ausgewertet wird, also dann wie VALUE_CHANGED behandelt wird.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#wo-ist-das-item",
-    "href": "data-structures/missings.html#wo-ist-das-item",
-    "title": "Missings",
-    "section": "Wo ist das Item?",
-    "text": "Wo ist das Item?\nWenn es als 17. Teilaufgabe ein Item mit der Instruktion “markiere im Text” gibt, weicht der Ort der Beantwortung (also die Interaktion “Markieren” im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.\n\n\n\n\n\n\nMögliche Umsetzung\n\n\n\nMan könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#item-status-value_changed-ableiten-aus-variablen",
-    "href": "data-structures/missings.html#item-status-value_changed-ableiten-aus-variablen",
-    "title": "Missings",
-    "section": "Item-Status VALUE_CHANGED ableiten aus Variablen?",
-    "text": "Item-Status VALUE_CHANGED ableiten aus Variablen?\nEin Item ist kein Strukturelement während der Beantwortung, sondern es wird mit Hilfe einer Variablen nachträglich konstruiert. Ob das Item bearbeitet wurde, ergibt sich also sinnvollerweise daraus, ob mindestens eine an der Itemwertbildung beteiligten Variablen einen geänderten Wert hat. Nun könnte es Fälle in der Kodierung geben, wo dies irreführend wäre.\nEin Beispiel: Die Kodierung eines Items, das sich auf einen Hörtext bezieht, ist nur dann sinnvoll, wenn der Hörtext auch abgespielt wurde. Daher müsste die Itemvariable berücksichtigen, dass die Audio-Variable einen Mindestwert z. B. von 0,8 hat (80% der Audiosequenz wurden gespielt). Technisch ist das kein Problem, die Itemvariable leitet sich teilweise aus der Audio-Variablen ab. Allerdings würden dann automatisch alle Items als bearbeitet gelten, die die Audio-Variable berücksichtigen (also alle?), nur weil die Audio-Sequenz gespielt wurde.\n\n\n\n\n\n\nMögliche Umsetzung\n\n\n\nDer Status einer abgeleiteten Variablen leitet sich aus der Verarbeitung der Quellvariablen ab. Wenn eine der Quellvariablen den Status NOT_REACHED oder DISPLAYED hat, bekommt die abgeleitete Variable den Status SOURCE_MISSING. Aber auch wenn die Kodierung der Quellvariablen einen Fehler erzeugt (CODING_ERROR) oder unvollständig ist (CODING_INCOMPLETE), erhält die abgeleitete Variable den Status SOURCE_MISSING.\nDas ist eigentlich nicht so schlau. Die für die Missing-Setzung wichtige Information geht verloren. Besser wäre, den kleinsten Status aller Quellvariablen für die abgeleitete Variable zu setzen: UNSET &lt; NOT_REACHED &lt; DISPLAYED &lt; VALUE_CHANGED &lt; CODING_INCOMPLETE &lt; CODING_ERROR &lt; NO_CODING.\nJedenfalls kann man dann im Kodierschema für eine Quellvariable eine Option vorsehen, die steuert, dass der Status dieser Variablen bei der Ermittlung des Status’ der abgeleiteten Variablen ignoriert wird.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
+    "text": "Auf dieser Seite sind in komprimierter Form alle Parameter und möglichen Werte eines Kodierschemas beschrieben. Andere Quellen:\n\nDie Spezifikation in englischer Sprache finden Sie hier\nEin JSON-Schema zur Validierung sowie Klassendefinitionen für TypeScript finden Sie hier.\nAusführliche Erläuterungen der Nutzung des Schemas (Kodierung) finden Sie hier.\nKomponenten für Frontends für die Arbeit mit dem Kodierschema finden Sie hier\n\n\nListe von VariableCodingData\nIm Kern ist ein Kodierschema eine Liste von Objekten, wobei jedes Objekt für die Kodierung einer einzelnen Variable steht. Diese Objekt wird in den TypeScript-Klassen VariableCodingData genannt und wird nachfolgend beschrieben. Es muss aber stets die gesamte Liste verfügbar sein, da sich oft die Definitionen aufeinander beziehen.\nDie Liste der Kodierungsvorschriften für Variablen ist stets an eine Unit gebunden. Daher finden sich in den Datenstrukturen keine Angaben zur Unit und alle IDs sind eindeutig nur innerhalb der Liste. Die Antworten werden auch stets pro Unit gespeichert, so dass im Kodierprozess jeweils ein Kodierschema auf alle Unit-Antworten angewendet wird.\n\n\nid\nDie möglichen Werte hier sind recht weit gefasst. Es sind zwar nur Buchstaben, Ziffern und ’_’ erlaubt, aber es gibt keine Mindestlänge und die ID kann nur aus Ziffern bestehen.\nAls Quelle der Variablen-ID fungieren zunächst die Basisvariablen – also die Variablen, die als Interaktionselemente in der Unit-Definition angelegt sind. Darüber hinaus können abgeleitete Variablen Teil des Kodierschemas sein, deren ID lediglich eindeutig innerhalb der Liste sein muss.\n\n\nlabel\nDiese Angabe ist meist unnötig, wird also leer gelassen. Erforderlich könnte sie werden, wenn der Ort der Variablen nicht eindeutig ist, weil es viele kleine Interaktionselemente gibt. Dann kann man hier ‘Spalte 2 Zeile 5’ eintragen, um bei der manuellen Kodierung oder der Datenauswertung die Fehlerrate zu senken.\n\n\nsourceType\nHier wird festgelegt, woher der Wert der Variablen kommt:\n\nBASE: Es handelt sich um eine Basisvariable. Der Wert stammt also aus der Interaktion der Testperson mit dem Testsystem.\nCOPY_VALUE: Der Wert dieser abgeleiteten Variable ist eine identische Kopie eines Wertes einer anderen Variable. Dies ist erforderlich, wenn ein Eingabewert nicht nur eine isolierte Information liefern soll, sondern mehrere Aspekte des Wertes getrennt analysiert und also kodiert werden sollen. Beispiel: Es soll getrennt bewertet werden, ob die Großschreibung eingehalten und das Dehnungs-H richtig gesetzt wurde (Orthografie-Items).\nCONCAT_CODE: Der Wert dieser abgeleiteten Variable setzt sich aus den Codes anderer Variablen zusammen. Die Integer-Werte der Codes werden mit dem Trennzeichen ’_’ aneinander gekettet. Der neue Wert der Variablen ist also ein String.\nSUM_CODE: Der Wert dieser abgeleiteten Variable ist der Summenwert der Codes anderer Variablen. Durch geschicktes Festlegen der Codes lassen sich gut zusammenfassende Werte bilden. Der neue Wert der Variablen ist also ein Integer.\nSUM_SCORE: Der Wert dieser abgeleiteten Variable ist der Summenwert der Scores anderer Variablen. Damit wird meistens die Bewertung mehrerer Antworten für ein Item zusammengefasst. Ein Item gilt also dann als richtig beantwortet, wenn einige Teilleistungen richtig sind. Der neue Wert der Variablen ist ein Integer.\nUNIQUE_VALUES: Der Wert dieser abgeleiteten Variablen ist ein Boolscher Wert true/false mit dem festgestellt werden kann, ob die Werte der Quellvariablen eindeutig sind. Sowie einer der Werte mehrfach vorkommt, wird false gesetzt. Bei dieser Ableitung reicht es, wenn eine der Quellvariablen den Status VALUE_CHANGED hat.\nSOLVER: Diese Ableitung setzt numerische Werte bei den Quellvariablen voraus und verknüpft diese mit einem mathematischen Ausdruck, der als separater Parameter übergeben werden muss (s. u.). Es entsteht wieder ein numerischer Wert.\n\n\n\nsourceParameters\nÜber diese Parameter wird die Ableitung gesteuert bzw. der Wert nocheinmal verändert vor der Kodierung.\n\nsolverExpression: Hier ist der Ausdruck zu übergeben, mit dem die Werte bei der Ableitung SOLVER verknüpft werden. Es müssen für alle Variablenwerte Platzhalter existieren in der Form ${var04}. Diese Stelle wird ersetzt durch den Wert der Variablen var04, bevor der Ausdruck an die Bibliothek math.js zur Auswertung übergeben wird. Der Funktionsumfang richtet sich nach der Funktion math.evaluate().\nprocessing: Diese Schalter regeln spezielle Umformungen, die die anschließende Kodierung vorbereitet. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf ‘ON’ setzt:\n\nTAKE_DISPLAYED_AS_VALUE_CHANGED: Nur für Basisvariablen; legt fest, dass der Wert der Variablen auch ausgewertet wird, wenn die Variable den Status DISPLAYED hat. Ansonsten werden nur Variablen berücksichtigt, deren Status auf VALUE_CHANGED gesetzt ist.\nREMOVE_ALL_SPACES, REMOVE_DISPENSABLE_SPACES, TO_NUMBER, TO_LOWER_CASE: Nur für Ableitung UNIQUE_VALUES; die Werte werden vor der Gleichheitsprüfung transformiert. So kann man verhindern, dass ein führendes Leerzeichen oder eine vorgesetzte ‘0’ eine Verschiedenheit vortäuscht.\nSORT: Nur für Ableitung CONCAT_CODE; wenn es egal ist, welche Variable welchen Code liefert, erleichtert eine Sortierung die Kodierung."
   }
 ]
