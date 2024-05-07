@@ -31,11 +31,22 @@
     ]
   },
   {
+    "objectID": "data-structures/response.html#neu-als-informationseinheit-angelegt",
+    "href": "data-structures/response.html#neu-als-informationseinheit-angelegt",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Neu als Informationseinheit angelegt",
+    "text": "Neu als Informationseinheit angelegt\nWenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den Status UNSET. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.\n\n\n\nWert\nBeschreibung\n\n\n\n\nUNSET\nNeue Variable im technischen Prozess",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
     "objectID": "data-structures/response.html#im-testsystem",
     "href": "data-structures/response.html#im-testsystem",
     "title": "Datenstruktur “Antwort”",
     "section": "Im Testsystem",
-    "text": "Im Testsystem\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nUNSET\nNeue Variable im technischen Prozess\n\n\nNOT_REACHED\nTestperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre.\n\n\nDISPLAYED\nDas Interaktionselement wurde der Testperson angezeigt1.\n\n\nVALUE_CHANGED\nTestperson hat den Wert geändert.",
+    "text": "Im Testsystem\nWährend der Durchführung eines Tests bzw. einer Befragung werden Variablenwerte als Antwortdaten gesetzt.\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nNOT_REACHED\nTestperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre.\n\n\nDISPLAYED\nDas Interaktionselement wurde der Testperson angezeigt.\n\n\nVALUE_CHANGED\nTestperson hat den Wert geändert.\n\n\n\nAndere Werte sind im Testsystem nur möglich, wenn eine Antwortverarbeitung angestoßen wurde (wie z. B. beim adaptiven Testen).\nFür die Verarbeitung des Antwortwertes ist es erforderlich, dass der Status VALUE_CHANGED gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.\nIm Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der Status DISPLAYED eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert false/unchecked vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion “Kreuze alle Säugetiere an!” muss die Auswahl “Amsel” unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.",
     "crumbs": [
       "Datenstrukturen",
       "Antwort/Variable"
@@ -46,7 +57,7 @@
     "href": "data-structures/response.html#bei-ableitung",
     "title": "Datenstruktur “Antwort”",
     "section": "Bei Ableitung",
-    "text": "Bei Ableitung\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nSOURCE_MISSING\nMindestens eine der Quellvariablen fehlt oder hat einen Status, der für die Ableitung nicht erlaubt ist2.\n\n\nDERIVE_ERROR\nWährend der Ableitung ist ein Fehler aufgetreten.\n\n\nVALUE_DERIVED\nFür die abgeleitete Variable wurde erfolgreich ein Wert ermittelt.",
+    "text": "Bei Ableitung\nDas Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:\n\nVariablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status VALUE_CHANGED haben. Es ist auch der Status DISPLAYED möglich, wenn dies bei der Quellvariablen markiert wurde.\nVariablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status CODING_COMPLETE haben.\n\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nDERIVE_ERROR\nWährend der Ableitung ist ein Fehler aufgetreten.\n\n\nVALUE_CHANGED\nFür die abgeleitete Variable wurde erfolgreich ein Wert ermittelt.\n\n\n\nWenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable nullund es wird der Status auf den kleinsten Status gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:\nUNSET  NOT_REACHED  DISPLAYED  DERIVE_ERROR  NO_CODING  INVALID  CODING_INCOMPLETE  CODING_ERROR",
     "crumbs": [
       "Datenstrukturen",
       "Antwort/Variable"
@@ -57,7 +68,7 @@
     "href": "data-structures/response.html#bei-kodierung",
     "title": "Datenstruktur “Antwort”",
     "section": "Bei Kodierung",
-    "text": "Bei Kodierung\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nNO_CODING\nEs gibt im Kodierschema keine Vorschriften oder Anweisungen für die Kodierung.\n\n\nINVALID\nDer Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED).\n\n\nCODING_INCOMPLETE\nDie Regeln der automatischen Kodierung wurden angewendet, haben aber keinen zutreffenden Code ermitteln können.\n\n\nCODING_ERROR\nBeim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen.\n\n\nCODING_COMPLETE\nEin Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden.",
+    "text": "Bei Kodierung\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nNO_CODING\nEs gibt im Kodierschema keine Vorschriften oder Anweisungen für die Kodierung.\n\n\nINVALID\nDer Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED).\n\n\nCODING_INCOMPLETE\nDie Regeln der automatischen Kodierung wurden angewendet, haben aber keinen zutreffenden Code ermitteln können.\n\n\nCODING_ERROR\nBeim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen.\n\n\nCODING_COMPLETE\nEin Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden.\n\n\n\nDie Kodierung folgt zunächst den Festlegungen der automatischen Kodierung (regelbasiert). Sollte kein zutreffender Code gefunden werden, dann wird der Code CODING_INCOMPLETE gesetzt. Dann – und auch bei einem Kodierfehler CODING_ERROR – folgt die Sichtung der Antwort und eine manuelle Kodierung. Hier können wiederum die Stati CODING_COMPLETE oder INVALID gesetzt werden.",
     "crumbs": [
       "Datenstrukturen",
       "Antwort/Variable"
@@ -68,18 +79,7 @@
     "href": "data-structures/response.html#verknüpfung-prozesse-und-status",
     "title": "Datenstruktur “Antwort”",
     "section": "Verknüpfung Prozesse und Status",
-    "text": "Verknüpfung Prozesse und Status\n\n\nEin geänderter Wert geht in die Kodierung ein.\nEin geänderter Wert kann Quelle für eine Ableitung sein: COPY_VALUE. Achtung: Die Variable kann später Fehlerzustände bekommen. Ihr Wert kann trotzdem Quelle einer Ableitung sein.\nEin neu gebildeter (abgeleiteter) Wert geht in die Kodierung.\nCode und Score können nach erfolgreicher Kodierung Quelle für eine Ableitung sein.\nSollte die automatische Kodierung einen Fehler ergeben haben oder unvollständig sein, wird der Wert Gegenstand der manuellen Kodierung.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Antwort/Variable"
-    ]
-  },
-  {
-    "objectID": "data-structures/response.html#footnotes",
-    "href": "data-structures/response.html#footnotes",
-    "title": "Datenstruktur “Antwort”",
-    "section": "Fußnoten",
-    "text": "Fußnoten\n\n\nFür bestimmte Interaktionselemente (z. B. Ankreuzen Ja/Nein) wird statt DISPLAYED gleich VALUE_CHANGED gesetzt, da der Default-Wert eventuell von der Testperson gewünscht ist und keine Interaktion erfolgt.↩︎\nBei der Ableitung COPY_VALUE sind folgende Stati nicht erlaubt: UNSET, NOT_REACHED, DISPLAYED, SOURCE_MISSING und DERIVE_ERROR. Alle anderen sind zulässig. Für alle anderen Ableitungsmethoden CONCAT_CODE, SUM_CODE und SUM_SCORE ist der Status CODING_COMPLETE erforderlich.↩︎",
+    "text": "Verknüpfung Prozesse und Status",
     "crumbs": [
       "Datenstrukturen",
       "Antwort/Variable"

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -42,6 +42,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -160,6 +162,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#übersicht" id="toc-übersicht" class="nav-link active" data-scroll-target="#übersicht">Übersicht</a></li>
   <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status">Status</a>
   <ul class="collapse">
+  <li><a href="#neu-als-informationseinheit-angelegt" id="toc-neu-als-informationseinheit-angelegt" class="nav-link" data-scroll-target="#neu-als-informationseinheit-angelegt">Neu als Informationseinheit angelegt</a></li>
   <li><a href="#im-testsystem" id="toc-im-testsystem" class="nav-link" data-scroll-target="#im-testsystem">Im Testsystem</a></li>
   <li><a href="#bei-ableitung" id="toc-bei-ableitung" class="nav-link" data-scroll-target="#bei-ableitung">Bei Ableitung</a></li>
   <li><a href="#bei-kodierung" id="toc-bei-kodierung" class="nav-link" data-scroll-target="#bei-kodierung">Bei Kodierung</a></li>
@@ -250,13 +253,11 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="status" class="level1">
 <h1>Status</h1>
-<section id="im-testsystem" class="level2">
-<h2 class="anchored" data-anchor-id="im-testsystem">Im Testsystem</h2>
+<p>Der Status-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess.</p>
+<section id="neu-als-informationseinheit-angelegt" class="level2">
+<h2 class="anchored" data-anchor-id="neu-als-informationseinheit-angelegt">Neu als Informationseinheit angelegt</h2>
+<p>Wenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den Status <code>UNSET</code>. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.</p>
 <table class="table">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 86%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Wert</th>
@@ -268,23 +269,12 @@ ul.task-list li input[type="checkbox"] {
 <td><code>UNSET</code></td>
 <td>Neue Variable im technischen Prozess</td>
 </tr>
-<tr class="even">
-<td><code>NOT_REACHED</code></td>
-<td>Testperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre.</td>
-</tr>
-<tr class="odd">
-<td><code>DISPLAYED</code></td>
-<td>Das Interaktionselement wurde der Testperson angezeigt<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</td>
-</tr>
-<tr class="even">
-<td><code>VALUE_CHANGED</code></td>
-<td>Testperson hat den Wert geändert.</td>
-</tr>
 </tbody>
 </table>
 </section>
-<section id="bei-ableitung" class="level2">
-<h2 class="anchored" data-anchor-id="bei-ableitung">Bei Ableitung</h2>
+<section id="im-testsystem" class="level2">
+<h2 class="anchored" data-anchor-id="im-testsystem">Im Testsystem</h2>
+<p>Während der Durchführung eines Tests bzw. einer Befragung werden Variablenwerte als Antwortdaten gesetzt.</p>
 <table class="table">
 <colgroup>
 <col style="width: 13%">
@@ -298,19 +288,54 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>SOURCE_MISSING</code></td>
-<td>Mindestens eine der Quellvariablen fehlt oder hat einen Status, der für die Ableitung nicht erlaubt ist<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</td>
+<td><code>NOT_REACHED</code></td>
+<td>Testperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre.</td>
 </tr>
 <tr class="even">
+<td><code>DISPLAYED</code></td>
+<td>Das Interaktionselement wurde der Testperson angezeigt.</td>
+</tr>
+<tr class="odd">
+<td><code>VALUE_CHANGED</code></td>
+<td>Testperson hat den Wert geändert.</td>
+</tr>
+</tbody>
+</table>
+<p>Andere Werte sind im Testsystem nur möglich, wenn eine Antwortverarbeitung angestoßen wurde (wie z. B. beim adaptiven Testen).</p>
+<p>Für die Verarbeitung des Antwortwertes ist es erforderlich, dass der Status <code>VALUE_CHANGED</code> gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.</p>
+<p>Im Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der Status <code>DISPLAYED</code> eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert <code>false/unchecked</code> vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion “Kreuze alle Säugetiere an!” muss die Auswahl “Amsel” unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.</p>
+</section>
+<section id="bei-ableitung" class="level2">
+<h2 class="anchored" data-anchor-id="bei-ableitung">Bei Ableitung</h2>
+<p>Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:</p>
+<ul>
+<li>Variablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status <code>VALUE_CHANGED</code> haben. Es ist auch der Status <code>DISPLAYED</code> möglich, wenn dies bei der Quellvariablen markiert wurde.</li>
+<li>Variablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status <code>CODING_COMPLETE</code> haben.</li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 86%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Wert</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
 <td><code>DERIVE_ERROR</code></td>
 <td>Während der Ableitung ist ein Fehler aufgetreten.</td>
 </tr>
-<tr class="odd">
-<td><code>VALUE_DERIVED</code></td>
+<tr class="even">
+<td><code>VALUE_CHANGED</code></td>
 <td>Für die abgeleitete Variable wurde erfolgreich ein Wert ermittelt.</td>
 </tr>
 </tbody>
 </table>
+<p>Wenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable <code>null</code>und es wird der Status auf den kleinsten Status gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:</p>
+<p><code>UNSET</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>NOT_REACHED</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>DISPLAYED</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>DERIVE_ERROR</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>NO_CODING</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>INVALID</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>CODING_INCOMPLETE</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>CODING_ERROR</code></p>
 </section>
 <section id="bei-kodierung" class="level2">
 <h2 class="anchored" data-anchor-id="bei-kodierung">Bei Kodierung</h2>
@@ -348,17 +373,10 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<p>Die Kodierung folgt zunächst den Festlegungen der automatischen Kodierung (regelbasiert). Sollte kein zutreffender Code gefunden werden, dann wird der Code <code>CODING_INCOMPLETE</code> gesetzt. Dann – und auch bei einem Kodierfehler <code>CODING_ERROR</code> – folgt die Sichtung der Antwort und eine manuelle Kodierung. Hier können wiederum die Stati <code>CODING_COMPLETE</code> oder <code>INVALID</code> gesetzt werden.</p>
 </section>
 <section id="verknüpfung-prozesse-und-status" class="level2">
 <h2 class="anchored" data-anchor-id="verknüpfung-prozesse-und-status">Verknüpfung Prozesse und Status</h2>
-<p><img src="stati-changes.png" class="img-fluid"></p>
-<ol type="1">
-<li>Ein geänderter Wert geht in die Kodierung ein.</li>
-<li>Ein geänderter Wert kann Quelle für eine Ableitung sein: COPY_VALUE. Achtung: Die Variable kann später Fehlerzustände bekommen. Ihr Wert kann trotzdem Quelle einer Ableitung sein.</li>
-<li>Ein neu gebildeter (abgeleiteter) Wert geht in die Kodierung.</li>
-<li>Code und Score können nach erfolgreicher Kodierung Quelle für eine Ableitung sein.</li>
-<li>Sollte die automatische Kodierung einen Fehler ergeben haben oder unvollständig sein, wird der Wert Gegenstand der manuellen Kodierung.</li>
-</ol>
 </section>
 </section>
 <section id="value-types" class="level1">
@@ -376,14 +394,7 @@ ul.task-list li input[type="checkbox"] {
 
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
-
-<ol>
-<li id="fn1"><p>Für bestimmte Interaktionselemente (z. B. Ankreuzen Ja/Nein) wird statt DISPLAYED gleich VALUE_CHANGED gesetzt, da der Default-Wert eventuell von der Testperson gewünscht ist und keine Interaktion erfolgt.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Bei der Ableitung COPY_VALUE sind folgende Stati nicht erlaubt: UNSET, NOT_REACHED, DISPLAYED, SOURCE_MISSING und DERIVE_ERROR. Alle anderen sind zulässig. Für alle anderen Ableitungsmethoden CONCAT_CODE, SUM_CODE und SUM_SCORE ist der Status CODING_COMPLETE erforderlich.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
