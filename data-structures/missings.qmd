@@ -69,7 +69,7 @@ Wenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man 
 ::: {.callout-caution}
 ## Umsetzung
 
-Ein bearbeiteter, aber leerer Wert wird als invalid bewertet.
+Ein bearbeiteter, aber leerer Wert wird als invalid bewertet. Dieses Standardverhalten kann durch eine Option im Kodierschema geändert werden, und es gibt auch eine Regel, die auf einen leeren Wert prüft. Dann ist es auch möglich, einen Code für einen leeren Wert zu vergeben.
 :::
 
 ## Status `DISPLAYED ` überspringen?
