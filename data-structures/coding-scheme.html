@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../data-structures/missings.html" rel="next">
+<link href="../data-structures/response.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -96,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Kodierschema</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data-structures/index.html">Datenstrukturen</a></li><li class="breadcrumb-item"><a href="../data-structures/coding-scheme.html">Kodierschema</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -139,6 +141,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../data-structures/coding-scheme.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Kodierschema</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../data-structures/missings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Missings</span></a>
   </div>
@@ -151,22 +159,49 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#liste-von-variablecodingdata" id="toc-liste-von-variablecodingdata" class="nav-link active" data-scroll-target="#liste-von-variablecodingdata">Liste von <code>VariableCodingData</code></a></li>
+  <li><a href="#liste-von-kodierungen-für-variablen" id="toc-liste-von-kodierungen-für-variablen" class="nav-link active" data-scroll-target="#liste-von-kodierungen-für-variablen">Liste von Kodierungen für Variablen</a></li>
+  <li><a href="#identifizierung" id="toc-identifizierung" class="nav-link" data-scroll-target="#identifizierung">Identifizierung</a>
+  <ul class="collapse">
   <li><a href="#id" id="toc-id" class="nav-link" data-scroll-target="#id"><code>id</code></a></li>
   <li><a href="#label" id="toc-label" class="nav-link" data-scroll-target="#label"><code>label</code></a></li>
+  </ul></li>
+  <li><a href="#quelle-des-wertes" id="toc-quelle-des-wertes" class="nav-link" data-scroll-target="#quelle-des-wertes">Quelle des Wertes</a>
+  <ul class="collapse">
   <li><a href="#sourcetype" id="toc-sourcetype" class="nav-link" data-scroll-target="#sourcetype"><code>sourceType</code></a></li>
   <li><a href="#sourceparameters" id="toc-sourceparameters" class="nav-link" data-scroll-target="#sourceparameters"><code>sourceParameters</code></a></li>
+  <li><a href="#derivesources" id="toc-derivesources" class="nav-link" data-scroll-target="#derivesources"><code>deriveSources</code></a></li>
+  </ul></li>
+  <li><a href="#allgemeine-festlegungen" id="toc-allgemeine-festlegungen" class="nav-link" data-scroll-target="#allgemeine-festlegungen">Allgemeine Festlegungen</a>
+  <ul class="collapse">
+  <li><a href="#processing" id="toc-processing" class="nav-link" data-scroll-target="#processing"><code>processing</code></a></li>
+  <li><a href="#fragmenting" id="toc-fragmenting" class="nav-link" data-scroll-target="#fragmenting"><code>fragmenting</code></a></li>
+  <li><a href="#manualinstruction" id="toc-manualinstruction" class="nav-link" data-scroll-target="#manualinstruction"><code>manualInstruction</code></a></li>
+  <li><a href="#codemodel" id="toc-codemodel" class="nav-link" data-scroll-target="#codemodel"><code>codeModel</code></a></li>
+  </ul></li>
+  <li><a href="#codes" id="toc-codes" class="nav-link" data-scroll-target="#codes">Codes</a>
+  <ul class="collapse">
+  <li><a href="#id-1" id="toc-id-1" class="nav-link" data-scroll-target="#id-1"><code>id</code></a></li>
+  <li><a href="#label-1" id="toc-label-1" class="nav-link" data-scroll-target="#label-1"><code>label</code></a></li>
+  <li><a href="#score" id="toc-score" class="nav-link" data-scroll-target="#score"><code>score</code></a></li>
+  <li><a href="#manualinstruction-1" id="toc-manualinstruction-1" class="nav-link" data-scroll-target="#manualinstruction-1"><code>manualInstruction</code></a></li>
+  </ul></li>
+  <li><a href="#regeln-für-automatische-kodierung" id="toc-regeln-für-automatische-kodierung" class="nav-link" data-scroll-target="#regeln-für-automatische-kodierung">Regeln für automatische Kodierung</a>
+  <ul class="collapse">
+  <li><a href="#rulesetoperatorand" id="toc-rulesetoperatorand" class="nav-link" data-scroll-target="#rulesetoperatorand"><code>ruleSetOperatorAnd</code></a></li>
+  <li><a href="#rulesets" id="toc-rulesets" class="nav-link" data-scroll-target="#rulesets"><code>ruleSets</code></a></li>
+  <li><a href="#rules" id="toc-rules" class="nav-link" data-scroll-target="#rules"><code>rules</code></a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/iqb-berlin/coding-info/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data-structures/index.html">Datenstrukturen</a></li><li class="breadcrumb-item"><a href="../data-structures/coding-scheme.html">Kodierschema</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Kodierschema</h1>
 </div>
@@ -189,25 +224,30 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Die Spezifikation in englischer Sprache finden Sie <a href="https://iqb-berlin.github.io/responses">hier</a></li>
 <li>Ein JSON-Schema zur Validierung sowie Klassendefinitionen für TypeScript finden Sie <a href="https://github.com/iqb-berlin/responses#readme">hier</a>.</li>
-<li>Ausführliche Erläuterungen der Nutzung des Schemas (Kodierung) finden Sie <a href="../coding">hier</a>.</li>
 <li>Komponenten für Frontends für die Arbeit mit dem Kodierschema finden Sie <a href="https://github.com/iqb-berlin/coding-components#readme">hier</a></li>
+<li>Ausführliche Erläuterungen der Nutzung des Schemas (Kodierung) finden Sie demnächst <a href="../coding">hier</a>.</li>
 </ul>
-<section id="liste-von-variablecodingdata" class="level1">
-<h1>Liste von <code>VariableCodingData</code></h1>
+<section id="liste-von-kodierungen-für-variablen" class="level1">
+<h1>Liste von Kodierungen für Variablen</h1>
 <p>Im Kern ist ein Kodierschema eine Liste von Objekten, wobei jedes Objekt für die Kodierung einer einzelnen Variable steht. Diese Objekt wird in den TypeScript-Klassen <code>VariableCodingData</code> genannt und wird nachfolgend beschrieben. Es muss aber stets die gesamte Liste verfügbar sein, da sich oft die Definitionen aufeinander beziehen.</p>
 <p>Die Liste der Kodierungsvorschriften für Variablen ist <strong>stets an eine Unit gebunden</strong>. Daher finden sich in den Datenstrukturen keine Angaben zur Unit und alle IDs sind eindeutig nur innerhalb der Liste. Die Antworten werden auch stets pro Unit gespeichert, so dass im Kodierprozess jeweils ein Kodierschema auf alle Unit-Antworten angewendet wird.</p>
 </section>
-<section id="id" class="level1">
-<h1><code>id</code></h1>
+<section id="identifizierung" class="level1">
+<h1>Identifizierung</h1>
+<section id="id" class="level2">
+<h2 class="anchored" data-anchor-id="id"><code>id</code></h2>
 <p>Die möglichen Werte hier sind recht weit gefasst. Es sind zwar nur Buchstaben, Ziffern und ’_’ erlaubt, aber es gibt keine Mindestlänge und die ID kann nur aus Ziffern bestehen.</p>
 <p>Als Quelle der Variablen-ID fungieren zunächst die Basisvariablen – also die Variablen, die als Interaktionselemente in der Unit-Definition angelegt sind. Darüber hinaus können abgeleitete Variablen Teil des Kodierschemas sein, deren ID lediglich eindeutig innerhalb der Liste sein muss.</p>
 </section>
-<section id="label" class="level1">
-<h1><code>label</code></h1>
+<section id="label" class="level2">
+<h2 class="anchored" data-anchor-id="label"><code>label</code></h2>
 <p>Diese Angabe ist meist unnötig, wird also leer gelassen. Erforderlich könnte sie werden, wenn der Ort der Variablen nicht eindeutig ist, weil es viele kleine Interaktionselemente gibt. Dann kann man hier ‘Spalte 2 Zeile 5’ eintragen, um bei der manuellen Kodierung oder der Datenauswertung die Fehlerrate zu senken.</p>
 </section>
-<section id="sourcetype" class="level1">
-<h1><code>sourceType</code></h1>
+</section>
+<section id="quelle-des-wertes" class="level1">
+<h1>Quelle des Wertes</h1>
+<section id="sourcetype" class="level2">
+<h2 class="anchored" data-anchor-id="sourcetype"><code>sourceType</code></h2>
 <p>Hier wird festgelegt, woher der Wert der Variablen kommt:</p>
 <ul>
 <li><code>BASE</code>: Es handelt sich um eine Basisvariable. Der Wert stammt also aus der Interaktion der Testperson mit dem Testsystem.</li>
@@ -219,20 +259,168 @@ ul.task-list li input[type="checkbox"] {
 <li><code>SOLVER</code>: Diese Ableitung setzt numerische Werte bei den Quellvariablen voraus und verknüpft diese mit einem mathematischen Ausdruck, der als separater Parameter übergeben werden muss (s. u.). Es entsteht wieder ein numerischer Wert.</li>
 </ul>
 </section>
-<section id="sourceparameters" class="level1">
-<h1><code>sourceParameters</code></h1>
+<section id="sourceparameters" class="level2">
+<h2 class="anchored" data-anchor-id="sourceparameters"><code>sourceParameters</code></h2>
 <p>Über diese Parameter wird die Ableitung gesteuert bzw. der Wert nocheinmal verändert vor der Kodierung.</p>
 <ul>
-<li><code>solverExpression</code>: Hier ist der Ausdruck zu übergeben, mit dem die Werte bei der Ableitung <code>SOLVER</code> verknüpft werden. Es müssen für alle Variablenwerte Platzhalter existieren in der Form <code>${var04}</code>. Diese Stelle wird ersetzt durch den Wert der Variablen var04, bevor der Ausdruck an die Bibliothek <a href="https://mathjs.org">math.js</a> zur Auswertung übergeben wird. Der Funktionsumfang richtet sich nach der Funktion <a href="https://mathjs.org/docs/expressions/parsing.html#evaluate">math.evaluate()</a>.</li>
+<li><code>solverExpression</code>: Nur für Ableitung <code>SOLVER</code>; hier ist der Ausdruck zu übergeben, mit dem die Werte bei der Ableitung verknüpft werden. Es müssen für alle Variablenwerte Platzhalter existieren in der Form <code>${var04}</code>. Diese Stelle wird ersetzt durch den Wert der Variablen var04, bevor der Ausdruck an die Bibliothek <a href="https://mathjs.org">math.js</a> zur Auswertung übergeben wird. Alle referenzierten Variablen müssen in <code>deriveSources</code> (s. u.) gelistet sein. Der Funktionsumfang des Ausdruckes richtet sich nach <a href="https://mathjs.org/docs/expressions/parsing.html#evaluate">math.evaluate()</a>. Wenn der Wert für den Ausdruck leer ist oder wenn die referenzierten Variablen nicht gefunden werden, wird der Status <code>DERIVE_ERROR</code> gesetzt.</li>
 <li><code>processing</code>: Diese Schalter regeln spezielle Umformungen, die die anschließende Kodierung vorbereitet. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf ‘ON’ setzt:
 <ul>
 <li><code>TAKE_DISPLAYED_AS_VALUE_CHANGED</code>: Nur für Basisvariablen; legt fest, dass der Wert der Variablen auch ausgewertet wird, wenn die Variable den Status <code>DISPLAYED</code> hat. Ansonsten werden nur Variablen berücksichtigt, deren Status auf <code>VALUE_CHANGED</code> gesetzt ist.</li>
+<li><code>TAKE_EMPTY_AS_VALID</code>: Nur für Basisvariablen; legt fest, dass ein leerer Wert als gültig angesehen wird und in die Kodierung gegeben wird. Das Standardverhalten bei leerer Antwort ist das Setzen des Status’ <code>INVALID</code></li>
 <li><code>REMOVE_ALL_SPACES</code>, <code>REMOVE_DISPENSABLE_SPACES</code>, <code>TO_NUMBER</code>, <code>TO_LOWER_CASE</code>: Nur für Ableitung <code>UNIQUE_VALUES</code>; die Werte werden vor der Gleichheitsprüfung transformiert. So kann man verhindern, dass ein führendes Leerzeichen oder eine vorgesetzte ‘0’ eine Verschiedenheit vortäuscht.</li>
 <li><code>SORT</code>: Nur für Ableitung <code>CONCAT_CODE</code>; wenn es egal ist, welche Variable welchen Code liefert, erleichtert eine Sortierung die Kodierung.</li>
 </ul></li>
 </ul>
+</section>
+<section id="derivesources" class="level2">
+<h2 class="anchored" data-anchor-id="derivesources"><code>deriveSources</code></h2>
+<p>Dies ist eine Liste von IDs der Variablen, die als Quelle dienen. Die Reihenfolge ist verbindlich, was allerdings nur beim Ableitungstyp <code>CONCAT_CODE</code> eine Rolle spielt, sofern nicht als Parameter <code>SORT</code> gesetzt wurde.</p>
+<p>Wenn eine Variable angegeben wurde, die nicht im Kodierschema enthalten ist, wird der Status <code>DERIVE_ERROR</code> gesetzt.</p>
+</section>
+</section>
+<section id="allgemeine-festlegungen" class="level1">
+<h1>Allgemeine Festlegungen</h1>
+<section id="processing" class="level2">
+<h2 class="anchored" data-anchor-id="processing"><code>processing</code></h2>
+<p>Über diese Schalter kann man den generellen Umgang mit Werten und Vergleichswerten verändern. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf ‘ON’ setzt:</p>
+<ul>
+<li><code>IGNORE_CASE</code>: Groß- und Kleinschreibung spielt keine Rolle. Sowohl der Antwort-Wert als auch der Vergleichswert einer Regel werden vor dem Vergleich in Großbuchstaben umgewandelt (s. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase">JavaScript toUpperCase()</a>).</li>
+<li><code>IGNORE_ALL_SPACES</code>, <code>IGNORE_DISPENSABLE_SPACES</code>: Leerzeichen spielen keine Rolle. Sowohl im Antwortwert als auch im Vergleichswert einer Regel werden vor dem Vergleich alle Leerzeichen (ALL) oder Leerzeichen am Beginn und am Ende sowie doppelte Leerzeichen (DISPENSABLE) entfernt. Als Leerzeichen dient hier die Zeichenklasse <code>\\s</code>gemäß <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Character_classes">JavaScript reguläre Ausdrücke</a>.</li>
+<li><code>SORT_ARRAY</code>: Sofern der Antwortwert aus einem Array besteht, wird dieses vor der Kodierung sortiert. Leere Antwortwerte im Array werden ans Ende geschoben. Dies kann die Kodierregeln erheblich vereinfachen.</li>
+<li><code>REPLAY_REQUIRED</code>: Mit dieser Information wird darüber informiert, dass eine Kodierung nicht abstrakt mit dem Antwortwert erfolgen kann, sondern über eine Ansicht der Unit mit den Antwortwerten. Diese Information kann hilfreich bei der Planung der Kodierungen sein.</li>
+<li><code>ATTACHMENT</code>: Der Antwortwert ist ein Verweis auf eine externe Datei. Diese muss dann für die Kodierung herangezogen werden. Beispielsweise könnte ein Foto einer Zeichnung oder eine Audio-Aufnahme auf diese Art als Antwort kodiert werden.</li>
+</ul>
+</section>
+<section id="fragmenting" class="level2">
+<h2 class="anchored" data-anchor-id="fragmenting"><code>fragmenting</code></h2>
+<p>Über einen <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Groups_and_backreferences">regulären Ausdruck</a> kann ein Antwortwert zerlegt werden. Interaktionselemente können komplexe Daten in einfache Strings mit definierten Trennzeichen konvertieren, und durch die Fragmentierung werden die Teildaten getrennt auswertbar. Eine Regel (s. u.) bezieht sich dann nicht auf den gesamten Antwortwert, sondern nur auf ein Fragment.</p>
+<p>Beispiel: Ein Textelement in einem Player speichert eine Textmarkierung durch die Testperson über einen Wert <code>23_92_yellow</code>, was der Startposition, der Endposition und der Farbe der Markierung entspricht. Der Wert kann über den regulären Ausdruck <code>^(\d+)_(\d+)_(\w+)$</code> fragmentiert werden, so dass man die einzelnen Informationen getrennt bewerten kann.</p>
+</section>
+<section id="manualinstruction" class="level2">
+<h2 class="anchored" data-anchor-id="manualinstruction"><code>manualInstruction</code></h2>
+<p>Sollten für alle codespezifischen Instruktionen (s. u.) allgemeine übergreifende Festlegungen gewünscht sein, dann können diese hier hinterlegt werden. Beispielsweise kann man hier die Kodieranweisung eingeben, es möge die Rechtschreibung bei allen Codes beachtet werden.</p>
+<p>Dieser Text kann Html-Formatierungen enthalten. Dazu gehören auch Bilder, die dann über die Binärkodierung <a href="https://de.wikipedia.org/wiki/Base64">base64</a> eingebettet sind.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sicherheitshinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bei der Anzeige dieser Texte ist stets darauf zu achten, dass Code entfernt wird (über sog. HTML Sanitizer). Ein Verzicht darauf würde eine Sicherheitslücke bedeuten.</p>
+</div>
+</div>
+<p>Im Prozess der Erarbeitung der Kodiervorschriften kann es nützlich sein, diesen Text als allgemeinen Notizzettel zu verwenden. Erste Überlegungen oder Hinweise einer Aufgabenentwicklerin können hier gespeichert werden (z. B. ‘dritte Option ist richtig’), und später könnte ein erfahrener Autor die genauen Code-Regeln definieren.</p>
+</section>
+<section id="codemodel" class="level2">
+<h2 class="anchored" data-anchor-id="codemodel"><code>codeModel</code></h2>
+<p>Diese Festlegung hat keine Bedeutung für die Kodierung. Sie ist dafür gedacht, die sehr komplexen Parameter eines Kodierschemas übersichtlicher zu gestalten.</p>
+<ul>
+<li><code>NONE</code>: Kein Modell (Voreinstellung)</li>
+<li><code>CHOICE</code>: Geschlossenes Kodierschema für eine endliche Liste numerischer Werte (automatische Kodierung)</li>
+<li><code>VALUE_LIST</code>: Geschlossenes Kodierschema für eine endliche Liste alphanumerischer Werte (automatische Kodierung)</li>
+<li><code>NUMBER</code>: Kodierschema für die Kodierung numerischer Werte. Es werden nur Regeln angezeigt, die für einen numerischen Vergleich gedacht sind.</li>
+<li><code>MANUAL</code>: Manuelle Kodierung; sämtliche Optionen für automatische Kodierung werden ausgeblendet.</li>
+</ul>
+</section>
+</section>
+<section id="codes" class="level1">
+<h1>Codes</h1>
+<p>Die folgenden Regeln und Instruktionen beziehen sich stets auf einen Code. Wenn automatisch oder aus Sicht einer Person (manuell) eine formulierte Bedingungen zutrifft bzw. in Kombination mehrere Bedingungen zutreffen, dann wird der Code und der zugehörige Score als Kodierergebnis gespeichert. Weitere Codes der Liste <code>codes</code> bleiben unbeachtet, d.&nbsp;h. die Reihenfolge der Codes in dieser Liste ist relevant.</p>
+<section id="id-1" class="level2">
+<h2 class="anchored" data-anchor-id="id-1"><code>id</code></h2>
+<p>Dies ist der Wert, der als Ergebnis der Kodierung dem Parameter <code>code</code> der <a href="responses">Antwortdaten</a> zugewiesen wird. Es handelt sich um einen numerischen ganzahligen Wert.</p>
+<p>Diese <code>id</code> kann auch den Wert <code>null</code> annehmen. Dann bleiben die Parameter <code>code</code> und <code>score</code> gleich <code>0</code>, aber der Parameter <code>status</code> wird auf den Wert <code>INVALID</code> gesetzt. Es sind dann also Bedingungen beschrieben, die die Antwort als ungültig klassifizieren sollen. Beispiel: Eine alternative Auswahl hat 4 Optionen. Dann kann man für diese vier Optionen reguläre Codes 1-4 vorsehen, und eine abweichende Antwort (‘Alle anderen Antworten’) ist ungültig. Damit ist das Kodierschema ‘geschlossen’, d.&nbsp;h. es gibt immer ein eindeutiges Ergebnis.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Gefahr von Verschleiern eines Problems
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wenn ein eigentlich unmöglicher Wert mit <code>INVALID</code> markiert wird, könnte ein ernstes Problem in der Datenverarbeitung oder im Player dahinter stecken. Derartige Fälle sollten stets genauer untersucht werden.</p>
+</div>
+</div>
+</section>
+<section id="label-1" class="level2">
+<h2 class="anchored" data-anchor-id="label-1"><code>label</code></h2>
+<p>Diese Kurzfassung der folgenden Regeln und Instruktionen soll für den Code eine Orientierung geben in Listen. Üblich ist hier z. B. <code>RICHTIG</code> u. ä.</p>
+</section>
+<section id="score" class="level2">
+<h2 class="anchored" data-anchor-id="score"><code>score</code></h2>
+<p>Wenn der Code zutrifft, wird auch stets der Parameter <code>score</code> der <a href="responses">Antwortdaten</a> gesetzt. Es handelt sich um einen numerischen ganzahligen Wert.</p>
+</section>
+<section id="manualinstruction-1" class="level2">
+<h2 class="anchored" data-anchor-id="manualinstruction-1"><code>manualInstruction</code></h2>
+<p>Hier sind Instruktionen an eine reale Person gespeichert, die nach Sichtung der Antwort manuell einen Code vergeben soll. Dies kann auch ergänzend zu Regeln sein: Für Standardfälle werden Regeln definiert, die eine automatische Kodierung – soweit möglich – vornehmen, und erst wenn kein Code gefunden wurde, muss eine Person manuell evaluieren. Hierbei ist darauf zu achten, dass keine Regel ‘Alle anderen Antworten’ hinterlegt ist, da sonst dieser Code automatisch vergeben wird und nicht <code>CODING_INCOMPLETE</code>.</p>
+<p>Dieser Text kann Html-Formatierungen enthalten. Dazu gehören auch Bilder, die dann über die Binärkodierung <a href="https://de.wikipedia.org/wiki/Base64">base64</a> eingebettet sind.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sicherheitshinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bei der Anzeige dieser Texte ist stets darauf zu achten, dass Code entfernt wird (über sog. HTML Sanitizer). Ein Verzicht darauf würde eine Sicherheitslücke bedeuten.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="regeln-für-automatische-kodierung" class="level1">
+<h1>Regeln für automatische Kodierung</h1>
+<section id="rulesetoperatorand" class="level2">
+<h2 class="anchored" data-anchor-id="rulesetoperatorand"><code>ruleSetOperatorAnd</code></h2>
+<p>Wenn dieser boolesche Wert <code>true</code> ist, dann werden die Ergebnisse der Regelsätze mit <code>UND</code> verknüpft. Alle Regelsätze müssen <code>true</code> liefern, damit der Code als zutreffend bewertet wird. Bei <code>false</code> reicht es, dass ein Regelsatz <code>true</code> ergibt (<code>ODER</code>-Verknüpfung).</p>
+</section>
+<section id="rulesets" class="level2">
+<h2 class="anchored" data-anchor-id="rulesets"><code>ruleSets</code></h2>
+<p>Regelsätze fassen mehrere Regeln zusammen in einer Gruppe. Ein Regelsatz hat folgende Parameter:</p>
+<ul>
+<li><code>valueArrayPos</code>: Sollte der Antwortwert eine Liste von Werten sein,
+<ul>
+<li>stellt dieser Parameter einen Bezug zu einer bestimmten Position im Array her (Datentyp Integer 0..n-1), oder</li>
+<li>soll mindestens ein Wert im Array gefunden werden, der die Bedingungen erfüllt (Datentyp String <code>ANY</code>), oder</li>
+<li>sollen vor der Auswertung alle Array-Werte als numerische Werte interpretiert und summiert werden (Datentyp String <code>SUM</code>)</li>
+</ul></li>
+<li><code>ruleOperatorAnd</code>: Wenn dieser boolesche Wert <code>true</code> ist, dann werden die Ergebnisse der Regeln mit <code>UND</code> verknüpft. Alle Regeln müssen <code>true</code> liefern, damit der Code als zutreffend bewertet wird. Bei <code>false</code> reicht es, dass eine Regel <code>true</code> ergibt (<code>ODER</code>-Verknüpfung).</li>
+</ul>
+</section>
+<section id="rules" class="level2">
+<h2 class="anchored" data-anchor-id="rules"><code>rules</code></h2>
+<p>Regeln sind Vorschriften, die jeweils einen Wert analysieren nach einem vorgegebenen Muster. Die Anwendung einer Regel liefert stets ein ‘Match’, also ob ein Wert einer bestimmten Erwartung entspricht.</p>
+<ul>
+<li><code>fragment</code>: Das Kodierschema für eine Variable kann im Parameter <code>fragmenting</code> einen regulären Ausdruck enthalten, der einen Wert in mehrere Teile zerlegt (s. o.). Eine Regel kann sich über den Parameter <code>fragment</code> (Datentyp Integer) auf ein bestimmtes Fragment beziehen. Es wird eine ganze positive Zahl als Array-Position erwartet oder ‘-1’ dafür, dass irgendein Fragment die Bedingung erfüllen muss.</li>
+<li><code>method</code>:
+<ul>
+<li><code>MATCH</code>: Es wird eine Übereinstimmung geprüft (String-Vergleich). Hierfür ist EIN Parameter nötig (s. u.). Ist der Parameterwert mehrzeilig, wird pro Zeile die Übereinstimmung geprüft.</li>
+<li><code>MATCH_REGEX</code>: Es wird eine Übereinstimmung geprüft (String-Vergleich über regulären Ausdruck). Hierfür ist EIN Parameter nötig (s. u.). Ist der Parameterwert mehrzeilig, wird pro Zeile die Übereinstimmung geprüft. Es wird die JavaScript-Funktion <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match">match()</a> verwendet, wobei ein Ergebnis ungleich <code>null</code> als positiv gewertet wird.</li>
+<li><code>NUMERIC_MATCH</code>: Es wird eine Übereinstimmung geprüft. Hierfür ist EIN Parameter nötig (s. u.). Ist der Parameterwert mehrzeilig, wird pro Zeile die Übereinstimmung geprüft. Wert und Vergleichswert werden vor der Prüfung in einen numerischen Wert transformiert. Eventuell vorhandene Leerzeichen werden vorher komplett entfernt, und ein Komma wird ggf. durch einen Dezimalpunkt ersetzt.</li>
+<li><code>NUMERIC_RANGE</code>: Es wird geprüft, ob der Wert im Bereich “min &lt; Wert &lt;= max” liegt. Hierfür sind ZWEI Parameter nötig (s. u.). Die Aufbereitung der Werte siehe <code>NUMERIC_MATCH</code>.</li>
+<li><code>NUMERIC_LESS_THAN</code>: Es wird geprüft, ob der Wert kleiner als der Parameterwert ist. Hierfür ist EIN Parameter nötig (s. u.). Die Aufbereitung der Werte siehe <code>NUMERIC_MATCH</code>.</li>
+<li><code>NUMERIC_MORE_THAN</code>: Es wird geprüft, ob der Wert größer als der Parameterwert ist. Hierfür ist EIN Parameter nötig (s. u.). Die Aufbereitung der Werte siehe <code>NUMERIC_MATCH</code>.</li>
+<li><code>NUMERIC_MAX</code>: Es wird geprüft, ob der Wert höchstens der Parameterwert ist. Hierfür ist EIN Parameter nötig (s. u.). Die Aufbereitung der Werte siehe <code>NUMERIC_MATCH</code>.</li>
+<li><code>NUMERIC_MIN</code>: Es wird geprüft, ob der Wert mindestens der Parameterwert ist. Hierfür ist EIN Parameter nötig (s. u.). Die Aufbereitung der Werte siehe <code>NUMERIC_MATCH</code>.</li>
+<li><code>IS_UNIQUE_IN_ARRAY</code>: Prüft, ob der Wert, der in dieser Regel analysiert wird, einmalig im Array ist, oder ob er nocheinmal vorkommt. Sollen die Werte für einen sinnvollen Vergleich verändert werden, müssen bei <code>processing</code> entsprechende Schalter gesetzt sein (s. o.).</li>
+<li><code>IS_EMPTY</code>: Prüft, ob der Wert leer ist. Wenn es sich um eine Basisvariable handelt, die kein Array ist, muss bei <code>sourceParameter/processing</code> der Schalter <code>TAKE_EMPTY_AS_VALID</code> gesetzt sein, damit die leere Antwort ausgewertet wird</li>
+<li><code>ELSE</code>: Diese Regel bezieht sich nicht auf einen bestimmten Wert, sondern trifft immer zu. Sie prüft nichts, sondern der Code, der diese Regel enthält, wird als zutreffend evaluiert. Sie sollte also im letzten Code definiert sein.</li>
+<li><code>IS_NULL</code>: Prüft, ob der Wert <code>null</code> ist im Sinne der Datentypdefinition von <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null">JavaScript</a></li>
+<li><code>IS_TRUE</code>, <code>IS_FALSE</code>: Prüft, ob der Wert wahr bzw. falsch ist.</li>
+</ul></li>
+<li><code>parameters</code>: Einige Regeln benötigen einen Parameter, eine sogar zwei. Diese Parameter werden hier gespeichert. Der Datentyp ist eine Liste (Array) von Strings.</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -652,6 +840,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../data-structures/response.html" class="pagination-link" aria-label="Antwort/Variable">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Antwort/Variable</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../data-structures/missings.html" class="pagination-link" aria-label="Missings">
+        <span class="nav-page-text">Missings</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
