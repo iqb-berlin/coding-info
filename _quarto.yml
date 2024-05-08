@@ -31,6 +31,7 @@ website:
         contents:        
           - href: data-structures/response.qmd
             text: Antwort/Variable
+          - data-structures/coding-scheme.qmd
           - href: data-structures/missings.qmd
             text: Missings
 
