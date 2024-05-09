@@ -10,19 +10,19 @@ Die Spezifikation in englischer Sprache finden Sie [hier](https://iqb-berlin.git
 | Parameter | erforderlich | Beschreibung / mögliche Werte | Beispiele |
 |--|:-:|------------------|:--:|
 | id | x | String; identifiziert die Variable innerhalb der Unit; zulässig: `^[0-9a-zA-Z_]+$` | "01a" |
-| status | x | String aus einer Aufzählung; s. u. | "NOT_REACHED" |
+| state | x | String aus einer Aufzählung; s. u. | "NOT_REACHED" |
 | value | x | kann verschiedene Datentypen annehmen, s. u. | ["9", null] |
 | subform | - | String; wird benutzt, um das ggf. mehrfache Auftreten der Variablen (z. B. in Kopien bei Unterformularen) zu kennzeichnen | "p01" |
 | code | - | Integer; steht für die zutreffende Kategorie entspr. Kodierschema | 2 |
 | score | - | Integer; steht für die Bewertung des Codes, also die Übereinstimmung mit einer als "richtig" angenommenen Antwort | 0 |
 
-# Status
+# State
 
-Der Status-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess.
+Der State-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess.
 
 ## Neu als Informationseinheit angelegt
 
-Wenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den Status `UNSET`. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.
+Wenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den State `UNSET`. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.
 
 | Wert | Beschreibung |
 |--|-------------|
@@ -40,23 +40,23 @@ Während der Durchführung eines Tests bzw. einer Befragung werden Variablenwert
 
 Andere Werte sind im Testsystem nur möglich, wenn eine Antwortverarbeitung angestoßen wurde (wie z. B. beim adaptiven Testen).
 
-Für die Verarbeitung des Antwortwertes ist es erforderlich, dass der Status `VALUE_CHANGED` gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.
+Für die Verarbeitung des Antwortwertes ist es erforderlich, dass der State `VALUE_CHANGED` gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.
 
-Im Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der Status `DISPLAYED` eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert `false/unchecked` vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion "Kreuze alle Säugetiere an!" muss die Auswahl "Amsel" unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.
+Im Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der State `DISPLAYED` eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert `false/unchecked` vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion "Kreuze alle Säugetiere an!" muss die Auswahl "Amsel" unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.
 
 ## Bei Ableitung
 
-Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:
+Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden State haben:
 
-* Variablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status `VALUE_CHANGED` haben. Es ist auch der Status `DISPLAYED` möglich, wenn dies bei der Quellvariablen markiert wurde.
-* Variablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status `CODING_COMPLETE` haben.
+* Variablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den State `VALUE_CHANGED` haben. Es ist auch der State `DISPLAYED` möglich, wenn dies bei der Quellvariablen markiert wurde.
+* Variablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den State `CODING_COMPLETE` haben.
 
 | Wert | Beschreibung |
 |--|-------------|
 | `DERIVE_ERROR` | Während der Ableitung ist ein Fehler aufgetreten. |
 | `VALUE_CHANGED` | Für die abgeleitete Variable wurde erfolgreich ein Wert ermittelt. |
 
-Wenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable `null`und es wird der Status auf den kleinsten Status gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:
+Wenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable `null`und es wird der State auf den kleinsten State gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:
 
 `UNSET` {{< fa chevron-right >}} `NOT_REACHED` {{< fa chevron-right >}} `DISPLAYED` {{< fa chevron-right >}} `DERIVE_ERROR` {{< fa chevron-right >}} `NO_CODING` {{< fa chevron-right >}} `INVALID` {{< fa chevron-right >}} `CODING_INCOMPLETE` {{< fa chevron-right >}} `CODING_ERROR`
 
@@ -65,7 +65,7 @@ Wenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden
 | Wert | Beschreibung |
 |--|-------------|
 | `NO_CODING` | Es gibt im Kodierschema keine Vorschriften oder Anweisungen für die Kodierung. |
-| `INVALID` | Der Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED). |
+| `INVALID` | Der Antwortwert ist ungültig. Dies ist auch der Standard-State, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger State VALUE_CHANGED). |
 | `CODING_INCOMPLETE` | Die Regeln der automatischen Kodierung wurden angewendet, haben aber keinen zutreffenden Code ermitteln können. |
 | `CODING_ERROR` | Beim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen. |
 | `CODING_COMPLETE` | Ein Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden. |

@@ -48,7 +48,7 @@ Für diese Dokumentation spielt dies allerdings **keine Rolle**. Alle Texte bezi
 # Sicht des Testsystems
 
 Die Quelle für die Antworten sind vor allem die Interaktionselemente der Aufgabe (Eingabefelder, Ankreuzkästchen, Ablegelisten usw.). Außerdem können Ereignisse (zeitbezogene Zustandsänderungen) Informationen liefern, die in Variablen gespeichert werden (Logvariablen).
- 
+
 ```{mermaid}
 flowchart TD
     subgraph Unit
@@ -86,9 +86,9 @@ flowchart TD
     style L fill:white
 ```
 
-Die Antworten werden in einer einheitlichen Datenstruktur "Variable" gespeichert. Neben dem Antwortwert ist hier eine Information zum Status zu finden, also ob z. B. das Interaktionselement gesehen wurde, ob eine Bearbeitung stattgefunden hat usw.
+Die Antworten werden in einer einheitlichen Datenstruktur "Variable" gespeichert. Neben dem Antwortwert ist hier eine Information zum Status (State) zu finden, also ob z. B. das Interaktionselement gesehen wurde, ob eine Bearbeitung stattgefunden hat usw.
 
-Ein Kodierschema enthält alle Informationen für die manuelle oder automatische Kodierung. Die Status der Variablen im Kodierprozess wird über eine Statusänderung angezeigt, und nach Abschluss der Kodierung sind die Werte "Code" und "Score" für die Variable gesetzt.
+Ein Kodierschema enthält alle Informationen für die manuelle oder automatische Kodierung. Die States der Variablen im Kodierprozess wird über eine State-Änderung angezeigt, und nach Abschluss der Kodierung sind die Werte "Code" und "Score" für die Variable gesetzt.
 
 # Itemwert
 
