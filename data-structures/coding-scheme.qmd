@@ -42,7 +42,7 @@ Hier wird festgelegt, woher der Wert der Variablen kommt:
 * `CONCAT_CODE`: Der Wert dieser abgeleiteten Variable setzt sich aus den Codes anderer Variablen zusammen. Die Integer-Werte der Codes werden mit dem Trennzeichen '_' aneinander gekettet. Der neue Wert der Variablen ist also ein String.
 * `SUM_CODE`: Der Wert dieser abgeleiteten Variable ist der Summenwert der Codes anderer Variablen. Durch geschicktes Festlegen der Codes lassen sich gut zusammenfassende Werte bilden. Der neue Wert der Variablen ist also ein Integer.
 * `SUM_SCORE`: Der Wert dieser abgeleiteten Variable ist der Summenwert der Scores anderer Variablen. Damit wird meistens die Bewertung mehrerer Antworten für ein Item zusammengefasst. Ein Item gilt also dann als richtig beantwortet, wenn einige Teilleistungen richtig sind. Der neue Wert der Variablen ist ein Integer.
-* `UNIQUE_VALUES`: Der Wert dieser abgeleiteten Variablen ist ein Boolscher Wert true/false mit dem festgestellt werden kann, ob die Werte der Quellvariablen eindeutig sind. Sowie einer der Werte mehrfach vorkommt, wird false gesetzt. Bei dieser Ableitung reicht es, wenn eine der Quellvariablen den Status `VALUE_CHANGED` hat. 
+* `UNIQUE_VALUES`: Der Wert dieser abgeleiteten Variablen ist ein Boolscher Wert true/false mit dem festgestellt werden kann, ob die Werte der Quellvariablen eindeutig sind. Sowie einer der Werte mehrfach vorkommt, wird false gesetzt. Bei dieser Ableitung reicht es, wenn eine der Quellvariablen den Status `VALUE_CHANGED` hat.
 * `SOLVER`: Diese Ableitung setzt numerische Werte bei den Quellvariablen voraus und verknüpft diese mit einem mathematischen Ausdruck, der als separater Parameter übergeben werden muss (s. u.). Es entsteht wieder ein numerischer Wert.
 
 ## `sourceParameters`
@@ -153,7 +153,7 @@ Regelsätze fassen mehrere Regeln zusammen in einer Gruppe. Ein Regelsatz hat fo
 * `valueArrayPos`: Sollte der Antwortwert eine Liste von Werten sein,
   + stellt dieser Parameter einen Bezug zu einer bestimmten Position im Array her (Datentyp Integer 0..n-1), oder
   + soll mindestens ein Wert im Array gefunden werden, der die Bedingungen erfüllt (Datentyp String `ANY`), oder
-  + sollen vor der Auswertung alle Array-Werte als numerische Werte interpretiert und summiert werden (Datentyp String `SUM`)
+  + sollen vor der Auswertung alle Array-Werte bzw. alle Fragmente als numerische Werte interpretiert und summiert werden (Datentyp String `SUM`)
 * `ruleOperatorAnd`: Wenn dieser boolesche Wert `true` ist, dann werden die Ergebnisse der Regeln mit `UND` verknüpft. Alle Regeln müssen `true` liefern, damit der Code als zutreffend bewertet wird. Bei `false` reicht es, dass eine Regel `true` ergibt (`ODER`-Verknüpfung).
 
 ## `rules`
