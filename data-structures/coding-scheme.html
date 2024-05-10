@@ -310,7 +310,10 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="fragmenting"><code>fragmenting</code></h2>
 <p>Über einen <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Groups_and_backreferences">regulären Ausdruck</a> kann ein Antwortwert zerlegt werden. Interaktionselemente können komplexe Daten in einfache Strings mit definierten Trennzeichen konvertieren, und durch die Fragmentierung werden die Teildaten getrennt auswertbar. Eine Regel (s. u.) bezieht sich dann nicht auf den gesamten Antwortwert, sondern nur auf ein Fragment. Es werden keine geschachtelten Gruppen unterstützt.</p>
 <blockquote class="blockquote">
-<p>Beispiel: Ein Textelement in einem Player speichert eine Textmarkierung durch die Testperson über einen Wert <code>23_92_yellow</code>, was der Startposition, der Endposition und der Farbe der Markierung entspricht. Der Wert kann über den regulären Ausdruck <code>^(\d+)_(\d+)_(\w+)$</code> fragmentiert werden, so dass man die einzelnen Informationen getrennt bewerten kann. Beispiel: Eine Eingabe <code>2 kg</code> kann über <code>(\d+)\s*(\w+)</code> zerlegt werden.</p>
+<p>Beispiel 1: Ein Textelement in einem Player speichert eine Textmarkierung durch die Testperson über einen Wert <code>23_92_yellow</code>, was der Startposition, der Endposition und der Farbe der Markierung entspricht. Der Wert kann über den regulären Ausdruck <code>^(\d+)_(\d+)_(\w+)$</code> fragmentiert werden, so dass man die einzelnen Informationen getrennt bewerten kann.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Beispiel 2: Eine Eingabe <code>2 kg</code> kann über <code>(\d+)\s*(\w+)</code> zerlegt werden.</p>
 </blockquote>
 </section>
 <section id="manualinstruction" class="level2">
