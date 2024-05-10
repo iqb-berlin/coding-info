@@ -47,13 +47,13 @@ Hier wird festgelegt, woher der Wert der Variablen kommt:
 
 ## `sourceParameters`
 
-Über diese Parameter wird die Ableitung gesteuert bzw. der Wert nocheinmal verändert vor der Kodierung.
+Über diese Parameter wird die Ableitung gesteuert bzw. der Wert noch einmal verändert vor der Kodierung.
 
 * `solverExpression`: Nur für Ableitung `SOLVER`; hier ist der Ausdruck zu übergeben, mit dem die Werte bei der Ableitung verknüpft werden. Es müssen für alle Variablenwerte Platzhalter existieren in der Form `${var04}`. Diese Stelle wird ersetzt durch den Wert der Variablen var04, bevor der Ausdruck an die Bibliothek [math.js](https://mathjs.org) zur Auswertung übergeben wird. Alle referenzierten Variablen müssen in `deriveSources` (s. u.) gelistet sein. Der Funktionsumfang des Ausdruckes richtet sich nach [math.evaluate()](https://mathjs.org/docs/expressions/parsing.html#evaluate). Wenn der Wert für den Ausdruck leer ist oder wenn die referenzierten Variablen nicht gefunden werden, wird der Status `DERIVE_ERROR` gesetzt.
 * `processing`: Diese Schalter regeln spezielle Umformungen, die die anschließende Kodierung vorbereitet. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf 'ON' setzt:
   + `TAKE_DISPLAYED_AS_VALUE_CHANGED`: Nur für Basisvariablen; legt fest, dass der Wert der Variablen auch ausgewertet wird, wenn die Variable den Status `DISPLAYED` hat. Ansonsten werden nur Variablen berücksichtigt, deren Status auf `VALUE_CHANGED` gesetzt ist.
   + `TAKE_EMPTY_AS_VALID`: Nur für Basisvariablen; legt fest, dass ein leerer Wert als gültig angesehen wird und in die Kodierung gegeben wird. Das Standardverhalten bei leerer Antwort ist das Setzen des Status' `INVALID`
-  + `REMOVE_ALL_SPACES`, `REMOVE_DISPENSABLE_SPACES`, `TO_NUMBER`, `TO_LOWER_CASE`: Nur für Ableitung `UNIQUE_VALUES`; die Werte werden vor der Gleichheitsprüfung transformiert. So kann man verhindern, dass ein führendes Leerzeichen oder eine vorgesetzte '0' eine Verschiedenheit vortäuscht.
+  + `REMOVE_ALL_SPACES`, `REMOVE_DISPENSABLE_SPACES`, `TO_NUMBER`, `TO_LOWER_CASE`: Nur für Ableitung `UNIQUE_VALUES`; die Werte werden vor der Gleichheitsprüfung transformiert. So kann man verhindern, dass ein führendes Leerzeichen oder eine vorgesetzte '0' eine Verschiedenheit vortäuscht. Achtung: Wenn `TO_NUMBER` nicht erfolgreich war, also z. B. ein String nicht in eine Zahl überführt werden konnte, wird '0' gesetzt. Passiert dies zweimal, liefert die Ableitung `false`.
   + `SORT`: Nur für Ableitung `CONCAT_CODE`; wenn es egal ist, welche Variable welchen Code liefert, erleichtert eine Sortierung die Kodierung.
 
 ## `deriveSources`
@@ -74,11 +74,14 @@ Wenn eine Variable angegeben wurde, die nicht im Kodierschema enthalten ist, wir
 * `REPLAY_REQUIRED`: Mit dieser Information wird darüber informiert, dass eine Kodierung nicht abstrakt mit dem Antwortwert erfolgen kann, sondern über eine Ansicht der Unit mit den Antwortwerten. Diese Information kann hilfreich bei der Planung der Kodierungen sein.
 * `ATTACHMENT`: Der Antwortwert ist ein Verweis auf eine externe Datei. Diese muss dann für die Kodierung herangezogen werden. Beispielsweise könnte ein Foto einer Zeichnung oder eine Audio-Aufnahme auf diese Art als Antwort kodiert werden.
 
+Die Schalter `IGNORE_CASE`, `IGNORE_ALL_SPACES` und `IGNORE_DISPENSABLE_SPACES` gelten nur für die Regel `MATCH`. Bei `MATCH_REGEX` und den numerischen Regeln werden sie ignoriert.
+
 ## `fragmenting`
 
-Über einen [regulären Ausdruck](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Groups_and_backreferences) kann ein Antwortwert zerlegt werden. Interaktionselemente können komplexe Daten in einfache Strings mit definierten Trennzeichen konvertieren, und durch die Fragmentierung werden die Teildaten getrennt auswertbar. Eine Regel (s. u.) bezieht sich dann nicht auf den gesamten Antwortwert, sondern nur auf ein Fragment.
+Über einen [regulären Ausdruck](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Groups_and_backreferences) kann ein Antwortwert zerlegt werden. Interaktionselemente können komplexe Daten in einfache Strings mit definierten Trennzeichen konvertieren, und durch die Fragmentierung werden die Teildaten getrennt auswertbar. Eine Regel (s. u.) bezieht sich dann nicht auf den gesamten Antwortwert, sondern nur auf ein Fragment. Es werden keine geschachtelten Gruppen unterstützt.
 
-Beispiel: Ein Textelement in einem Player speichert eine Textmarkierung durch die Testperson über einen Wert `23_92_yellow`, was der Startposition, der Endposition und der Farbe der Markierung entspricht. Der Wert kann über den regulären Ausdruck `^(\d+)_(\d+)_(\w+)$` fragmentiert werden, so dass man die einzelnen Informationen getrennt bewerten kann.
+> Beispiel: Ein Textelement in einem Player speichert eine Textmarkierung durch die Testperson über einen Wert `23_92_yellow`, was der Startposition, der Endposition und der Farbe der Markierung entspricht. Der Wert kann über den regulären Ausdruck `^(\d+)_(\d+)_(\w+)$` fragmentiert werden, so dass man die einzelnen Informationen getrennt bewerten kann.
+> Beispiel: Eine Eingabe `2 kg` kann über `(\d+)\s*(\w+)` zerlegt werden.
 
 ## `manualInstruction`
 
@@ -170,9 +173,8 @@ Regeln sind Vorschriften, die jeweils einen Wert analysieren nach einem vorgegeb
   + `NUMERIC_MORE_THAN`: Es wird geprüft, ob der Wert größer als der Parameterwert ist. Hierfür ist EIN Parameter nötig (s. u.). Die Aufbereitung der Werte siehe `NUMERIC_MATCH`.
   + `NUMERIC_MAX`: Es wird geprüft, ob der Wert höchstens der Parameterwert ist. Hierfür ist EIN Parameter nötig (s. u.). Die Aufbereitung der Werte siehe `NUMERIC_MATCH`.
   + `NUMERIC_MIN`: Es wird geprüft, ob der Wert mindestens der Parameterwert ist. Hierfür ist EIN Parameter nötig (s. u.). Die Aufbereitung der Werte siehe `NUMERIC_MATCH`.
-  + `IS_UNIQUE_IN_ARRAY`: Prüft, ob der Wert, der in dieser Regel analysiert wird, einmalig im Array ist, oder ob er nocheinmal vorkommt. Sollen die Werte für einen sinnvollen Vergleich verändert werden, müssen bei `processing` entsprechende Schalter gesetzt sein (s. o.).
-  + `IS_EMPTY`: Prüft, ob der Wert leer ist. Wenn es sich um eine Basisvariable handelt, die kein Array ist, muss bei `sourceParameter/processing` der Schalter `TAKE_EMPTY_AS_VALID` gesetzt sein, damit die leere Antwort ausgewertet wird
-  + `ELSE`: Diese Regel bezieht sich nicht auf einen bestimmten Wert, sondern trifft immer zu. Sie prüft nichts, sondern der Code, der diese Regel enthält, wird als zutreffend evaluiert. Sie sollte also im letzten Code definiert sein.
-  + `IS_NULL`: Prüft, ob der Wert `null` ist im Sinne der Datentypdefinition von [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null)
+  + `IS_EMPTY`: Prüft, ob der Wert leer ist. Wenn es sich um eine Basisvariable handelt, die kein Array ist, muss bei `sourceParameter/processing` der Schalter `TAKE_EMPTY_AS_VALID` gesetzt sein, damit die leere Antwort ausgewertet wird. Diese Regel sollte im ersten Code platziert sein, da andere Regeln u. U. einen `CODING_ERROR` erzeugen, wenn der Antwortwert leer ist.
+  + `ELSE`: Diese Regel bezieht sich nicht auf einen bestimmten Wert, sondern trifft immer zu. Sie prüft nichts, sondern der Code, der diese Regel enthält, wird als zutreffend evaluiert. Sie sollte also im letzten Code definiert sein, wenn das Kodierschema geschlossen werden soll.
+  + `IS_NULL`: Prüft, ob der Wert `null` ist im Sinne der Datentypdefinition von [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null). Diese Regel sollte im ersten Code platziert sein, da andere Regeln u. U. einen `CODING_ERROR` erzeugen, wenn der Antwortwert null ist.
   + `IS_TRUE`, `IS_FALSE`: Prüft, ob der Wert wahr bzw. falsch ist.
 * `parameters`: Einige Regeln benötigen einen Parameter, eine sogar zwei. Diese Parameter werden hier gespeichert. Der Datentyp ist eine Liste (Array) von Strings.
