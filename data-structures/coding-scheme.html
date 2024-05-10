@@ -274,14 +274,14 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="sourceparameters" class="level2">
 <h2 class="anchored" data-anchor-id="sourceparameters"><code>sourceParameters</code></h2>
-<p>Über diese Parameter wird die Ableitung gesteuert bzw. der Wert nocheinmal verändert vor der Kodierung.</p>
+<p>Über diese Parameter wird die Ableitung gesteuert bzw. der Wert noch einmal verändert vor der Kodierung.</p>
 <ul>
 <li><code>solverExpression</code>: Nur für Ableitung <code>SOLVER</code>; hier ist der Ausdruck zu übergeben, mit dem die Werte bei der Ableitung verknüpft werden. Es müssen für alle Variablenwerte Platzhalter existieren in der Form <code>${var04}</code>. Diese Stelle wird ersetzt durch den Wert der Variablen var04, bevor der Ausdruck an die Bibliothek <a href="https://mathjs.org">math.js</a> zur Auswertung übergeben wird. Alle referenzierten Variablen müssen in <code>deriveSources</code> (s. u.) gelistet sein. Der Funktionsumfang des Ausdruckes richtet sich nach <a href="https://mathjs.org/docs/expressions/parsing.html#evaluate">math.evaluate()</a>. Wenn der Wert für den Ausdruck leer ist oder wenn die referenzierten Variablen nicht gefunden werden, wird der Status <code>DERIVE_ERROR</code> gesetzt.</li>
 <li><code>processing</code>: Diese Schalter regeln spezielle Umformungen, die die anschließende Kodierung vorbereitet. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf ‘ON’ setzt:
 <ul>
 <li><code>TAKE_DISPLAYED_AS_VALUE_CHANGED</code>: Nur für Basisvariablen; legt fest, dass der Wert der Variablen auch ausgewertet wird, wenn die Variable den Status <code>DISPLAYED</code> hat. Ansonsten werden nur Variablen berücksichtigt, deren Status auf <code>VALUE_CHANGED</code> gesetzt ist.</li>
 <li><code>TAKE_EMPTY_AS_VALID</code>: Nur für Basisvariablen; legt fest, dass ein leerer Wert als gültig angesehen wird und in die Kodierung gegeben wird. Das Standardverhalten bei leerer Antwort ist das Setzen des Status’ <code>INVALID</code></li>
-<li><code>REMOVE_ALL_SPACES</code>, <code>REMOVE_DISPENSABLE_SPACES</code>, <code>TO_NUMBER</code>, <code>TO_LOWER_CASE</code>: Nur für Ableitung <code>UNIQUE_VALUES</code>; die Werte werden vor der Gleichheitsprüfung transformiert. So kann man verhindern, dass ein führendes Leerzeichen oder eine vorgesetzte ‘0’ eine Verschiedenheit vortäuscht.</li>
+<li><code>REMOVE_ALL_SPACES</code>, <code>REMOVE_DISPENSABLE_SPACES</code>, <code>TO_NUMBER</code>, <code>TO_LOWER_CASE</code>: Nur für Ableitung <code>UNIQUE_VALUES</code>; die Werte werden vor der Gleichheitsprüfung transformiert. So kann man verhindern, dass ein führendes Leerzeichen oder eine vorgesetzte ‘0’ eine Verschiedenheit vortäuscht. Achtung: Wenn <code>TO_NUMBER</code> nicht erfolgreich war, also z. B. ein String nicht in eine Zahl überführt werden konnte, wird ‘0’ gesetzt. Passiert dies zweimal, liefert die Ableitung <code>false</code>.</li>
 <li><code>SORT</code>: Nur für Ableitung <code>CONCAT_CODE</code>; wenn es egal ist, welche Variable welchen Code liefert, erleichtert eine Sortierung die Kodierung.</li>
 </ul></li>
 </ul>
@@ -304,11 +304,14 @@ ul.task-list li input[type="checkbox"] {
 <li><code>REPLAY_REQUIRED</code>: Mit dieser Information wird darüber informiert, dass eine Kodierung nicht abstrakt mit dem Antwortwert erfolgen kann, sondern über eine Ansicht der Unit mit den Antwortwerten. Diese Information kann hilfreich bei der Planung der Kodierungen sein.</li>
 <li><code>ATTACHMENT</code>: Der Antwortwert ist ein Verweis auf eine externe Datei. Diese muss dann für die Kodierung herangezogen werden. Beispielsweise könnte ein Foto einer Zeichnung oder eine Audio-Aufnahme auf diese Art als Antwort kodiert werden.</li>
 </ul>
+<p>Die Schalter <code>IGNORE_CASE</code>, <code>IGNORE_ALL_SPACES</code> und <code>IGNORE_DISPENSABLE_SPACES</code> gelten nur für die Regel <code>MATCH</code>. Bei <code>MATCH_REGEX</code> und den numerischen Regeln werden sie ignoriert.</p>
 </section>
 <section id="fragmenting" class="level2">
 <h2 class="anchored" data-anchor-id="fragmenting"><code>fragmenting</code></h2>
-<p>Über einen <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Groups_and_backreferences">regulären Ausdruck</a> kann ein Antwortwert zerlegt werden. Interaktionselemente können komplexe Daten in einfache Strings mit definierten Trennzeichen konvertieren, und durch die Fragmentierung werden die Teildaten getrennt auswertbar. Eine Regel (s. u.) bezieht sich dann nicht auf den gesamten Antwortwert, sondern nur auf ein Fragment.</p>
-<p>Beispiel: Ein Textelement in einem Player speichert eine Textmarkierung durch die Testperson über einen Wert <code>23_92_yellow</code>, was der Startposition, der Endposition und der Farbe der Markierung entspricht. Der Wert kann über den regulären Ausdruck <code>^(\d+)_(\d+)_(\w+)$</code> fragmentiert werden, so dass man die einzelnen Informationen getrennt bewerten kann.</p>
+<p>Über einen <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Groups_and_backreferences">regulären Ausdruck</a> kann ein Antwortwert zerlegt werden. Interaktionselemente können komplexe Daten in einfache Strings mit definierten Trennzeichen konvertieren, und durch die Fragmentierung werden die Teildaten getrennt auswertbar. Eine Regel (s. u.) bezieht sich dann nicht auf den gesamten Antwortwert, sondern nur auf ein Fragment. Es werden keine geschachtelten Gruppen unterstützt.</p>
+<blockquote class="blockquote">
+<p>Beispiel: Ein Textelement in einem Player speichert eine Textmarkierung durch die Testperson über einen Wert <code>23_92_yellow</code>, was der Startposition, der Endposition und der Farbe der Markierung entspricht. Der Wert kann über den regulären Ausdruck <code>^(\d+)_(\d+)_(\w+)$</code> fragmentiert werden, so dass man die einzelnen Informationen getrennt bewerten kann. Beispiel: Eine Eingabe <code>2 kg</code> kann über <code>(\d+)\s*(\w+)</code> zerlegt werden.</p>
+</blockquote>
 </section>
 <section id="manualinstruction" class="level2">
 <h2 class="anchored" data-anchor-id="manualinstruction"><code>manualInstruction</code></h2>
@@ -423,10 +426,9 @@ Sicherheitshinweis
 <li><code>NUMERIC_MORE_THAN</code>: Es wird geprüft, ob der Wert größer als der Parameterwert ist. Hierfür ist EIN Parameter nötig (s. u.). Die Aufbereitung der Werte siehe <code>NUMERIC_MATCH</code>.</li>
 <li><code>NUMERIC_MAX</code>: Es wird geprüft, ob der Wert höchstens der Parameterwert ist. Hierfür ist EIN Parameter nötig (s. u.). Die Aufbereitung der Werte siehe <code>NUMERIC_MATCH</code>.</li>
 <li><code>NUMERIC_MIN</code>: Es wird geprüft, ob der Wert mindestens der Parameterwert ist. Hierfür ist EIN Parameter nötig (s. u.). Die Aufbereitung der Werte siehe <code>NUMERIC_MATCH</code>.</li>
-<li><code>IS_UNIQUE_IN_ARRAY</code>: Prüft, ob der Wert, der in dieser Regel analysiert wird, einmalig im Array ist, oder ob er nocheinmal vorkommt. Sollen die Werte für einen sinnvollen Vergleich verändert werden, müssen bei <code>processing</code> entsprechende Schalter gesetzt sein (s. o.).</li>
-<li><code>IS_EMPTY</code>: Prüft, ob der Wert leer ist. Wenn es sich um eine Basisvariable handelt, die kein Array ist, muss bei <code>sourceParameter/processing</code> der Schalter <code>TAKE_EMPTY_AS_VALID</code> gesetzt sein, damit die leere Antwort ausgewertet wird</li>
-<li><code>ELSE</code>: Diese Regel bezieht sich nicht auf einen bestimmten Wert, sondern trifft immer zu. Sie prüft nichts, sondern der Code, der diese Regel enthält, wird als zutreffend evaluiert. Sie sollte also im letzten Code definiert sein.</li>
-<li><code>IS_NULL</code>: Prüft, ob der Wert <code>null</code> ist im Sinne der Datentypdefinition von <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null">JavaScript</a></li>
+<li><code>IS_EMPTY</code>: Prüft, ob der Wert leer ist. Wenn es sich um eine Basisvariable handelt, die kein Array ist, muss bei <code>sourceParameter/processing</code> der Schalter <code>TAKE_EMPTY_AS_VALID</code> gesetzt sein, damit die leere Antwort ausgewertet wird. Diese Regel sollte im ersten Code platziert sein, da andere Regeln u. U. einen <code>CODING_ERROR</code> erzeugen, wenn der Antwortwert leer ist.</li>
+<li><code>ELSE</code>: Diese Regel bezieht sich nicht auf einen bestimmten Wert, sondern trifft immer zu. Sie prüft nichts, sondern der Code, der diese Regel enthält, wird als zutreffend evaluiert. Sie sollte also im letzten Code definiert sein, wenn das Kodierschema geschlossen werden soll.</li>
+<li><code>IS_NULL</code>: Prüft, ob der Wert <code>null</code> ist im Sinne der Datentypdefinition von <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null">JavaScript</a>. Diese Regel sollte im ersten Code platziert sein, da andere Regeln u. U. einen <code>CODING_ERROR</code> erzeugen, wenn der Antwortwert null ist.</li>
 <li><code>IS_TRUE</code>, <code>IS_FALSE</code>: Prüft, ob der Wert wahr bzw. falsch ist.</li>
 </ul></li>
 <li><code>parameters</code>: Einige Regeln benötigen einen Parameter, eine sogar zwei. Diese Parameter werden hier gespeichert. Der Datentyp ist eine Liste (Array) von Strings.</li>
