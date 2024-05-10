@@ -184,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#technische-diskurse" id="toc-technische-diskurse" class="nav-link" data-scroll-target="#technische-diskurse">Technische Diskurse</a>
   <ul class="collapse">
   <li><a href="#missing-by-omission-wenn-leer" id="toc-missing-by-omission-wenn-leer" class="nav-link" data-scroll-target="#missing-by-omission-wenn-leer">Missing by Omission wenn leer?</a></li>
-  <li><a href="#status-displayed-überspringen" id="toc-status-displayed-überspringen" class="nav-link" data-scroll-target="#status-displayed-überspringen">Status <code>DISPLAYED</code> überspringen?</a></li>
+  <li><a href="#state-displayed-überspringen" id="toc-state-displayed-überspringen" class="nav-link" data-scroll-target="#state-displayed-überspringen">State <code>DISPLAYED</code> überspringen?</a></li>
   <li><a href="#wo-ist-das-item" id="toc-wo-ist-das-item" class="nav-link" data-scroll-target="#wo-ist-das-item">Wo ist das Item?</a></li>
   </ul></li>
   </ul>
@@ -237,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
     style K fill:#ff9
     H --&gt;|NEIN| L["Gültige Antwort\nAuswertung möglich"]
     style L fill:#af8
-    
+
     C --&gt;|NEIN| B{Technisches\nProblem?}
     B --&gt;|JA| D[missing\ncoding impossible]
     style D fill:#ff9
@@ -302,8 +302,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="wann-werden-missings-gesetzt" class="level1">
 <h1>Wann werden Missings gesetzt?</h1>
-<p>Die TBA-Webanwendung IQB-Testcenter sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein Status geliefert. Im Rahmen der Kodierung kann der Status <code>INVALID</code> gesetzt werden, was grob dem Missing <code>invalid response</code> entspricht.</p>
-<p>Vor der Datenanalyse müssen die Codes bzw. Scores aller Antworten sowie die jeweilige Status-Information zu einem einzelnen numerischen Wert transformiert werden. Dadurch entsteht die erforderliche zweidimensionale Datenmatrix (Person x Item). An dieser Stelle - also für die Vorbereitung der Analyse - werden Missings gesetzt: als numerische Werte, nach Konvention negativ (s. Tabelle oben).</p>
+<p>Die TBA-Webanwendung IQB-Testcenter sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein State geliefert. Im Rahmen der Kodierung kann der State <code>INVALID</code> gesetzt werden, was grob dem Missing <code>invalid response</code> entspricht.</p>
+<p>Vor der Datenanalyse müssen die Codes bzw. Scores aller Antworten sowie die jeweilige State-Information zu einem einzelnen numerischen Wert transformiert werden. Dadurch entsteht die erforderliche zweidimensionale Datenmatrix (Person x Item). An dieser Stelle - also für die Vorbereitung der Analyse - werden Missings gesetzt: als numerische Werte, nach Konvention negativ (s. Tabelle oben).</p>
 <p>Der Wert für <code>invalid response</code> ist bereits direkt verfügbar. Die anderen Missing-Werte erfordern zusätzliche Informationen:</p>
 <ul>
 <li>Das Testheft - also die zeitliche Abfolge der Items - liefert die Information, welche Items nach dem jeweiligen Item folgen. Darüber kann dann <code>not reached</code> gesetzt werden.</li>
@@ -335,9 +335,9 @@ Umsetzung
 </div>
 </div>
 </section>
-<section id="status-displayed-überspringen" class="level2">
-<h2 class="anchored" data-anchor-id="status-displayed-überspringen">Status <code>DISPLAYED</code> überspringen?</h2>
-<p>Das IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status <code>DISPLAYED</code>. Wenn eine Interaktion erfolgte, wird der Status <code>VALUE_CHANGED</code> gesetzt (zum Status einer Antwort siehe <a href="../data-structures/response.html">hier</a>). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status <code>VALUE_CHANGED</code> ausgewertet.</p>
+<section id="state-displayed-überspringen" class="level2">
+<h2 class="anchored" data-anchor-id="state-displayed-überspringen">State <code>DISPLAYED</code> überspringen?</h2>
+<p>Das IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: State <code>DISPLAYED</code>. Wenn eine Interaktion erfolgte, wird der State <code>VALUE_CHANGED</code> gesetzt (zum State einer Antwort siehe <a href="../data-structures/response.html">hier</a>). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit State <code>VALUE_CHANGED</code> ausgewertet.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -365,7 +365,7 @@ Mögliche Umsetzung
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Man könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.</p>
+<p>Man könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen State. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.</p>
 </div>
 </div>
 
