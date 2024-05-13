@@ -229,6 +229,17 @@
     ]
   },
   {
+    "objectID": "data-structures/coding-scheme.html#page",
+    "href": "data-structures/coding-scheme.html#page",
+    "title": "Kodierschema",
+    "section": "page",
+    "text": "page\nSollte der Player die Unit auf verschiedene Seiten verteilen, dient dies normalerweise dem Verteilen eines umfangreichen Inhaltes auf u. U. nicht sichtbare Bereich. Es ist dann ein Blättern nötig, um alle Interaktionselemente zu erreichen. Bei der Kodierung ist es sehr hilfreich, wenn man beim Replay – also der Anzeige des letzten Standes der Beantwortung – gleich zur richtigen Seite der Variablen springt und nicht erst blättern muss. Ein leerer Eintrag ''bedeutet, dass es entweder nur eine Seite gibt oder dass die Variable nicht verlässlich einer Seite zugeordnet werden kann (z. B. bei abgeleiteten Variablen).",
+    "crumbs": [
+      "Datenstrukturen",
+      "Kodierschema"
+    ]
+  },
+  {
     "objectID": "data-structures/coding-scheme.html#id-1",
     "href": "data-structures/coding-scheme.html#id-1",
     "title": "Kodierschema",
