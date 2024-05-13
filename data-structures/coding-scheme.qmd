@@ -108,6 +108,10 @@ Diese Festlegung hat keine Bedeutung für die Kodierung. Sie ist dafür gedacht,
 * `NUMBER`: Kodierschema für die Kodierung numerischer Werte. Es werden nur Regeln angezeigt, die für einen numerischen Vergleich gedacht sind.
 * `MANUAL`: Manuelle Kodierung; sämtliche Optionen für automatische Kodierung werden ausgeblendet.
 
+## `page`
+
+Sollte der Player die Unit auf verschiedene Seiten verteilen, dient dies normalerweise dem Verteilen eines umfangreichen Inhaltes auf u. U. nicht sichtbare Bereich. Es ist dann ein Blättern nötig, um alle Interaktionselemente zu erreichen. Bei der Kodierung ist es sehr hilfreich, wenn man beim Replay -- also der Anzeige des letzten Standes der Beantwortung -- gleich zur richtigen Seite der Variablen springt und nicht erst blättern muss. Ein leerer Eintrag `''`bedeutet, dass es entweder nur eine Seite gibt oder dass die Variable nicht verlässlich einer Seite zugeordnet werden kann (z. B. bei abgeleiteten Variablen).
+
 # Codes
 
 Die folgenden Regeln und Instruktionen beziehen sich stets auf einen Code. Wenn automatisch oder aus Sicht einer Person (manuell) eine formulierte Bedingungen zutrifft bzw. in Kombination mehrere Bedingungen zutreffen, dann wird der Code und der zugehörige Score als Kodierergebnis gespeichert. Weitere Codes der Liste `codes` bleiben unbeachtet, d. h. die Reihenfolge der Codes in dieser Liste ist relevant.
