@@ -177,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#übersicht" id="toc-übersicht" class="nav-link active" data-scroll-target="#übersicht">Übersicht</a></li>
-  <li><a href="#state" id="toc-state" class="nav-link" data-scroll-target="#state">State</a>
+  <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status">Status</a>
   <ul class="collapse">
   <li><a href="#neu-als-informationseinheit-angelegt" id="toc-neu-als-informationseinheit-angelegt" class="nav-link" data-scroll-target="#neu-als-informationseinheit-angelegt">Neu als Informationseinheit angelegt</a></li>
   <li><a href="#im-testsystem" id="toc-im-testsystem" class="nav-link" data-scroll-target="#im-testsystem">Im Testsystem</a></li>
@@ -236,7 +236,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">“01a”</td>
 </tr>
 <tr class="even">
-<td>state</td>
+<td>status</td>
 <td style="text-align: center;">x</td>
 <td>String aus einer Aufzählung; s. u.</td>
 <td style="text-align: center;">“NOT_REACHED”</td>
@@ -268,12 +268,12 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
-<section id="state" class="level1">
-<h1>State</h1>
-<p>Der State-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess.</p>
+<section id="status" class="level1">
+<h1>Status</h1>
+<p>Der Status-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess.</p>
 <section id="neu-als-informationseinheit-angelegt" class="level2">
 <h2 class="anchored" data-anchor-id="neu-als-informationseinheit-angelegt">Neu als Informationseinheit angelegt</h2>
-<p>Wenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den State <code>UNSET</code>. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.</p>
+<p>Wenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den Status <code>UNSET</code>. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -319,15 +319,15 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <p>Andere Werte sind im Testsystem nur möglich, wenn eine Antwortverarbeitung angestoßen wurde (wie z. B. beim adaptiven Testen).</p>
-<p>Für die Verarbeitung des Antwortwertes ist es erforderlich, dass der State <code>VALUE_CHANGED</code> gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.</p>
-<p>Im Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der State <code>DISPLAYED</code> eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert <code>false/unchecked</code> vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion “Kreuze alle Säugetiere an!” muss die Auswahl “Amsel” unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.</p>
+<p>Für die Verarbeitung des Antwortwertes ist es erforderlich, dass der Status <code>VALUE_CHANGED</code> gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.</p>
+<p>Im Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der Status <code>DISPLAYED</code> eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert <code>false/unchecked</code> vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion “Kreuze alle Säugetiere an!” muss die Auswahl “Amsel” unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.</p>
 </section>
 <section id="bei-ableitung" class="level2">
 <h2 class="anchored" data-anchor-id="bei-ableitung">Bei Ableitung</h2>
-<p>Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden State haben:</p>
+<p>Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:</p>
 <ul>
-<li>Variablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den State <code>VALUE_CHANGED</code> haben. Es ist auch der State <code>DISPLAYED</code> möglich, wenn dies bei der Quellvariablen markiert wurde.</li>
-<li>Variablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den State <code>CODING_COMPLETE</code> haben.</li>
+<li>Variablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status <code>VALUE_CHANGED</code> haben. Es ist auch der Status <code>DISPLAYED</code> möglich, wenn dies bei der Quellvariablen markiert wurde.</li>
+<li>Variablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status <code>CODING_COMPLETE</code> haben.</li>
 </ul>
 <table class="table">
 <colgroup>
@@ -351,7 +351,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>Wenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable <code>null</code>und es wird der State auf den kleinsten State gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:</p>
+<p>Wenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable <code>null</code>und es wird der Status auf den kleinsten Status gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:</p>
 <p><code>UNSET</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>NOT_REACHED</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>DISPLAYED</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>DERIVE_ERROR</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>NO_CODING</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>INVALID</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>CODING_INCOMPLETE</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>CODING_ERROR</code></p>
 </section>
 <section id="bei-kodierung" class="level2">
@@ -374,7 +374,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td><code>INVALID</code></td>
-<td>Der Antwortwert ist ungültig. Dies ist auch der Standard-State, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger State VALUE_CHANGED).</td>
+<td>Der Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED).</td>
 </tr>
 <tr class="odd">
 <td><code>CODING_INCOMPLETE</code></td>
