@@ -45,9 +45,9 @@ flowchart TD
 
 # Wann werden Missings gesetzt?
 
-Die TBA-Webanwendung IQB-Testcenter sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein State geliefert. Im Rahmen der Kodierung kann der State `INVALID` gesetzt werden, was grob dem Missing `invalid response` entspricht.
+Die TBA-Webanwendung IQB-Testcenter sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein Status geliefert. Im Rahmen der Kodierung kann der Status `INVALID` gesetzt werden, was grob dem Missing `invalid response` entspricht.
 
-Vor der Datenanalyse müssen die Codes bzw. Scores aller Antworten sowie die jeweilige State-Information zu einem einzelnen numerischen Wert transformiert werden. Dadurch entsteht die erforderliche zweidimensionale Datenmatrix (Person x Item). An dieser Stelle - also für die Vorbereitung der Analyse - werden Missings gesetzt: als numerische Werte, nach Konvention negativ (s. Tabelle oben).
+Vor der Datenanalyse müssen die Codes bzw. Scores aller Antworten sowie die jeweilige Status-Information zu einem einzelnen numerischen Wert transformiert werden. Dadurch entsteht die erforderliche zweidimensionale Datenmatrix (Person x Item). An dieser Stelle - also für die Vorbereitung der Analyse - werden Missings gesetzt: als numerische Werte, nach Konvention negativ (s. Tabelle oben).
 
 Der Wert für `invalid response` ist bereits direkt verfügbar. Die anderen Missing-Werte erfordern zusätzliche Informationen:
 
@@ -72,9 +72,9 @@ Wenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man 
 Ein bearbeiteter, aber leerer Wert wird als invalid bewertet. Dieses Standardverhalten kann durch eine Option im Kodierschema geändert werden, und es gibt auch eine Regel, die auf einen leeren Wert prüft. Dann ist es auch möglich, einen Code für einen leeren Wert zu vergeben.
 :::
 
-## State `DISPLAYED ` überspringen?
+## Status `DISPLAYED ` überspringen?
 
-Das IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: State `DISPLAYED`. Wenn eine Interaktion erfolgte, wird der State `VALUE_CHANGED` gesetzt (zum State einer Antwort siehe [hier](response.qmd)). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit State `VALUE_CHANGED` ausgewertet.
+Das IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status `DISPLAYED`. Wenn eine Interaktion erfolgte, wird der Status `VALUE_CHANGED` gesetzt (zum Status einer Antwort siehe [hier](response.qmd)). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status `VALUE_CHANGED` ausgewertet.
 
 ::: {.callout-caution}
 ## Umsetzung
@@ -89,5 +89,5 @@ Wenn es als 17. Teilaufgabe ein Item mit der Instruktion "markiere im Text" gibt
 ::: {.callout-caution}
 ## Mögliche Umsetzung
 
-Man könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen State. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.
+Man könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.
 :::
