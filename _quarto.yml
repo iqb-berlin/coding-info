@@ -12,9 +12,6 @@ website:
     pinned: true
     search: true
     logo: IQB-klein.png
-    right:
-      - icon: github
-        href: https://github.com/iqb-berlin/coding-info
   page-footer:
     background: light
     right:
@@ -23,6 +20,8 @@ website:
     left:
       - text: "{{< fa house >}}"
         href: index.qmd
+      - icon: github
+        href: https://github.com/iqb-berlin/coding-info
   sidebar: 
     style: "docked"
     search: true

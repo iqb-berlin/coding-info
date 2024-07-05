@@ -27,6 +27,10 @@ Die möglichen Werte hier sind recht weit gefasst. Es sind zwar nur Buchstaben, 
 
 Als Quelle der Variablen-ID fungieren zunächst die Basisvariablen -- also die Variablen, die als Interaktionselemente in der Unit-Definition angelegt sind. Darüber hinaus können abgeleitete Variablen Teil des Kodierschemas sein, deren ID lediglich eindeutig innerhalb der Liste sein muss.
 
+## `alias`
+
+Ein Alias ist eine alternative ID, die durch User vergeben werden kann. Dann kann die ID der Variable nicht mehr geändert werden und bleibt konstant über alle Verarbeitungsschritte und Versionen. Der Alias kann aber nach Bedarf geändert werden. Das IQB hat diese Trennung eingeführt, als sich Umbenennungen von Variablen häuften und jede Umbenennung Inkonsistenzen verursachte (Ableitungen schlugen fehl, Seitenzustände wurden falsch ermittelt).
+
 ## `label`
 
 Diese Angabe ist meist unnötig, wird also leer gelassen. Erforderlich könnte sie werden, wenn der Ort der Variablen nicht eindeutig ist, weil es viele kleine Interaktionselemente gibt. Dann kann man hier 'Spalte 2 Zeile 5' eintragen, um bei der manuellen Kodierung oder der Datenauswertung die Fehlerrate zu senken.
@@ -100,13 +104,14 @@ Im Prozess der Erarbeitung der Kodiervorschriften kann es nützlich sein, diesen
 
 ## `codeModel`
 
-Diese Festlegung hat keine Bedeutung für die Kodierung. Sie ist dafür gedacht, die sehr komplexen Parameter eines Kodierschemas übersichtlicher zu gestalten.
+Diese Festlegung hat schwankende Bedeutung für die Kodierung. Sie ist dafür gedacht, die sehr komplexen Parameter eines Kodierschemas beim Editieren übersichtlicher zu gestalten. Ob bzw. wie diese Information durch den Schemer genutzt wird, ist nicht streng festgelegt.
 
 * `NONE`: Kein Modell (Voreinstellung)
 * `CHOICE`: Geschlossenes Kodierschema für eine endliche Liste numerischer Werte (automatische Kodierung)
 * `VALUE_LIST`: Geschlossenes Kodierschema für eine endliche Liste alphanumerischer Werte (automatische Kodierung)
 * `NUMBER`: Kodierschema für die Kodierung numerischer Werte. Es werden nur Regeln angezeigt, die für einen numerischen Vergleich gedacht sind.
 * `MANUAL`: Manuelle Kodierung; sämtliche Optionen für automatische Kodierung werden ausgeblendet.
+* `RULES_ONLY`: Automatische Kodierung; sämtliche Optionen für manuelle Kodierung werden ausgeblendet.
 
 ## `page`
 
@@ -128,9 +133,13 @@ Diese `id` kann auch den Wert `null` annehmen. Dann bleiben die Parameter `code`
 Wenn ein eigentlich unmöglicher Wert mit `INVALID` markiert wird, könnte ein ernstes Problem in der Datenverarbeitung oder im Player dahinter stecken. Derartige Fälle sollten stets genauer untersucht werden.
 :::
 
+## `type`
+
+Es besteht an vielen Stellen der Verarbeitung der Wunsch, einen Code klar den Kategorien "RICHTIG" oder "FALSCH" zuzuordnen (unabhängig von `score`). Der Parameter `type` kann die Werte `UNSET`, `FULL_CREDIT`, `PARTIAL_CREDIT` und `NO_CREDIT` annehmen. Es soll hierfür nicht (mehr) der Parameter `label` benutzt werden.
+
 ## `label`
 
-Diese Kurzfassung der folgenden Regeln und Instruktionen soll für den Code eine Orientierung geben in Listen. Üblich ist hier z. B. `RICHTIG` u. ä.
+Dieser Parameter kann eine Kurzfassung der Regeln und Instruktionen enthalten und soll darüber für den Code eine Orientierung geben in Listen.
 
 ## `score`
 
