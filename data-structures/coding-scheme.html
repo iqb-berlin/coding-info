@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>coding-info - Kodierschema</title>
+<title>Kodierschema – coding-info</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -89,32 +89,20 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">coding-info</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Suchen"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navigation umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/iqb-berlin/coding-info"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+        <div class="quarto-navbar-tools tools-end">
 </div>
+          <div id="quarto-search" class="" title="Suchen"></div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data-structures/index.html">Datenstrukturen</a></li><li class="breadcrumb-item"><a href="../data-structures/coding-scheme.html">Kodierschema</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -141,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="../data-structures/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datenstrukturen</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Abschnitt umschalten">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -180,6 +168,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#identifizierung" id="toc-identifizierung" class="nav-link" data-scroll-target="#identifizierung">Identifizierung</a>
   <ul class="collapse">
   <li><a href="#id" id="toc-id" class="nav-link" data-scroll-target="#id"><code>id</code></a></li>
+  <li><a href="#alias" id="toc-alias" class="nav-link" data-scroll-target="#alias"><code>alias</code></a></li>
   <li><a href="#label" id="toc-label" class="nav-link" data-scroll-target="#label"><code>label</code></a></li>
   </ul></li>
   <li><a href="#quelle-des-wertes" id="toc-quelle-des-wertes" class="nav-link" data-scroll-target="#quelle-des-wertes">Quelle des Wertes</a>
@@ -199,6 +188,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#codes" id="toc-codes" class="nav-link" data-scroll-target="#codes">Codes</a>
   <ul class="collapse">
   <li><a href="#id-1" id="toc-id-1" class="nav-link" data-scroll-target="#id-1"><code>id</code></a></li>
+  <li><a href="#type" id="toc-type" class="nav-link" data-scroll-target="#type"><code>type</code></a></li>
   <li><a href="#label-1" id="toc-label-1" class="nav-link" data-scroll-target="#label-1"><code>label</code></a></li>
   <li><a href="#score" id="toc-score" class="nav-link" data-scroll-target="#score"><code>score</code></a></li>
   <li><a href="#manualinstruction-1" id="toc-manualinstruction-1" class="nav-link" data-scroll-target="#manualinstruction-1"><code>manualInstruction</code></a></li>
@@ -252,6 +242,10 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="id"><code>id</code></h2>
 <p>Die möglichen Werte hier sind recht weit gefasst. Es sind zwar nur Buchstaben, Ziffern und ’_’ erlaubt, aber es gibt keine Mindestlänge und die ID kann nur aus Ziffern bestehen.</p>
 <p>Als Quelle der Variablen-ID fungieren zunächst die Basisvariablen – also die Variablen, die als Interaktionselemente in der Unit-Definition angelegt sind. Darüber hinaus können abgeleitete Variablen Teil des Kodierschemas sein, deren ID lediglich eindeutig innerhalb der Liste sein muss.</p>
+</section>
+<section id="alias" class="level2">
+<h2 class="anchored" data-anchor-id="alias"><code>alias</code></h2>
+<p>Ein Alias ist eine alternative ID, die durch User vergeben werden kann. Dann kann die ID der Variable nicht mehr geändert werden und bleibt konstant über alle Verarbeitungsschritte und Versionen. Der Alias kann aber nach Bedarf geändert werden. Das IQB hat diese Trennung eingeführt, als sich Umbenennungen von Variablen häuften und jede Umbenennung Inkonsistenzen verursachte (Ableitungen schlugen fehl, Seitenzustände wurden falsch ermittelt).</p>
 </section>
 <section id="label" class="level2">
 <h2 class="anchored" data-anchor-id="label"><code>label</code></h2>
@@ -338,13 +332,14 @@ Sicherheitshinweis
 </section>
 <section id="codemodel" class="level2">
 <h2 class="anchored" data-anchor-id="codemodel"><code>codeModel</code></h2>
-<p>Diese Festlegung hat keine Bedeutung für die Kodierung. Sie ist dafür gedacht, die sehr komplexen Parameter eines Kodierschemas übersichtlicher zu gestalten.</p>
+<p>Diese Festlegung hat schwankende Bedeutung für die Kodierung. Sie ist dafür gedacht, die sehr komplexen Parameter eines Kodierschemas beim Editieren übersichtlicher zu gestalten. Ob bzw. wie diese Information durch den Schemer genutzt wird, ist nicht streng festgelegt.</p>
 <ul>
 <li><code>NONE</code>: Kein Modell (Voreinstellung)</li>
 <li><code>CHOICE</code>: Geschlossenes Kodierschema für eine endliche Liste numerischer Werte (automatische Kodierung)</li>
 <li><code>VALUE_LIST</code>: Geschlossenes Kodierschema für eine endliche Liste alphanumerischer Werte (automatische Kodierung)</li>
 <li><code>NUMBER</code>: Kodierschema für die Kodierung numerischer Werte. Es werden nur Regeln angezeigt, die für einen numerischen Vergleich gedacht sind.</li>
 <li><code>MANUAL</code>: Manuelle Kodierung; sämtliche Optionen für automatische Kodierung werden ausgeblendet.</li>
+<li><code>RULES_ONLY</code>: Automatische Kodierung; sämtliche Optionen für manuelle Kodierung werden ausgeblendet.</li>
 </ul>
 </section>
 <section id="page" class="level2">
@@ -373,9 +368,13 @@ Gefahr von Verschleiern eines Problems
 </div>
 </div>
 </section>
+<section id="type" class="level2">
+<h2 class="anchored" data-anchor-id="type"><code>type</code></h2>
+<p>Es besteht an vielen Stellen der Verarbeitung der Wunsch, einen Code klar den Kategorien “RICHTIG” oder “FALSCH” zuzuordnen (unabhängig von <code>score</code>). Der Parameter <code>type</code> kann die Werte <code>UNSET</code>, <code>FULL_CREDIT</code>, <code>PARTIAL_CREDIT</code> und <code>NO_CREDIT</code> annehmen. Es soll hierfür nicht (mehr) der Parameter <code>label</code> benutzt werden.</p>
+</section>
 <section id="label-1" class="level2">
 <h2 class="anchored" data-anchor-id="label-1"><code>label</code></h2>
-<p>Diese Kurzfassung der folgenden Regeln und Instruktionen soll für den Code eine Orientierung geben in Listen. Üblich ist hier z. B. <code>RICHTIG</code> u. ä.</p>
+<p>Dieser Parameter kann eine Kurzfassung der Regeln und Instruktionen enthalten und soll darüber für den Code eine Orientierung geben in Listen.</p>
 </section>
 <section id="score" class="level2">
 <h2 class="anchored" data-anchor-id="score"><code>score</code></h2>
@@ -482,18 +481,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -525,7 +513,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/iqb-berlin\.github\.io\/coding-info\/");
@@ -533,7 +543,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -884,6 +894,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <a class="nav-link active" href="../index.html" aria-current="page">
 <p><i class="fa-solid fa-house" aria-label="house"></i></p>
 </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/iqb-berlin/coding-info">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
   </li>  
 </ul>
     </div>   

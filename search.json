@@ -1,15 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Kodieren",
-    "section": "",
-    "text": "Achtung: Webseite in Entwicklung\n\n\n\nDiese Webseite ist im Aufbau. Die Inhalte sind unvollständig und werden ständig revidiert.\n\n\n\nWillkommen\nIn Studien zur Feststellung von Leistungsständen im Bildungswesen liegt der Arbeitsschritt “Kodieren” zwischen der Datenerhebung - also der Durchführung eines Assessments - und der Datenanalyse. Rohantworten führen zu komplexen Datenstrukturen mit einem großen Wertespektrum, die so kaum auswertbar sind. Kodierung heißt hier, diese Werte einfachen Kategorien (“Codes”) zuzuordnen, die die Antwort im Sinne der Studienzielstellung symbolisieren. Anschließend lassen sich Häufigkeiten für diese Kategorien ermitteln, Zusammenhänge modellieren, und letztlich können empirisch begründete Empfehlungen gegeben werden.\nMit der schrittweisen Nutzung von Computern für Leistungserhebungen eröffnen sich neue Möglichkeiten, die Kodierung zu automatisieren und zu standardisieren. Hierzu entwickelt das IQB Datenstrukturen und Prozesse, die auf diesen Webseiten beschrieben sind.\n\n\nLizenz\nAlle Texte sind unter der Lizenz CC0 veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. DFG-pdf) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.\n\n\nHaftungsausschluss\nAuf diesen Webseiten sind Links auf externe Webseiten in besonderer Weise gekennzeichnet (s. oben die Links zum IQB und zur KMK). Wir prüfen diese Quellen regelmäßig, können aber für diese Seiten und die dort hinterlegten Zusatzmaterialien keine Haftung für Richtigkeit, Vollständigkeit und Aktualität übernehmen. Dafür sind ausschließlich deren Betreiber verantwortlich.\n\n\nTechnische Realisierung\nDieser Webauftritt basiert auf Texten in einer einfachen Syntax Markdown, die anschließend in Html und CSS umgesetzt werden. Hierzu wird Quarto verwendet. Sämtliche Dateien für den Inhalt und die Steuerung sind in einem öffentlich zugänglichen Codeverwaltungssystem gespeichert.\n\n\nKontakt\nTechnische und inhaltliche Fragen zu den Inhalten können Sie an die IT des IQB richten.\nWenn Sie Probleme melden möchten, können Sie auch die Funktion “Problem melden” nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.",
-    "crumbs": [
-      "Start"
-    ]
-  },
-  {
     "objectID": "data-structures/missings.html",
     "href": "data-structures/missings.html",
     "title": "Missings",
@@ -54,71 +44,6 @@
     ]
   },
   {
-    "objectID": "data-structures/index.html",
-    "href": "data-structures/index.html",
-    "title": "Datenstrukturen",
-    "section": "",
-    "text": "Sicht der Datenanalyse\nWenn Datenanalysen durchgeführt werden, benötigen sie im Kern eine zweidimensionale Matrix der Antwortdaten Testperson x Item. Die Testperson wird durch eine ID gekennzeichnet, das Item hat ebenfalls eine ID, und im Kreuzungspunkt findet sich ein Wert, der die Antwort der Testperson repräsentiert. Dann kann man Unterschiede der Personen und der Items analysieren.\nBei der Analyse spielen außerdem zusätzliche Daten eine Rolle, die entweder die Person oder die Items näher beschreiben. So ist z. B. wichtig, in welchem sozioökonomischen Umfeld sich die Schule der Testperson befindet, an welcher Stelle des Testheftes das Item auftauchte oder wie schwer dieses Item ist. Die folgende Grafik veranschaulicht grob eine solche Datenstruktur.\n\n\n\n\n\nclassDiagram\n    direction LR\n    class StudentGroup{\n        String: ID\n        String: Testgruppe\n        List~any~: Metadaten\n    }\n    class Student{\n        String: ID\n        String: Testgruppe\n        List~any~: Metadaten\n    }\n    class Booklet{\n        String: ID\n        String: Label\n        List~any~: Metadaten\n    }\n    class Unit{\n        String: ID\n        String: Label\n        List~any~: Metadaten\n    }\n    class Item{\n        String: ID\n        List~any~: Metadaten\n        int: Value\n    }\n    StudentGroup \"1..*\" &lt;--&gt; \"1..*\" Student\n    Student \"1\" --&gt; \"1..*\" Booklet\n    Booklet \"1\" --&gt; \"1..*\" Unit\n    Unit \"1\" --&gt; \"1..*\" Item\n\n\n\n\n\n\nFür diese Dokumentation spielt dies allerdings keine Rolle. Alle Texte beziehen sich auf die Frage, wo der Wert für das Item herkommt.\n\n\nSicht des Testsystems\nDie Quelle für die Antworten sind vor allem die Interaktionselemente der Aufgabe (Eingabefelder, Ankreuzkästchen, Ablegelisten usw.). Außerdem können Ereignisse (zeitbezogene Zustandsänderungen) Informationen liefern, die in Variablen gespeichert werden (Logvariablen).\n\n\n\n\n\nflowchart TD\n    subgraph Unit\n        subgraph Testdurchführung\n            A(Basisvariablen)\n            style A fill:white\n            B(Logvariablen)\n            style B fill:white\n        end\n        style Testdurchführung fill:#b3b3cc\n        E[Kodierung\\nAbleitung]\n        style E fill:#ff9\n        C(Kodierschema)\n        style C fill:white\n        J(Itemliste)\n        style J fill:white\n    end\n    style Unit fill:#e0e0eb\n    H(Person)\n    style H fill:white\n    D[Primärdatensatz]\n    H--&gt;D\n    E --&gt; D\n    A --&gt; E\n    B --&gt; E\n    C --&gt; E\n    G[Analysedatensatz\\nPerson x Item]\n    D --&gt; G\n    F(Missingschema) --&gt; G\n    style F fill:white\n    K(Unitposition\\nim Testheft) --&gt; G\n    style K fill:white\n    J --&gt; G\n    L(Metadaten\\naus versch. Quellen) --&gt; G\n    style L fill:white\n\n\n\n\n\n\nDie Antworten werden in einer einheitlichen Datenstruktur “Variable” gespeichert. Neben dem Antwortwert ist hier eine Information zum Status (State) zu finden, also ob z. B. das Interaktionselement gesehen wurde, ob eine Bearbeitung stattgefunden hat usw.\nEin Kodierschema enthält alle Informationen für die manuelle oder automatische Kodierung. Die States der Variablen im Kodierprozess wird über eine State-Änderung angezeigt, und nach Abschluss der Kodierung sind die Werte “Code” und “Score” für die Variable gesetzt.\n\n\nItemwert\nZunächst besteht der Itemwert aus dem Score-Wert einer Variablen. Für jedes Item ist hierzu in einer Itemliste eine Variable benannt. Dies kann eine Basisvariable oder eine abgeleitete Variable sein. Der Score-Wert ergibt sich nach der Kodierung, also nach der vollständigen Anwendung des Kodierschemas. Üblicherweise handelt es sich bei dem Scorewert um eine ganze Zahl, i. d. R. 0 oder 1.\nSollten allerdings für die Itemvariable keine gültigen Antwortwerte vorliegen, wird eine negative Zahl für den Itemwert gesetzt. Diese Zahl symbolisiert nach einer allgemeinen Konvention verschiedene Missing-Zustände, die nicht nur aus den Antworten einer Unit ermittelt werden können, sondern zusätzliche Informationen erfordern.\nIn der Tradition der Kompetenzdiagnostik werden zwar zunächst Analysen gerechnet, später jedoch die Missing-Werte rekodiert: Zu 0 = falsch oder zu einem allgemeinen Missing-Wert, der vom verwendeten Analysesystem abhängt (sog. sysmis).",
-    "crumbs": [
-      "Datenstrukturen"
-    ]
-  },
-  {
-    "objectID": "data-structures/response.html",
-    "href": "data-structures/response.html",
-    "title": "Datenstruktur “Antwort”",
-    "section": "",
-    "text": "Die Spezifikation in englischer Sprache finden Sie hier.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Antwort/Variable"
-    ]
-  },
-  {
-    "objectID": "data-structures/response.html#neu-als-informationseinheit-angelegt",
-    "href": "data-structures/response.html#neu-als-informationseinheit-angelegt",
-    "title": "Datenstruktur “Antwort”",
-    "section": "Neu als Informationseinheit angelegt",
-    "text": "Neu als Informationseinheit angelegt\nWenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den Status UNSET. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.\n\n\n\nWert\nBeschreibung\n\n\n\n\nUNSET\nNeue Variable im technischen Prozess",
-    "crumbs": [
-      "Datenstrukturen",
-      "Antwort/Variable"
-    ]
-  },
-  {
-    "objectID": "data-structures/response.html#im-testsystem",
-    "href": "data-structures/response.html#im-testsystem",
-    "title": "Datenstruktur “Antwort”",
-    "section": "Im Testsystem",
-    "text": "Im Testsystem\nWährend der Durchführung eines Tests bzw. einer Befragung werden Variablenwerte als Antwortdaten gesetzt.\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nNOT_REACHED\nTestperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre.\n\n\nDISPLAYED\nDas Interaktionselement wurde der Testperson angezeigt.\n\n\nVALUE_CHANGED\nTestperson hat den Wert geändert.\n\n\n\nAndere Werte sind im Testsystem nur möglich, wenn eine Antwortverarbeitung angestoßen wurde (wie z. B. beim adaptiven Testen).\nFür die Verarbeitung des Antwortwertes ist es erforderlich, dass der Status VALUE_CHANGED gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.\nIm Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der Status DISPLAYED eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert false/unchecked vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion “Kreuze alle Säugetiere an!” muss die Auswahl “Amsel” unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Antwort/Variable"
-    ]
-  },
-  {
-    "objectID": "data-structures/response.html#bei-ableitung",
-    "href": "data-structures/response.html#bei-ableitung",
-    "title": "Datenstruktur “Antwort”",
-    "section": "Bei Ableitung",
-    "text": "Bei Ableitung\nDas Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:\n\nVariablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status VALUE_CHANGED haben. Es ist auch der Status DISPLAYED möglich, wenn dies bei der Quellvariablen markiert wurde.\nVariablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status CODING_COMPLETE haben.\n\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nDERIVE_ERROR\nWährend der Ableitung ist ein Fehler aufgetreten.\n\n\nVALUE_CHANGED\nFür die abgeleitete Variable wurde erfolgreich ein Wert ermittelt.\n\n\n\nWenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable nullund es wird der Status auf den kleinsten Status gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:\nUNSET  NOT_REACHED  DISPLAYED  DERIVE_ERROR  NO_CODING  INVALID  CODING_INCOMPLETE  CODING_ERROR",
-    "crumbs": [
-      "Datenstrukturen",
-      "Antwort/Variable"
-    ]
-  },
-  {
-    "objectID": "data-structures/response.html#bei-kodierung",
-    "href": "data-structures/response.html#bei-kodierung",
-    "title": "Datenstruktur “Antwort”",
-    "section": "Bei Kodierung",
-    "text": "Bei Kodierung\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nNO_CODING\nEs gibt im Kodierschema keine Vorschriften oder Anweisungen für die Kodierung.\n\n\nINVALID\nDer Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED).\n\n\nCODING_INCOMPLETE\nDie Regeln der automatischen Kodierung wurden angewendet, haben aber keinen zutreffenden Code ermitteln können.\n\n\nCODING_ERROR\nBeim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen.\n\n\nCODING_COMPLETE\nEin Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden.\n\n\n\nDie Kodierung folgt zunächst den Festlegungen der automatischen Kodierung (regelbasiert). Sollte kein zutreffender Code gefunden werden, dann wird der Code CODING_INCOMPLETE gesetzt. Dann – und auch bei einem Kodierfehler CODING_ERROR – folgt die Sichtung der Antwort und eine manuelle Kodierung. Hier können wiederum die Stati CODING_COMPLETE oder INVALID gesetzt werden.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Antwort/Variable"
-    ]
-  },
-  {
     "objectID": "data-structures/coding-scheme.html",
     "href": "data-structures/coding-scheme.html",
     "title": "Kodierschema",
@@ -135,6 +60,17 @@
     "title": "Kodierschema",
     "section": "id",
     "text": "id\nDie möglichen Werte hier sind recht weit gefasst. Es sind zwar nur Buchstaben, Ziffern und ’_’ erlaubt, aber es gibt keine Mindestlänge und die ID kann nur aus Ziffern bestehen.\nAls Quelle der Variablen-ID fungieren zunächst die Basisvariablen – also die Variablen, die als Interaktionselemente in der Unit-Definition angelegt sind. Darüber hinaus können abgeleitete Variablen Teil des Kodierschemas sein, deren ID lediglich eindeutig innerhalb der Liste sein muss.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Kodierschema"
+    ]
+  },
+  {
+    "objectID": "data-structures/coding-scheme.html#alias",
+    "href": "data-structures/coding-scheme.html#alias",
+    "title": "Kodierschema",
+    "section": "alias",
+    "text": "alias\nEin Alias ist eine alternative ID, die durch User vergeben werden kann. Dann kann die ID der Variable nicht mehr geändert werden und bleibt konstant über alle Verarbeitungsschritte und Versionen. Der Alias kann aber nach Bedarf geändert werden. Das IQB hat diese Trennung eingeführt, als sich Umbenennungen von Variablen häuften und jede Umbenennung Inkonsistenzen verursachte (Ableitungen schlugen fehl, Seitenzustände wurden falsch ermittelt).",
     "crumbs": [
       "Datenstrukturen",
       "Kodierschema"
@@ -222,7 +158,7 @@
     "href": "data-structures/coding-scheme.html#codemodel",
     "title": "Kodierschema",
     "section": "codeModel",
-    "text": "codeModel\nDiese Festlegung hat keine Bedeutung für die Kodierung. Sie ist dafür gedacht, die sehr komplexen Parameter eines Kodierschemas übersichtlicher zu gestalten.\n\nNONE: Kein Modell (Voreinstellung)\nCHOICE: Geschlossenes Kodierschema für eine endliche Liste numerischer Werte (automatische Kodierung)\nVALUE_LIST: Geschlossenes Kodierschema für eine endliche Liste alphanumerischer Werte (automatische Kodierung)\nNUMBER: Kodierschema für die Kodierung numerischer Werte. Es werden nur Regeln angezeigt, die für einen numerischen Vergleich gedacht sind.\nMANUAL: Manuelle Kodierung; sämtliche Optionen für automatische Kodierung werden ausgeblendet.",
+    "text": "codeModel\nDiese Festlegung hat schwankende Bedeutung für die Kodierung. Sie ist dafür gedacht, die sehr komplexen Parameter eines Kodierschemas beim Editieren übersichtlicher zu gestalten. Ob bzw. wie diese Information durch den Schemer genutzt wird, ist nicht streng festgelegt.\n\nNONE: Kein Modell (Voreinstellung)\nCHOICE: Geschlossenes Kodierschema für eine endliche Liste numerischer Werte (automatische Kodierung)\nVALUE_LIST: Geschlossenes Kodierschema für eine endliche Liste alphanumerischer Werte (automatische Kodierung)\nNUMBER: Kodierschema für die Kodierung numerischer Werte. Es werden nur Regeln angezeigt, die für einen numerischen Vergleich gedacht sind.\nMANUAL: Manuelle Kodierung; sämtliche Optionen für automatische Kodierung werden ausgeblendet.\nRULES_ONLY: Automatische Kodierung; sämtliche Optionen für manuelle Kodierung werden ausgeblendet.",
     "crumbs": [
       "Datenstrukturen",
       "Kodierschema"
@@ -251,11 +187,22 @@
     ]
   },
   {
+    "objectID": "data-structures/coding-scheme.html#type",
+    "href": "data-structures/coding-scheme.html#type",
+    "title": "Kodierschema",
+    "section": "type",
+    "text": "type\nEs besteht an vielen Stellen der Verarbeitung der Wunsch, einen Code klar den Kategorien “RICHTIG” oder “FALSCH” zuzuordnen (unabhängig von score). Der Parameter type kann die Werte UNSET, FULL_CREDIT, PARTIAL_CREDIT und NO_CREDIT annehmen. Es soll hierfür nicht (mehr) der Parameter label benutzt werden.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Kodierschema"
+    ]
+  },
+  {
     "objectID": "data-structures/coding-scheme.html#label-1",
     "href": "data-structures/coding-scheme.html#label-1",
     "title": "Kodierschema",
     "section": "label",
-    "text": "label\nDiese Kurzfassung der folgenden Regeln und Instruktionen soll für den Code eine Orientierung geben in Listen. Üblich ist hier z. B. RICHTIG u. ä.",
+    "text": "label\nDieser Parameter kann eine Kurzfassung der Regeln und Instruktionen enthalten und soll darüber für den Code eine Orientierung geben in Listen.",
     "crumbs": [
       "Datenstrukturen",
       "Kodierschema"
@@ -314,6 +261,81 @@
     "crumbs": [
       "Datenstrukturen",
       "Kodierschema"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kodieren",
+    "section": "",
+    "text": "Achtung: Webseite in Entwicklung\n\n\n\nDiese Webseite ist im Aufbau. Die Inhalte sind unvollständig und werden ständig revidiert.\n\n\n\nWillkommen\nIn Studien zur Feststellung von Leistungsständen im Bildungswesen liegt der Arbeitsschritt “Kodieren” zwischen der Datenerhebung - also der Durchführung eines Assessments - und der Datenanalyse. Rohantworten führen zu komplexen Datenstrukturen mit einem großen Wertespektrum, die so kaum auswertbar sind. Kodierung heißt hier, diese Werte einfachen Kategorien (“Codes”) zuzuordnen, die die Antwort im Sinne der Studienzielstellung symbolisieren. Anschließend lassen sich Häufigkeiten für diese Kategorien ermitteln, Zusammenhänge modellieren, und letztlich können empirisch begründete Empfehlungen gegeben werden.\nMit der schrittweisen Nutzung von Computern für Leistungserhebungen eröffnen sich neue Möglichkeiten, die Kodierung zu automatisieren und zu standardisieren. Hierzu entwickelt das IQB Datenstrukturen und Prozesse, die auf diesen Webseiten beschrieben sind.\n\n\nLizenz\nAlle Texte sind unter der Lizenz CC0 veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. DFG-pdf) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.\n\n\nHaftungsausschluss\nAuf diesen Webseiten sind Links auf externe Webseiten in besonderer Weise gekennzeichnet (s. oben die Links zum IQB und zur KMK). Wir prüfen diese Quellen regelmäßig, können aber für diese Seiten und die dort hinterlegten Zusatzmaterialien keine Haftung für Richtigkeit, Vollständigkeit und Aktualität übernehmen. Dafür sind ausschließlich deren Betreiber verantwortlich.\n\n\nTechnische Realisierung\nDieser Webauftritt basiert auf Texten in einer einfachen Syntax Markdown, die anschließend in Html und CSS umgesetzt werden. Hierzu wird Quarto verwendet. Sämtliche Dateien für den Inhalt und die Steuerung sind in einem öffentlich zugänglichen Codeverwaltungssystem gespeichert.\n\n\nKontakt\nTechnische und inhaltliche Fragen zu den Inhalten können Sie an die IT des IQB richten.\nWenn Sie Probleme melden möchten, können Sie auch die Funktion “Problem melden” nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.",
+    "crumbs": [
+      "Start"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html",
+    "href": "data-structures/response.html",
+    "title": "Datenstruktur “Antwort”",
+    "section": "",
+    "text": "Die Spezifikation in englischer Sprache finden Sie hier.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#neu-als-informationseinheit-angelegt",
+    "href": "data-structures/response.html#neu-als-informationseinheit-angelegt",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Neu als Informationseinheit angelegt",
+    "text": "Neu als Informationseinheit angelegt\nWenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den Status UNSET. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.\n\n\n\nWert\nBeschreibung\n\n\n\n\nUNSET\nNeue Variable im technischen Prozess",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#im-testsystem",
+    "href": "data-structures/response.html#im-testsystem",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Im Testsystem",
+    "text": "Im Testsystem\nWährend der Durchführung eines Tests bzw. einer Befragung werden Variablenwerte als Antwortdaten gesetzt.\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nNOT_REACHED\nTestperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre.\n\n\nDISPLAYED\nDas Interaktionselement wurde der Testperson angezeigt.\n\n\nVALUE_CHANGED\nTestperson hat den Wert geändert.\n\n\n\nAndere Werte sind im Testsystem nur möglich, wenn eine Antwortverarbeitung angestoßen wurde (wie z. B. beim adaptiven Testen).\nFür die Verarbeitung des Antwortwertes ist es erforderlich, dass der Status VALUE_CHANGED gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.\nIm Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der Status DISPLAYED eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert false/unchecked vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion “Kreuze alle Säugetiere an!” muss die Auswahl “Amsel” unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#bei-ableitung",
+    "href": "data-structures/response.html#bei-ableitung",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Bei Ableitung",
+    "text": "Bei Ableitung\nDas Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:\n\nVariablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status VALUE_CHANGED haben. Es ist auch der Status DISPLAYED möglich, wenn dies bei der Quellvariablen markiert wurde.\nVariablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status CODING_COMPLETE haben.\n\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nDERIVE_ERROR\nWährend der Ableitung ist ein Fehler aufgetreten.\n\n\nVALUE_CHANGED\nFür die abgeleitete Variable wurde erfolgreich ein Wert ermittelt.\n\n\n\nWenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable nullund es wird der Status auf den kleinsten Status gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:\nUNSET  NOT_REACHED  DISPLAYED  DERIVE_ERROR  NO_CODING  INVALID  CODING_INCOMPLETE  CODING_ERROR",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#bei-kodierung",
+    "href": "data-structures/response.html#bei-kodierung",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Bei Kodierung",
+    "text": "Bei Kodierung\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nNO_CODING\nEs gibt im Kodierschema keine Vorschriften oder Anweisungen für die Kodierung.\n\n\nINVALID\nDer Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED).\n\n\nCODING_INCOMPLETE\nDie Regeln der automatischen Kodierung wurden angewendet, haben aber keinen zutreffenden Code ermitteln können.\n\n\nCODING_ERROR\nBeim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen.\n\n\nCODING_COMPLETE\nEin Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden.\n\n\n\nDie Kodierung folgt zunächst den Festlegungen der automatischen Kodierung (regelbasiert). Sollte kein zutreffender Code gefunden werden, dann wird der Code CODING_INCOMPLETE gesetzt. Dann – und auch bei einem Kodierfehler CODING_ERROR – folgt die Sichtung der Antwort und eine manuelle Kodierung. Hier können wiederum die Stati CODING_COMPLETE oder INVALID gesetzt werden.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/index.html",
+    "href": "data-structures/index.html",
+    "title": "Datenstrukturen",
+    "section": "",
+    "text": "Sicht der Datenanalyse\nWenn Datenanalysen durchgeführt werden, benötigen sie im Kern eine zweidimensionale Matrix der Antwortdaten Testperson x Item. Die Testperson wird durch eine ID gekennzeichnet, das Item hat ebenfalls eine ID, und im Kreuzungspunkt findet sich ein Wert, der die Antwort der Testperson repräsentiert. Dann kann man Unterschiede der Personen und der Items analysieren.\nBei der Analyse spielen außerdem zusätzliche Daten eine Rolle, die entweder die Person oder die Items näher beschreiben. So ist z. B. wichtig, in welchem sozioökonomischen Umfeld sich die Schule der Testperson befindet, an welcher Stelle des Testheftes das Item auftauchte oder wie schwer dieses Item ist. Die folgende Grafik veranschaulicht grob eine solche Datenstruktur.\n\n\n\n\n\nclassDiagram\n    direction LR\n    class StudentGroup{\n        String: ID\n        String: Testgruppe\n        List~any~: Metadaten\n    }\n    class Student{\n        String: ID\n        String: Testgruppe\n        List~any~: Metadaten\n    }\n    class Booklet{\n        String: ID\n        String: Label\n        List~any~: Metadaten\n    }\n    class Unit{\n        String: ID\n        String: Label\n        List~any~: Metadaten\n    }\n    class Item{\n        String: ID\n        List~any~: Metadaten\n        int: Value\n    }\n    StudentGroup \"1..*\" &lt;--&gt; \"1..*\" Student\n    Student \"1\" --&gt; \"1..*\" Booklet\n    Booklet \"1\" --&gt; \"1..*\" Unit\n    Unit \"1\" --&gt; \"1..*\" Item\n\n\n\n\n\n\nFür diese Dokumentation spielt dies allerdings keine Rolle. Alle Texte beziehen sich auf die Frage, wo der Wert für das Item herkommt.\n\n\nSicht des Testsystems\nDie Quelle für die Antworten sind vor allem die Interaktionselemente der Aufgabe (Eingabefelder, Ankreuzkästchen, Ablegelisten usw.). Außerdem können Ereignisse (zeitbezogene Zustandsänderungen) Informationen liefern, die in Variablen gespeichert werden (Logvariablen).\n\n\n\n\n\nflowchart TD\n    subgraph Unit\n        subgraph Testdurchführung\n            A(Basisvariablen)\n            style A fill:white\n            B(Logvariablen)\n            style B fill:white\n        end\n        style Testdurchführung fill:#b3b3cc\n        E[Kodierung\\nAbleitung]\n        style E fill:#ff9\n        C(Kodierschema)\n        style C fill:white\n        J(Itemliste)\n        style J fill:white\n    end\n    style Unit fill:#e0e0eb\n    H(Person)\n    style H fill:white\n    D[Primärdatensatz]\n    H--&gt;D\n    E --&gt; D\n    A --&gt; E\n    B --&gt; E\n    C --&gt; E\n    G[Analysedatensatz\\nPerson x Item]\n    D --&gt; G\n    F(Missingschema) --&gt; G\n    style F fill:white\n    K(Unitposition\\nim Testheft) --&gt; G\n    style K fill:white\n    J --&gt; G\n    L(Metadaten\\naus versch. Quellen) --&gt; G\n    style L fill:white\n\n\n\n\n\n\nDie Antworten werden in einer einheitlichen Datenstruktur “Variable” gespeichert. Neben dem Antwortwert ist hier eine Information zum Status (State) zu finden, also ob z. B. das Interaktionselement gesehen wurde, ob eine Bearbeitung stattgefunden hat usw.\nEin Kodierschema enthält alle Informationen für die manuelle oder automatische Kodierung. Die States der Variablen im Kodierprozess wird über eine State-Änderung angezeigt, und nach Abschluss der Kodierung sind die Werte “Code” und “Score” für die Variable gesetzt.\n\n\nItemwert\nZunächst besteht der Itemwert aus dem Score-Wert einer Variablen. Für jedes Item ist hierzu in einer Itemliste eine Variable benannt. Dies kann eine Basisvariable oder eine abgeleitete Variable sein. Der Score-Wert ergibt sich nach der Kodierung, also nach der vollständigen Anwendung des Kodierschemas. Üblicherweise handelt es sich bei dem Scorewert um eine ganze Zahl, i. d. R. 0 oder 1.\nSollten allerdings für die Itemvariable keine gültigen Antwortwerte vorliegen, wird eine negative Zahl für den Itemwert gesetzt. Diese Zahl symbolisiert nach einer allgemeinen Konvention verschiedene Missing-Zustände, die nicht nur aus den Antworten einer Unit ermittelt werden können, sondern zusätzliche Informationen erfordern.\nIn der Tradition der Kompetenzdiagnostik werden zwar zunächst Analysen gerechnet, später jedoch die Missing-Werte rekodiert: Zu 0 = falsch oder zu einem allgemeinen Missing-Wert, der vom verwendeten Analysesystem abhängt (sog. sysmis).",
+    "crumbs": [
+      "Datenstrukturen"
     ]
   }
 ]
