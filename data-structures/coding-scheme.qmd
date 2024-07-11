@@ -66,6 +66,13 @@ Dies ist eine Liste von IDs der Variablen, die als Quelle dienen. Die Reihenfolg
 
 Wenn eine Variable angegeben wurde, die nicht im Kodierschema enthalten ist, wird der Status `DERIVE_ERROR` gesetzt.
 
+::: {.callout-caution}
+## ID -- nicht Alias!
+
+An dieser Stelle ist wichtig zu betonen, dass bei `deriveSources` stets die ID und nicht der Alias verwendet wird. Der Vorteil ist, dass eine Umbenennung (also eine Änderung des Alias) keine Auswirkung auf die Ableitung hat. Der Nachteil ist, dass beim Blick auf das Kodierschema Irritationen auftreten können, weil man in der UI nur den Alias sieht.
+:::
+
+
 # Allgemeine Festlegungen
 
 ## `processing`
@@ -104,14 +111,7 @@ Im Prozess der Erarbeitung der Kodiervorschriften kann es nützlich sein, diesen
 
 ## `codeModel`
 
-Diese Festlegung hat schwankende Bedeutung für die Kodierung. Sie ist dafür gedacht, die sehr komplexen Parameter eines Kodierschemas beim Editieren übersichtlicher zu gestalten. Ob bzw. wie diese Information durch den Schemer genutzt wird, ist nicht streng festgelegt.
-
-* `NONE`: Kein Modell (Voreinstellung)
-* `CHOICE`: Geschlossenes Kodierschema für eine endliche Liste numerischer Werte (automatische Kodierung)
-* `VALUE_LIST`: Geschlossenes Kodierschema für eine endliche Liste alphanumerischer Werte (automatische Kodierung)
-* `NUMBER`: Kodierschema für die Kodierung numerischer Werte. Es werden nur Regeln angezeigt, die für einen numerischen Vergleich gedacht sind.
-* `MANUAL`: Manuelle Kodierung; sämtliche Optionen für automatische Kodierung werden ausgeblendet.
-* `RULES_ONLY`: Automatische Kodierung; sämtliche Optionen für manuelle Kodierung werden ausgeblendet.
+Über diesen Parameter wird festgelegt, ob während der Bearbeitung nur die Formularelemente für die Regeln, nur die für die manuelle Kodierung oder alles angezeigt wird. Die möglichen Werte lauten entsprechend `RULES_ONLY`, `MANUAL_ONLY` und `MANUAL_AND_RULES`.
 
 ## `page`
 
@@ -135,7 +135,17 @@ Wenn ein eigentlich unmöglicher Wert mit `INVALID` markiert wird, könnte ein e
 
 ## `type`
 
-Es besteht an vielen Stellen der Verarbeitung der Wunsch, einen Code klar den Kategorien "RICHTIG" oder "FALSCH" zuzuordnen (unabhängig von `score`). Der Parameter `type` kann die Werte `UNSET`, `FULL_CREDIT`, `PARTIAL_CREDIT` und `NO_CREDIT` annehmen. Es soll hierfür nicht (mehr) der Parameter `label` benutzt werden.
+Über den Typ `RESIDUAL_AUTO` kann festgelegt werden, dass eine Kodierung abgeschlossen wird: Alle anderen Codes werden über Regeln geprüft, und wenn keiner zutrifft, wird die Code-Id mit diesem Typ zugewiesen. Die anderen Code-Typen haben keine Auswirkung auf die automatische Kodierung, sondern steuern nach bestimmten Konventionen nachgelagerte Arbeitsschritte oder die Darstellung beim Editieren oder Kodieren:
+
+| Typ | Erläuterung | Standard-Label | Standard-Id | Standard-Score |
+|---|----------|----|----|----|
+|`FULL_CREDIT`|Eine vollständig richtige Antwort.|richtig|1 bzw. 11, 12, usw.|1|
+|`PARTIAL_CREDIT`|Eine teilweise richtige Antwort.|teilweise richtig|2 bzw. 21, 22, usw.|0|
+|`TO_CHECK`|Diese Antwortkategorie ist noch nicht final beschlossen.|zu prüfen|3 bzw. 31, 32, usw.|0|
+|`NO_CREDIT`|Eine falsche Antwort.|falsch|4 bzw. 41, 42, usw.|0|
+|`UNSET`|Es soll kein Code-Typ angewendet werden| (manuell festzugelegen) |keine Konvention|0|
+|`RESIDUAL`|Alle anderen Antworten|falsch|0|0|
+
 
 ## `label`
 
