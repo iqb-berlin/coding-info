@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.53">
+<meta name="generator" content="quarto-1.5.54">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -285,6 +285,19 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="derivesources"><code>deriveSources</code></h2>
 <p>Dies ist eine Liste von IDs der Variablen, die als Quelle dienen. Die Reihenfolge ist verbindlich, was allerdings nur beim Ableitungstyp <code>CONCAT_CODE</code> eine Rolle spielt, sofern nicht als Parameter <code>SORT</code> gesetzt wurde.</p>
 <p>Wenn eine Variable angegeben wurde, die nicht im Kodierschema enthalten ist, wird der Status <code>DERIVE_ERROR</code> gesetzt.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ID – nicht Alias!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An dieser Stelle ist wichtig zu betonen, dass bei <code>deriveSources</code> stets die ID und nicht der Alias verwendet wird. Der Vorteil ist, dass eine Umbenennung (also eine Änderung des Alias) keine Auswirkung auf die Ableitung hat. Der Nachteil ist, dass beim Blick auf das Kodierschema Irritationen auftreten können, weil man in der UI nur den Alias sieht.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="allgemeine-festlegungen" class="level1">
@@ -332,15 +345,7 @@ Sicherheitshinweis
 </section>
 <section id="codemodel" class="level2">
 <h2 class="anchored" data-anchor-id="codemodel"><code>codeModel</code></h2>
-<p>Diese Festlegung hat schwankende Bedeutung für die Kodierung. Sie ist dafür gedacht, die sehr komplexen Parameter eines Kodierschemas beim Editieren übersichtlicher zu gestalten. Ob bzw. wie diese Information durch den Schemer genutzt wird, ist nicht streng festgelegt.</p>
-<ul>
-<li><code>NONE</code>: Kein Modell (Voreinstellung)</li>
-<li><code>CHOICE</code>: Geschlossenes Kodierschema für eine endliche Liste numerischer Werte (automatische Kodierung)</li>
-<li><code>VALUE_LIST</code>: Geschlossenes Kodierschema für eine endliche Liste alphanumerischer Werte (automatische Kodierung)</li>
-<li><code>NUMBER</code>: Kodierschema für die Kodierung numerischer Werte. Es werden nur Regeln angezeigt, die für einen numerischen Vergleich gedacht sind.</li>
-<li><code>MANUAL</code>: Manuelle Kodierung; sämtliche Optionen für automatische Kodierung werden ausgeblendet.</li>
-<li><code>RULES_ONLY</code>: Automatische Kodierung; sämtliche Optionen für manuelle Kodierung werden ausgeblendet.</li>
-</ul>
+<p>Über diesen Parameter wird festgelegt, ob während der Bearbeitung nur die Formularelemente für die Regeln, nur die für die manuelle Kodierung oder alles angezeigt wird. Die möglichen Werte lauten entsprechend <code>RULES_ONLY</code>, <code>MANUAL_ONLY</code> und <code>MANUAL_AND_RULES</code>.</p>
 </section>
 <section id="page" class="level2">
 <h2 class="anchored" data-anchor-id="page"><code>page</code></h2>
@@ -370,7 +375,69 @@ Gefahr von Verschleiern eines Problems
 </section>
 <section id="type" class="level2">
 <h2 class="anchored" data-anchor-id="type"><code>type</code></h2>
-<p>Es besteht an vielen Stellen der Verarbeitung der Wunsch, einen Code klar den Kategorien “RICHTIG” oder “FALSCH” zuzuordnen (unabhängig von <code>score</code>). Der Parameter <code>type</code> kann die Werte <code>UNSET</code>, <code>FULL_CREDIT</code>, <code>PARTIAL_CREDIT</code> und <code>NO_CREDIT</code> annehmen. Es soll hierfür nicht (mehr) der Parameter <code>label</code> benutzt werden.</p>
+<p>Über den Typ <code>RESIDUAL_AUTO</code> kann festgelegt werden, dass eine Kodierung abgeschlossen wird: Alle anderen Codes werden über Regeln geprüft, und wenn keiner zutrifft, wird die Code-Id mit diesem Typ zugewiesen. Die anderen Code-Typen haben keine Auswirkung auf die automatische Kodierung, sondern steuern nach bestimmten Konventionen nachgelagerte Arbeitsschritte oder die Darstellung beim Editieren oder Kodieren:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 40%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Typ</th>
+<th>Erläuterung</th>
+<th>Standard-Label</th>
+<th>Standard-Id</th>
+<th>Standard-Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>FULL_CREDIT</code></td>
+<td>Eine vollständig richtige Antwort.</td>
+<td>richtig</td>
+<td>1 bzw. 11, 12, usw.</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td><code>PARTIAL_CREDIT</code></td>
+<td>Eine teilweise richtige Antwort.</td>
+<td>teilweise richtig</td>
+<td>2 bzw. 21, 22, usw.</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td><code>TO_CHECK</code></td>
+<td>Diese Antwortkategorie ist noch nicht final beschlossen.</td>
+<td>zu prüfen</td>
+<td>3 bzw. 31, 32, usw.</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><code>NO_CREDIT</code></td>
+<td>Eine falsche Antwort.</td>
+<td>falsch</td>
+<td>4 bzw. 41, 42, usw.</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td><code>UNSET</code></td>
+<td>Es soll kein Code-Typ angewendet werden</td>
+<td>(manuell festzugelegen)</td>
+<td>keine Konvention</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><code>RESIDUAL</code></td>
+<td>Alle anderen Antworten</td>
+<td>falsch</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="label-1" class="level2">
 <h2 class="anchored" data-anchor-id="label-1"><code>label</code></h2>

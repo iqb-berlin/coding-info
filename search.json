@@ -1,46 +1,12 @@
 [
   {
-    "objectID": "data-structures/missings.html",
-    "href": "data-structures/missings.html",
-    "title": "Missings",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kodieren",
     "section": "",
-    "text": "Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.",
+    "text": "Achtung: Webseite in Entwicklung\n\n\n\nDiese Webseite ist im Aufbau. Die Inhalte sind unvollständig und werden ständig revidiert.\n\n\n\nWillkommen\nIn Studien zur Feststellung von Leistungsständen im Bildungswesen liegt der Arbeitsschritt “Kodieren” zwischen der Datenerhebung - also der Durchführung eines Assessments - und der Datenanalyse. Rohantworten führen zu komplexen Datenstrukturen mit einem großen Wertespektrum, die so kaum auswertbar sind. Kodierung heißt hier, diese Werte einfachen Kategorien (“Codes”) zuzuordnen, die die Antwort im Sinne der Studienzielstellung symbolisieren. Anschließend lassen sich Häufigkeiten für diese Kategorien ermitteln, Zusammenhänge modellieren, und letztlich können empirisch begründete Empfehlungen gegeben werden.\nMit der schrittweisen Nutzung von Computern für Leistungserhebungen eröffnen sich neue Möglichkeiten, die Kodierung zu automatisieren und zu standardisieren. Hierzu entwickelt das IQB Datenstrukturen und Prozesse, die auf diesen Webseiten beschrieben sind.\n\n\nLizenz\nAlle Texte sind unter der Lizenz CC0 veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. DFG-pdf) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.\n\n\nHaftungsausschluss\nAuf diesen Webseiten sind Links auf externe Webseiten in besonderer Weise gekennzeichnet (s. oben die Links zum IQB und zur KMK). Wir prüfen diese Quellen regelmäßig, können aber für diese Seiten und die dort hinterlegten Zusatzmaterialien keine Haftung für Richtigkeit, Vollständigkeit und Aktualität übernehmen. Dafür sind ausschließlich deren Betreiber verantwortlich.\n\n\nTechnische Realisierung\nDieser Webauftritt basiert auf Texten in einer einfachen Syntax Markdown, die anschließend in Html und CSS umgesetzt werden. Hierzu wird Quarto verwendet. Sämtliche Dateien für den Inhalt und die Steuerung sind in einem öffentlich zugänglichen Codeverwaltungssystem gespeichert.\n\n\nKontakt\nTechnische und inhaltliche Fragen zu den Inhalten können Sie an die IT des IQB richten.\nWenn Sie Probleme melden möchten, können Sie auch die Funktion “Problem melden” nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.",
     "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#missing-by-omission-wenn-leer",
-    "href": "data-structures/missings.html#missing-by-omission-wenn-leer",
-    "title": "Missings",
-    "section": "Missing by Omission wenn leer?",
-    "text": "Missing by Omission wenn leer?\nWenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung (Omission) anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:\n\nBei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.\nDer Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option ‘leer’ gibt es nicht.\nBei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.\n\n\n\n\n\n\n\nUmsetzung\n\n\n\nEin bearbeiteter, aber leerer Wert wird als invalid bewertet. Dieses Standardverhalten kann durch eine Option im Kodierschema geändert werden, und es gibt auch eine Regel, die auf einen leeren Wert prüft. Dann ist es auch möglich, einen Code für einen leeren Wert zu vergeben.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#status-displayed-überspringen",
-    "href": "data-structures/missings.html#status-displayed-überspringen",
-    "title": "Missings",
-    "section": "Status DISPLAYED überspringen?",
-    "text": "Status DISPLAYED überspringen?\nDas IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status DISPLAYED. Wenn eine Interaktion erfolgte, wird der Status VALUE_CHANGED gesetzt (zum Status einer Antwort siehe hier). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status VALUE_CHANGED ausgewertet.\n\n\n\n\n\n\nUmsetzung\n\n\n\nIm Kodierschema gibt es eine Option, mit der man für eine Variable festlegen kann, dass der Wert auch bei DISPLAYED ausgewertet wird, also dann wie VALUE_CHANGED behandelt wird.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#wo-ist-das-item",
-    "href": "data-structures/missings.html#wo-ist-das-item",
-    "title": "Missings",
-    "section": "Wo ist das Item?",
-    "text": "Wo ist das Item?\nWenn es als 17. Teilaufgabe ein Item mit der Instruktion “markiere im Text” gibt, weicht der Ort der Beantwortung (also die Interaktion “Markieren” im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.\n\n\n\n\n\n\nMögliche Umsetzung\n\n\n\nMan könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
+      "Start"
     ]
   },
   {
@@ -114,7 +80,7 @@
     "href": "data-structures/coding-scheme.html#derivesources",
     "title": "Kodierschema",
     "section": "deriveSources",
-    "text": "deriveSources\nDies ist eine Liste von IDs der Variablen, die als Quelle dienen. Die Reihenfolge ist verbindlich, was allerdings nur beim Ableitungstyp CONCAT_CODE eine Rolle spielt, sofern nicht als Parameter SORT gesetzt wurde.\nWenn eine Variable angegeben wurde, die nicht im Kodierschema enthalten ist, wird der Status DERIVE_ERROR gesetzt.",
+    "text": "deriveSources\nDies ist eine Liste von IDs der Variablen, die als Quelle dienen. Die Reihenfolge ist verbindlich, was allerdings nur beim Ableitungstyp CONCAT_CODE eine Rolle spielt, sofern nicht als Parameter SORT gesetzt wurde.\nWenn eine Variable angegeben wurde, die nicht im Kodierschema enthalten ist, wird der Status DERIVE_ERROR gesetzt.\n\n\n\n\n\n\nID – nicht Alias!\n\n\n\nAn dieser Stelle ist wichtig zu betonen, dass bei deriveSources stets die ID und nicht der Alias verwendet wird. Der Vorteil ist, dass eine Umbenennung (also eine Änderung des Alias) keine Auswirkung auf die Ableitung hat. Der Nachteil ist, dass beim Blick auf das Kodierschema Irritationen auftreten können, weil man in der UI nur den Alias sieht.",
     "crumbs": [
       "Datenstrukturen",
       "Kodierschema"
@@ -158,7 +124,7 @@
     "href": "data-structures/coding-scheme.html#codemodel",
     "title": "Kodierschema",
     "section": "codeModel",
-    "text": "codeModel\nDiese Festlegung hat schwankende Bedeutung für die Kodierung. Sie ist dafür gedacht, die sehr komplexen Parameter eines Kodierschemas beim Editieren übersichtlicher zu gestalten. Ob bzw. wie diese Information durch den Schemer genutzt wird, ist nicht streng festgelegt.\n\nNONE: Kein Modell (Voreinstellung)\nCHOICE: Geschlossenes Kodierschema für eine endliche Liste numerischer Werte (automatische Kodierung)\nVALUE_LIST: Geschlossenes Kodierschema für eine endliche Liste alphanumerischer Werte (automatische Kodierung)\nNUMBER: Kodierschema für die Kodierung numerischer Werte. Es werden nur Regeln angezeigt, die für einen numerischen Vergleich gedacht sind.\nMANUAL: Manuelle Kodierung; sämtliche Optionen für automatische Kodierung werden ausgeblendet.\nRULES_ONLY: Automatische Kodierung; sämtliche Optionen für manuelle Kodierung werden ausgeblendet.",
+    "text": "codeModel\nÜber diesen Parameter wird festgelegt, ob während der Bearbeitung nur die Formularelemente für die Regeln, nur die für die manuelle Kodierung oder alles angezeigt wird. Die möglichen Werte lauten entsprechend RULES_ONLY, MANUAL_ONLY und MANUAL_AND_RULES.",
     "crumbs": [
       "Datenstrukturen",
       "Kodierschema"
@@ -191,7 +157,7 @@
     "href": "data-structures/coding-scheme.html#type",
     "title": "Kodierschema",
     "section": "type",
-    "text": "type\nEs besteht an vielen Stellen der Verarbeitung der Wunsch, einen Code klar den Kategorien “RICHTIG” oder “FALSCH” zuzuordnen (unabhängig von score). Der Parameter type kann die Werte UNSET, FULL_CREDIT, PARTIAL_CREDIT und NO_CREDIT annehmen. Es soll hierfür nicht (mehr) der Parameter label benutzt werden.",
+    "text": "type\nÜber den Typ RESIDUAL_AUTO kann festgelegt werden, dass eine Kodierung abgeschlossen wird: Alle anderen Codes werden über Regeln geprüft, und wenn keiner zutrifft, wird die Code-Id mit diesem Typ zugewiesen. Die anderen Code-Typen haben keine Auswirkung auf die automatische Kodierung, sondern steuern nach bestimmten Konventionen nachgelagerte Arbeitsschritte oder die Darstellung beim Editieren oder Kodieren:\n\n\n\n\n\n\n\n\n\n\nTyp\nErläuterung\nStandard-Label\nStandard-Id\nStandard-Score\n\n\n\n\nFULL_CREDIT\nEine vollständig richtige Antwort.\nrichtig\n1 bzw. 11, 12, usw.\n1\n\n\nPARTIAL_CREDIT\nEine teilweise richtige Antwort.\nteilweise richtig\n2 bzw. 21, 22, usw.\n0\n\n\nTO_CHECK\nDiese Antwortkategorie ist noch nicht final beschlossen.\nzu prüfen\n3 bzw. 31, 32, usw.\n0\n\n\nNO_CREDIT\nEine falsche Antwort.\nfalsch\n4 bzw. 41, 42, usw.\n0\n\n\nUNSET\nEs soll kein Code-Typ angewendet werden\n(manuell festzugelegen)\nkeine Konvention\n0\n\n\nRESIDUAL\nAlle anderen Antworten\nfalsch\n0\n0",
     "crumbs": [
       "Datenstrukturen",
       "Kodierschema"
@@ -264,13 +230,47 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Kodieren",
+    "objectID": "data-structures/missings.html",
+    "href": "data-structures/missings.html",
+    "title": "Missings",
     "section": "",
-    "text": "Achtung: Webseite in Entwicklung\n\n\n\nDiese Webseite ist im Aufbau. Die Inhalte sind unvollständig und werden ständig revidiert.\n\n\n\nWillkommen\nIn Studien zur Feststellung von Leistungsständen im Bildungswesen liegt der Arbeitsschritt “Kodieren” zwischen der Datenerhebung - also der Durchführung eines Assessments - und der Datenanalyse. Rohantworten führen zu komplexen Datenstrukturen mit einem großen Wertespektrum, die so kaum auswertbar sind. Kodierung heißt hier, diese Werte einfachen Kategorien (“Codes”) zuzuordnen, die die Antwort im Sinne der Studienzielstellung symbolisieren. Anschließend lassen sich Häufigkeiten für diese Kategorien ermitteln, Zusammenhänge modellieren, und letztlich können empirisch begründete Empfehlungen gegeben werden.\nMit der schrittweisen Nutzung von Computern für Leistungserhebungen eröffnen sich neue Möglichkeiten, die Kodierung zu automatisieren und zu standardisieren. Hierzu entwickelt das IQB Datenstrukturen und Prozesse, die auf diesen Webseiten beschrieben sind.\n\n\nLizenz\nAlle Texte sind unter der Lizenz CC0 veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. DFG-pdf) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.\n\n\nHaftungsausschluss\nAuf diesen Webseiten sind Links auf externe Webseiten in besonderer Weise gekennzeichnet (s. oben die Links zum IQB und zur KMK). Wir prüfen diese Quellen regelmäßig, können aber für diese Seiten und die dort hinterlegten Zusatzmaterialien keine Haftung für Richtigkeit, Vollständigkeit und Aktualität übernehmen. Dafür sind ausschließlich deren Betreiber verantwortlich.\n\n\nTechnische Realisierung\nDieser Webauftritt basiert auf Texten in einer einfachen Syntax Markdown, die anschließend in Html und CSS umgesetzt werden. Hierzu wird Quarto verwendet. Sämtliche Dateien für den Inhalt und die Steuerung sind in einem öffentlich zugänglichen Codeverwaltungssystem gespeichert.\n\n\nKontakt\nTechnische und inhaltliche Fragen zu den Inhalten können Sie an die IT des IQB richten.\nWenn Sie Probleme melden möchten, können Sie auch die Funktion “Problem melden” nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.",
+    "text": "Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.",
     "crumbs": [
-      "Start"
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#missing-by-omission-wenn-leer",
+    "href": "data-structures/missings.html#missing-by-omission-wenn-leer",
+    "title": "Missings",
+    "section": "Missing by Omission wenn leer?",
+    "text": "Missing by Omission wenn leer?\nWenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung (Omission) anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:\n\nBei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.\nDer Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option ‘leer’ gibt es nicht.\nBei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.\n\n\n\n\n\n\n\nUmsetzung\n\n\n\nEin bearbeiteter, aber leerer Wert wird als invalid bewertet. Dieses Standardverhalten kann durch eine Option im Kodierschema geändert werden, und es gibt auch eine Regel, die auf einen leeren Wert prüft. Dann ist es auch möglich, einen Code für einen leeren Wert zu vergeben.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#status-displayed-überspringen",
+    "href": "data-structures/missings.html#status-displayed-überspringen",
+    "title": "Missings",
+    "section": "Status DISPLAYED überspringen?",
+    "text": "Status DISPLAYED überspringen?\nDas IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status DISPLAYED. Wenn eine Interaktion erfolgte, wird der Status VALUE_CHANGED gesetzt (zum Status einer Antwort siehe hier). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status VALUE_CHANGED ausgewertet.\n\n\n\n\n\n\nUmsetzung\n\n\n\nIm Kodierschema gibt es eine Option, mit der man für eine Variable festlegen kann, dass der Wert auch bei DISPLAYED ausgewertet wird, also dann wie VALUE_CHANGED behandelt wird.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#wo-ist-das-item",
+    "href": "data-structures/missings.html#wo-ist-das-item",
+    "title": "Missings",
+    "section": "Wo ist das Item?",
+    "text": "Wo ist das Item?\nWenn es als 17. Teilaufgabe ein Item mit der Instruktion “markiere im Text” gibt, weicht der Ort der Beantwortung (also die Interaktion “Markieren” im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.\n\n\n\n\n\n\nMögliche Umsetzung\n\n\n\nMan könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
     ]
   },
   {
