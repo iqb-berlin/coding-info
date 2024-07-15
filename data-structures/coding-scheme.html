@@ -233,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <section id="liste-von-kodierungen-für-variablen" class="level1">
 <h1>Liste von Kodierungen für Variablen</h1>
-<p>Im Kern ist ein Kodierschema eine Liste von Objekten, wobei jedes Objekt für die Kodierung einer einzelnen Variable steht. Diese Objekt wird in den TypeScript-Klassen <code>VariableCodingData</code> genannt und wird nachfolgend beschrieben. Es muss aber stets die gesamte Liste verfügbar sein, da sich oft die Definitionen aufeinander beziehen.</p>
+<p>Die <a href="https://iqb-berlin.github.io/responses">Spezifikation</a> des Kodierschemas sieht die beiden Eigenschaften <code>version</code> und <code>variableCodings</code> vor. Ersteres ist mit zwei Zahlen im Schema <code>&lt;major&gt;.&lt;minor&gt;</code> beschrieben, letzteres ist eine Liste von Objekten, wobei jedes Objekt für die Kodierung einer einzelnen Variable steht. Diese Objekt wird in den TypeScript-Klassen <code>VariableCodingData</code> genannt und wird nachfolgend beschrieben. Es muss aber stets die gesamte Liste verfügbar sein, da sich oft die Definitionen aufeinander beziehen.</p>
 <p>Die Liste der Kodierungsvorschriften für Variablen ist <strong>stets an eine Unit gebunden</strong>. Daher finden sich in den Datenstrukturen keine Angaben zur Unit und alle IDs sind eindeutig nur innerhalb der Liste. Die Antworten werden auch stets pro Unit gespeichert, so dass im Kodierprozess jeweils ein Kodierschema auf alle Unit-Antworten angewendet wird.</p>
 </section>
 <section id="identifizierung" class="level1">
