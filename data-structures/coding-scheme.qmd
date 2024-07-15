@@ -15,7 +15,7 @@ Auf dieser Seite sind in komprimierter Form alle Parameter und möglichen Werte 
 
 # Liste von Kodierungen für Variablen
 
-Im Kern ist ein Kodierschema eine Liste von Objekten, wobei jedes Objekt für die Kodierung einer einzelnen Variable steht. Diese Objekt wird in den TypeScript-Klassen `VariableCodingData` genannt und wird nachfolgend beschrieben. Es muss aber stets die gesamte Liste verfügbar sein, da sich oft die Definitionen aufeinander beziehen.
+Die [Spezifikation](https://iqb-berlin.github.io/responses) des Kodierschemas sieht die beiden Eigenschaften `version` und `variableCodings` vor. Ersteres ist mit zwei Zahlen im Schema `<major>.<minor>` beschrieben, letzteres ist eine Liste von Objekten, wobei jedes Objekt für die Kodierung einer einzelnen Variable steht. Diese Objekt wird in den TypeScript-Klassen `VariableCodingData` genannt und wird nachfolgend beschrieben. Es muss aber stets die gesamte Liste verfügbar sein, da sich oft die Definitionen aufeinander beziehen.
 
 Die Liste der Kodierungsvorschriften für Variablen ist **stets an eine Unit gebunden**. Daher finden sich in den Datenstrukturen keine Angaben zur Unit und alle IDs sind eindeutig nur innerhalb der Liste. Die Antworten werden auch stets pro Unit gespeichert, so dass im Kodierprozess jeweils ein Kodierschema auf alle Unit-Antworten angewendet wird.
 
