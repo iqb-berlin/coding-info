@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -275,7 +275,7 @@ ul.task-list li input[type="checkbox"] {
 <li><code>processing</code>: Diese Schalter regeln spezielle Umformungen, die die anschließende Kodierung vorbereitet. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf ‘ON’ setzt:
 <ul>
 <li><code>TAKE_DISPLAYED_AS_VALUE_CHANGED</code>: Nur für Basisvariablen; legt fest, dass der Wert der Variablen auch ausgewertet wird, wenn die Variable den Status <code>DISPLAYED</code> hat. Ansonsten werden nur Variablen berücksichtigt, deren Status auf <code>VALUE_CHANGED</code> gesetzt ist.</li>
-<li><code>TAKE_EMPTY_AS_VALID</code>: Nur für Basisvariablen; legt fest, dass ein leerer Wert als gültig angesehen wird und in die Kodierung gegeben wird. Das Standardverhalten bei leerer Antwort ist das Setzen des Status’ <code>INVALID</code></li>
+<li><code>TAKE_EMPTY_AS_VALID</code>: Nur für Basisvariablen; legt fest, dass ein leerer Wert als gültig angesehen wird und in die Kodierung gegeben wird. Das Standardverhalten bei leerer Antwort ist das Setzen des Status’ <code>INVALID</code>. “Leer” bedeutet hier ein leerer String oder ein leeres Array.</li>
 <li><code>REMOVE_ALL_SPACES</code>, <code>REMOVE_DISPENSABLE_SPACES</code>, <code>TO_NUMBER</code>, <code>TO_LOWER_CASE</code>: Nur für Ableitung <code>UNIQUE_VALUES</code>; die Werte werden vor der Gleichheitsprüfung transformiert. So kann man verhindern, dass ein führendes Leerzeichen oder eine vorgesetzte ‘0’ eine Verschiedenheit vortäuscht. Achtung: Wenn <code>TO_NUMBER</code> nicht erfolgreich war, also z. B. ein String nicht in eine Zahl überführt werden konnte, wird ‘0’ gesetzt. Passiert dies zweimal, liefert die Ableitung <code>false</code>.</li>
 <li><code>SORT</code>: Nur für Ableitung <code>CONCAT_CODE</code>; wenn es egal ist, welche Variable welchen Code liefert, erleichtert eine Sortierung die Kodierung.</li>
 </ul></li>
@@ -312,7 +312,7 @@ ID – nicht Alias!
 <li><code>REPLAY_REQUIRED</code>: Mit dieser Information wird darüber informiert, dass eine Kodierung nicht abstrakt mit dem Antwortwert erfolgen kann, sondern über eine Ansicht der Unit mit den Antwortwerten. Diese Information kann hilfreich bei der Planung der Kodierungen sein.</li>
 <li><code>ATTACHMENT</code>: Der Antwortwert ist ein Verweis auf eine externe Datei. Diese muss dann für die Kodierung herangezogen werden. Beispielsweise könnte ein Foto einer Zeichnung oder eine Audio-Aufnahme auf diese Art als Antwort kodiert werden.</li>
 </ul>
-<p>Die Schalter <code>IGNORE_CASE</code>, <code>IGNORE_ALL_SPACES</code> und <code>IGNORE_DISPENSABLE_SPACES</code> gelten nur für die Regel <code>MATCH</code>. Bei <code>MATCH_REGEX</code> und den numerischen Regeln werden sie ignoriert.</p>
+<p>Die Schalter <code>IGNORE_CASE</code>, <code>IGNORE_ALL_SPACES</code> und <code>IGNORE_DISPENSABLE_SPACES</code> gelten nur für die Regel <code>MATCH</code>. Bei <code>MATCH_REGEX</code> wird bei <code>IGNORE_CASE</code> das <code>i</code>-Flag gesetzt, die anderen Schalter werden ignoriert. Bei den numerischen Regeln werden alle Schalter ignoriert.</p>
 </section>
 <section id="fragmenting" class="level2">
 <h2 class="anchored" data-anchor-id="fragmenting"><code>fragmenting</code></h2>
@@ -479,7 +479,7 @@ Sicherheitshinweis
 <li><code>valueArrayPos</code>: Sollte der Antwortwert eine Liste von Werten sein,
 <ul>
 <li>stellt dieser Parameter einen Bezug zu einer bestimmten Position im Array her (Datentyp Integer 0..n-1), oder</li>
-<li>soll mindestens ein Wert im Array gefunden werden, der die Bedingungen erfüllt (Datentyp String <code>ANY</code>), oder</li>
+<li>soll mindestens ein Wert im Array gefunden werden, der die Bedingungen erfüllt (Datentyp String <code>ANY</code> oder <code>ANY_OPEN</code>; letzteres legt fest, dass im Array auch andere Werte vorhanden sein dürfen außer denen, für die das Regelset zutrifft), oder</li>
 <li>sollen vor der Auswertung alle Array-Werte bzw. alle Fragmente als numerische Werte interpretiert und summiert werden (Datentyp String <code>SUM</code>)</li>
 </ul></li>
 <li><code>ruleOperatorAnd</code>: Wenn dieser boolesche Wert <code>true</code> ist, dann werden die Ergebnisse der Regeln mit <code>UND</code> verknüpft. Alle Regeln müssen <code>true</code> liefern, damit der Code als zutreffend bewertet wird. Bei <code>false</code> reicht es, dass eine Regel <code>true</code> ergibt (<code>ODER</code>-Verknüpfung).</li>

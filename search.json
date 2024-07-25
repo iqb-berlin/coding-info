@@ -1,15 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Kodieren",
-    "section": "",
-    "text": "Achtung: Webseite in Entwicklung\n\n\n\nDiese Webseite ist im Aufbau. Die Inhalte sind unvollständig und werden ständig revidiert.\n\n\n\nWillkommen\nIn Studien zur Feststellung von Leistungsständen im Bildungswesen liegt der Arbeitsschritt “Kodieren” zwischen der Datenerhebung - also der Durchführung eines Assessments - und der Datenanalyse. Rohantworten führen zu komplexen Datenstrukturen mit einem großen Wertespektrum, die so kaum auswertbar sind. Kodierung heißt hier, diese Werte einfachen Kategorien (“Codes”) zuzuordnen, die die Antwort im Sinne der Studienzielstellung symbolisieren. Anschließend lassen sich Häufigkeiten für diese Kategorien ermitteln, Zusammenhänge modellieren, und letztlich können empirisch begründete Empfehlungen gegeben werden.\nMit der schrittweisen Nutzung von Computern für Leistungserhebungen eröffnen sich neue Möglichkeiten, die Kodierung zu automatisieren und zu standardisieren. Hierzu entwickelt das IQB Datenstrukturen und Prozesse, die auf diesen Webseiten beschrieben sind.\n\n\nLizenz\nAlle Texte sind unter der Lizenz CC0 veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. DFG-pdf) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.\n\n\nHaftungsausschluss\nAuf diesen Webseiten sind Links auf externe Webseiten in besonderer Weise gekennzeichnet (s. oben die Links zum IQB und zur KMK). Wir prüfen diese Quellen regelmäßig, können aber für diese Seiten und die dort hinterlegten Zusatzmaterialien keine Haftung für Richtigkeit, Vollständigkeit und Aktualität übernehmen. Dafür sind ausschließlich deren Betreiber verantwortlich.\n\n\nTechnische Realisierung\nDieser Webauftritt basiert auf Texten in einer einfachen Syntax Markdown, die anschließend in Html und CSS umgesetzt werden. Hierzu wird Quarto verwendet. Sämtliche Dateien für den Inhalt und die Steuerung sind in einem öffentlich zugänglichen Codeverwaltungssystem gespeichert.\n\n\nKontakt\nTechnische und inhaltliche Fragen zu den Inhalten können Sie an die IT des IQB richten.\nWenn Sie Probleme melden möchten, können Sie auch die Funktion “Problem melden” nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.",
-    "crumbs": [
-      "Start"
-    ]
-  },
-  {
     "objectID": "data-structures/coding-scheme.html",
     "href": "data-structures/coding-scheme.html",
     "title": "Kodierschema",
@@ -69,7 +59,7 @@
     "href": "data-structures/coding-scheme.html#sourceparameters",
     "title": "Kodierschema",
     "section": "sourceParameters",
-    "text": "sourceParameters\nÜber diese Parameter wird die Ableitung gesteuert bzw. der Wert noch einmal verändert vor der Kodierung.\n\nsolverExpression: Nur für Ableitung SOLVER; hier ist der Ausdruck zu übergeben, mit dem die Werte bei der Ableitung verknüpft werden. Es müssen für alle Variablenwerte Platzhalter existieren in der Form ${var04}. Diese Stelle wird ersetzt durch den Wert der Variablen var04, bevor der Ausdruck an die Bibliothek math.js zur Auswertung übergeben wird. Alle referenzierten Variablen müssen in deriveSources (s. u.) gelistet sein. Der Funktionsumfang des Ausdruckes richtet sich nach math.evaluate(). Wenn der Wert für den Ausdruck leer ist oder wenn die referenzierten Variablen nicht gefunden werden, wird der Status DERIVE_ERROR gesetzt.\nprocessing: Diese Schalter regeln spezielle Umformungen, die die anschließende Kodierung vorbereitet. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf ‘ON’ setzt:\n\nTAKE_DISPLAYED_AS_VALUE_CHANGED: Nur für Basisvariablen; legt fest, dass der Wert der Variablen auch ausgewertet wird, wenn die Variable den Status DISPLAYED hat. Ansonsten werden nur Variablen berücksichtigt, deren Status auf VALUE_CHANGED gesetzt ist.\nTAKE_EMPTY_AS_VALID: Nur für Basisvariablen; legt fest, dass ein leerer Wert als gültig angesehen wird und in die Kodierung gegeben wird. Das Standardverhalten bei leerer Antwort ist das Setzen des Status’ INVALID\nREMOVE_ALL_SPACES, REMOVE_DISPENSABLE_SPACES, TO_NUMBER, TO_LOWER_CASE: Nur für Ableitung UNIQUE_VALUES; die Werte werden vor der Gleichheitsprüfung transformiert. So kann man verhindern, dass ein führendes Leerzeichen oder eine vorgesetzte ‘0’ eine Verschiedenheit vortäuscht. Achtung: Wenn TO_NUMBER nicht erfolgreich war, also z. B. ein String nicht in eine Zahl überführt werden konnte, wird ‘0’ gesetzt. Passiert dies zweimal, liefert die Ableitung false.\nSORT: Nur für Ableitung CONCAT_CODE; wenn es egal ist, welche Variable welchen Code liefert, erleichtert eine Sortierung die Kodierung.",
+    "text": "sourceParameters\nÜber diese Parameter wird die Ableitung gesteuert bzw. der Wert noch einmal verändert vor der Kodierung.\n\nsolverExpression: Nur für Ableitung SOLVER; hier ist der Ausdruck zu übergeben, mit dem die Werte bei der Ableitung verknüpft werden. Es müssen für alle Variablenwerte Platzhalter existieren in der Form ${var04}. Diese Stelle wird ersetzt durch den Wert der Variablen var04, bevor der Ausdruck an die Bibliothek math.js zur Auswertung übergeben wird. Alle referenzierten Variablen müssen in deriveSources (s. u.) gelistet sein. Der Funktionsumfang des Ausdruckes richtet sich nach math.evaluate(). Wenn der Wert für den Ausdruck leer ist oder wenn die referenzierten Variablen nicht gefunden werden, wird der Status DERIVE_ERROR gesetzt.\nprocessing: Diese Schalter regeln spezielle Umformungen, die die anschließende Kodierung vorbereitet. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf ‘ON’ setzt:\n\nTAKE_DISPLAYED_AS_VALUE_CHANGED: Nur für Basisvariablen; legt fest, dass der Wert der Variablen auch ausgewertet wird, wenn die Variable den Status DISPLAYED hat. Ansonsten werden nur Variablen berücksichtigt, deren Status auf VALUE_CHANGED gesetzt ist.\nTAKE_EMPTY_AS_VALID: Nur für Basisvariablen; legt fest, dass ein leerer Wert als gültig angesehen wird und in die Kodierung gegeben wird. Das Standardverhalten bei leerer Antwort ist das Setzen des Status’ INVALID. “Leer” bedeutet hier ein leerer String oder ein leeres Array.\nREMOVE_ALL_SPACES, REMOVE_DISPENSABLE_SPACES, TO_NUMBER, TO_LOWER_CASE: Nur für Ableitung UNIQUE_VALUES; die Werte werden vor der Gleichheitsprüfung transformiert. So kann man verhindern, dass ein führendes Leerzeichen oder eine vorgesetzte ‘0’ eine Verschiedenheit vortäuscht. Achtung: Wenn TO_NUMBER nicht erfolgreich war, also z. B. ein String nicht in eine Zahl überführt werden konnte, wird ‘0’ gesetzt. Passiert dies zweimal, liefert die Ableitung false.\nSORT: Nur für Ableitung CONCAT_CODE; wenn es egal ist, welche Variable welchen Code liefert, erleichtert eine Sortierung die Kodierung.",
     "crumbs": [
       "Datenstrukturen",
       "Kodierschema"
@@ -91,7 +81,7 @@
     "href": "data-structures/coding-scheme.html#processing",
     "title": "Kodierschema",
     "section": "processing",
-    "text": "processing\nÜber diese Schalter kann man den generellen Umgang mit Werten und Vergleichswerten verändern. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf ‘ON’ setzt:\n\nIGNORE_CASE: Groß- und Kleinschreibung spielt keine Rolle. Sowohl der Antwort-Wert als auch der Vergleichswert einer Regel werden vor dem Vergleich in Großbuchstaben umgewandelt (s. JavaScript toUpperCase()).\nIGNORE_ALL_SPACES, IGNORE_DISPENSABLE_SPACES: Leerzeichen spielen keine Rolle. Sowohl im Antwortwert als auch im Vergleichswert einer Regel werden vor dem Vergleich alle Leerzeichen (ALL) oder Leerzeichen am Beginn und am Ende sowie doppelte Leerzeichen (DISPENSABLE) entfernt. Als Leerzeichen dient hier die Zeichenklasse \\\\sgemäß JavaScript reguläre Ausdrücke.\nSORT_ARRAY: Sofern der Antwortwert aus einem Array besteht, wird dieses vor der Kodierung sortiert. Leere Antwortwerte im Array werden ans Ende geschoben. Dies kann die Kodierregeln erheblich vereinfachen.\nREPLAY_REQUIRED: Mit dieser Information wird darüber informiert, dass eine Kodierung nicht abstrakt mit dem Antwortwert erfolgen kann, sondern über eine Ansicht der Unit mit den Antwortwerten. Diese Information kann hilfreich bei der Planung der Kodierungen sein.\nATTACHMENT: Der Antwortwert ist ein Verweis auf eine externe Datei. Diese muss dann für die Kodierung herangezogen werden. Beispielsweise könnte ein Foto einer Zeichnung oder eine Audio-Aufnahme auf diese Art als Antwort kodiert werden.\n\nDie Schalter IGNORE_CASE, IGNORE_ALL_SPACES und IGNORE_DISPENSABLE_SPACES gelten nur für die Regel MATCH. Bei MATCH_REGEX und den numerischen Regeln werden sie ignoriert.",
+    "text": "processing\nÜber diese Schalter kann man den generellen Umgang mit Werten und Vergleichswerten verändern. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf ‘ON’ setzt:\n\nIGNORE_CASE: Groß- und Kleinschreibung spielt keine Rolle. Sowohl der Antwort-Wert als auch der Vergleichswert einer Regel werden vor dem Vergleich in Großbuchstaben umgewandelt (s. JavaScript toUpperCase()).\nIGNORE_ALL_SPACES, IGNORE_DISPENSABLE_SPACES: Leerzeichen spielen keine Rolle. Sowohl im Antwortwert als auch im Vergleichswert einer Regel werden vor dem Vergleich alle Leerzeichen (ALL) oder Leerzeichen am Beginn und am Ende sowie doppelte Leerzeichen (DISPENSABLE) entfernt. Als Leerzeichen dient hier die Zeichenklasse \\\\sgemäß JavaScript reguläre Ausdrücke.\nSORT_ARRAY: Sofern der Antwortwert aus einem Array besteht, wird dieses vor der Kodierung sortiert. Leere Antwortwerte im Array werden ans Ende geschoben. Dies kann die Kodierregeln erheblich vereinfachen.\nREPLAY_REQUIRED: Mit dieser Information wird darüber informiert, dass eine Kodierung nicht abstrakt mit dem Antwortwert erfolgen kann, sondern über eine Ansicht der Unit mit den Antwortwerten. Diese Information kann hilfreich bei der Planung der Kodierungen sein.\nATTACHMENT: Der Antwortwert ist ein Verweis auf eine externe Datei. Diese muss dann für die Kodierung herangezogen werden. Beispielsweise könnte ein Foto einer Zeichnung oder eine Audio-Aufnahme auf diese Art als Antwort kodiert werden.\n\nDie Schalter IGNORE_CASE, IGNORE_ALL_SPACES und IGNORE_DISPENSABLE_SPACES gelten nur für die Regel MATCH. Bei MATCH_REGEX wird bei IGNORE_CASE das i-Flag gesetzt, die anderen Schalter werden ignoriert. Bei den numerischen Regeln werden alle Schalter ignoriert.",
     "crumbs": [
       "Datenstrukturen",
       "Kodierschema"
@@ -212,7 +202,7 @@
     "href": "data-structures/coding-scheme.html#rulesets",
     "title": "Kodierschema",
     "section": "ruleSets",
-    "text": "ruleSets\nRegelsätze fassen mehrere Regeln zusammen in einer Gruppe. Ein Regelsatz hat folgende Parameter:\n\nvalueArrayPos: Sollte der Antwortwert eine Liste von Werten sein,\n\nstellt dieser Parameter einen Bezug zu einer bestimmten Position im Array her (Datentyp Integer 0..n-1), oder\nsoll mindestens ein Wert im Array gefunden werden, der die Bedingungen erfüllt (Datentyp String ANY), oder\nsollen vor der Auswertung alle Array-Werte bzw. alle Fragmente als numerische Werte interpretiert und summiert werden (Datentyp String SUM)\n\nruleOperatorAnd: Wenn dieser boolesche Wert true ist, dann werden die Ergebnisse der Regeln mit UND verknüpft. Alle Regeln müssen true liefern, damit der Code als zutreffend bewertet wird. Bei false reicht es, dass eine Regel true ergibt (ODER-Verknüpfung).",
+    "text": "ruleSets\nRegelsätze fassen mehrere Regeln zusammen in einer Gruppe. Ein Regelsatz hat folgende Parameter:\n\nvalueArrayPos: Sollte der Antwortwert eine Liste von Werten sein,\n\nstellt dieser Parameter einen Bezug zu einer bestimmten Position im Array her (Datentyp Integer 0..n-1), oder\nsoll mindestens ein Wert im Array gefunden werden, der die Bedingungen erfüllt (Datentyp String ANY oder ANY_OPEN; letzteres legt fest, dass im Array auch andere Werte vorhanden sein dürfen außer denen, für die das Regelset zutrifft), oder\nsollen vor der Auswertung alle Array-Werte bzw. alle Fragmente als numerische Werte interpretiert und summiert werden (Datentyp String SUM)\n\nruleOperatorAnd: Wenn dieser boolesche Wert true ist, dann werden die Ergebnisse der Regeln mit UND verknüpft. Alle Regeln müssen true liefern, damit der Code als zutreffend bewertet wird. Bei false reicht es, dass eine Regel true ergibt (ODER-Verknüpfung).",
     "crumbs": [
       "Datenstrukturen",
       "Kodierschema"
@@ -227,50 +217,6 @@
     "crumbs": [
       "Datenstrukturen",
       "Kodierschema"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html",
-    "href": "data-structures/missings.html",
-    "title": "Missings",
-    "section": "",
-    "text": "Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#missing-by-omission-wenn-leer",
-    "href": "data-structures/missings.html#missing-by-omission-wenn-leer",
-    "title": "Missings",
-    "section": "Missing by Omission wenn leer?",
-    "text": "Missing by Omission wenn leer?\nWenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung (Omission) anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:\n\nBei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.\nDer Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option ‘leer’ gibt es nicht.\nBei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.\n\n\n\n\n\n\n\nUmsetzung\n\n\n\nEin bearbeiteter, aber leerer Wert wird als invalid bewertet. Dieses Standardverhalten kann durch eine Option im Kodierschema geändert werden, und es gibt auch eine Regel, die auf einen leeren Wert prüft. Dann ist es auch möglich, einen Code für einen leeren Wert zu vergeben.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#status-displayed-überspringen",
-    "href": "data-structures/missings.html#status-displayed-überspringen",
-    "title": "Missings",
-    "section": "Status DISPLAYED überspringen?",
-    "text": "Status DISPLAYED überspringen?\nDas IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status DISPLAYED. Wenn eine Interaktion erfolgte, wird der Status VALUE_CHANGED gesetzt (zum Status einer Antwort siehe hier). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status VALUE_CHANGED ausgewertet.\n\n\n\n\n\n\nUmsetzung\n\n\n\nIm Kodierschema gibt es eine Option, mit der man für eine Variable festlegen kann, dass der Wert auch bei DISPLAYED ausgewertet wird, also dann wie VALUE_CHANGED behandelt wird.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#wo-ist-das-item",
-    "href": "data-structures/missings.html#wo-ist-das-item",
-    "title": "Missings",
-    "section": "Wo ist das Item?",
-    "text": "Wo ist das Item?\nWenn es als 17. Teilaufgabe ein Item mit der Instruktion “markiere im Text” gibt, weicht der Ort der Beantwortung (also die Interaktion “Markieren” im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.\n\n\n\n\n\n\nMögliche Umsetzung\n\n\n\nMan könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
     ]
   },
   {
@@ -326,6 +272,60 @@
     "crumbs": [
       "Datenstrukturen",
       "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kodieren",
+    "section": "",
+    "text": "Achtung: Webseite in Entwicklung\n\n\n\nDiese Webseite ist im Aufbau. Die Inhalte sind unvollständig und werden ständig revidiert.\n\n\n\nWillkommen\nIn Studien zur Feststellung von Leistungsständen im Bildungswesen liegt der Arbeitsschritt “Kodieren” zwischen der Datenerhebung - also der Durchführung eines Assessments - und der Datenanalyse. Rohantworten führen zu komplexen Datenstrukturen mit einem großen Wertespektrum, die so kaum auswertbar sind. Kodierung heißt hier, diese Werte einfachen Kategorien (“Codes”) zuzuordnen, die die Antwort im Sinne der Studienzielstellung symbolisieren. Anschließend lassen sich Häufigkeiten für diese Kategorien ermitteln, Zusammenhänge modellieren, und letztlich können empirisch begründete Empfehlungen gegeben werden.\nMit der schrittweisen Nutzung von Computern für Leistungserhebungen eröffnen sich neue Möglichkeiten, die Kodierung zu automatisieren und zu standardisieren. Hierzu entwickelt das IQB Datenstrukturen und Prozesse, die auf diesen Webseiten beschrieben sind.\n\n\nLizenz\nAlle Texte sind unter der Lizenz CC0 veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. DFG-pdf) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.\n\n\nHaftungsausschluss\nAuf diesen Webseiten sind Links auf externe Webseiten in besonderer Weise gekennzeichnet (s. oben die Links zum IQB und zur KMK). Wir prüfen diese Quellen regelmäßig, können aber für diese Seiten und die dort hinterlegten Zusatzmaterialien keine Haftung für Richtigkeit, Vollständigkeit und Aktualität übernehmen. Dafür sind ausschließlich deren Betreiber verantwortlich.\n\n\nTechnische Realisierung\nDieser Webauftritt basiert auf Texten in einer einfachen Syntax Markdown, die anschließend in Html und CSS umgesetzt werden. Hierzu wird Quarto verwendet. Sämtliche Dateien für den Inhalt und die Steuerung sind in einem öffentlich zugänglichen Codeverwaltungssystem gespeichert.\n\n\nKontakt\nTechnische und inhaltliche Fragen zu den Inhalten können Sie an die IT des IQB richten.\nWenn Sie Probleme melden möchten, können Sie auch die Funktion “Problem melden” nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.",
+    "crumbs": [
+      "Start"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html",
+    "href": "data-structures/missings.html",
+    "title": "Missings",
+    "section": "",
+    "text": "Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#missing-by-omission-wenn-leer",
+    "href": "data-structures/missings.html#missing-by-omission-wenn-leer",
+    "title": "Missings",
+    "section": "Missing by Omission wenn leer?",
+    "text": "Missing by Omission wenn leer?\nWenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung (Omission) anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:\n\nBei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.\nDer Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option ‘leer’ gibt es nicht.\nBei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.\n\n\n\n\n\n\n\nUmsetzung\n\n\n\nEin bearbeiteter, aber leerer Wert wird als invalid bewertet. Dieses Standardverhalten kann durch eine Option im Kodierschema geändert werden, und es gibt auch eine Regel, die auf einen leeren Wert prüft. Dann ist es auch möglich, einen Code für einen leeren Wert zu vergeben.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#status-displayed-überspringen",
+    "href": "data-structures/missings.html#status-displayed-überspringen",
+    "title": "Missings",
+    "section": "Status DISPLAYED überspringen?",
+    "text": "Status DISPLAYED überspringen?\nDas IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status DISPLAYED. Wenn eine Interaktion erfolgte, wird der Status VALUE_CHANGED gesetzt (zum Status einer Antwort siehe hier). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status VALUE_CHANGED ausgewertet.\n\n\n\n\n\n\nUmsetzung\n\n\n\nIm Kodierschema gibt es eine Option, mit der man für eine Variable festlegen kann, dass der Wert auch bei DISPLAYED ausgewertet wird, also dann wie VALUE_CHANGED behandelt wird.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#wo-ist-das-item",
+    "href": "data-structures/missings.html#wo-ist-das-item",
+    "title": "Missings",
+    "section": "Wo ist das Item?",
+    "text": "Wo ist das Item?\nWenn es als 17. Teilaufgabe ein Item mit der Instruktion “markiere im Text” gibt, weicht der Ort der Beantwortung (also die Interaktion “Markieren” im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.\n\n\n\n\n\n\nMögliche Umsetzung\n\n\n\nMan könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
     ]
   },
   {
