@@ -56,7 +56,7 @@ Hier wird festgelegt, woher der Wert der Variablen kommt:
 * `solverExpression`: Nur für Ableitung `SOLVER`; hier ist der Ausdruck zu übergeben, mit dem die Werte bei der Ableitung verknüpft werden. Es müssen für alle Variablenwerte Platzhalter existieren in der Form `${var04}`. Diese Stelle wird ersetzt durch den Wert der Variablen var04, bevor der Ausdruck an die Bibliothek [math.js](https://mathjs.org) zur Auswertung übergeben wird. Alle referenzierten Variablen müssen in `deriveSources` (s. u.) gelistet sein. Der Funktionsumfang des Ausdruckes richtet sich nach [math.evaluate()](https://mathjs.org/docs/expressions/parsing.html#evaluate). Wenn der Wert für den Ausdruck leer ist oder wenn die referenzierten Variablen nicht gefunden werden, wird der Status `DERIVE_ERROR` gesetzt.
 * `processing`: Diese Schalter regeln spezielle Umformungen, die die anschließende Kodierung vorbereitet. Es handelt sich technisch um eine Liste von Schlüsselworten, deren Vorhandensein in der Liste den Schalter auf 'ON' setzt:
   + `TAKE_DISPLAYED_AS_VALUE_CHANGED`: Nur für Basisvariablen; legt fest, dass der Wert der Variablen auch ausgewertet wird, wenn die Variable den Status `DISPLAYED` hat. Ansonsten werden nur Variablen berücksichtigt, deren Status auf `VALUE_CHANGED` gesetzt ist.
-  + `TAKE_EMPTY_AS_VALID`: Nur für Basisvariablen; legt fest, dass ein leerer Wert als gültig angesehen wird und in die Kodierung gegeben wird. Das Standardverhalten bei leerer Antwort ist das Setzen des Status' `INVALID`
+  + `TAKE_EMPTY_AS_VALID`: Nur für Basisvariablen; legt fest, dass ein leerer Wert als gültig angesehen wird und in die Kodierung gegeben wird. Das Standardverhalten bei leerer Antwort ist das Setzen des Status' `INVALID`. "Leer" bedeutet hier ein leerer String oder ein leeres Array.
   + `REMOVE_ALL_SPACES`, `REMOVE_DISPENSABLE_SPACES`, `TO_NUMBER`, `TO_LOWER_CASE`: Nur für Ableitung `UNIQUE_VALUES`; die Werte werden vor der Gleichheitsprüfung transformiert. So kann man verhindern, dass ein führendes Leerzeichen oder eine vorgesetzte '0' eine Verschiedenheit vortäuscht. Achtung: Wenn `TO_NUMBER` nicht erfolgreich war, also z. B. ein String nicht in eine Zahl überführt werden konnte, wird '0' gesetzt. Passiert dies zweimal, liefert die Ableitung `false`.
   + `SORT`: Nur für Ableitung `CONCAT_CODE`; wenn es egal ist, welche Variable welchen Code liefert, erleichtert eine Sortierung die Kodierung.
 
@@ -85,7 +85,7 @@ An dieser Stelle ist wichtig zu betonen, dass bei `deriveSources` stets die ID u
 * `REPLAY_REQUIRED`: Mit dieser Information wird darüber informiert, dass eine Kodierung nicht abstrakt mit dem Antwortwert erfolgen kann, sondern über eine Ansicht der Unit mit den Antwortwerten. Diese Information kann hilfreich bei der Planung der Kodierungen sein.
 * `ATTACHMENT`: Der Antwortwert ist ein Verweis auf eine externe Datei. Diese muss dann für die Kodierung herangezogen werden. Beispielsweise könnte ein Foto einer Zeichnung oder eine Audio-Aufnahme auf diese Art als Antwort kodiert werden.
 
-Die Schalter `IGNORE_CASE`, `IGNORE_ALL_SPACES` und `IGNORE_DISPENSABLE_SPACES` gelten nur für die Regel `MATCH`. Bei `MATCH_REGEX` und den numerischen Regeln werden sie ignoriert.
+Die Schalter `IGNORE_CASE`, `IGNORE_ALL_SPACES` und `IGNORE_DISPENSABLE_SPACES` gelten nur für die Regel `MATCH`. Bei `MATCH_REGEX` wird bei `IGNORE_CASE` das `i`-Flag gesetzt, die anderen Schalter werden ignoriert. Bei den numerischen Regeln werden alle Schalter ignoriert.
 
 ## `fragmenting`
 
@@ -179,7 +179,7 @@ Regelsätze fassen mehrere Regeln zusammen in einer Gruppe. Ein Regelsatz hat fo
 
 * `valueArrayPos`: Sollte der Antwortwert eine Liste von Werten sein,
   + stellt dieser Parameter einen Bezug zu einer bestimmten Position im Array her (Datentyp Integer 0..n-1), oder
-  + soll mindestens ein Wert im Array gefunden werden, der die Bedingungen erfüllt (Datentyp String `ANY`), oder
+  + soll mindestens ein Wert im Array gefunden werden, der die Bedingungen erfüllt (Datentyp String `ANY` oder `ANY_OPEN`; letzteres legt fest, dass im Array auch andere Werte vorhanden sein dürfen außer denen, für die das Regelset zutrifft), oder
   + sollen vor der Auswertung alle Array-Werte bzw. alle Fragmente als numerische Werte interpretiert und summiert werden (Datentyp String `SUM`)
 * `ruleOperatorAnd`: Wenn dieser boolesche Wert `true` ist, dann werden die Ergebnisse der Regeln mit `UND` verknüpft. Alle Regeln müssen `true` liefern, damit der Code als zutreffend bewertet wird. Bei `false` reicht es, dass eine Regel `true` ergibt (`ODER`-Verknüpfung).
 
