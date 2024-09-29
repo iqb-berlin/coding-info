@@ -239,5 +239,19 @@ Eine Antwort nach [IQB-Standardformat](../response.qmd) enthält ein optionales 
 
 ::: {.callout-note}
 ## Datenformat des Antwortwertes
-In streng typisierten Computersprachen ist die offene IQB-Datenspezifikation des Antwortwertes problematisch. Daher werden hier die Werte in String transformiert. Der Datenwert `null` ist hierbei in einen reservierten Wert `"#null#"` übersetzt. Dies ist entsprechend vor der Kodierung zu berücksichtigen.
+In streng typisierten Computersprachen ist die offene IQB-Datenspezifikation des Antwortwertes problematisch. Daher werden hier die Werte in String transformiert. Der Datenwert `null` ist hierbei in einen reservierten Wert `"#null#"` übersetzt. Auch Array-Werte müssen entsprechend vor der Kodierung transformiert werden.
 :::
+
+::: {.callout-note}
+## Behandlung großer Antwortwerte
+Wenn ein Wert mit den Zeichen `data:application/octet-stream;base64` beginnt, handelt es sich meist um die Speicherung einer binären, nicht automatisch kodierbaren Antwort. Um die Datenmenge zu reduzieren, ermöglicht die itc-ToolBox, den Wert als separate Datei zu speichern:
+
+* Der Dateiname wird folgendermaßen gebildet:
+  - Daten der Person Gruppe, Login-Name und Code - hintereinander ohne Trennzeichen
+  - Trennzeichen `_`
+  - numerischer Hash-Wert der Datei (ganzzahlig positiv oder negativ)
+  - Dateiendung `.base64`
+  - Beispiel: `b7tr7svhb7tr7svh7rbr_-611842233.base64`
+* Der Antwortwert wird ersetzt durch die Zeichenfolge `data:application/octet-stream;base64 Filename: '<Dateiname>'`
+:::
+

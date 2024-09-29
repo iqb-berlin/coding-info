@@ -8,7 +8,7 @@ title: Output der itc-ToolBox
 Aktuell ist die Version 2.0 der itc-ToolBox noch nicht veröffentlicht. Die nachfolgenden Spezifikationen dienen der IQB-internen Diskussion.
 :::
 
-Mit der Version 2.0 wurde die Aufarbeitung der Testcenter-Ergebnisse durch die Windows-Anwendung [itc-ToolBox](https://github.com/iqb-berlin/itc-toolbox#readme) stark überarbeitet. Dies wurde notwendig, weil die steigende Zahl der Antwortdaten die Ausführung stark behinderte (Abstürze Out-Of-Memory) und mit Fortschreiten der Entwicklungsarbeiten an der [IQB-Kodierbox](https://github.com/iqb-berlin/coding-box#readme) der Bedarf an der Spezifikation weiterer Datenformate und Schnittstellen stieg.
+Mit der Version 2.0 wurde die Aufarbeitung der Testcenter-Ergebnisse durch die Windows-Anwendung [itc-ToolBox](https://github.com/iqb-berlin/itc-toolbox#readme) überarbeitet. Dies wurde notwendig, weil die steigende Zahl der Antwortdaten die Ausführung stark behinderte (Abstürze Out-Of-Memory) und mit Fortschreiten der Entwicklungsarbeiten an der [IQB-Kodierbox](https://github.com/iqb-berlin/coding-box#readme) der Bedarf an der Spezifikation weiterer Datenformate und Schnittstellen stieg.
 
 Das Format "TC-Merge" steht für die Verbindung der Datenproduktion im IQB-Testcenter mit der Datenprüfung und -verarbeitung. Die zeitlich unregelmäßig anfallenden Daten werden nach Ende der Testung bzw. Befragung so strukturiert, dass eine Verarbeitung gefördert wird. Bei großen Datenmengen kann man dann ersteinmal die Daten ohne Verlust speichern.
 
@@ -67,8 +67,8 @@ Dies ist eine kleine JSON-Datei, die für jedes Booklet dessen Größe in Byte e
 (in Vorbereitung)
 
 * Entfernen aller Logs und Sessions
-* Entfernen aller Variablen, die in jedem Vorkommen denselben Wert haben
-* Entfernen des Status-Wertes und ersetzen ggf. durch einen Missing-Wert
+* Entfernen aller Variablen, die nicht den Status `VALUE_CHANGED` haben
+* Entfernen des Status-Wertes
 * Ignorieren aller Objekte `application/octet-stream;base64`
 
 # Format "Journal"
