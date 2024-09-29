@@ -1,5 +1,137 @@
 [
   {
+    "objectID": "data-structures/missings.html",
+    "href": "data-structures/missings.html",
+    "title": "Missings",
+    "section": "",
+    "text": "Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#missing-by-omission-wenn-leer",
+    "href": "data-structures/missings.html#missing-by-omission-wenn-leer",
+    "title": "Missings",
+    "section": "Missing by Omission wenn leer?",
+    "text": "Missing by Omission wenn leer?\nWenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung (Omission) anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:\n\nBei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.\nDer Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option ‘leer’ gibt es nicht.\nBei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.\n\n\n\n\n\n\n\nUmsetzung\n\n\n\nEin bearbeiteter, aber leerer Wert wird als invalid bewertet. Dieses Standardverhalten kann durch eine Option im Kodierschema geändert werden, und es gibt auch eine Regel, die auf einen leeren Wert prüft. Dann ist es auch möglich, einen Code für einen leeren Wert zu vergeben.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#status-displayed-überspringen",
+    "href": "data-structures/missings.html#status-displayed-überspringen",
+    "title": "Missings",
+    "section": "Status DISPLAYED überspringen?",
+    "text": "Status DISPLAYED überspringen?\nDas IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status DISPLAYED. Wenn eine Interaktion erfolgte, wird der Status VALUE_CHANGED gesetzt (zum Status einer Antwort siehe hier). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status VALUE_CHANGED ausgewertet.\n\n\n\n\n\n\nUmsetzung\n\n\n\nIm Kodierschema gibt es eine Option, mit der man für eine Variable festlegen kann, dass der Wert auch bei DISPLAYED ausgewertet wird, also dann wie VALUE_CHANGED behandelt wird.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/missings.html#wo-ist-das-item",
+    "href": "data-structures/missings.html#wo-ist-das-item",
+    "title": "Missings",
+    "section": "Wo ist das Item?",
+    "text": "Wo ist das Item?\nWenn es als 17. Teilaufgabe ein Item mit der Instruktion “markiere im Text” gibt, weicht der Ort der Beantwortung (also die Interaktion “Markieren” im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.\n\n\n\n\n\n\nMögliche Umsetzung\n\n\n\nMan könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Missings"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html",
+    "href": "data-structures/response.html",
+    "title": "Datenstruktur “Antwort”",
+    "section": "",
+    "text": "Die Spezifikation in englischer Sprache finden Sie hier.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#neu-als-informationseinheit-angelegt",
+    "href": "data-structures/response.html#neu-als-informationseinheit-angelegt",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Neu als Informationseinheit angelegt",
+    "text": "Neu als Informationseinheit angelegt\nWenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den Status UNSET. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.\n\n\n\nWert\nBeschreibung\n\n\n\n\nUNSET\nNeue Variable im technischen Prozess",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#im-testsystem",
+    "href": "data-structures/response.html#im-testsystem",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Im Testsystem",
+    "text": "Im Testsystem\nWährend der Durchführung eines Tests bzw. einer Befragung werden Variablenwerte als Antwortdaten gesetzt.\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nNOT_REACHED\nTestperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre.\n\n\nDISPLAYED\nDas Interaktionselement wurde der Testperson angezeigt.\n\n\nVALUE_CHANGED\nTestperson hat den Wert geändert.\n\n\n\nAndere Werte sind im Testsystem nur möglich, wenn eine Antwortverarbeitung angestoßen wurde (wie z. B. beim adaptiven Testen).\nFür die Verarbeitung des Antwortwertes ist es erforderlich, dass der Status VALUE_CHANGED gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.\nIm Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der Status DISPLAYED eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert false/unchecked vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion “Kreuze alle Säugetiere an!” muss die Auswahl “Amsel” unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#bei-ableitung",
+    "href": "data-structures/response.html#bei-ableitung",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Bei Ableitung",
+    "text": "Bei Ableitung\nDas Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:\n\nVariablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status VALUE_CHANGED haben. Es ist auch der Status DISPLAYED möglich, wenn dies bei der Quellvariablen markiert wurde.\nVariablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status CODING_COMPLETE haben.\n\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nDERIVE_ERROR\nWährend der Ableitung ist ein Fehler aufgetreten.\n\n\nVALUE_CHANGED\nFür die abgeleitete Variable wurde erfolgreich ein Wert ermittelt.\n\n\n\nWenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable nullund es wird der Status auf den kleinsten Status gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:\nUNSET  NOT_REACHED  DISPLAYED  DERIVE_ERROR  NO_CODING  INVALID  CODING_INCOMPLETE  CODING_ERROR",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/response.html#bei-kodierung",
+    "href": "data-structures/response.html#bei-kodierung",
+    "title": "Datenstruktur “Antwort”",
+    "section": "Bei Kodierung",
+    "text": "Bei Kodierung\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nNO_CODING\nEs gibt im Kodierschema keine Vorschriften oder Anweisungen für die Kodierung.\n\n\nINVALID\nDer Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED).\n\n\nCODING_INCOMPLETE\nDie Regeln der automatischen Kodierung wurden angewendet, haben aber keinen zutreffenden Code ermitteln können.\n\n\nCODING_ERROR\nBeim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen.\n\n\nCODING_COMPLETE\nEin Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden.\n\n\n\nDie Kodierung folgt zunächst den Festlegungen der automatischen Kodierung (regelbasiert). Sollte kein zutreffender Code gefunden werden, dann wird der Code CODING_INCOMPLETE gesetzt. Dann – und auch bei einem Kodierfehler CODING_ERROR – folgt die Sichtung der Antwort und eine manuelle Kodierung. Hier können wiederum die Stati CODING_COMPLETE oder INVALID gesetzt werden.",
+    "crumbs": [
+      "Datenstrukturen",
+      "Antwort/Variable"
+    ]
+  },
+  {
+    "objectID": "data-structures/itc-ToolBox-Output/index.html",
+    "href": "data-structures/itc-ToolBox-Output/index.html",
+    "title": "Output der itc-ToolBox",
+    "section": "",
+    "text": "Achtung: Datenformate in Entwicklung\n\n\n\nAktuell ist die Version 2.0 der itc-ToolBox noch nicht veröffentlicht. Die nachfolgenden Spezifikationen dienen der IQB-internen Diskussion.\n\n\nMit der Version 2.0 wurde die Aufarbeitung der Testcenter-Ergebnisse durch die Windows-Anwendung itc-ToolBox stark überarbeitet. Dies wurde notwendig, weil die steigende Zahl der Antwortdaten die Ausführung stark behinderte (Abstürze Out-Of-Memory) und mit Fortschreiten der Entwicklungsarbeiten an der IQB-Kodierbox der Bedarf an der Spezifikation weiterer Datenformate und Schnittstellen stieg.\nDas Format “TC-Merge” steht für die Verbindung der Datenproduktion im IQB-Testcenter mit der Datenprüfung und -verarbeitung. Die zeitlich unregelmäßig anfallenden Daten werden nach Ende der Testung bzw. Befragung so strukturiert, dass eine Verarbeitung gefördert wird. Bei großen Datenmengen kann man dann ersteinmal die Daten ohne Verlust speichern.\n\n\n\n\n\nflowchart TD\n    TB[itc-ToolBox] &lt;--&gt; M(TC-Merge)\n    TB[itc-ToolBox] &lt;--&gt; BS(Testheft-Größen)\n    style M fill:yellow\n    style TB fill:yellow\n    style BS fill:yellow\n    CSV[CSV-Datei] --&gt; TB\n    TC[IQB-Testcenter] --&gt; TB\n    TC --&gt; CSV\n    TB --&gt; RC(Antworten kompakt)\n    TB --&gt; J(Journal)\n    TB --&gt; S(Statistik)\n\n\n\n\n\n\n\nFormat “TC-Merge”\nBevor irgendeine Prüfung oder Verarbeitung von Daten stattfinden kann, müssen sie zunächst zusammengeführt werden. Dieses sog. Merging nimmt die Daten aus verschiedenen Quellen zusammen, ohne sie zu prüfen. Es sind dann u. U. Dopplungen gespeichert, die durch Fehler im Datenmanagement verursacht werden, oder es werden völlig uninteressante Variablen übernommen, obwohl sie nie Werte enthalten.\nDie itc-ToolBox übernimmt Daten aus folgenden Quellen:\n\nCSV-Dateien: Als Administrator*in eines Arbeitsbereiches einer IQB-Testcenterinstallation kann man jederzeit Antworten und Logs als CSV-Dateien speichern. Dies empfiehlt sich z. B., um Datenverlust vorzubeugen. Es ist aber auch die einzige Möglichkeit, Daten von IQB-Testcenterinstallationen zu erhalten, die in Offline-Szenarien eingesetzt wurden. Diese Laptops sind nicht online, sondern fungieren lokal z. B. in einer Schule ohne Internet-Anbindung als Server.\nIQB-Testcenter: Die itc-ToolBox kann direkt auf eine IQB-Testcenterinstallation zugreifen und nach einer Anmeldung Daten herunterladen. Der Zugriff erzeugt dabei keine CSV-Dateien, sondern nutzt einen JSON-Endpunkt der API.\n\nDas erzeugte Datenformat ist hier spezifiziert. Es handelt sich nicht um Tabellen wie CSV oder Xlsx, sondern um eine Folge von strukturierten Objekten im JSON-Format.\n\n\n\n\n\nflowchart LR\n    P[Person] --&gt; B[Testheft]\n    B --&gt; BL[Testheft-Logs]\n    B --&gt; U[Unit]\n    U --&gt; R[Antworten]\n    U --&gt; UL[Unit-Logs]\n    U --&gt; Ch[Antwort-Blöcke]\n    B --&gt; S[Sessions]\n\n\n\n\n\n\nFolgende Umformungen nimmt die itc-ToolBox vor:\n\nLogs werden den Booklets und den Units zugeordnet.\nDer Value-Datentyp einer Antwort ist stets String.\nEs werden einem Booklet die Ladeprozesse als Session zugeordnet. Dadurch ist erkennbar, ob während der Beantwortung ein Restart erfolgte.\nDie Daten zu Betriebssystem, Browser und Monitor werden aus dem Log extrahiert und der Session zugeordnet.\nWird im Value ein Objekt application/octet-stream;base64 erkannt, kann es als separate Datei gespeichert werden (z. B. GeoGebra).\n\n\n\nTestheft-Größen\nDies ist eine kleine JSON-Datei, die für jedes Booklet dessen Größe in Byte enthält. Dies kann verwendet werden, um mithilfe der Ladezeiten die Geschwindigkeit der Verbindung zu ermitteln.\n\n\nFormat “Antworten kompakt”\n(in Vorbereitung)\n\nEntfernen aller Logs und Sessions\nEntfernen aller Variablen, die in jedem Vorkommen denselben Wert haben\nEntfernen des Status-Wertes und ersetzen ggf. durch einen Missing-Wert\nIgnorieren aller Objekte application/octet-stream;base64\n\n\n\nFormat “Journal”\n(in Vorbereitung)\nDarstellung des Testablaufes für alle Testpersonen x Booklet\n\n(u. U. mehrmaliger) Start mit Ladezeit\nNavigation durch die Units\nVerweilzeiten auf Seiten (Time-On-Page)\nVerlassen und Rückkehr (Got/Lost Focus)\n\n\n\nFormat “Statistik”\n(in Vorbereitung)\nDarstellung einiger Indikatoren über alle Testpersonen hinweg.",
+    "crumbs": [
+      "Datenstrukturen",
+      "itc-ToolBox Output"
+    ]
+  },
+  {
+    "objectID": "data-structures/index.html",
+    "href": "data-structures/index.html",
+    "title": "Datenstrukturen",
+    "section": "",
+    "text": "Sicht der Datenanalyse\nWenn Datenanalysen durchgeführt werden, benötigen sie im Kern eine zweidimensionale Matrix der Antwortdaten Testperson x Item. Die Testperson wird durch eine ID gekennzeichnet, das Item hat ebenfalls eine ID, und im Kreuzungspunkt findet sich ein Wert, der die Antwort der Testperson repräsentiert. Dann kann man Unterschiede der Personen und der Items analysieren.\nBei der Analyse spielen außerdem zusätzliche Daten eine Rolle, die entweder die Person oder die Items näher beschreiben. So ist z. B. wichtig, in welchem sozioökonomischen Umfeld sich die Schule der Testperson befindet, an welcher Stelle des Testheftes das Item auftauchte oder wie schwer dieses Item ist. Die folgende Grafik veranschaulicht grob eine solche Datenstruktur.\n\n\n\n\n\nclassDiagram\n    direction LR\n    class StudentGroup{\n        String: ID\n        String: Testgruppe\n        List~any~: Metadaten\n    }\n    class Student{\n        String: ID\n        String: Testgruppe\n        List~any~: Metadaten\n    }\n    class Booklet{\n        String: ID\n        String: Label\n        List~any~: Metadaten\n    }\n    class Unit{\n        String: ID\n        String: Label\n        List~any~: Metadaten\n    }\n    class Item{\n        String: ID\n        List~any~: Metadaten\n        int: Value\n    }\n    StudentGroup \"1..*\" &lt;--&gt; \"1..*\" Student\n    Student \"1\" --&gt; \"1..*\" Booklet\n    Booklet \"1\" --&gt; \"1..*\" Unit\n    Unit \"1\" --&gt; \"1..*\" Item\n\n\n\n\n\n\nFür diese Dokumentation spielt dies allerdings keine Rolle. Alle Texte beziehen sich auf die Frage, wo der Wert für das Item herkommt.\n\n\nSicht des Testsystems\nDie Quelle für die Antworten sind vor allem die Interaktionselemente der Aufgabe (Eingabefelder, Ankreuzkästchen, Ablegelisten usw.). Außerdem können Ereignisse (zeitbezogene Zustandsänderungen) Informationen liefern, die in Variablen gespeichert werden (Logvariablen).\n\n\n\n\n\nflowchart TD\n    subgraph Unit\n        subgraph Testdurchführung\n            A(Basisvariablen)\n            style A fill:white\n            B(Logvariablen)\n            style B fill:white\n        end\n        style Testdurchführung fill:#b3b3cc\n        E[Kodierung\\nAbleitung]\n        style E fill:#ff9\n        C(Kodierschema)\n        style C fill:white\n        J(Itemliste)\n        style J fill:white\n    end\n    style Unit fill:#e0e0eb\n    H(Person)\n    style H fill:white\n    D[Primärdatensatz]\n    H--&gt;D\n    E --&gt; D\n    A --&gt; E\n    B --&gt; E\n    C --&gt; E\n    G[Analysedatensatz\\nPerson x Item]\n    D --&gt; G\n    F(Missingschema) --&gt; G\n    style F fill:white\n    K(Unitposition\\nim Testheft) --&gt; G\n    style K fill:white\n    J --&gt; G\n    L(Metadaten\\naus versch. Quellen) --&gt; G\n    style L fill:white\n\n\n\n\n\n\nDie Antworten werden in einer einheitlichen Datenstruktur “Variable” gespeichert. Neben dem Antwortwert ist hier eine Information zum Status (State) zu finden, also ob z. B. das Interaktionselement gesehen wurde, ob eine Bearbeitung stattgefunden hat usw.\nEin Kodierschema enthält alle Informationen für die manuelle oder automatische Kodierung. Die States der Variablen im Kodierprozess wird über eine State-Änderung angezeigt, und nach Abschluss der Kodierung sind die Werte “Code” und “Score” für die Variable gesetzt.\n\n\nItemwert\nZunächst besteht der Itemwert aus dem Score-Wert einer Variablen. Für jedes Item ist hierzu in einer Itemliste eine Variable benannt. Dies kann eine Basisvariable oder eine abgeleitete Variable sein. Der Score-Wert ergibt sich nach der Kodierung, also nach der vollständigen Anwendung des Kodierschemas. Üblicherweise handelt es sich bei dem Scorewert um eine ganze Zahl, i. d. R. 0 oder 1.\nSollten allerdings für die Itemvariable keine gültigen Antwortwerte vorliegen, wird eine negative Zahl für den Itemwert gesetzt. Diese Zahl symbolisiert nach einer allgemeinen Konvention verschiedene Missing-Zustände, die nicht nur aus den Antworten einer Unit ermittelt werden können, sondern zusätzliche Informationen erfordern.\nIn der Tradition der Kompetenzdiagnostik werden zwar zunächst Analysen gerechnet, später jedoch die Missing-Werte rekodiert: Zu 0 = falsch oder zu einem allgemeinen Missing-Wert, der vom verwendeten Analysesystem abhängt (sog. sysmis).",
+    "crumbs": [
+      "Datenstrukturen"
+    ]
+  },
+  {
+    "objectID": "data-structures/itc-ToolBox-Output/tc-merge.html",
+    "href": "data-structures/itc-ToolBox-Output/tc-merge.html",
+    "title": "Output itc-ToolBox: TC-Merge",
+    "section": "",
+    "text": "person\nEine TC-Merge-Datei ist stets eine Liste von Personen.\n\ngroup: ID der Gruppe laut Testtaker-Xml\nlogin: Name des Logins laut Testtaker-Xml\ncode: Code innerhalb des Booklet-Tags in der Testtaker-Xml (ggf. leer)\nbooklets: Liste der Booklets - s. u.\n\n[\n    {\n        \"group\": \"cxz7hpwr\",\n        \"login\": \"cxz7hpwr\",\n        \"code\": \"1dpe\",\n        \"booklets\": [ ]\n    },\n    {\n        \"group\": \"cxz7hpwr\",\n        \"login\": \"cxz7hpwr\",\n        \"code\": \"1fud\",\n        \"booklets\": [ ]\n    }\n]\nDie itc-ToolBox ist darauf ausgerichtet, bei hohen Datenmengen pro Testtaker-Gruppe eine Datei anzulegen. Möchte man die gesamte Datenmenge einlesen, müssen diese einzelnen Listen zusammengeführt werden. Da die JSON-Datei formatiert ist, kann man entsprechend die erste bzw. letzte Zeile einer Datei löschen bzw. ersetzen.\n\n\nbooklet\n\nname: ID des Booklets laut Booklet-Xml\nlogs: Liste von Log-Einträgen (Ereignissen), bezogen auf das Booklet\n\nts: Zeitstempel des Ereignisses (numerisch)\nkey: Schlüsselwort, das das Ereignis kennzeichnet (Typ), z. B. CURRENT_UNIT_ID, LOADCOMPLETE oder FOCUS\nparameter: Weitere Informationen als String zum Ereignis, abhängig vom Typ\n\nunits: Liste der Units - s. u.\nsessions: Liste von gestarteten Bearbeitungen des Booklets\n\nbrowser: Name und Version des verwendeten Browsers, z. B. Chrome 123.0.0.0\nos: Name und Version des Betriebssystem, z. B. Windows 10\nscreen: Maße des Bildschirmes in Pixel, z. B. 1280 x 720,\nts: Zeitstempel der Ermittlung der Parameter (numerisch), z. B. 1715593740477\nloadCompleteMS: Dauer des Ladeprozesses der Testinhalte (Player, Units, Booklet) in ms (numerisch), z. B. 798\n\n\nEine neue Session wird angenommen, wenn in den Logs das Ereignis LOADCOMPLETE gefunden wurde. Dies zeigt einen abgeschlossenen Ladeprozess der Testinhalte an. Der Startzeitpunkt einer Session kann angenommen werden, wenn man vom Zeitstempel ts den Wert in loadCompleteMS subtrahiert.\n{\n    \"name\": \"ABIEVALBOOKLET_BE_FRANZOESISCH_GN_LONG\",\n    \"logs\": [\n        {\n            \"ts\": 1719466289261,\n            \"key\": \"CONNECTION\",\n            \"parameter\": \"POLLING\"\n        },\n        {\n            \"ts\": 1719466289253,\n            \"key\": \"CONTROLLER\",\n            \"parameter\": \"RUNNING\"\n        },\n        {\n            \"ts\": 1719466289361,\n            \"key\": \"CURRENT_UNIT_ID\",\n            \"parameter\": \"Unit1\"\n        },\n        {\n            \"ts\": 1719466289672,\n            \"key\": \"CONNECTION\",\n            \"parameter\": \"WEBSOCKET\"\n        }\n    ],\n    \"units\": [ ],\n    \"sessions\": [\n        {\n            \"browser\": \"Chrome 103.0.0.0\",\n            \"os\": \"Mac OS 10.12.6\",\n            \"screen\": \"1440 x 900\",\n            \"ts\": 1719466289928,\n            \"loadCompleteMS\": 1805\n        },\n        {\n            \"browser\": \"Chrome 103.0.0.0\",\n            \"os\": \"Mac OS 10.12.6\",\n            \"screen\": \"1440 x 900\",\n            \"ts\": 1719485971651,\n            \"loadCompleteMS\": 1858\n        }\n    ]\n}         \n\n\nunit\n\nname: ID der Unit laut Booklet-Xml; sollte ein Alias vergeben worden sein, wird dieser verwendet\nlaststate: Liste von key/value-Paaren, um bestimmte für das Zurückblättern wichtige Unit-Zustände zu rekonstruieren\nresponses: Liste der Antworten - s. u.\nchunks: Liste der Pakete der Antworten; die Verona-Spezifikation erlaubt es, dass Antworten nicht einzeln, sondern gebündelt in dataparts geschickt werden\n\nid: jeder Chunk/datapart muss eine ID haben\ntype: Datentyp der Antworten; bei IQB-Daten stets iqb-standard@1.0 bzw. andere Version\nts: Zeitstempel der Speicherung (numerisch)\nvariables: Liste von IDs von Variablen, die mit dem Paket geschickt wurden; sollten Unterformulare genutzt worden sein, wird als Präfix der Wert von subform gesetzt, gefolgt von einem Trenner, z. B. examineecount_0##choice1\n\nlogs: Liste von Log-Einträgen (Ereignissen), bezogen auf die Unit\n\nts: Zeitstempel des Ereignisses (numerisch)\nkey: Schlüsselwort, das das Ereignis kennzeichnet (Typ), z. B. RESPONSE_PROGRESS oder CURRENT_PAGE_ID\nparameter: Weitere Informationen als String zum Ereignis, abhängig vom Typ\n\n\n{\n    \"name\": \"MP_start_tab\",\n    \"laststate\": [\n        {\n            \"key\": \"PLAYER\",\n            \"value\": \"RUNNING\"\n        },\n        {\n            \"key\": \"PRESENTATION_PROGRESS\",\n            \"value\": \"complete\"\n        },\n        {\n            \"key\": \"RESPONSE_PROGRESS\",\n            \"value\": \"complete\"\n        }\n    ],\n    \"responses\": [ ],\n    \"chunks\": [\n        {\n            \"id\": \"elementCodes\",\n            \"type\": \"iqb-standard@1.0\",\n            \"ts\": \"1715593741455\",\n            \"variables\": [\n            \"text_4\",\n            \"image_1\",\n            \"button_2\"\n            ]\n        }\n    ],\n    \"logs\": [\n        {\n            \"ts\": 1715593739823,\n            \"key\": \"PLAYER\",\n            \"parameter\": \"LOADING\"\n        },\n        {\n            \"ts\": 1715593740340,\n            \"key\": \"PLAYER\",\n            \"parameter\": \"RUNNING\"\n        },\n        {\n            \"ts\": 1715593741013,\n            \"key\": \"PRESENTATION_PROGRESS\",\n            \"parameter\": \"complete\"\n        },\n        {\n            \"ts\": 1715593741013,\n            \"key\": \"RESPONSE_PROGRESS\",\n            \"parameter\": \"complete\"\n        }\n    ]\n}\n\n\nresponse\nEine Antwort nach IQB-Standardformat enthält ein optionales Attribut subform. Für die Datenverarbeitung ist es günstiger, diese Information - die z. B. in Befragungen genutzt wird - zu extrahieren und alle Variablen eines Unterformulars zu bündeln. Aus diesem Grund ist das Datenobjekt für die Antworten nocheinmal strukturiert:\n\nsubform: ID des Unterformulars bzw. leer\nresponses: Liste der Antwortdaten\n\nid: Variablen-ID\nstatus: Status der Beantwortung; z. B. DISPLAYED oder VALUE_CHANGED\nvalue: Antwortwert als String\n\n\n{\n        \"subformId\": \"examineecount_0\",\n        \"responses\": [\n            {\n                \"id\": \"sex\",\n                \"status\": \"VALUE_CHANGED\",\n                \"value\": \"2\"\n            },\n            {\n                \"id\": \"choice1\",\n                \"status\": \"VALUE_CHANGED\",\n                \"value\": \"1\"\n            },\n            {\n                \"id\": \"task11grade\",\n                \"status\": \"VALUE_CHANGED\",\n                \"value\": \"14\"\n            },\n            {\n                \"id\": \"choice2\",\n                \"status\": \"VALUE_CHANGED\",\n                \"value\": \"2\"\n            },\n            {\n                \"id\": \"task22grade\",\n                \"status\": \"VALUE_CHANGED\",\n                \"value\": \"14\"\n            }\n        ]\n},\n{\n    \"subformId\": \"examineecount_1\",\n    \"responses\": [\n        {\n            \"id\": \"sex\",\n            \"status\": \"VALUE_CHANGED\",\n            \"value\": \"2\"\n        },\n        {\n            \"id\": \"choice1\",\n            \"status\": \"VALUE_CHANGED\",\n            \"value\": \"1\"\n        },\n        {\n            \"id\": \"task11grade\",\n            \"status\": \"VALUE_CHANGED\",\n            \"value\": \"9\"\n        },\n        {\n            \"id\": \"choice2\",\n            \"status\": \"VALUE_CHANGED\",\n            \"value\": \"2\"\n        },\n        {\n            \"id\": \"task22grade\",\n            \"status\": \"VALUE_CHANGED\",\n            \"value\": \"9\"\n        }\n    ]\n}\n\n\n\n\n\n\nDatenformat des Antwortwertes\n\n\n\nIn streng typisierten Computersprachen ist die offene IQB-Datenspezifikation des Antwortwertes problematisch. Daher werden hier die Werte in String transformiert. Der Datenwert null ist hierbei in einen reservierten Wert \"#null#\" übersetzt. Dies ist entsprechend vor der Kodierung zu berücksichtigen.",
+    "crumbs": [
+      "Datenstrukturen",
+      "itc-ToolBox Output",
+      "Format TC-Merge"
+    ]
+  },
+  {
     "objectID": "data-structures/coding-scheme.html",
     "href": "data-structures/coding-scheme.html",
     "title": "Kodierschema",
@@ -220,61 +352,6 @@
     ]
   },
   {
-    "objectID": "data-structures/response.html",
-    "href": "data-structures/response.html",
-    "title": "Datenstruktur “Antwort”",
-    "section": "",
-    "text": "Die Spezifikation in englischer Sprache finden Sie hier.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Antwort/Variable"
-    ]
-  },
-  {
-    "objectID": "data-structures/response.html#neu-als-informationseinheit-angelegt",
-    "href": "data-structures/response.html#neu-als-informationseinheit-angelegt",
-    "title": "Datenstruktur “Antwort”",
-    "section": "Neu als Informationseinheit angelegt",
-    "text": "Neu als Informationseinheit angelegt\nWenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den Status UNSET. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.\n\n\n\nWert\nBeschreibung\n\n\n\n\nUNSET\nNeue Variable im technischen Prozess",
-    "crumbs": [
-      "Datenstrukturen",
-      "Antwort/Variable"
-    ]
-  },
-  {
-    "objectID": "data-structures/response.html#im-testsystem",
-    "href": "data-structures/response.html#im-testsystem",
-    "title": "Datenstruktur “Antwort”",
-    "section": "Im Testsystem",
-    "text": "Im Testsystem\nWährend der Durchführung eines Tests bzw. einer Befragung werden Variablenwerte als Antwortdaten gesetzt.\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nNOT_REACHED\nTestperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre.\n\n\nDISPLAYED\nDas Interaktionselement wurde der Testperson angezeigt.\n\n\nVALUE_CHANGED\nTestperson hat den Wert geändert.\n\n\n\nAndere Werte sind im Testsystem nur möglich, wenn eine Antwortverarbeitung angestoßen wurde (wie z. B. beim adaptiven Testen).\nFür die Verarbeitung des Antwortwertes ist es erforderlich, dass der Status VALUE_CHANGED gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.\nIm Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der Status DISPLAYED eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert false/unchecked vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion “Kreuze alle Säugetiere an!” muss die Auswahl “Amsel” unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Antwort/Variable"
-    ]
-  },
-  {
-    "objectID": "data-structures/response.html#bei-ableitung",
-    "href": "data-structures/response.html#bei-ableitung",
-    "title": "Datenstruktur “Antwort”",
-    "section": "Bei Ableitung",
-    "text": "Bei Ableitung\nDas Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:\n\nVariablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status VALUE_CHANGED haben. Es ist auch der Status DISPLAYED möglich, wenn dies bei der Quellvariablen markiert wurde.\nVariablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status CODING_COMPLETE haben.\n\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nDERIVE_ERROR\nWährend der Ableitung ist ein Fehler aufgetreten.\n\n\nVALUE_CHANGED\nFür die abgeleitete Variable wurde erfolgreich ein Wert ermittelt.\n\n\n\nWenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable nullund es wird der Status auf den kleinsten Status gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:\nUNSET  NOT_REACHED  DISPLAYED  DERIVE_ERROR  NO_CODING  INVALID  CODING_INCOMPLETE  CODING_ERROR",
-    "crumbs": [
-      "Datenstrukturen",
-      "Antwort/Variable"
-    ]
-  },
-  {
-    "objectID": "data-structures/response.html#bei-kodierung",
-    "href": "data-structures/response.html#bei-kodierung",
-    "title": "Datenstruktur “Antwort”",
-    "section": "Bei Kodierung",
-    "text": "Bei Kodierung\n\n\n\n\n\n\n\nWert\nBeschreibung\n\n\n\n\nNO_CODING\nEs gibt im Kodierschema keine Vorschriften oder Anweisungen für die Kodierung.\n\n\nINVALID\nDer Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED).\n\n\nCODING_INCOMPLETE\nDie Regeln der automatischen Kodierung wurden angewendet, haben aber keinen zutreffenden Code ermitteln können.\n\n\nCODING_ERROR\nBeim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen.\n\n\nCODING_COMPLETE\nEin Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden.\n\n\n\nDie Kodierung folgt zunächst den Festlegungen der automatischen Kodierung (regelbasiert). Sollte kein zutreffender Code gefunden werden, dann wird der Code CODING_INCOMPLETE gesetzt. Dann – und auch bei einem Kodierfehler CODING_ERROR – folgt die Sichtung der Antwort und eine manuelle Kodierung. Hier können wiederum die Stati CODING_COMPLETE oder INVALID gesetzt werden.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Antwort/Variable"
-    ]
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Kodieren",
@@ -282,60 +359,6 @@
     "text": "Achtung: Webseite in Entwicklung\n\n\n\nDiese Webseite ist im Aufbau. Die Inhalte sind unvollständig und werden ständig revidiert.\n\n\n\nWillkommen\nIn Studien zur Feststellung von Leistungsständen im Bildungswesen liegt der Arbeitsschritt “Kodieren” zwischen der Datenerhebung - also der Durchführung eines Assessments - und der Datenanalyse. Rohantworten führen zu komplexen Datenstrukturen mit einem großen Wertespektrum, die so kaum auswertbar sind. Kodierung heißt hier, diese Werte einfachen Kategorien (“Codes”) zuzuordnen, die die Antwort im Sinne der Studienzielstellung symbolisieren. Anschließend lassen sich Häufigkeiten für diese Kategorien ermitteln, Zusammenhänge modellieren, und letztlich können empirisch begründete Empfehlungen gegeben werden.\nMit der schrittweisen Nutzung von Computern für Leistungserhebungen eröffnen sich neue Möglichkeiten, die Kodierung zu automatisieren und zu standardisieren. Hierzu entwickelt das IQB Datenstrukturen und Prozesse, die auf diesen Webseiten beschrieben sind.\n\n\nLizenz\nAlle Texte sind unter der Lizenz CC0 veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. DFG-pdf) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.\n\n\nHaftungsausschluss\nAuf diesen Webseiten sind Links auf externe Webseiten in besonderer Weise gekennzeichnet (s. oben die Links zum IQB und zur KMK). Wir prüfen diese Quellen regelmäßig, können aber für diese Seiten und die dort hinterlegten Zusatzmaterialien keine Haftung für Richtigkeit, Vollständigkeit und Aktualität übernehmen. Dafür sind ausschließlich deren Betreiber verantwortlich.\n\n\nTechnische Realisierung\nDieser Webauftritt basiert auf Texten in einer einfachen Syntax Markdown, die anschließend in Html und CSS umgesetzt werden. Hierzu wird Quarto verwendet. Sämtliche Dateien für den Inhalt und die Steuerung sind in einem öffentlich zugänglichen Codeverwaltungssystem gespeichert.\n\n\nKontakt\nTechnische und inhaltliche Fragen zu den Inhalten können Sie an die IT des IQB richten.\nWenn Sie Probleme melden möchten, können Sie auch die Funktion “Problem melden” nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.",
     "crumbs": [
       "Start"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html",
-    "href": "data-structures/missings.html",
-    "title": "Missings",
-    "section": "",
-    "text": "Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#missing-by-omission-wenn-leer",
-    "href": "data-structures/missings.html#missing-by-omission-wenn-leer",
-    "title": "Missings",
-    "section": "Missing by Omission wenn leer?",
-    "text": "Missing by Omission wenn leer?\nWenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung (Omission) anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:\n\nBei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.\nDer Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option ‘leer’ gibt es nicht.\nBei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.\n\n\n\n\n\n\n\nUmsetzung\n\n\n\nEin bearbeiteter, aber leerer Wert wird als invalid bewertet. Dieses Standardverhalten kann durch eine Option im Kodierschema geändert werden, und es gibt auch eine Regel, die auf einen leeren Wert prüft. Dann ist es auch möglich, einen Code für einen leeren Wert zu vergeben.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#status-displayed-überspringen",
-    "href": "data-structures/missings.html#status-displayed-überspringen",
-    "title": "Missings",
-    "section": "Status DISPLAYED überspringen?",
-    "text": "Status DISPLAYED überspringen?\nDas IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status DISPLAYED. Wenn eine Interaktion erfolgte, wird der Status VALUE_CHANGED gesetzt (zum Status einer Antwort siehe hier). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status VALUE_CHANGED ausgewertet.\n\n\n\n\n\n\nUmsetzung\n\n\n\nIm Kodierschema gibt es eine Option, mit der man für eine Variable festlegen kann, dass der Wert auch bei DISPLAYED ausgewertet wird, also dann wie VALUE_CHANGED behandelt wird.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#wo-ist-das-item",
-    "href": "data-structures/missings.html#wo-ist-das-item",
-    "title": "Missings",
-    "section": "Wo ist das Item?",
-    "text": "Wo ist das Item?\nWenn es als 17. Teilaufgabe ein Item mit der Instruktion “markiere im Text” gibt, weicht der Ort der Beantwortung (also die Interaktion “Markieren” im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.\n\n\n\n\n\n\nMögliche Umsetzung\n\n\n\nMan könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/index.html",
-    "href": "data-structures/index.html",
-    "title": "Datenstrukturen",
-    "section": "",
-    "text": "Sicht der Datenanalyse\nWenn Datenanalysen durchgeführt werden, benötigen sie im Kern eine zweidimensionale Matrix der Antwortdaten Testperson x Item. Die Testperson wird durch eine ID gekennzeichnet, das Item hat ebenfalls eine ID, und im Kreuzungspunkt findet sich ein Wert, der die Antwort der Testperson repräsentiert. Dann kann man Unterschiede der Personen und der Items analysieren.\nBei der Analyse spielen außerdem zusätzliche Daten eine Rolle, die entweder die Person oder die Items näher beschreiben. So ist z. B. wichtig, in welchem sozioökonomischen Umfeld sich die Schule der Testperson befindet, an welcher Stelle des Testheftes das Item auftauchte oder wie schwer dieses Item ist. Die folgende Grafik veranschaulicht grob eine solche Datenstruktur.\n\n\n\n\n\nclassDiagram\n    direction LR\n    class StudentGroup{\n        String: ID\n        String: Testgruppe\n        List~any~: Metadaten\n    }\n    class Student{\n        String: ID\n        String: Testgruppe\n        List~any~: Metadaten\n    }\n    class Booklet{\n        String: ID\n        String: Label\n        List~any~: Metadaten\n    }\n    class Unit{\n        String: ID\n        String: Label\n        List~any~: Metadaten\n    }\n    class Item{\n        String: ID\n        List~any~: Metadaten\n        int: Value\n    }\n    StudentGroup \"1..*\" &lt;--&gt; \"1..*\" Student\n    Student \"1\" --&gt; \"1..*\" Booklet\n    Booklet \"1\" --&gt; \"1..*\" Unit\n    Unit \"1\" --&gt; \"1..*\" Item\n\n\n\n\n\n\nFür diese Dokumentation spielt dies allerdings keine Rolle. Alle Texte beziehen sich auf die Frage, wo der Wert für das Item herkommt.\n\n\nSicht des Testsystems\nDie Quelle für die Antworten sind vor allem die Interaktionselemente der Aufgabe (Eingabefelder, Ankreuzkästchen, Ablegelisten usw.). Außerdem können Ereignisse (zeitbezogene Zustandsänderungen) Informationen liefern, die in Variablen gespeichert werden (Logvariablen).\n\n\n\n\n\nflowchart TD\n    subgraph Unit\n        subgraph Testdurchführung\n            A(Basisvariablen)\n            style A fill:white\n            B(Logvariablen)\n            style B fill:white\n        end\n        style Testdurchführung fill:#b3b3cc\n        E[Kodierung\\nAbleitung]\n        style E fill:#ff9\n        C(Kodierschema)\n        style C fill:white\n        J(Itemliste)\n        style J fill:white\n    end\n    style Unit fill:#e0e0eb\n    H(Person)\n    style H fill:white\n    D[Primärdatensatz]\n    H--&gt;D\n    E --&gt; D\n    A --&gt; E\n    B --&gt; E\n    C --&gt; E\n    G[Analysedatensatz\\nPerson x Item]\n    D --&gt; G\n    F(Missingschema) --&gt; G\n    style F fill:white\n    K(Unitposition\\nim Testheft) --&gt; G\n    style K fill:white\n    J --&gt; G\n    L(Metadaten\\naus versch. Quellen) --&gt; G\n    style L fill:white\n\n\n\n\n\n\nDie Antworten werden in einer einheitlichen Datenstruktur “Variable” gespeichert. Neben dem Antwortwert ist hier eine Information zum Status (State) zu finden, also ob z. B. das Interaktionselement gesehen wurde, ob eine Bearbeitung stattgefunden hat usw.\nEin Kodierschema enthält alle Informationen für die manuelle oder automatische Kodierung. Die States der Variablen im Kodierprozess wird über eine State-Änderung angezeigt, und nach Abschluss der Kodierung sind die Werte “Code” und “Score” für die Variable gesetzt.\n\n\nItemwert\nZunächst besteht der Itemwert aus dem Score-Wert einer Variablen. Für jedes Item ist hierzu in einer Itemliste eine Variable benannt. Dies kann eine Basisvariable oder eine abgeleitete Variable sein. Der Score-Wert ergibt sich nach der Kodierung, also nach der vollständigen Anwendung des Kodierschemas. Üblicherweise handelt es sich bei dem Scorewert um eine ganze Zahl, i. d. R. 0 oder 1.\nSollten allerdings für die Itemvariable keine gültigen Antwortwerte vorliegen, wird eine negative Zahl für den Itemwert gesetzt. Diese Zahl symbolisiert nach einer allgemeinen Konvention verschiedene Missing-Zustände, die nicht nur aus den Antworten einer Unit ermittelt werden können, sondern zusätzliche Informationen erfordern.\nIn der Tradition der Kompetenzdiagnostik werden zwar zunächst Analysen gerechnet, später jedoch die Missing-Werte rekodiert: Zu 0 = falsch oder zu einem allgemeinen Missing-Wert, der vom verwendeten Analysesystem abhängt (sog. sysmis).",
-    "crumbs": [
-      "Datenstrukturen"
     ]
   }
 ]
