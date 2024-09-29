@@ -3,12 +3,30 @@ lang: de
 title: Output der itc-ToolBox
 ---
 
-Mit der Version 2.0 wurde die Aufarbeitung der Testcenter-Ergebnisse durch die Windows-Anwendung [itc-ToolBox](https://github.com/iqb-berlin/itc-toolbox#readme) stark überarbeitet. Dies wurde notwendig, weil die steigende Zahl der Antwortdaten die Ausführung stark behinderte (Abstürze Out-Of-Memory) und mit Fortschreiten der Entwicklungsarbeiten an der [IQB-Kodierbox](https://github.com/iqb-berlin/coding-box#readme) der Bedarf an der Spezifikation weiterer Datenformate und Schnittstellen stieg.
-
 ::: {.callout-important}
 ## Achtung: Datenformate in Entwicklung
 Aktuell ist die Version 2.0 der itc-ToolBox noch nicht veröffentlicht. Die nachfolgenden Spezifikationen dienen der IQB-internen Diskussion.
 :::
+
+Mit der Version 2.0 wurde die Aufarbeitung der Testcenter-Ergebnisse durch die Windows-Anwendung [itc-ToolBox](https://github.com/iqb-berlin/itc-toolbox#readme) stark überarbeitet. Dies wurde notwendig, weil die steigende Zahl der Antwortdaten die Ausführung stark behinderte (Abstürze Out-Of-Memory) und mit Fortschreiten der Entwicklungsarbeiten an der [IQB-Kodierbox](https://github.com/iqb-berlin/coding-box#readme) der Bedarf an der Spezifikation weiterer Datenformate und Schnittstellen stieg.
+
+Das Format "TC-Merge" steht für die Verbindung der Datenproduktion im IQB-Testcenter mit der Datenprüfung und -verarbeitung. Die zeitlich unregelmäßig anfallenden Daten werden nach Ende der Testung bzw. Befragung so strukturiert, dass eine Verarbeitung gefördert wird. Bei großen Datenmengen kann man dann ersteinmal die Daten ohne Verlust speichern.
+
+```{mermaid}
+flowchart TD
+    TB[itc-ToolBox] <--> M(TC-Merge)
+    TB[itc-ToolBox] <--> BS(Testheft-Größen)
+    style M fill:yellow
+    style TB fill:yellow
+    style BS fill:yellow
+    CSV[CSV-Datei] --> TB
+    TC[IQB-Testcenter] --> TB
+    TC --> CSV
+    TB --> RC(Antworten kompakt)
+    TB --> J(Journal)
+    TB --> S(Statistik)
+```
+
 
 # Format "TC-Merge"
 
@@ -39,6 +57,10 @@ Folgende Umformungen nimmt die itc-ToolBox vor:
 * Es werden einem Booklet die Ladeprozesse als `Session` zugeordnet. Dadurch ist erkennbar, ob während der Beantwortung ein Restart erfolgte.
 * Die Daten zu Betriebssystem, Browser und Monitor werden aus dem Log extrahiert und der Session zugeordnet.
 * Wird im Value ein Objekt `application/octet-stream;base64` erkannt, kann es als separate Datei gespeichert werden (z. B. GeoGebra).
+
+# Testheft-Größen
+
+Dies ist eine kleine JSON-Datei, die für jedes Booklet dessen Größe in Byte enthält. Dies kann verwendet werden, um mithilfe der Ladezeiten die Geschwindigkeit der Verbindung zu ermitteln.
 
 # Format "Antworten kompakt"
 

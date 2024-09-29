@@ -2,3 +2,242 @@
 lang: de
 title: "Output itc-ToolBox: TC-Merge"
 ---
+
+# `person`
+
+Eine TC-Merge-Datei ist stets eine Liste von Personen.
+
+* `group`: ID der Gruppe laut Testtaker-Xml
+* `login`: Name des Logins laut Testtaker-Xml
+* `code`: Code innerhalb des Booklet-Tags in der Testtaker-Xml (ggf. leer)
+* `booklets`: Liste der Booklets - s. u.
+
+```json
+[
+    {
+        "group": "cxz7hpwr",
+        "login": "cxz7hpwr",
+        "code": "1dpe",
+        "booklets": [ ]
+    },
+    {
+        "group": "cxz7hpwr",
+        "login": "cxz7hpwr",
+        "code": "1fud",
+        "booklets": [ ]
+    }
+]
+```
+
+Die itc-ToolBox ist darauf ausgerichtet, bei hohen Datenmengen pro Testtaker-Gruppe eine Datei anzulegen. Möchte man die gesamte Datenmenge einlesen, müssen diese einzelnen Listen zusammengeführt werden. Da die JSON-Datei formatiert ist, kann man entsprechend die erste bzw. letzte Zeile einer Datei löschen bzw. ersetzen.
+
+# `booklet`
+
+* `name`: ID des Booklets laut Booklet-Xml
+* `logs`: Liste von Log-Einträgen (Ereignissen), bezogen auf das Booklet
+  - `ts`: Zeitstempel des Ereignisses (numerisch)
+  - `key`: Schlüsselwort, das das Ereignis kennzeichnet (Typ), z. B. `CURRENT_UNIT_ID`, `LOADCOMPLETE` oder `FOCUS`
+  - `parameter`: Weitere Informationen als String zum Ereignis, abhängig vom Typ
+* `units`: Liste der Units - s. u.
+* `sessions`: Liste von gestarteten Bearbeitungen des Booklets
+  - `browser`: Name und Version des verwendeten Browsers, z. B. `Chrome 123.0.0.0`
+  - `os`: Name und Version des Betriebssystem, z. B. `Windows 10`
+  - `screen`: Maße des Bildschirmes in Pixel, z. B. `1280 x 720`,
+  - `ts`: Zeitstempel der Ermittlung der Parameter (numerisch), z. B. `1715593740477`
+  - `loadCompleteMS`: Dauer des Ladeprozesses der Testinhalte (Player, Units, Booklet) in ms (numerisch), z. B. `798`
+
+Eine neue Session wird angenommen, wenn in den Logs das Ereignis `LOADCOMPLETE` gefunden wurde. Dies zeigt einen abgeschlossenen Ladeprozess der Testinhalte an. Der Startzeitpunkt einer Session kann angenommen werden, wenn man vom Zeitstempel `ts` den Wert in `loadCompleteMS` subtrahiert.
+
+```json
+{
+    "name": "ABIEVALBOOKLET_BE_FRANZOESISCH_GN_LONG",
+    "logs": [
+        {
+            "ts": 1719466289261,
+            "key": "CONNECTION",
+            "parameter": "POLLING"
+        },
+        {
+            "ts": 1719466289253,
+            "key": "CONTROLLER",
+            "parameter": "RUNNING"
+        },
+        {
+            "ts": 1719466289361,
+            "key": "CURRENT_UNIT_ID",
+            "parameter": "Unit1"
+        },
+        {
+            "ts": 1719466289672,
+            "key": "CONNECTION",
+            "parameter": "WEBSOCKET"
+        }
+    ],
+    "units": [ ],
+    "sessions": [
+        {
+            "browser": "Chrome 103.0.0.0",
+            "os": "Mac OS 10.12.6",
+            "screen": "1440 x 900",
+            "ts": 1719466289928,
+            "loadCompleteMS": 1805
+        },
+        {
+            "browser": "Chrome 103.0.0.0",
+            "os": "Mac OS 10.12.6",
+            "screen": "1440 x 900",
+            "ts": 1719485971651,
+            "loadCompleteMS": 1858
+        }
+    ]
+}         
+```
+
+# `unit`
+
+* `name`: ID der Unit laut Booklet-Xml; sollte ein Alias vergeben worden sein, wird dieser verwendet
+* `laststate`: Liste von `key`/`value`-Paaren, um bestimmte für das Zurückblättern wichtige Unit-Zustände zu rekonstruieren
+* `responses`: Liste der Antworten - s. u.
+* `chunks`: Liste der Pakete der Antworten; die Verona-Spezifikation erlaubt es, dass Antworten nicht einzeln, sondern gebündelt in `dataparts` geschickt werden
+  - `id`: jeder Chunk/`datapart` muss eine ID haben
+  - `type`: Datentyp der Antworten; bei IQB-Daten stets `iqb-standard@1.0` bzw. andere Version
+  - `ts`: Zeitstempel der Speicherung (numerisch)
+  - `variables`: Liste von IDs von Variablen, die mit dem Paket geschickt wurden; sollten Unterformulare genutzt worden sein, wird als Präfix der Wert von `subform` gesetzt, gefolgt von einem Trenner, z. B. `examineecount_0##choice1`
+* `logs`: Liste von Log-Einträgen (Ereignissen), bezogen auf die Unit
+  - `ts`: Zeitstempel des Ereignisses (numerisch)
+  - `key`: Schlüsselwort, das das Ereignis kennzeichnet (Typ), z. B. `RESPONSE_PROGRESS` oder `CURRENT_PAGE_ID`
+  - `parameter`: Weitere Informationen als String zum Ereignis, abhängig vom Typ
+
+
+```json
+{
+    "name": "MP_start_tab",
+    "laststate": [
+        {
+            "key": "PLAYER",
+            "value": "RUNNING"
+        },
+        {
+            "key": "PRESENTATION_PROGRESS",
+            "value": "complete"
+        },
+        {
+            "key": "RESPONSE_PROGRESS",
+            "value": "complete"
+        }
+    ],
+    "responses": [ ],
+    "chunks": [
+        {
+            "id": "elementCodes",
+            "type": "iqb-standard@1.0",
+            "ts": "1715593741455",
+            "variables": [
+            "text_4",
+            "image_1",
+            "button_2"
+            ]
+        }
+    ],
+    "logs": [
+        {
+            "ts": 1715593739823,
+            "key": "PLAYER",
+            "parameter": "LOADING"
+        },
+        {
+            "ts": 1715593740340,
+            "key": "PLAYER",
+            "parameter": "RUNNING"
+        },
+        {
+            "ts": 1715593741013,
+            "key": "PRESENTATION_PROGRESS",
+            "parameter": "complete"
+        },
+        {
+            "ts": 1715593741013,
+            "key": "RESPONSE_PROGRESS",
+            "parameter": "complete"
+        }
+    ]
+}
+```
+
+# `response`
+
+Eine Antwort nach [IQB-Standardformat](../response.qmd) enthält ein optionales Attribut `subform`. Für die Datenverarbeitung ist es günstiger, diese Information - die z. B. in Befragungen genutzt wird - zu extrahieren und alle Variablen eines Unterformulars zu bündeln. Aus diesem Grund ist das Datenobjekt für die Antworten nocheinmal strukturiert:
+
+* `subform`: ID des Unterformulars bzw. leer
+* `responses`: Liste der Antwortdaten
+  - `id`: Variablen-ID
+  - `status`: Status der Beantwortung; z. B. `DISPLAYED` oder `VALUE_CHANGED`
+  - `value`: Antwortwert als String
+
+```json
+{
+        "subformId": "examineecount_0",
+        "responses": [
+            {
+                "id": "sex",
+                "status": "VALUE_CHANGED",
+                "value": "2"
+            },
+            {
+                "id": "choice1",
+                "status": "VALUE_CHANGED",
+                "value": "1"
+            },
+            {
+                "id": "task11grade",
+                "status": "VALUE_CHANGED",
+                "value": "14"
+            },
+            {
+                "id": "choice2",
+                "status": "VALUE_CHANGED",
+                "value": "2"
+            },
+            {
+                "id": "task22grade",
+                "status": "VALUE_CHANGED",
+                "value": "14"
+            }
+        ]
+},
+{
+    "subformId": "examineecount_1",
+    "responses": [
+        {
+            "id": "sex",
+            "status": "VALUE_CHANGED",
+            "value": "2"
+        },
+        {
+            "id": "choice1",
+            "status": "VALUE_CHANGED",
+            "value": "1"
+        },
+        {
+            "id": "task11grade",
+            "status": "VALUE_CHANGED",
+            "value": "9"
+        },
+        {
+            "id": "choice2",
+            "status": "VALUE_CHANGED",
+            "value": "2"
+        },
+        {
+            "id": "task22grade",
+            "status": "VALUE_CHANGED",
+            "value": "9"
+        }
+    ]
+}
+```
+
+::: {.callout-note}
+## Datenformat des Antwortwertes
+In streng typisierten Computersprachen ist die offene IQB-Datenspezifikation des Antwortwertes problematisch. Daher werden hier die Werte in String transformiert. Der Datenwert `null` ist hierbei in einen reservierten Wert `"#null#"` übersetzt. Dies ist entsprechend vor der Kodierung zu berücksichtigen.
+:::
