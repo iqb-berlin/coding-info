@@ -37,6 +37,11 @@ website:
           - data-structures/coding-scheme.qmd
           - href: data-structures/missings.qmd
             text: Missings
+          - section: itc-ToolBox Output
+            href: data-structures/itc-ToolBox-Output/index.qmd
+            contents:        
+              - href: data-structures/itc-ToolBox-Output/tc-merge.qmd
+                text: "Format TC-Merge"
 
 
 format:

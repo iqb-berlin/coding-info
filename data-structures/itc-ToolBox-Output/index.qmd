@@ -1,0 +1,67 @@
+---
+lang: de
+title: Output der itc-ToolBox
+---
+
+Mit der Version 2.0 wurde die Aufarbeitung der Testcenter-Ergebnisse durch die Windows-Anwendung [itc-ToolBox](https://github.com/iqb-berlin/itc-toolbox#readme) stark überarbeitet. Dies wurde notwendig, weil die steigende Zahl der Antwortdaten die Ausführung stark behinderte (Abstürze Out-Of-Memory) und mit Fortschreiten der Entwicklungsarbeiten an der [IQB-Kodierbox](https://github.com/iqb-berlin/coding-box#readme) der Bedarf an der Spezifikation weiterer Datenformate und Schnittstellen stieg.
+
+::: {.callout-important}
+## Achtung: Datenformate in Entwicklung
+Aktuell ist die Version 2.0 der itc-ToolBox noch nicht veröffentlicht. Die nachfolgenden Spezifikationen dienen der IQB-internen Diskussion.
+:::
+
+# Format "TC-Merge"
+
+Bevor irgendeine Prüfung oder Verarbeitung von Daten stattfinden kann, müssen sie zunächst zusammengeführt werden. Dieses sog. **Merging** nimmt die Daten aus verschiedenen Quellen zusammen, ohne sie zu prüfen. Es sind dann u. U. Dopplungen gespeichert, die durch Fehler im Datenmanagement verursacht werden, oder es werden völlig uninteressante Variablen übernommen, obwohl sie nie Werte enthalten.
+
+Die itc-ToolBox übernimmt Daten aus folgenden Quellen:
+
+* CSV-Dateien: Als Administrator\*in eines Arbeitsbereiches einer IQB-Testcenterinstallation kann man jederzeit Antworten und Logs als CSV-Dateien speichern. Dies empfiehlt sich z. B., um Datenverlust vorzubeugen. Es ist aber auch die einzige Möglichkeit, Daten von IQB-Testcenterinstallationen zu erhalten, die in Offline-Szenarien eingesetzt wurden. Diese Laptops sind nicht online, sondern fungieren lokal z. B. in einer Schule ohne Internet-Anbindung als Server.
+* IQB-Testcenter: Die itc-ToolBox kann direkt auf eine IQB-Testcenterinstallation zugreifen und nach einer Anmeldung Daten herunterladen. Der Zugriff erzeugt dabei keine CSV-Dateien, sondern nutzt einen JSON-Endpunkt der API.
+
+Das erzeugte Datenformat ist [hier spezifiziert](tc-merge.qmd). Es handelt sich nicht um Tabellen wie CSV oder Xlsx, sondern um eine Folge von strukturierten Objekten im JSON-Format.
+
+```{mermaid}
+flowchart LR
+    P[Person] --> B[Testheft]
+    B --> BL[Testheft-Logs]
+    B --> U[Unit]
+    U --> R[Antworten]
+    U --> UL[Unit-Logs]
+    U --> Ch[Antwort-Blöcke]
+    B --> S[Sessions]
+```
+
+Folgende Umformungen nimmt die itc-ToolBox vor:
+
+* Logs werden den Booklets und den Units zugeordnet.
+* Der Value-Datentyp einer Antwort ist stets `String`.
+* Es werden einem Booklet die Ladeprozesse als `Session` zugeordnet. Dadurch ist erkennbar, ob während der Beantwortung ein Restart erfolgte.
+* Die Daten zu Betriebssystem, Browser und Monitor werden aus dem Log extrahiert und der Session zugeordnet.
+* Wird im Value ein Objekt `application/octet-stream;base64` erkannt, kann es als separate Datei gespeichert werden (z. B. GeoGebra).
+
+# Format "Antworten kompakt"
+
+(in Vorbereitung)
+
+* Entfernen aller Logs und Sessions
+* Entfernen aller Variablen, die in jedem Vorkommen denselben Wert haben
+* Entfernen des Status-Wertes und ersetzen ggf. durch einen Missing-Wert
+* Ignorieren aller Objekte `application/octet-stream;base64`
+
+# Format "Journal"
+
+(in Vorbereitung)
+
+Darstellung des Testablaufes für alle Testpersonen x Booklet
+
+* (u. U. mehrmaliger) Start mit Ladezeit
+* Navigation durch die Units
+* Verweilzeiten auf Seiten (Time-On-Page)
+* Verlassen und Rückkehr (Got/Lost Focus)
+
+# Format "Statistik"
+
+(in Vorbereitung)
+
+Darstellung einiger Indikatoren über alle Testpersonen hinweg.
