@@ -227,7 +227,7 @@ Achtung: Datenformate in Entwicklung
 <p>Aktuell ist die Version 2.0 der itc-ToolBox noch nicht veröffentlicht. Die nachfolgenden Spezifikationen dienen der IQB-internen Diskussion.</p>
 </div>
 </div>
-<p>Mit der Version 2.0 wurde die Aufarbeitung der Testcenter-Ergebnisse durch die Windows-Anwendung <a href="https://github.com/iqb-berlin/itc-toolbox#readme">itc-ToolBox</a> stark überarbeitet. Dies wurde notwendig, weil die steigende Zahl der Antwortdaten die Ausführung stark behinderte (Abstürze Out-Of-Memory) und mit Fortschreiten der Entwicklungsarbeiten an der <a href="https://github.com/iqb-berlin/coding-box#readme">IQB-Kodierbox</a> der Bedarf an der Spezifikation weiterer Datenformate und Schnittstellen stieg.</p>
+<p>Mit der Version 2.0 wurde die Aufarbeitung der Testcenter-Ergebnisse durch die Windows-Anwendung <a href="https://github.com/iqb-berlin/itc-toolbox#readme">itc-ToolBox</a> überarbeitet. Dies wurde notwendig, weil die steigende Zahl der Antwortdaten die Ausführung stark behinderte (Abstürze Out-Of-Memory) und mit Fortschreiten der Entwicklungsarbeiten an der <a href="https://github.com/iqb-berlin/coding-box#readme">IQB-Kodierbox</a> der Bedarf an der Spezifikation weiterer Datenformate und Schnittstellen stieg.</p>
 <p>Das Format “TC-Merge” steht für die Verbindung der Datenproduktion im IQB-Testcenter mit der Datenprüfung und -verarbeitung. Die zeitlich unregelmäßig anfallenden Daten werden nach Ende der Testung bzw. Befragung so strukturiert, dass eine Verarbeitung gefördert wird. Bei großen Datenmengen kann man dann ersteinmal die Daten ohne Verlust speichern.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -298,8 +298,8 @@ Achtung: Datenformate in Entwicklung
 <p>(in Vorbereitung)</p>
 <ul>
 <li>Entfernen aller Logs und Sessions</li>
-<li>Entfernen aller Variablen, die in jedem Vorkommen denselben Wert haben</li>
-<li>Entfernen des Status-Wertes und ersetzen ggf. durch einen Missing-Wert</li>
+<li>Entfernen aller Variablen, die nicht den Status <code>VALUE_CHANGED</code> haben</li>
+<li>Entfernen des Status-Wertes</li>
 <li>Ignorieren aller Objekte <code>application/octet-stream;base64</code></li>
 </ul>
 </section>

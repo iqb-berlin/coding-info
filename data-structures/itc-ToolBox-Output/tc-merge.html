@@ -487,7 +487,31 @@ Datenformat des Antwortwertes
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In streng typisierten Computersprachen ist die offene IQB-Datenspezifikation des Antwortwertes problematisch. Daher werden hier die Werte in String transformiert. Der Datenwert <code>null</code> ist hierbei in einen reservierten Wert <code>"#null#"</code> übersetzt. Dies ist entsprechend vor der Kodierung zu berücksichtigen.</p>
+<p>In streng typisierten Computersprachen ist die offene IQB-Datenspezifikation des Antwortwertes problematisch. Daher werden hier die Werte in String transformiert. Der Datenwert <code>null</code> ist hierbei in einen reservierten Wert <code>"#null#"</code> übersetzt. Auch Array-Werte müssen entsprechend vor der Kodierung transformiert werden.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Behandlung großer Antwortwerte
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wenn ein Wert mit den Zeichen <code>data:application/octet-stream;base64</code> beginnt, handelt es sich meist um die Speicherung einer binären, nicht automatisch kodierbaren Antwort. Um die Datenmenge zu reduzieren, ermöglicht die itc-ToolBox, den Wert als separate Datei zu speichern:</p>
+<ul>
+<li>Der Dateiname wird folgendermaßen gebildet:
+<ul>
+<li>Daten der Person Gruppe, Login-Name und Code - hintereinander ohne Trennzeichen</li>
+<li>Trennzeichen <code>_</code></li>
+<li>numerischer Hash-Wert der Datei (ganzzahlig positiv oder negativ)</li>
+<li>Dateiendung <code>.base64</code></li>
+<li>Beispiel: <code>b7tr7svhb7tr7svh7rbr_-611842233.base64</code></li>
+</ul></li>
+<li>Der Antwortwert wird ersetzt durch die Zeichenfolge <code>data:application/octet-stream;base64 Filename: '&lt;Dateiname&gt;'</code></li>
+</ul>
 </div>
 </div>
 
