@@ -60,7 +60,8 @@ Folgende Umformungen nimmt die itc-ToolBox vor:
 * Der Value-Datentyp einer Antwort ist stets `String`.
 * Es werden einem Booklet die Ladeprozesse als `Session` zugeordnet. Dadurch ist erkennbar, ob während der Beantwortung ein Restart erfolgte.
 * Die Daten zu Betriebssystem, Browser und Monitor werden aus dem Log extrahiert und der Session zugeordnet.
-* Wird im Value ein Objekt `application/octet-stream;base64` erkannt, kann es als separate Datei gespeichert werden (z. B. GeoGebra).
+* Es werden die Größen der Testhefte ausgelesen, um später die Qualität der einzelnen Verbindungen schätzen zu können.
+* Große Dateien: Wird im Value ein Objekt `application/octet-stream;base64` erkannt, kann es als separate Datei gespeichert werden (z. B. GeoGebra). Dadurch wird die Datenverarbeitung entlastet.
 
 # Testheft-Größen
 
