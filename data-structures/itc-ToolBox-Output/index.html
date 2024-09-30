@@ -290,7 +290,8 @@ Achtung: Datenformate in Entwicklung
 <li>Der Value-Datentyp einer Antwort ist stets <code>String</code>.</li>
 <li>Es werden einem Booklet die Ladeprozesse als <code>Session</code> zugeordnet. Dadurch ist erkennbar, ob während der Beantwortung ein Restart erfolgte.</li>
 <li>Die Daten zu Betriebssystem, Browser und Monitor werden aus dem Log extrahiert und der Session zugeordnet.</li>
-<li>Wird im Value ein Objekt <code>application/octet-stream;base64</code> erkannt, kann es als separate Datei gespeichert werden (z. B. GeoGebra).</li>
+<li>Es werden die Größen der Testhefte ausgelesen, um später die Qualität der einzelnen Verbindungen schätzen zu können.</li>
+<li>Große Dateien: Wird im Value ein Objekt <code>application/octet-stream;base64</code> erkannt, kann es als separate Datei gespeichert werden (z. B. GeoGebra). Dadurch wird die Datenverarbeitung entlastet.</li>
 </ul>
 </section>
 <section id="testheft-größen" class="level1">
