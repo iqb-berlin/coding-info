@@ -41,6 +41,8 @@ Das erzeugte Datenformat ist [hier spezifiziert](tc-merge.qmd). Es handelt sich 
 
 ```{mermaid}
 flowchart LR
+    BS[Testheft-Größen]
+    style BS fill:white
     P[Person] --> B[Testheft]
     B --> BL[Testheft-Logs]
     B --> U[Unit]
@@ -48,6 +50,8 @@ flowchart LR
     U --> UL[Unit-Logs]
     U --> Ch[Antwort-Blöcke]
     B --> S[Sessions]
+    Big[Große Antworten]
+    style Big fill:white
 ```
 
 Folgende Umformungen nimmt die itc-ToolBox vor:
