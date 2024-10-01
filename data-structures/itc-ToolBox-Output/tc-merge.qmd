@@ -33,7 +33,7 @@ Die itc-ToolBox ist darauf ausgerichtet, bei hohen Datenmengen pro Testtaker-Gru
 
 # `booklet`
 
-* `name`: ID des Booklets laut Booklet-Xml
+* `id`: ID des Booklets laut Booklet-Xml
 * `logs`: Liste von Log-Einträgen (Ereignissen), bezogen auf das Booklet
   - `ts`: Zeitstempel des Ereignisses (numerisch)
   - `key`: Schlüsselwort, das das Ereignis kennzeichnet (Typ), z. B. `CURRENT_UNIT_ID`, `LOADCOMPLETE` oder `FOCUS`
@@ -50,7 +50,7 @@ Eine neue Session wird angenommen, wenn in den Logs das Ereignis `LOADCOMPLETE` 
 
 ```json
 {
-    "name": "ABIEVALBOOKLET_BE_FRANZOESISCH_GN_LONG",
+    "id": "ABIEVALBOOKLET_BE_FRANZOESISCH_GN_LONG",
     "logs": [
         {
             "ts": 1719466289261,
@@ -95,9 +95,13 @@ Eine neue Session wird angenommen, wenn in den Logs das Ereignis `LOADCOMPLETE` 
 
 # `unit`
 
-* `name`: ID der Unit laut Booklet-Xml; sollte ein Alias vergeben worden sein, wird dieser verwendet
+* `id`: ID der Unit laut Booklet-Xml; wird benötigt, wenn man die Definition, das Kodierschema oder andere Daten der Unit benötigt
+* `alias`: Alias der Unit
+  - dieser kann in der Booklet-Xml vergeben werden oder er wird automatisch erzeugt, sollte eine Unit mehrfach in einem Booklet vorkommen
+  - wird kein Alias vergeben, wird hier automatisch die ID der Unit gesetzt
+  - alle Bezüge in den Logs und Antwortdaten beziehen sich auf den Alias
 * `laststate`: Liste von `key`/`value`-Paaren, um bestimmte für das Zurückblättern wichtige Unit-Zustände zu rekonstruieren
-* `responses`: Liste der Antworten - s. u.
+* `subforms`: Liste der Antworten - s. u.
 * `chunks`: Liste der Pakete der Antworten; die Verona-Spezifikation erlaubt es, dass Antworten nicht einzeln, sondern gebündelt in `dataparts` geschickt werden
   - `id`: jeder Chunk/`datapart` muss eine ID haben
   - `type`: Datentyp der Antworten; bei IQB-Daten stets `iqb-standard@1.0` bzw. andere Version
@@ -111,7 +115,8 @@ Eine neue Session wird angenommen, wenn in den Logs das Ereignis `LOADCOMPLETE` 
 
 ```json
 {
-    "name": "MP_start_tab",
+    "id": "MP_motivation1",
+    "alias": "MP_motivation1_start",
     "laststate": [
         {
             "key": "PLAYER",
@@ -126,7 +131,7 @@ Eine neue Session wird angenommen, wenn in den Logs das Ereignis `LOADCOMPLETE` 
             "value": "complete"
         }
     ],
-    "responses": [ ],
+    "subforms": [ ],
     "chunks": [
         {
             "id": "elementCodes",
@@ -164,11 +169,11 @@ Eine neue Session wird angenommen, wenn in den Logs das Ereignis `LOADCOMPLETE` 
 }
 ```
 
-# `response`
+# `subform`, `response`
 
 Eine Antwort nach [IQB-Standardformat](../response.qmd) enthält ein optionales Attribut `subform`. Für die Datenverarbeitung ist es günstiger, diese Information - die z. B. in Befragungen genutzt wird - zu extrahieren und alle Variablen eines Unterformulars zu bündeln. Aus diesem Grund ist das Datenobjekt für die Antworten nocheinmal strukturiert:
 
-* `subform`: ID des Unterformulars bzw. leer
+* `id`: ID des Unterformulars bzw. leer
 * `responses`: Liste der Antwortdaten
   - `id`: Variablen-ID
   - `status`: Status der Beantwortung; z. B. `DISPLAYED` oder `VALUE_CHANGED`
@@ -176,7 +181,7 @@ Eine Antwort nach [IQB-Standardformat](../response.qmd) enthält ein optionales 
 
 ```json
 {
-        "subformId": "examineecount_0",
+        "id": "examineecount_0",
         "responses": [
             {
                 "id": "sex",
@@ -206,7 +211,7 @@ Eine Antwort nach [IQB-Standardformat](../response.qmd) enthält ein optionales 
         ]
 },
 {
-    "subformId": "examineecount_1",
+    "id": "examineecount_1",
     "responses": [
         {
             "id": "sex",
