@@ -25,7 +25,7 @@
     "href": "data-structures/missings.html#rohdaten",
     "title": "Missings",
     "section": "Rohdaten",
-    "text": "Rohdaten\n\nBei Speicherplatzproblemen können alle Fälle herausgefiltert werden, die als Status UNSET oder NOT_REACHED gesetzt haben. Deren Werte (Values) sind grundsätzlich zu ignorieren und können aus den Antwortdaten entfernt werden.\nAlle anderen Fälle müssen in den ersten Autocoder-Lauf gegeben werden.",
+    "text": "Rohdaten\n\nBei Speicherplatzproblemen können alle Fälle herausgefiltert werden, die als Status UNSET oder NOT_REACHED gesetzt haben. Deren Werte (Values) sind grundsätzlich zu ignorieren und können aus den Antwortdaten entfernt werden.\nWenn für alle Testpersonen die Antworten für eine Variable leer sind, handelt es sich wahrscheinlich um ein Interaktionselement, das nur theoretisch einen Wert haben könnte, was aber in dieser Studie nicht genutzt wurde (z. B. ein Textelement kann theoretisch eine Markierung erhalten). Diese Variablen können komplett aus den Antwortdaten entfernt werden.\nAlle anderen Fälle müssen in den ersten Autocoder-Lauf gegeben werden.",
     "crumbs": [
       "Datenstrukturen",
       "Missings"
