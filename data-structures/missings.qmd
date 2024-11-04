@@ -86,6 +86,8 @@ Die Datenstruktur [`response`](response.qmd), die durch die TBA-Webanwendung IQB
 
 ### Mögliche, aber nicht gegebene Antworten
 
+(11) Das Testheft-Design muss abgefragt werden um festzustellen, welche Units (und damit Variablen) in den Antwortdaten zu finden sein müssten und welche nicht. Es muss für die Units, die der Testperson vorgelegt wurden, eine Reihenfolge (Sequenz) bekannt sein.
+
 #### Für die letzte in der Sequenz der vorgelegten Units
 
 | Status | Neuer Code | Beschreibung |
@@ -99,16 +101,14 @@ Die Datenstruktur [`response`](response.qmd), die durch die TBA-Webanwendung IQB
 |---|---:|---------|
 | `UNSET`, `DISPLAYED`, `NOT_REACHED` | -99 | mbo - missing by omission |
 
-#### Für alle nach der letzten in der Sequenz der vorgelegten Units
-
-(11) Das Testheft-Design muss abgefragt werden und es müssen alle Variablen, die nicht in den Antwortdaten gefunden wurden, neu hinzugefügt werden. Sie erhalten -99 oder -96 als Code:
+#### Für alle nicht gefundenen Variablen
 
 * Units VOR der letzten: -99 (mbo - missing by omission)
 * Units NACH der letzten: -96 (mnr - missing not reached)
 
 ### Nicht mögliche Antworten
 
-(12) Abschließend werden alle Variablen hinzugefügt, die der Person planmäßig nicht vorgelegt wurden, aber in der Studie vorgesehen sind. Sie erhalten alle den Code -94 (mbd - missing by design).
+* Variablen werden hinzugefügt, die der Person planmäßig nicht vorgelegt wurden, aber in der Studie vorgesehen sind. Sie erhalten alle den Code -94 (mbd - missing by design).
 
 # Technische Diskurse
 
