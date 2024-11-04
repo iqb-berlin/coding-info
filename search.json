@@ -58,7 +58,7 @@
     "href": "data-structures/missings.html#zweiter-autocoder-lauf",
     "title": "Missings",
     "section": "Zweiter Autocoder-Lauf",
-    "text": "Zweiter Autocoder-Lauf\n\nNach der manuellen Kodierung folgt ein weiterer Autocoder-Kauf, da es ggf. abgeleitete Variablen gibt, die auf den nun verfügbaren Codes basieren.\nEine Kodierung ist abgeschlossen, wenn die Antworten ausschließlich folgende Stati angenommen haben: UNSET, NOT_REACHED, DISPLAYED, INVALID, CODING_COMPLETE, CODING_ERROR und NO_CODING.\nDie folgenden Stati dürfen nicht auftreten: VALUE_CHANGED, CODING_INCOMPLETE und DERIVE_ERROR",
+    "text": "Zweiter Autocoder-Lauf\n\nNach der manuellen Kodierung folgt ein weiterer Autocoder-Lauf, da es ggf. abgeleitete Variablen gibt, die auf den nun verfügbaren Codes basieren.\nEine Kodierung ist abgeschlossen, wenn die Antworten ausschließlich folgende Stati angenommen haben: UNSET, NOT_REACHED, DISPLAYED, INVALID, CODING_COMPLETE, CODING_ERROR und NO_CODING.\nDie folgenden Stati dürfen nicht auftreten: VALUE_CHANGED, CODING_INCOMPLETE und DERIVE_ERROR",
     "crumbs": [
       "Datenstrukturen",
       "Missings"
