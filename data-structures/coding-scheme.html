@@ -497,7 +497,8 @@ Sicherheitshinweis
 <ul>
 <li>stellt dieser Parameter einen Bezug zu einer bestimmten Position im Array her (Datentyp Integer 0..n-1), oder</li>
 <li>soll mindestens ein Wert im Array gefunden werden, der die Bedingungen erfüllt (Datentyp String <code>ANY</code> oder <code>ANY_OPEN</code>; letzteres legt fest, dass im Array auch andere Werte vorhanden sein dürfen außer denen, für die das Regelset zutrifft), oder</li>
-<li>sollen vor der Auswertung alle Array-Werte bzw. alle Fragmente als numerische Werte interpretiert und summiert werden (Datentyp String <code>SUM</code>)</li>
+<li>sollen vor der Auswertung alle Array-Werte bzw. alle Fragmente als numerische Werte interpretiert und summiert werden (Datentyp String <code>SUM</code>), oder</li>
+<li>soll vor der Auswertung die Anzahl der Array-Werte ermittelt werden (Datentyp String <code>LENGTH</code>)</li>
 </ul></li>
 <li><code>ruleOperatorAnd</code>: Wenn dieser boolesche Wert <code>true</code> ist, dann werden die Ergebnisse der Regeln mit <code>UND</code> verknüpft. Alle Regeln müssen <code>true</code> liefern, damit der Code als zutreffend bewertet wird. Bei <code>false</code> reicht es, dass eine Regel <code>true</code> ergibt (<code>ODER</code>-Verknüpfung).</li>
 </ul>
