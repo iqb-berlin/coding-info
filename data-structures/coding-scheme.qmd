@@ -180,7 +180,8 @@ Regelsätze fassen mehrere Regeln zusammen in einer Gruppe. Ein Regelsatz hat fo
 * `valueArrayPos`: Sollte der Antwortwert eine Liste von Werten sein,
   + stellt dieser Parameter einen Bezug zu einer bestimmten Position im Array her (Datentyp Integer 0..n-1), oder
   + soll mindestens ein Wert im Array gefunden werden, der die Bedingungen erfüllt (Datentyp String `ANY` oder `ANY_OPEN`; letzteres legt fest, dass im Array auch andere Werte vorhanden sein dürfen außer denen, für die das Regelset zutrifft), oder
-  + sollen vor der Auswertung alle Array-Werte bzw. alle Fragmente als numerische Werte interpretiert und summiert werden (Datentyp String `SUM`)
+  + sollen vor der Auswertung alle Array-Werte bzw. alle Fragmente als numerische Werte interpretiert und summiert werden (Datentyp String `SUM`), oder
+  + soll vor der Auswertung die Anzahl der Array-Werte ermittelt werden (Datentyp String `LENGTH`)
 * `ruleOperatorAnd`: Wenn dieser boolesche Wert `true` ist, dann werden die Ergebnisse der Regeln mit `UND` verknüpft. Alle Regeln müssen `true` liefern, damit der Code als zutreffend bewertet wird. Bei `false` reicht es, dass eine Regel `true` ergibt (`ODER`-Verknüpfung).
 
 ## `rules`
