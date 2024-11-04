@@ -69,7 +69,7 @@ Die Datenstruktur [`response`](response.qmd), die durch die TBA-Webanwendung IQB
 
 ## Zweiter Autocoder-Lauf
 
-(8) Nach der manuellen Kodierung folgt ein weiterer Autocoder-Kauf, da es ggf. abgeleitete Variablen gibt, die auf den nun verfügbaren Codes basieren.
+(8) Nach der manuellen Kodierung folgt ein weiterer Autocoder-Lauf, da es ggf. abgeleitete Variablen gibt, die auf den nun verfügbaren Codes basieren.
 (9) Eine Kodierung ist abgeschlossen, wenn die Antworten ausschließlich folgende Stati angenommen haben: `UNSET`, `NOT_REACHED`, `DISPLAYED`, `INVALID`, `CODING_COMPLETE`, `CODING_ERROR` und `NO_CODING`.
 (10) Die folgenden Stati dürfen nicht auftreten: `VALUE_CHANGED`, `CODING_INCOMPLETE` und `DERIVE_ERROR`
 
