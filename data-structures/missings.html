@@ -174,6 +174,12 @@ ul.task-list li input[type="checkbox"] {
   </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workflow/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Arbeitsschritte</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -186,19 +192,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#begriff" id="toc-begriff" class="nav-link active" data-scroll-target="#begriff">Begriff</a></li>
   <li><a href="#standard-missings-des-iqb" id="toc-standard-missings-des-iqb" class="nav-link" data-scroll-target="#standard-missings-des-iqb">Standard-Missings des IQB</a></li>
-  <li><a href="#verfahren" id="toc-verfahren" class="nav-link" data-scroll-target="#verfahren">Verfahren</a>
-  <ul class="collapse">
-  <li><a href="#rohdaten" id="toc-rohdaten" class="nav-link" data-scroll-target="#rohdaten">Rohdaten</a></li>
-  <li><a href="#erster-autocoder-lauf" id="toc-erster-autocoder-lauf" class="nav-link" data-scroll-target="#erster-autocoder-lauf">Erster Autocoder-Lauf</a></li>
-  <li><a href="#manuelle-kodierung" id="toc-manuelle-kodierung" class="nav-link" data-scroll-target="#manuelle-kodierung">Manuelle Kodierung</a></li>
-  <li><a href="#zweiter-autocoder-lauf" id="toc-zweiter-autocoder-lauf" class="nav-link" data-scroll-target="#zweiter-autocoder-lauf">Zweiter Autocoder-Lauf</a></li>
-  <li><a href="#rekodierung-der-missing-zustände" id="toc-rekodierung-der-missing-zustände" class="nav-link" data-scroll-target="#rekodierung-der-missing-zustände">Rekodierung der Missing-Zustände</a>
-  <ul class="collapse">
-  <li><a href="#gegebene-antworten" id="toc-gegebene-antworten" class="nav-link" data-scroll-target="#gegebene-antworten">Gegebene Antworten</a></li>
-  <li><a href="#mögliche-aber-nicht-gegebene-antworten" id="toc-mögliche-aber-nicht-gegebene-antworten" class="nav-link" data-scroll-target="#mögliche-aber-nicht-gegebene-antworten">Mögliche, aber nicht gegebene Antworten</a></li>
-  <li><a href="#nicht-mögliche-antworten" id="toc-nicht-mögliche-antworten" class="nav-link" data-scroll-target="#nicht-mögliche-antworten">Nicht mögliche Antworten</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#verfahren" id="toc-verfahren" class="nav-link" data-scroll-target="#verfahren">Verfahren</a></li>
   <li><a href="#technische-diskurse" id="toc-technische-diskurse" class="nav-link" data-scroll-target="#technische-diskurse">Technische Diskurse</a>
   <ul class="collapse">
   <li><a href="#missing-by-omission-wenn-leer" id="toc-missing-by-omission-wenn-leer" class="nav-link" data-scroll-target="#missing-by-omission-wenn-leer">Missing by Omission wenn leer?</a></li>
@@ -320,147 +314,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="verfahren" class="level1">
 <h1>Verfahren</h1>
-<p>Die Datenstruktur <a href="../data-structures/response.html"><code>response</code></a>, die durch die TBA-Webanwendung IQB-Testcenter erzeugt wird, sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein Status geliefert. Erst zu einem späteren Zeitpunkt – im Rahmen der Kodierung und Ableitung – wird die Datenstruktur <code>response</code> in einen einzelnen numerischen ganzzahligen Code transformiert. Diese Transformation bedeutet in der Regel Informationsverlust, ist aber Voraussetzung für die nachfolgenden Datenanalysen.</p>
-<section id="rohdaten" class="level2">
-<h2 class="anchored" data-anchor-id="rohdaten">Rohdaten</h2>
-<ol type="1">
-<li>Bei Speicherplatzproblemen können alle Fälle herausgefiltert werden, die als Status <code>UNSET</code> oder <code>NOT_REACHED</code> gesetzt haben. Deren Werte (Values) sind grundsätzlich zu ignorieren und können aus den Antwortdaten entfernt werden.</li>
-<li>Wenn für alle Testpersonen die Antworten für eine Variable leer sind, handelt es sich wahrscheinlich um ein Interaktionselement, das nur theoretisch einen Wert haben könnte, was aber in dieser Studie nicht genutzt wurde (z. B. ein Textelement kann theoretisch eine Markierung erhalten). Diese Variablen können komplett aus den Antwortdaten entfernt werden.</li>
-<li>Alle anderen Fälle müssen in den ersten Autocoder-Lauf gegeben werden.</li>
-</ol>
-</section>
-<section id="erster-autocoder-lauf" class="level2">
-<h2 class="anchored" data-anchor-id="erster-autocoder-lauf">Erster Autocoder-Lauf</h2>
-<ol start="4" type="1">
-<li>Im Kodierschema kann festgelegt werden, dass ein Antwortstatus <code>DISPLAYED</code> sowie bei <code>VALUE_CHANGED</code> ein leerer Antwortwert relevant sind. In beiden Fällen wird regulär kodiert und der Status <code>CODING_COMPLETE</code> vergeben. Sollten diese beiden Fälle nicht als relevant markiert worden sein, wird <code>DISPLAYED</code> nicht verändert und ein leerer Antwortwert von <code>VALUE_CHANGED</code> in <code>INVALID</code> geändert.</li>
-<li>Kann eine Variable nicht abgeleitet werden, weil deren Basisvariablen keinen hinreichenden Status haben, bekommt die abgeleitete Variable den kleinsten Status der Basisvariablen: <code>UNSET</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>NOT_REACHED</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>DISPLAYED</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>DERIVE_ERROR</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>INVALID</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>CODING_ERROR</code></li>
-<li>Es gibt nach dem Autocoder-Lauf Fehlerzustände, denen gezielt nachgegangen werden muss. Vielen der Fälle kann man begegnen, indem man das jeweilige Kodierschema ergänzt oder korrigiert.</li>
-</ol>
-</section>
-<section id="manuelle-kodierung" class="level2">
-<h2 class="anchored" data-anchor-id="manuelle-kodierung">Manuelle Kodierung</h2>
-<ol start="7" type="1">
-<li>Alle Fälle für <code>CODING_INCOMPLETE</code> und <code>CODING_ERROR</code> werden manuell kodiert.</li>
-<li>Als Ergebnis der manuellen Kodierung sind als Status <code>CODING_COMPLETE</code>, <code>CODING_ERROR</code> (technisches Problem beim Kodieren) und <code>INVALID</code> möglich.</li>
-</ol>
-</section>
-<section id="zweiter-autocoder-lauf" class="level2">
-<h2 class="anchored" data-anchor-id="zweiter-autocoder-lauf">Zweiter Autocoder-Lauf</h2>
-<ol start="9" type="1">
-<li>Nach der manuellen Kodierung folgt ein weiterer Autocoder-Lauf, da es ggf. abgeleitete Variablen gibt, die auf den nun verfügbaren Codes basieren.</li>
-<li>Eine Kodierung ist abgeschlossen, wenn die Antworten ausschließlich folgende Stati angenommen haben: <code>UNSET</code>, <code>NOT_REACHED</code>, <code>DISPLAYED</code>, <code>INVALID</code>, <code>CODING_COMPLETE</code>, <code>CODING_ERROR</code> und <code>NO_CODING</code>.</li>
-<li>Die folgenden Stati dürfen nicht auftreten: <code>VALUE_CHANGED</code>, <code>CODING_INCOMPLETE</code> und <code>DERIVE_ERROR</code></li>
-</ol>
-</section>
-<section id="rekodierung-der-missing-zustände" class="level2">
-<h2 class="anchored" data-anchor-id="rekodierung-der-missing-zustände">Rekodierung der Missing-Zustände</h2>
-<section id="gegebene-antworten" class="level3">
-<h3 class="anchored" data-anchor-id="gegebene-antworten">Gegebene Antworten</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 25%">
-<col style="width: 56%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Status</th>
-<th style="text-align: right;">Neuer Code</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>CODING_COMPLETE</code></td>
-<td style="text-align: right;">-</td>
-<td>Wird nicht rekodiert, da ein gültiger verwertbarer Code bereits vergeben wurde.</td>
-</tr>
-<tr class="even">
-<td><code>NO_CODING</code></td>
-<td style="text-align: right;">-</td>
-<td>Hier handelt es sich z. B. um freie Eingaben, die nicht kodiert werden sollen (z. B. Sprache zu Hause). Diese müssen aus den Daten extrahiert werden, da sie nicht in die Datenanalyse einfließen.</td>
-</tr>
-<tr class="odd">
-<td><code>INVALID</code></td>
-<td style="text-align: right;">-98</td>
-<td>mir - missing invalid response</td>
-</tr>
-<tr class="even">
-<td><code>CODING_ERROR</code></td>
-<td style="text-align: right;">-97</td>
-<td>mci - missing coding impossible</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="mögliche-aber-nicht-gegebene-antworten" class="level3">
-<h3 class="anchored" data-anchor-id="mögliche-aber-nicht-gegebene-antworten">Mögliche, aber nicht gegebene Antworten</h3>
-<ol start="12" type="1">
-<li>Das Testheft-Design muss abgefragt werden um festzustellen, welche Units (und damit Variablen) in den Antwortdaten zu finden sein müssten und welche nicht. Es muss für die Units, die der Testperson vorgelegt wurden, eine Reihenfolge (Sequenz) bekannt sein.</li>
-</ol>
-<section id="für-die-letzte-in-der-sequenz-der-vorgelegten-units" class="level4">
-<h4 class="anchored" data-anchor-id="für-die-letzte-in-der-sequenz-der-vorgelegten-units">Für die letzte in der Sequenz der vorgelegten Units</h4>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Status</th>
-<th style="text-align: right;">Neuer Code</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>UNSET</code>, <code>DISPLAYED</code></td>
-<td style="text-align: right;">-99</td>
-<td>mbo - missing by omission</td>
-</tr>
-<tr class="even">
-<td><code>NOT_REACHED</code></td>
-<td style="text-align: right;">-96</td>
-<td>mnr - missing not reached</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="für-alle-vorherigen-units" class="level4">
-<h4 class="anchored" data-anchor-id="für-alle-vorherigen-units">Für alle vorherigen Units</h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 25%">
-<col style="width: 56%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Status</th>
-<th style="text-align: right;">Neuer Code</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>UNSET</code>, <code>DISPLAYED</code>, <code>NOT_REACHED</code></td>
-<td style="text-align: right;">-99</td>
-<td>mbo - missing by omission</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="für-alle-nicht-gefundenen-variablen" class="level4">
-<h4 class="anchored" data-anchor-id="für-alle-nicht-gefundenen-variablen">Für alle nicht gefundenen Variablen</h4>
-<ul>
-<li>Units VOR der letzten: -99 (mbo - missing by omission)</li>
-<li>Units NACH der letzten: -96 (mnr - missing not reached)</li>
-</ul>
-</section>
-</section>
-<section id="nicht-mögliche-antworten" class="level3">
-<h3 class="anchored" data-anchor-id="nicht-mögliche-antworten">Nicht mögliche Antworten</h3>
-<ul>
-<li>Variablen werden hinzugefügt, die der Person planmäßig nicht vorgelegt wurden, aber in der Studie vorgesehen sind. Sie erhalten alle den Code -94 (mbd - missing by design).</li>
-</ul>
-</section>
-</section>
+<p>Die Datenstruktur <a href="../data-structures/response.html"><code>response</code></a>, die durch die TBA-Webanwendung IQB-Testcenter erzeugt wird, sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein Status geliefert. Erst zu einem späteren Zeitpunkt – im Rahmen der Kodierung und Ableitung – wird die Datenstruktur <code>response</code> in einen einzelnen numerischen ganzzahligen Code transformiert. Diese Transformation zu einer <strong>Itemmatrix Person x Antwort-Code</strong> bedeutet in der Regel Informationsverlust, ist aber Voraussetzung für die nachfolgenden Datenanalysen.</p>
+<p>Bei der Erstellung der Itemmatrix werden auch die Missings gesetzt. Die genaue Übersetzung ist <a href="../workflow/index.html">hier beschrieben</a>.</p>
 </section>
 <section id="technische-diskurse" class="level1">
 <h1>Technische Diskurse</h1>

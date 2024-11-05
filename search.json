@@ -21,61 +21,6 @@
     ]
   },
   {
-    "objectID": "data-structures/missings.html#rohdaten",
-    "href": "data-structures/missings.html#rohdaten",
-    "title": "Missings",
-    "section": "Rohdaten",
-    "text": "Rohdaten\n\nBei Speicherplatzproblemen können alle Fälle herausgefiltert werden, die als Status UNSET oder NOT_REACHED gesetzt haben. Deren Werte (Values) sind grundsätzlich zu ignorieren und können aus den Antwortdaten entfernt werden.\nWenn für alle Testpersonen die Antworten für eine Variable leer sind, handelt es sich wahrscheinlich um ein Interaktionselement, das nur theoretisch einen Wert haben könnte, was aber in dieser Studie nicht genutzt wurde (z. B. ein Textelement kann theoretisch eine Markierung erhalten). Diese Variablen können komplett aus den Antwortdaten entfernt werden.\nAlle anderen Fälle müssen in den ersten Autocoder-Lauf gegeben werden.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#erster-autocoder-lauf",
-    "href": "data-structures/missings.html#erster-autocoder-lauf",
-    "title": "Missings",
-    "section": "Erster Autocoder-Lauf",
-    "text": "Erster Autocoder-Lauf\n\nIm Kodierschema kann festgelegt werden, dass ein Antwortstatus DISPLAYED sowie bei VALUE_CHANGED ein leerer Antwortwert relevant sind. In beiden Fällen wird regulär kodiert und der Status CODING_COMPLETE vergeben. Sollten diese beiden Fälle nicht als relevant markiert worden sein, wird DISPLAYED nicht verändert und ein leerer Antwortwert von VALUE_CHANGED in INVALID geändert.\nKann eine Variable nicht abgeleitet werden, weil deren Basisvariablen keinen hinreichenden Status haben, bekommt die abgeleitete Variable den kleinsten Status der Basisvariablen: UNSET  NOT_REACHED  DISPLAYED  DERIVE_ERROR  INVALID  CODING_ERROR\nEs gibt nach dem Autocoder-Lauf Fehlerzustände, denen gezielt nachgegangen werden muss. Vielen der Fälle kann man begegnen, indem man das jeweilige Kodierschema ergänzt oder korrigiert.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#manuelle-kodierung",
-    "href": "data-structures/missings.html#manuelle-kodierung",
-    "title": "Missings",
-    "section": "Manuelle Kodierung",
-    "text": "Manuelle Kodierung\n\nAlle Fälle für CODING_INCOMPLETE und CODING_ERROR werden manuell kodiert.\nAls Ergebnis der manuellen Kodierung sind als Status CODING_COMPLETE, CODING_ERROR (technisches Problem beim Kodieren) und INVALID möglich.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#zweiter-autocoder-lauf",
-    "href": "data-structures/missings.html#zweiter-autocoder-lauf",
-    "title": "Missings",
-    "section": "Zweiter Autocoder-Lauf",
-    "text": "Zweiter Autocoder-Lauf\n\nNach der manuellen Kodierung folgt ein weiterer Autocoder-Lauf, da es ggf. abgeleitete Variablen gibt, die auf den nun verfügbaren Codes basieren.\nEine Kodierung ist abgeschlossen, wenn die Antworten ausschließlich folgende Stati angenommen haben: UNSET, NOT_REACHED, DISPLAYED, INVALID, CODING_COMPLETE, CODING_ERROR und NO_CODING.\nDie folgenden Stati dürfen nicht auftreten: VALUE_CHANGED, CODING_INCOMPLETE und DERIVE_ERROR",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#rekodierung-der-missing-zustände",
-    "href": "data-structures/missings.html#rekodierung-der-missing-zustände",
-    "title": "Missings",
-    "section": "Rekodierung der Missing-Zustände",
-    "text": "Rekodierung der Missing-Zustände\n\nGegebene Antworten\n\n\n\n\n\n\n\n\nStatus\nNeuer Code\nBeschreibung\n\n\n\n\nCODING_COMPLETE\n-\nWird nicht rekodiert, da ein gültiger verwertbarer Code bereits vergeben wurde.\n\n\nNO_CODING\n-\nHier handelt es sich z. B. um freie Eingaben, die nicht kodiert werden sollen (z. B. Sprache zu Hause). Diese müssen aus den Daten extrahiert werden, da sie nicht in die Datenanalyse einfließen.\n\n\nINVALID\n-98\nmir - missing invalid response\n\n\nCODING_ERROR\n-97\nmci - missing coding impossible\n\n\n\n\n\nMögliche, aber nicht gegebene Antworten\n\nDas Testheft-Design muss abgefragt werden um festzustellen, welche Units (und damit Variablen) in den Antwortdaten zu finden sein müssten und welche nicht. Es muss für die Units, die der Testperson vorgelegt wurden, eine Reihenfolge (Sequenz) bekannt sein.\n\n\nFür die letzte in der Sequenz der vorgelegten Units\n\n\n\nStatus\nNeuer Code\nBeschreibung\n\n\n\n\nUNSET, DISPLAYED\n-99\nmbo - missing by omission\n\n\nNOT_REACHED\n-96\nmnr - missing not reached\n\n\n\n\n\nFür alle vorherigen Units\n\n\n\n\n\n\n\n\nStatus\nNeuer Code\nBeschreibung\n\n\n\n\nUNSET, DISPLAYED, NOT_REACHED\n-99\nmbo - missing by omission\n\n\n\n\n\nFür alle nicht gefundenen Variablen\n\nUnits VOR der letzten: -99 (mbo - missing by omission)\nUnits NACH der letzten: -96 (mnr - missing not reached)\n\n\n\n\nNicht mögliche Antworten\n\nVariablen werden hinzugefügt, die der Person planmäßig nicht vorgelegt wurden, aber in der Studie vorgesehen sind. Sie erhalten alle den Code -94 (mbd - missing by design).",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
     "objectID": "data-structures/missings.html#missing-by-omission-wenn-leer",
     "href": "data-structures/missings.html#missing-by-omission-wenn-leer",
     "title": "Missings",
@@ -173,6 +118,46 @@
       "Datenstrukturen",
       "itc-ToolBox Output",
       "Format TC-Merge"
+    ]
+  },
+  {
+    "objectID": "workflow/index.html",
+    "href": "workflow/index.html",
+    "title": "Arbeitsschritte",
+    "section": "",
+    "text": "Die Schritte der Datenverarbeitung unterscheiden sich, je nachdem, ob eine genauere Analyse der Itemeigenschaften erfolgen soll (DIF, Distraktorenanalyse usw.) oder die Studie der Ermittlung von Personenkennwerten dient. Nachfolgend wird vom letzteren Fall ausgegangen, da für die Itemanalyse (Erprobung, Pilotierung) jederzeit nach Bedarf abgezweigt werden kann.",
+    "crumbs": [
+      "Arbeitsschritte"
+    ]
+  },
+  {
+    "objectID": "workflow/index.html#gegebene-antworten",
+    "href": "workflow/index.html#gegebene-antworten",
+    "title": "Arbeitsschritte",
+    "section": "Gegebene Antworten",
+    "text": "Gegebene Antworten\n\n\n\n\n\n\n\n\nStatus\nNeuer Code\nBeschreibung\n\n\n\n\nCODING_COMPLETE\n-\nWird nicht rekodiert, da ein gültiger verwertbarer Code bereits vergeben wurde.\n\n\nNO_CODING\n-\nHier handelt es sich z. B. um freie Eingaben, die nicht kodiert werden sollen (z. B. Sprache zu Hause). Diese müssen aus den Daten extrahiert werden, da sie nicht in die Datenanalyse einfließen.\n\n\nINVALID\n-98\nmir - missing invalid response\n\n\nCODING_ERROR\n-97\nmci - missing coding impossible",
+    "crumbs": [
+      "Arbeitsschritte"
+    ]
+  },
+  {
+    "objectID": "workflow/index.html#mögliche-aber-nicht-gegebene-antworten",
+    "href": "workflow/index.html#mögliche-aber-nicht-gegebene-antworten",
+    "title": "Arbeitsschritte",
+    "section": "Mögliche, aber nicht gegebene Antworten",
+    "text": "Mögliche, aber nicht gegebene Antworten\n\nDas Testheft-Design muss abgefragt werden um festzustellen, welche Units (und damit Variablen) in den Antwortdaten zu finden sein müssten und welche nicht. Es muss für die Units, die der Testperson vorgelegt wurden, eine Reihenfolge (Sequenz) bekannt sein.\n\n\nFür die letzte in der Sequenz der vorgelegten Units\n\n\n\nStatus\nNeuer Code\nBeschreibung\n\n\n\n\nUNSET, DISPLAYED\n-99\nmbo - missing by omission\n\n\nNOT_REACHED\n-96\nmnr - missing not reached\n\n\n\n\n\nFür alle vorherigen Units\n\n\n\n\n\n\n\n\nStatus\nNeuer Code\nBeschreibung\n\n\n\n\nUNSET, DISPLAYED, NOT_REACHED\n-99\nmbo - missing by omission\n\n\n\n\n\nFür alle nicht gefundenen Variablen\n\nUnits VOR der letzten: -99 (mbo - missing by omission)\nUnits NACH der letzten: -96 (mnr - missing not reached)",
+    "crumbs": [
+      "Arbeitsschritte"
+    ]
+  },
+  {
+    "objectID": "workflow/index.html#nicht-mögliche-antworten",
+    "href": "workflow/index.html#nicht-mögliche-antworten",
+    "title": "Arbeitsschritte",
+    "section": "Nicht mögliche Antworten",
+    "text": "Nicht mögliche Antworten\n\nVariablen werden hinzugefügt, die der Person planmäßig nicht vorgelegt wurden, aber in der Studie vorgesehen sind. Sie erhalten alle den Code -94 (mbd - missing by design).",
+    "crumbs": [
+      "Arbeitsschritte"
     ]
   },
   {
