@@ -42,7 +42,7 @@ website:
             contents:        
               - href: data-structures/itc-ToolBox-Output/tc-merge.qmd
                 text: "Format TC-Merge"
-
+      - workflow/index.qmd
 
 format:
   html:

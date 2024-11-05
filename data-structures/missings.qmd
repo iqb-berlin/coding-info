@@ -3,7 +3,6 @@ lang: de
 title: Missings
 format:
   html:
-    toc: true
     toc-expand: 2
 ---
 
@@ -49,67 +48,9 @@ flowchart TD
 
 # Verfahren
 
-Die Datenstruktur [`response`](response.qmd), die durch die TBA-Webanwendung IQB-Testcenter erzeugt wird, sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein Status geliefert. Erst zu einem späteren Zeitpunkt -- im Rahmen der Kodierung und Ableitung -- wird die Datenstruktur `response` in einen einzelnen numerischen ganzzahligen Code transformiert. Diese Transformation bedeutet in der Regel Informationsverlust, ist aber Voraussetzung für die nachfolgenden Datenanalysen.
+Die Datenstruktur [`response`](response.qmd), die durch die TBA-Webanwendung IQB-Testcenter erzeugt wird, sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein Status geliefert. Erst zu einem späteren Zeitpunkt -- im Rahmen der Kodierung und Ableitung -- wird die Datenstruktur `response` in einen einzelnen numerischen ganzzahligen Code transformiert. Diese Transformation zu einer **Itemmatrix Person x Antwort-Code** bedeutet in der Regel Informationsverlust, ist aber Voraussetzung für die nachfolgenden Datenanalysen.
 
-## Rohdaten
-
-(1) Bei Speicherplatzproblemen können alle Fälle herausgefiltert werden, die als Status `UNSET` oder `NOT_REACHED` gesetzt haben. Deren Werte (Values) sind grundsätzlich zu ignorieren und können aus den Antwortdaten entfernt werden.
-(2) Wenn für alle Testpersonen die Antworten für eine Variable leer sind, handelt es sich wahrscheinlich um ein Interaktionselement, das nur theoretisch einen Wert haben könnte, was aber in dieser Studie nicht genutzt wurde (z. B. ein Textelement kann theoretisch eine Markierung erhalten). Diese Variablen können komplett aus den Antwortdaten entfernt werden.
-(3) Alle anderen Fälle müssen in den ersten Autocoder-Lauf gegeben werden.
-
-## Erster Autocoder-Lauf
-
-(4) Im Kodierschema kann festgelegt werden, dass ein Antwortstatus `DISPLAYED` sowie bei `VALUE_CHANGED` ein leerer Antwortwert relevant sind. In beiden Fällen wird regulär kodiert und der Status `CODING_COMPLETE` vergeben. Sollten diese beiden Fälle nicht als relevant markiert worden sein, wird `DISPLAYED` nicht verändert und ein leerer Antwortwert von `VALUE_CHANGED` in `INVALID` geändert.
-(5) Kann eine Variable nicht abgeleitet werden, weil deren Basisvariablen keinen hinreichenden Status haben, bekommt die abgeleitete Variable den kleinsten Status der Basisvariablen: `UNSET` {{< fa chevron-right >}} `NOT_REACHED` {{< fa chevron-right >}} `DISPLAYED` {{< fa chevron-right >}} `DERIVE_ERROR` {{< fa chevron-right >}} `INVALID` {{< fa chevron-right >}} `CODING_ERROR`
-(6) Es gibt nach dem Autocoder-Lauf Fehlerzustände, denen gezielt nachgegangen werden muss. Vielen der Fälle kann man begegnen, indem man das jeweilige Kodierschema ergänzt oder korrigiert.
-
-## Manuelle Kodierung
-
-(7) Alle Fälle für `CODING_INCOMPLETE` und `CODING_ERROR` werden manuell kodiert.
-(8) Als Ergebnis der manuellen Kodierung sind als Status `CODING_COMPLETE`, `CODING_ERROR` (technisches Problem beim Kodieren) und `INVALID` möglich.
-
-## Zweiter Autocoder-Lauf
-
-(9) Nach der manuellen Kodierung folgt ein weiterer Autocoder-Lauf, da es ggf. abgeleitete Variablen gibt, die auf den nun verfügbaren Codes basieren.
-(10) Eine Kodierung ist abgeschlossen, wenn die Antworten ausschließlich folgende Stati angenommen haben: `UNSET`, `NOT_REACHED`, `DISPLAYED`, `INVALID`, `CODING_COMPLETE`, `CODING_ERROR` und `NO_CODING`.
-(11) Die folgenden Stati dürfen nicht auftreten: `VALUE_CHANGED`, `CODING_INCOMPLETE` und `DERIVE_ERROR`
-
-## Rekodierung der Missing-Zustände
-
-### Gegebene Antworten
- 
-| Status | Neuer Code | Beschreibung |
-|---|---:|---------|
-| `CODING_COMPLETE` | - | Wird nicht rekodiert, da ein gültiger verwertbarer Code bereits vergeben wurde. |
-| `NO_CODING` | - | Hier handelt es sich z. B. um freie Eingaben, die nicht kodiert werden sollen (z. B. Sprache zu Hause). Diese müssen aus den Daten extrahiert werden, da sie nicht in die Datenanalyse einfließen. |
-| `INVALID` | -98 | mir - missing invalid response |
-| `CODING_ERROR` | -97 | mci - missing coding impossible |
-
-### Mögliche, aber nicht gegebene Antworten
-
-(12) Das Testheft-Design muss abgefragt werden um festzustellen, welche Units (und damit Variablen) in den Antwortdaten zu finden sein müssten und welche nicht. Es muss für die Units, die der Testperson vorgelegt wurden, eine Reihenfolge (Sequenz) bekannt sein.
-
-#### Für die letzte in der Sequenz der vorgelegten Units
-
-| Status | Neuer Code | Beschreibung |
-|---|---:|---------|
-| `UNSET`, `DISPLAYED` | -99 | mbo - missing by omission |
-| `NOT_REACHED` | -96 | mnr - missing not reached |
-
-#### Für alle vorherigen Units
-
-| Status | Neuer Code | Beschreibung |
-|---|---:|---------|
-| `UNSET`, `DISPLAYED`, `NOT_REACHED` | -99 | mbo - missing by omission |
-
-#### Für alle nicht gefundenen Variablen
-
-* Units VOR der letzten: -99 (mbo - missing by omission)
-* Units NACH der letzten: -96 (mnr - missing not reached)
-
-### Nicht mögliche Antworten
-
-* Variablen werden hinzugefügt, die der Person planmäßig nicht vorgelegt wurden, aber in der Studie vorgesehen sind. Sie erhalten alle den Code -94 (mbd - missing by design).
+Bei der Erstellung der Itemmatrix werden auch die Missings gesetzt. Die genaue Übersetzung ist [hier beschrieben](../workflow/index.qmd).
 
 # Technische Diskurse
 
