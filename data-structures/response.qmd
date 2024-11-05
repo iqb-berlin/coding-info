@@ -18,59 +18,37 @@ Die Spezifikation in englischer Sprache finden Sie [hier](https://iqb-berlin.git
 
 # Status
 
-Der Status-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess.
-
-## Neu als Informationseinheit angelegt
-
-Wenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den Status `UNSET`. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.
+Der Status-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess. Die Datenstruktur wird nicht nur bei der Beantwortung der Testitems oder Fragen im Player genutzt, sondern auch während der Kodierung und Ableitung von neuen Variablen.
 
 | Wert | Beschreibung |
 |--|-------------|
-| `UNSET` | Neue Variable im technischen Prozess |
+|`UNSET`|Ausgangszustand beim Anlegen von Variablen. Sollte eine Variable an ein Interaktionselement gebunden sein, dann erhält sie jedoch sofort den Status `NOT_REACHED`.|
+|`NOT_REACHED`|Ausgangszustand beim Anlegen von Variablen, die an ein Interaktionselement gebunden sind.|
+|`DISPLAYED`|Variablen, die an ein Interaktionselement gebunden sind, bekommen diesen Status, wenn sie der Testperson präsentiert wurden - also sichtbar sind.|
+|`PARTLY_DISPLAYED`|Diesen Zustand erhalten abgeleitete Variablen, die von Variablen abgeleitet wurden mit dem Status `PARTLY_DISPLAYED` oder mit `DISPLAYED` sowie außerdem den Status `NOT_REACHED` oder `UNSET`.|
+|`VALUE_CHANGED`|Dieser Status zeigt an, dass eine Interaktion stattgefunden hat und also der Wert (Value) auszuwerten ist. Bei abgeleiteten Variablen zeigt dieser Status eine erfolgreiche Ableitung an.|
+|`DERIVE_ERROR`|Dieser Status zeigt an, dass eine Ableitung fehlgeschlagen ist. Dies bezieht sich nicht darauf, dass zumindest eine die zugrundeliegenden Variablen einen unzureichenden Status hat, sondern auf einen technischen Fehler beim Ableitungsprozess. Dies kann sich beispielsweise auf einen Typkonflikt (numerisch, Text) beziehen und ist in den meisten Fällen über eine Anpassung des Kodierschemas korrigierbar.|
+|`NO_CODING`|Bei diesem Status hat eine Kodierprozedur festgestellt, dass keine Informationen für eine Kodierung vorliegen (keine Codes im Kodierschema definiert). Das kann ein Fehler sein, aber es kann sich auch um offene Antworten handeln, die über andere Wege kodiert werden sollen (z. B. Rating oder Übersetzung in Berufe-Codes außerhalb der regulären Kodierprozesse).|
+|`INVALID`|Es wurde bei diesem Status eine Antwort festgestellt, die außerhalb des zulässigen Bereiches liegt. Beispielsweise wurde zwar zunächst ein Text eingegeben, dann aber alles gelöscht, so dass eine leere Antwort gespeichert wurde. Mit diesem Code werden auch Spaßantworten "Mir ist langweilig" kodiert.|
+|`CODING_INCOMPLETE`|Dieser Code zeigt nach einem Durchlauf einer Kodierprozedur an, dass keiner der vorgesehenen Codes als zutreffend angesehen wurde. Dieser Kodierfall muss dann manuell gesichtet werden.|
+|`CODING_ERROR`|Während der Kodierung ist ein Fehler aufgetreten, der die Bewertung der Antwort verhindert hat. Dies kann ein technischer Fehler bei der Anzeige (Replay) für das manuelle Kodieren sein, aber auch Typkonflikte zwischen dem Wert und dem Kodierschema können die Ursache sein.|
+|`CODING_COMPLETE`|Die Kodierung der Variablen ist erfolgreich abgeschlossen.|
 
-## Im Testsystem
+## Status bei Ableitung
 
-Während der Durchführung eines Tests bzw. einer Befragung werden Variablenwerte als Antwortdaten gesetzt.
-
-| Wert | Beschreibung |
-|--|-------------|
-|`NOT_REACHED` | Testperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre. |
-| `DISPLAYED` | Das Interaktionselement wurde der Testperson angezeigt. |
-| `VALUE_CHANGED` | Testperson hat den Wert geändert. |
-
-Andere Werte sind im Testsystem nur möglich, wenn eine Antwortverarbeitung angestoßen wurde (wie z. B. beim adaptiven Testen).
-
-Für die Verarbeitung des Antwortwertes ist es erforderlich, dass der Status `VALUE_CHANGED` gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.
-
-Im Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der Status `DISPLAYED` eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert `false/unchecked` vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion "Kreuze alle Säugetiere an!" muss die Auswahl "Amsel" unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.
-
-## Bei Ableitung
-
-Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:
+Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage eines Wertes oder eines Codes anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:
 
 * Variablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status `VALUE_CHANGED` haben. Es ist auch der Status `DISPLAYED` möglich, wenn dies bei der Quellvariablen markiert wurde.
 * Variablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status `CODING_COMPLETE` haben.
 
-| Wert | Beschreibung |
-|--|-------------|
-| `DERIVE_ERROR` | Während der Ableitung ist ein Fehler aufgetreten. |
-| `VALUE_CHANGED` | Für die abgeleitete Variable wurde erfolgreich ein Wert ermittelt. |
+Wenn eine oder mehrere Variablen, deren Werte oder Codes für die Ableitung verwendet werden sollen, einen abweichenden Status haben, erfolgt keine Ableitung. Ist der Status bei allen Variablen gleich, dann wird dieser übernommen. Ansonsten gelten folgende Regeln:
 
-Wenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable `null`und es wird der Status auf den kleinsten Status gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:
-
-`UNSET` {{< fa chevron-right >}} `NOT_REACHED` {{< fa chevron-right >}} `DISPLAYED` {{< fa chevron-right >}} `DERIVE_ERROR` {{< fa chevron-right >}} `NO_CODING` {{< fa chevron-right >}} `INVALID` {{< fa chevron-right >}} `CODING_INCOMPLETE` {{< fa chevron-right >}} `CODING_ERROR`
-
-## Bei Kodierung
-
-| Wert | Beschreibung |
-|--|-------------|
-| `NO_CODING` | Es gibt im Kodierschema keine Vorschriften oder Anweisungen für die Kodierung. |
-| `INVALID` | Der Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED). |
-| `CODING_INCOMPLETE` | Die Regeln der automatischen Kodierung wurden angewendet, haben aber keinen zutreffenden Code ermitteln können. |
-| `CODING_ERROR` | Beim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen. |
-| `CODING_COMPLETE` | Ein Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden. |
-
-Die Kodierung folgt zunächst den Festlegungen der automatischen Kodierung (regelbasiert). Sollte kein zutreffender Code gefunden werden, dann wird der Code `CODING_INCOMPLETE` gesetzt. Dann -- und auch bei einem Kodierfehler `CODING_ERROR` -- folgt die Sichtung der Antwort und eine manuelle Kodierung. Hier können wiederum die Stati `CODING_COMPLETE` oder `INVALID` gesetzt werden.
+| Bedingung | Status der abgeleiteten Variable |
+|-----------|----|
+| Mindestens eine der Variablen hat den Status `CODING_COMPLETE` und mindestens eine andere einen unzulässigen Status | `INVALID` |
+| Alle Variablen haben den Status `PARTLY_DISPLAYED` | `PARTLY_DISPLAYED`|
+| Mindestens eine der Variablen hat den Status `PARTLY_DISPLAYED` oder `DISPLAYED` und mindestens eine andere `NOT_REACHED` oder `UNSET` | `PARTLY_DISPLAYED` |
+| Mindestens eine der Variablen hat den Status `CODING_ERROR` | `CODING_ERROR` |
 
 # Value Types
 
