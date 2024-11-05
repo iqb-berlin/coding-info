@@ -27,7 +27,7 @@ Der Status-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer
 |`DISPLAYED`|Variablen, die an ein Interaktionselement gebunden sind, bekommen diesen Status, wenn sie der Testperson präsentiert wurden - also sichtbar sind.|
 |`PARTLY_DISPLAYED`|Diesen Zustand erhalten abgeleitete Variablen, die von Variablen abgeleitet wurden mit dem Status `PARTLY_DISPLAYED` oder mit `DISPLAYED` sowie außerdem den Status `NOT_REACHED` oder `UNSET`.|
 |`VALUE_CHANGED`|Dieser Status zeigt an, dass eine Interaktion stattgefunden hat und also der Wert (Value) auszuwerten ist. Bei abgeleiteten Variablen zeigt dieser Status eine erfolgreiche Ableitung an.|
-|`DERIVE_ERROR`|Dieser Status zeigt an, dass eine Ableitung fehlgeschlagen ist. Dies bezieht sich nicht darauf, dass zumindest eine die zugrundeliegenden Variablen einen unzureichenden Status hat, sondern auf einen technischen Fehler beim Ableitungsprozess. Dies kann sich beispielsweise auf einen Typkonflikt (numerisch, Text) beziehen und ist in den meisten Fällen über eine Anpassung des Kodierschemas korrigierbar.|
+|`DERIVE_ERROR`|Dieser Status zeigt an, dass eine Ableitung fehlgeschlagen ist. Dies kann sich beispielsweise auf einen Typkonflikt (numerisch, Text) beziehen und ist in den meisten Fällen über eine Anpassung des Kodierschemas korrigierbar. Der Status bezieht sich allerdings nicht darauf, ob die zugrundeliegenden Variablen einen unzureichenden Status haben ([s. unten](#status-bei-ableitung)), sondern es geht um technische Fehler beim Ableitungsprozess.|
 |`NO_CODING`|Bei diesem Status hat eine Kodierprozedur festgestellt, dass keine Informationen für eine Kodierung vorliegen (keine Codes im Kodierschema definiert). Das kann ein Fehler sein, aber es kann sich auch um offene Antworten handeln, die über andere Wege kodiert werden sollen (z. B. Rating oder Übersetzung in Berufe-Codes außerhalb der regulären Kodierprozesse).|
 |`INVALID`|Es wurde bei diesem Status eine Antwort festgestellt, die außerhalb des zulässigen Bereiches liegt. Beispielsweise wurde zwar zunächst ein Text eingegeben, dann aber alles gelöscht, so dass eine leere Antwort gespeichert wurde. Mit diesem Code werden auch Spaßantworten "Mir ist langweilig" kodiert.|
 |`CODING_INCOMPLETE`|Dieser Code zeigt nach einem Durchlauf einer Kodierprozedur an, dass keiner der vorgesehenen Codes als zutreffend angesehen wurde. Dieser Kodierfall muss dann manuell gesichtet werden.|
@@ -46,7 +46,6 @@ Wenn eine oder mehrere Variablen, deren Werte oder Codes für die Ableitung verw
 | Bedingung | Status der abgeleiteten Variable |
 |-----------|----|
 | Mindestens eine der Variablen hat den Status `CODING_COMPLETE` und mindestens eine andere einen unzulässigen Status | `INVALID` |
-| Alle Variablen haben den Status `PARTLY_DISPLAYED` | `PARTLY_DISPLAYED`|
 | Mindestens eine der Variablen hat den Status `PARTLY_DISPLAYED` oder `DISPLAYED` und mindestens eine andere `NOT_REACHED` oder `UNSET` | `PARTLY_DISPLAYED` |
 | Mindestens eine der Variablen hat den Status `CODING_ERROR` | `CODING_ERROR` |
 
