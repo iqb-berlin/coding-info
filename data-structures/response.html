@@ -190,10 +190,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#übersicht" id="toc-übersicht" class="nav-link active" data-scroll-target="#übersicht">Übersicht</a></li>
   <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status">Status</a>
   <ul class="collapse">
-  <li><a href="#neu-als-informationseinheit-angelegt" id="toc-neu-als-informationseinheit-angelegt" class="nav-link" data-scroll-target="#neu-als-informationseinheit-angelegt">Neu als Informationseinheit angelegt</a></li>
-  <li><a href="#im-testsystem" id="toc-im-testsystem" class="nav-link" data-scroll-target="#im-testsystem">Im Testsystem</a></li>
-  <li><a href="#bei-ableitung" id="toc-bei-ableitung" class="nav-link" data-scroll-target="#bei-ableitung">Bei Ableitung</a></li>
-  <li><a href="#bei-kodierung" id="toc-bei-kodierung" class="nav-link" data-scroll-target="#bei-kodierung">Bei Kodierung</a></li>
+  <li><a href="#status-bei-ableitung" id="toc-status-bei-ableitung" class="nav-link" data-scroll-target="#status-bei-ableitung">Status bei Ableitung</a></li>
   </ul></li>
   <li><a href="#value-types" id="toc-value-types" class="nav-link" data-scroll-target="#value-types">Value Types</a></li>
   </ul>
@@ -281,11 +278,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="status" class="level1">
 <h1>Status</h1>
-<p>Der Status-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess.</p>
-<section id="neu-als-informationseinheit-angelegt" class="level2">
-<h2 class="anchored" data-anchor-id="neu-als-informationseinheit-angelegt">Neu als Informationseinheit angelegt</h2>
-<p>Wenn eine Antwort als Datenstruktur neu angelegt wird, erhält sie zunächst den Status <code>UNSET</code>. Darüber wird signalisiert, dass der Wert noch nicht interpretierbar ist.</p>
+<p>Der Status-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess. Die Datenstruktur wird nicht nur bei der Beantwortung der Testitems oder Fragen im Player genutzt, sondern auch während der Kodierung und Ableitung von neuen Variablen.</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 86%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Wert</th>
@@ -295,113 +293,88 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td><code>UNSET</code></td>
-<td>Neue Variable im technischen Prozess</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="im-testsystem" class="level2">
-<h2 class="anchored" data-anchor-id="im-testsystem">Im Testsystem</h2>
-<p>Während der Durchführung eines Tests bzw. einer Befragung werden Variablenwerte als Antwortdaten gesetzt.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 86%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Wert</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>NOT_REACHED</code></td>
-<td>Testperson ist noch nicht zu der Stelle gelangt, wo eine Interaktion möglich wäre.</td>
+<td>Ausgangszustand beim Anlegen von Variablen. Sollte eine Variable an ein Interaktionselement gebunden sein, dann erhält sie jedoch sofort den Status <code>NOT_REACHED</code>.</td>
 </tr>
 <tr class="even">
+<td><code>NOT_REACHED</code></td>
+<td>Ausgangszustand beim Anlegen von Variablen, die an ein Interaktionselement gebunden sind.</td>
+</tr>
+<tr class="odd">
 <td><code>DISPLAYED</code></td>
-<td>Das Interaktionselement wurde der Testperson angezeigt.</td>
+<td>Variablen, die an ein Interaktionselement gebunden sind, bekommen diesen Status, wenn sie der Testperson präsentiert wurden - also sichtbar sind.</td>
+</tr>
+<tr class="even">
+<td><code>PARTLY_DISPLAYED</code></td>
+<td>Diesen Zustand erhalten abgeleitete Variablen, die von Variablen abgeleitet wurden mit dem Status <code>PARTLY_DISPLAYED</code> oder mit <code>DISPLAYED</code> sowie außerdem den Status <code>NOT_REACHED</code> oder <code>UNSET</code>.</td>
 </tr>
 <tr class="odd">
 <td><code>VALUE_CHANGED</code></td>
-<td>Testperson hat den Wert geändert.</td>
+<td>Dieser Status zeigt an, dass eine Interaktion stattgefunden hat und also der Wert (Value) auszuwerten ist. Bei abgeleiteten Variablen zeigt dieser Status eine erfolgreiche Ableitung an.</td>
+</tr>
+<tr class="even">
+<td><code>DERIVE_ERROR</code></td>
+<td>Dieser Status zeigt an, dass eine Ableitung fehlgeschlagen ist. Dies bezieht sich nicht darauf, dass zumindest eine die zugrundeliegenden Variablen einen unzureichenden Status hat, sondern auf einen technischen Fehler beim Ableitungsprozess. Dies kann sich beispielsweise auf einen Typkonflikt (numerisch, Text) beziehen und ist in den meisten Fällen über eine Anpassung des Kodierschemas korrigierbar.</td>
+</tr>
+<tr class="odd">
+<td><code>NO_CODING</code></td>
+<td>Bei diesem Status hat eine Kodierprozedur festgestellt, dass keine Informationen für eine Kodierung vorliegen (keine Codes im Kodierschema definiert). Das kann ein Fehler sein, aber es kann sich auch um offene Antworten handeln, die über andere Wege kodiert werden sollen (z. B. Rating oder Übersetzung in Berufe-Codes außerhalb der regulären Kodierprozesse).</td>
+</tr>
+<tr class="even">
+<td><code>INVALID</code></td>
+<td>Es wurde bei diesem Status eine Antwort festgestellt, die außerhalb des zulässigen Bereiches liegt. Beispielsweise wurde zwar zunächst ein Text eingegeben, dann aber alles gelöscht, so dass eine leere Antwort gespeichert wurde. Mit diesem Code werden auch Spaßantworten “Mir ist langweilig” kodiert.</td>
+</tr>
+<tr class="odd">
+<td><code>CODING_INCOMPLETE</code></td>
+<td>Dieser Code zeigt nach einem Durchlauf einer Kodierprozedur an, dass keiner der vorgesehenen Codes als zutreffend angesehen wurde. Dieser Kodierfall muss dann manuell gesichtet werden.</td>
+</tr>
+<tr class="even">
+<td><code>CODING_ERROR</code></td>
+<td>Während der Kodierung ist ein Fehler aufgetreten, der die Bewertung der Antwort verhindert hat. Dies kann ein technischer Fehler bei der Anzeige (Replay) für das manuelle Kodieren sein, aber auch Typkonflikte zwischen dem Wert und dem Kodierschema können die Ursache sein.</td>
+</tr>
+<tr class="odd">
+<td><code>CODING_COMPLETE</code></td>
+<td>Die Kodierung der Variablen ist erfolgreich abgeschlossen.</td>
 </tr>
 </tbody>
 </table>
-<p>Andere Werte sind im Testsystem nur möglich, wenn eine Antwortverarbeitung angestoßen wurde (wie z. B. beim adaptiven Testen).</p>
-<p>Für die Verarbeitung des Antwortwertes ist es erforderlich, dass der Status <code>VALUE_CHANGED</code> gesetzt ist. Erst dann wird der Antwortwert als absichtliche Interaktion bewertet und eine Kodierung oder Ableitung kann erfolgen.</p>
-<p>Im Kodierschema kann allerdings auch festgelegt werden, dass bei bestimmten Interaktionselementen bereits der Status <code>DISPLAYED</code> eine Verarbeitung erlaubt. Dies ist dann der Fall, wenn das Element einen Ausgangswert hat, der eventuell absichtlich nicht von der Testperson verändert wird. Beispiel hier ist ein Ankreuzkästchen, dessen Ausgangswert <code>false/unchecked</code> vielleicht so bleiben soll und dann sogar die richtige Antwort darstellt. Bei einer Instruktion “Kreuze alle Säugetiere an!” muss die Auswahl “Amsel” unbearbeitet bleiben und dann aber trotzdem in die Auswertung einfließen.</p>
-</section>
-<section id="bei-ableitung" class="level2">
-<h2 class="anchored" data-anchor-id="bei-ableitung">Bei Ableitung</h2>
-<p>Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:</p>
+<section id="status-bei-ableitung" class="level2">
+<h2 class="anchored" data-anchor-id="status-bei-ableitung">Status bei Ableitung</h2>
+<p>Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage eines Wertes oder eines Codes anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:</p>
 <ul>
 <li>Variablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status <code>VALUE_CHANGED</code> haben. Es ist auch der Status <code>DISPLAYED</code> möglich, wenn dies bei der Quellvariablen markiert wurde.</li>
 <li>Variablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status <code>CODING_COMPLETE</code> haben.</li>
 </ul>
+<p>Wenn eine oder mehrere Variablen, deren Werte oder Codes für die Ableitung verwendet werden sollen, einen abweichenden Status haben, erfolgt keine Ableitung. Ist der Status bei allen Variablen gleich, dann wird dieser übernommen. Ansonsten gelten folgende Regeln:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 13%">
-<col style="width: 86%">
+<col style="width: 73%">
+<col style="width: 26%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Wert</th>
-<th>Beschreibung</th>
+<th>Bedingung</th>
+<th>Status der abgeleiteten Variable</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>DERIVE_ERROR</code></td>
-<td>Während der Ableitung ist ein Fehler aufgetreten.</td>
-</tr>
-<tr class="even">
-<td><code>VALUE_CHANGED</code></td>
-<td>Für die abgeleitete Variable wurde erfolgreich ein Wert ermittelt.</td>
-</tr>
-</tbody>
-</table>
-<p>Wenn die o. g. erforderlichen Stati bei den Quellvariablen nicht gefunden wurden, ist der Value der abgeleiteten Variable <code>null</code>und es wird der Status auf den kleinsten Status gesetzt, der bei den Quellvariablen gefunden wurde. Es gilt folgende Rangfolge:</p>
-<p><code>UNSET</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>NOT_REACHED</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>DISPLAYED</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>DERIVE_ERROR</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>NO_CODING</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>INVALID</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>CODING_INCOMPLETE</code> <i class="fa-solid fa-chevron-right" aria-label="chevron-right"></i> <code>CODING_ERROR</code></p>
-</section>
-<section id="bei-kodierung" class="level2">
-<h2 class="anchored" data-anchor-id="bei-kodierung">Bei Kodierung</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 86%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Wert</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>NO_CODING</code></td>
-<td>Es gibt im Kodierschema keine Vorschriften oder Anweisungen für die Kodierung.</td>
-</tr>
-<tr class="even">
+<td>Mindestens eine der Variablen hat den Status <code>CODING_COMPLETE</code> und mindestens eine andere einen unzulässigen Status</td>
 <td><code>INVALID</code></td>
-<td>Der Antwortwert ist ungültig. Dies ist auch der Standard-Status, wenn eine Antwort gegeben wurde, aber leer ist (vorheriger Status VALUE_CHANGED).</td>
-</tr>
-<tr class="odd">
-<td><code>CODING_INCOMPLETE</code></td>
-<td>Die Regeln der automatischen Kodierung wurden angewendet, haben aber keinen zutreffenden Code ermitteln können.</td>
 </tr>
 <tr class="even">
-<td><code>CODING_ERROR</code></td>
-<td>Beim Anwenden der Regeln zur automatischen Kodierung ist ein Fehler aufgetreten. Das kann auch an einer fehlerhaften Regel liegen.</td>
+<td>Alle Variablen haben den Status <code>PARTLY_DISPLAYED</code></td>
+<td><code>PARTLY_DISPLAYED</code></td>
 </tr>
 <tr class="odd">
-<td><code>CODING_COMPLETE</code></td>
-<td>Ein Code wurde zugewiesen. Damit ist automatisch auch das Setzen von Score verbunden.</td>
+<td>Mindestens eine der Variablen hat den Status <code>PARTLY_DISPLAYED</code> oder <code>DISPLAYED</code> und mindestens eine andere <code>NOT_REACHED</code> oder <code>UNSET</code></td>
+<td><code>PARTLY_DISPLAYED</code></td>
+</tr>
+<tr class="even">
+<td>Mindestens eine der Variablen hat den Status <code>CODING_ERROR</code></td>
+<td><code>CODING_ERROR</code></td>
 </tr>
 </tbody>
 </table>
-<p>Die Kodierung folgt zunächst den Festlegungen der automatischen Kodierung (regelbasiert). Sollte kein zutreffender Code gefunden werden, dann wird der Code <code>CODING_INCOMPLETE</code> gesetzt. Dann – und auch bei einem Kodierfehler <code>CODING_ERROR</code> – folgt die Sichtung der Antwort und eine manuelle Kodierung. Hier können wiederum die Stati <code>CODING_COMPLETE</code> oder <code>INVALID</code> gesetzt werden.</p>
 </section>
 </section>
 <section id="value-types" class="level1">
