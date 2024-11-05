@@ -280,10 +280,6 @@ ul.task-list li input[type="checkbox"] {
 <h1>Status</h1>
 <p>Der Status-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess. Die Datenstruktur wird nicht nur bei der Beantwortung der Testitems oder Fragen im Player genutzt, sondern auch während der Kodierung und Ableitung von neuen Variablen.</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 86%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Wert</th>
@@ -313,7 +309,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td><code>DERIVE_ERROR</code></td>
-<td>Dieser Status zeigt an, dass eine Ableitung fehlgeschlagen ist. Dies bezieht sich nicht darauf, dass zumindest eine die zugrundeliegenden Variablen einen unzureichenden Status hat, sondern auf einen technischen Fehler beim Ableitungsprozess. Dies kann sich beispielsweise auf einen Typkonflikt (numerisch, Text) beziehen und ist in den meisten Fällen über eine Anpassung des Kodierschemas korrigierbar.</td>
+<td>Dieser Status zeigt an, dass eine Ableitung fehlgeschlagen ist. Dies kann sich beispielsweise auf einen Typkonflikt (numerisch, Text) beziehen und ist in den meisten Fällen über eine Anpassung des Kodierschemas korrigierbar. Der Status bezieht sich allerdings nicht darauf, ob die zugrundeliegenden Variablen einen unzureichenden Status haben (<a href="#status-bei-ableitung">s. unten</a>), sondern es geht um technische Fehler beim Ableitungsprozess.</td>
 </tr>
 <tr class="odd">
 <td><code>NO_CODING</code></td>
@@ -362,14 +358,10 @@ ul.task-list li input[type="checkbox"] {
 <td><code>INVALID</code></td>
 </tr>
 <tr class="even">
-<td>Alle Variablen haben den Status <code>PARTLY_DISPLAYED</code></td>
-<td><code>PARTLY_DISPLAYED</code></td>
-</tr>
-<tr class="odd">
 <td>Mindestens eine der Variablen hat den Status <code>PARTLY_DISPLAYED</code> oder <code>DISPLAYED</code> und mindestens eine andere <code>NOT_REACHED</code> oder <code>UNSET</code></td>
 <td><code>PARTLY_DISPLAYED</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Mindestens eine der Variablen hat den Status <code>CODING_ERROR</code></td>
 <td><code>CODING_ERROR</code></td>
 </tr>
