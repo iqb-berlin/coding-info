@@ -43,11 +43,16 @@ Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlag
 
 Wenn eine oder mehrere Variablen, deren Werte oder Codes für die Ableitung verwendet werden sollen, einen abweichenden Status haben, erfolgt keine Ableitung. Ist der Status bei allen Variablen gleich, dann wird dieser übernommen. Ansonsten gelten folgende Regeln:
 
+::: {.callout-caution}
+## Reihenfolge wichtig
+Die folgende Liste wird genau in dieser Reihenfolge abgearbeitet. Sobald ein Fall zutrifft, wird nicht mit der nächsten Bedingung fortgesetzt.
+:::
+
 | Bedingung | Status der abgeleiteten Variable |
 |-----------|----|
+| Mindestens eine der Variablen hat den Status `CODING_ERROR` | `CODING_ERROR` |
 | Mindestens eine der Variablen hat den Status `CODING_COMPLETE` und mindestens eine andere einen unzulässigen Status | `INVALID` |
 | Mindestens eine der Variablen hat den Status `PARTLY_DISPLAYED` oder `DISPLAYED` und mindestens eine andere `NOT_REACHED` oder `UNSET` | `PARTLY_DISPLAYED` |
-| Mindestens eine der Variablen hat den Status `CODING_ERROR` | `CODING_ERROR` |
 
 # Value Types
 
