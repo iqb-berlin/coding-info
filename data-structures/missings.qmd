@@ -14,26 +14,25 @@ Mit dem Begriff "Missings" werden Zustände in den Daten kodiert, die von einer 
 
 ```{mermaid}
 flowchart TD
-    C{Antwort im System\ngespeichert?} -->|JA| A{Item wurde\ngesehen?}
-    A -->|JA| F{Item wurde \nbearbeitet?}
-    style G fill:#ff9
-    F -->|JA| H{Antwort ungültig,\nleer oder Spaßantwort?}
-    A -->|NEIN| I{nachfolgend\nbearbeitete oder\ngesehene Items?}
-    F -->|NEIN| J[missing\nby omission]
-    I -->|JA| J
-    I -->|NEIN| G[missing\nnot reached]
-    style J fill:#ff9
-    H -->|JA| K[missing\ninvalid response]
-    style K fill:#ff9
-    H -->|NEIN| L["Gültige Antwort\nAuswertung möglich"]
-    style L fill:#af8
-
-    C -->|NEIN| B{Technisches\nProblem?}
-    B -->|JA| D[missing\ncoding impossible]
+    C{{"Antwort im System gespeichert?"}} --> |NEIN| B{{"Technisches Problem?"}}
+    B -->|JA| D["missing coding impossible"]
     style D fill:#ff9
-    B -->|NEIN| E[missing\nby design]
+    B -->|NEIN| E["missing by design"]
     style E fill:#ff9
 
+    C -->|JA| A{{"Item wurde gesehen?"}}
+    A -->|JA| F{{"Item wurde bearbeitet?"}}
+    style G fill:#ff9
+    F -->|JA| H{{"Antwort ungültig, leer oder Spaßantwort?"}}
+    A -->|NEIN| I{{"nachfolgend bearbeitete oder gesehene Items?"}}
+    F -->|NEIN| J["missing by omission"]
+    I -->|JA| J
+    I -->|NEIN| G["missing not reached"]
+    style J fill:#ff9
+    H -->|JA| K["missing invalid response"]
+    style K fill:#ff9
+    H -->|NEIN| L["Gültige Antwort; Auswertung möglich"]
+    style L fill:#af8
 ```
 
 | ID | Label | Beschreibung | Code-Value |

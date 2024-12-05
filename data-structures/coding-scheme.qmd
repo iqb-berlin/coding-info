@@ -41,14 +41,17 @@ Diese Angabe ist meist unnötig, wird also leer gelassen. Erforderlich könnte s
 
 Hier wird festgelegt, woher der Wert der Variablen kommt:
 
-* `BASE`: Es handelt sich um eine Basisvariable. Der Wert stammt also aus der Interaktion der Testperson mit dem Testsystem.
-* `BASE_NO_VALUE`: Es handelt sich um eine Variable im Datensatz der Testdurchführung, die aber nie einen Antwortwert hat oder deren Wert stets ignoriert werden soll.
-* `COPY_VALUE`: Der Wert dieser abgeleiteten Variable ist eine identische Kopie eines Wertes einer anderen Variable. Dies ist erforderlich, wenn ein Eingabewert nicht nur eine isolierte Information liefern soll, sondern mehrere Aspekte des Wertes getrennt analysiert und also kodiert werden sollen. Beispiel: Es soll getrennt bewertet werden, ob die Großschreibung eingehalten und das Dehnungs-H richtig gesetzt wurde (Orthografie-Items).
-* `CONCAT_CODE`: Der Wert dieser abgeleiteten Variable setzt sich aus den Codes anderer Variablen zusammen. Die Integer-Werte der Codes werden mit dem Trennzeichen '_' aneinander gekettet. Der neue Wert der Variablen ist also ein String.
-* `SUM_CODE`: Der Wert dieser abgeleiteten Variable ist der Summenwert der Codes anderer Variablen. Durch geschicktes Festlegen der Codes lassen sich gut zusammenfassende Werte bilden. Der neue Wert der Variablen ist also ein Integer.
-* `SUM_SCORE`: Der Wert dieser abgeleiteten Variable ist der Summenwert der Scores anderer Variablen. Damit wird meistens die Bewertung mehrerer Antworten für ein Item zusammengefasst. Ein Item gilt also dann als richtig beantwortet, wenn einige Teilleistungen richtig sind. Der neue Wert der Variablen ist ein Integer.
-* `UNIQUE_VALUES`: Der Wert dieser abgeleiteten Variablen ist ein Boolscher Wert true/false mit dem festgestellt werden kann, ob die Werte der Quellvariablen eindeutig sind. Sowie einer der Werte mehrfach vorkommt, wird false gesetzt. Bei dieser Ableitung reicht es, wenn eine der Quellvariablen den Status `VALUE_CHANGED` hat.
-* `SOLVER`: Diese Ableitung setzt numerische Werte bei den Quellvariablen voraus und verknüpft diese mit einem mathematischen Ausdruck, der als separater Parameter übergeben werden muss (s. u.). Es entsteht wieder ein numerischer Wert.
+* Basisvariablen
+  * `BASE`: Es handelt sich um eine Basisvariable. Der Wert stammt also aus der Interaktion der Testperson mit dem Testsystem.
+  * `BASE_NO_VALUE`: Es handelt sich um eine Variable im Datensatz der Testdurchführung, die aber nie einen Antwortwert hat oder deren Wert stets ignoriert werden soll.
+* Ableitung basierend auf dem Wert der Antwort
+  * `COPY_VALUE`: Der Wert dieser abgeleiteten Variable ist eine identische Kopie eines Wertes einer anderen Variable. Dies ist erforderlich, wenn ein Eingabewert nicht nur eine isolierte Information liefern soll, sondern mehrere Aspekte des Wertes getrennt analysiert und also kodiert werden sollen. Beispiel: Es soll getrennt bewertet werden, ob die Großschreibung eingehalten und das Dehnungs-H richtig gesetzt wurde (Orthografie-Items).
+  * `UNIQUE_VALUES`: Der Wert dieser abgeleiteten Variablen ist ein Boolscher Wert true/false mit dem festgestellt werden kann, ob die Werte der Quellvariablen eindeutig sind. Sowie einer der Werte mehrfach vorkommt, wird false gesetzt. Bei dieser Ableitung reicht es, wenn eine der Quellvariablen  den Status `VALUE_CHANGED` hat.
+  * `SOLVER`: Diese Ableitung setzt numerische Werte bei den Quellvariablen voraus und verknüpft diese mit einem mathematischen Ausdruck, der als separater Parameter übergeben werden muss (s. u.). Es entsteht wieder ein numerischer Wert.
+* Ableitung basierend auf dem Code oder Score der Antwort
+  * `CONCAT_CODE`: Der Wert dieser abgeleiteten Variable setzt sich aus den Codes anderer Variablen zusammen. Die Integer-Werte der Codes werden mit dem Trennzeichen '_' aneinander gekettet. Der neue Wert der Variablen ist also ein String.
+  * `SUM_CODE`: Der Wert dieser abgeleiteten Variable ist der Summenwert der Codes anderer Variablen. Durch geschicktes Festlegen der Codes lassen sich gut zusammenfassende Werte bilden. Der neue Wert der Variablen ist also ein Integer.
+  * `SUM_SCORE`: Der Wert dieser abgeleiteten Variable ist der Summenwert der Scores anderer Variablen. Damit wird meistens die Bewertung mehrerer Antworten für ein Item zusammengefasst. Ein Item gilt also dann als richtig beantwortet, wenn einige Teilleistungen richtig sind. Der neue Wert der Variablen ist ein Integer.
 * `MANUAL`: Diese Ableitung basiert zwar auf anderen Variablen, es werden aber weder Wert, Code noch Score verwendet. Statt dessen erfolgt eine manuelle Kodierung der abgeleiteten Variablen mit Blick auf alle Werte der Variablen, die als Quelle angegeben sind.
 
 ## `sourceParameters`
