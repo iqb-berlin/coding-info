@@ -9,9 +9,13 @@ title: Ableitungen
 flowchart TD
     subgraph Test
         A[UNSET]
+        style A fill:white
         B[NOT_REACHED]
+        style B fill:white
         C[DISPLAYED]
+        style C fill:white
         D[VALUE_CHANGED]
+        style D fill:white
     end
     style Test fill:#b3b3cc
     A --> F["Fehler in Programmierung"]
@@ -38,6 +42,7 @@ flowchart TD
         K1[CODING_COMPLETE]
         style K1 fill:#6f9
         K2[CODING_INCOMPLETE]
+        style K2 fill:white
         K5[CODING_ERROR]
         style K5 fill:#f60
         K3[NO_CODING]

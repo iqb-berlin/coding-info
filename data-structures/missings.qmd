@@ -14,7 +14,8 @@ Mit dem Begriff "Missings" werden Zustände in den Daten kodiert, die von einer 
 
 ```{mermaid}
 flowchart TD
-    C{{"Antwort im System gespeichert?"}} --> |NEIN| B{{"Technisches Problem?"}}
+    C{{"Antwort im System gespeichert?"}}
+    C --> |NEIN| B{{"Technisches Problem?"}}
     B -->|JA| D["missing coding impossible"]
     style D fill:#ff9
     B -->|NEIN| E["missing by design"]
@@ -31,7 +32,7 @@ flowchart TD
     style J fill:#ff9
     H -->|JA| K["missing invalid response"]
     style K fill:#ff9
-    H -->|NEIN| L["Gültige Antwort; Auswertung möglich"]
+    H -->|NEIN| L["Gültige Antwort - Auswertung möglich"]
     style L fill:#af8
 ```
 
