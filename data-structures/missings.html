@@ -236,8 +236,8 @@ ul.task-list li input[type="checkbox"] {
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart TD
-    C{{"Antwort im System gespeichert?"}}
-    C --&gt; |NEIN| B{{"Technisches Problem?"}}
+    Start
+    C{{"Antwort im System gespeichert?"}} --&gt; |NEIN| B{{"Technisches Problem?"}}
     B --&gt;|JA| D["missing coding impossible"]
     style D fill:#ff9
     B --&gt;|NEIN| E["missing by design"]
@@ -256,6 +256,7 @@ ul.task-list li input[type="checkbox"] {
     style K fill:#ff9
     H --&gt;|NEIN| L["Gültige Antwort - Auswertung möglich"]
     style L fill:#af8
+    Ende
 </pre>
 </div>
 <p></p></figure><p></p>
