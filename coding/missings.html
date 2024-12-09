@@ -208,9 +208,10 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#begriff" id="toc-begriff" class="nav-link active" data-scroll-target="#begriff">Begriff</a></li>
   <li><a href="#standard-missings-des-iqb" id="toc-standard-missings-des-iqb" class="nav-link" data-scroll-target="#standard-missings-des-iqb">Standard-Missings des IQB</a></li>
-  <li><a href="#verfahren" id="toc-verfahren" class="nav-link" data-scroll-target="#verfahren">Verfahren</a>
+  <li><a href="#mapping-auf-response-status" id="toc-mapping-auf-response-status" class="nav-link" data-scroll-target="#mapping-auf-response-status">Mapping auf <code>response</code>-Status</a>
   <ul class="collapse">
-  <li><a href="#status-missing" id="toc-status-missing" class="nav-link" data-scroll-target="#status-missing">Status → Missing</a></li>
+  <li><a href="#fälle-innerhalb-einer-unit" id="toc-fälle-innerhalb-einer-unit" class="nav-link" data-scroll-target="#fälle-innerhalb-einer-unit">Fälle innerhalb einer Unit</a></li>
+  <li><a href="#missing-not-reached-über-unit-grenzen" id="toc-missing-not-reached-über-unit-grenzen" class="nav-link" data-scroll-target="#missing-not-reached-über-unit-grenzen">Missing not reached über Unit-Grenzen</a></li>
   <li><a href="#missing-by-design" id="toc-missing-by-design" class="nav-link" data-scroll-target="#missing-by-design">Missing by Design</a></li>
   </ul></li>
   </ul>
@@ -325,16 +326,16 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
-<section id="verfahren" class="level1">
-<h1>Verfahren</h1>
+<section id="mapping-auf-response-status" class="level1">
+<h1>Mapping auf <code>response</code>-Status</h1>
 <p>Die Datenstruktur <a href="response.qmd"><code>response</code></a>, die durch die TBA-Webanwendung IQB-Testcenter erzeugt wird, sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein Status geliefert. Erst zu einem späteren Zeitpunkt – im Rahmen der Kodierung und Ableitung – wird die Datenstruktur <code>response</code> in einen einzelnen numerischen ganzzahligen Code transformiert. Diese Transformation zu einer <strong>Itemmatrix Person x Antwort-Code</strong> bedeutet in der Regel Informationsverlust, ist aber Voraussetzung für die nachfolgenden Datenanalysen.</p>
-<section id="status-missing" class="level2">
-<h2 class="anchored" data-anchor-id="status-missing">Status → Missing</h2>
+<section id="fälle-innerhalb-einer-unit" class="level2">
+<h2 class="anchored" data-anchor-id="fälle-innerhalb-einer-unit">Fälle innerhalb einer Unit</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 15%">
-<col style="width: 21%">
-<col style="width: 63%">
+<col style="width: 23%">
+<col style="width: 19%">
+<col style="width: 57%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -367,9 +368,12 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
+<section id="missing-not-reached-über-unit-grenzen" class="level2">
+<h2 class="anchored" data-anchor-id="missing-not-reached-über-unit-grenzen">Missing not reached über Unit-Grenzen</h2>
+<p>Die Ermittlung von <code>NOT_REACHED</code> bezog sich bisher nur auf die jeweilige Unit. Für die Analyse muss diese Sicht jedoch auf das Testinstrument (Testheft) erweitert werden. Items von Units, die nicht in den Antwortdaten zu finden sind, aber beantwortet werden sollten, müssen neu in die Itemmatrix aufgenommen werden. Hierzu muss die Abfolge der Units (Sequenz) für jedes Testinstrument bekannt sein sowie ggf. Blockgrenzen bekannt sein. Welcher Missing-Code vergeben wird, richtet sich dann nach der Position der Unit bzw. danach, ob bis zum Ende des Tests bzw. des Blocks noch Antworten vorliegen.</p>
+</section>
 <section id="missing-by-design" class="level2">
 <h2 class="anchored" data-anchor-id="missing-by-design">Missing by Design</h2>
-<p>Die Ermittlung von <code>NOT_REACHED</code> bezog sich bisher nur auf die jeweilige Unit. Für die Analyse muss diese Sicht jedoch auf das Testinstrument (Testheft) erweitert werden. Items von Units, die nicht in den Antwortdaten zu finden sind, aber beantwortet werden sollten, müssen neu in die Itemmatrix aufgenommen werden. Hierzu muss die Abfolge der Units (Sequenz) für jedes Testinstrument bekannt sein sowie ggf. Blockgrenzen bekannt sein. Welcher Missing-Code vergeben wird, richtet sich dann nach der Position der Unit bzw. danach, ob bis zum Ende des Tests bzw. des Blocks noch Antworten vorliegen.</p>
 <p>Anschließend werden üblicherweise Items hinzugefügt, die den Personen nicht vorgelegt wurden und die also planmäßig nicht beantwortet wurden. Dies dient der Vervollständigung der Matrix für die Datenverarbeitung. Den Items wird der Code -94 (mbd - missing by design) zugewiesen.</p>
 
 

@@ -283,11 +283,22 @@
     ]
   },
   {
-    "objectID": "coding/missings.html#status-missing",
-    "href": "coding/missings.html#status-missing",
+    "objectID": "coding/missings.html#fälle-innerhalb-einer-unit",
+    "href": "coding/missings.html#fälle-innerhalb-einer-unit",
     "title": "IQB-Missings",
-    "section": "Status → Missing",
-    "text": "Status → Missing\n\n\n\n\n\n\n\n\nStatus\nNeuer Code\nBeschreibung\n\n\n\n\nINVALID\n-98\nmir - missing invalid response\n\n\nCODING_ERROR\n-97\nmci - missing coding impossible\n\n\nUNSET, DISPLAYED\n-99\nmbo - missing by omission\n\n\nNOT_REACHED\n-96 oder -99\nmnr - missing not reached oder mbo - missing by omission",
+    "section": "Fälle innerhalb einer Unit",
+    "text": "Fälle innerhalb einer Unit\n\n\n\n\n\n\n\n\nStatus\nNeuer Code\nBeschreibung\n\n\n\n\nINVALID\n-98\nmir - missing invalid response\n\n\nCODING_ERROR\n-97\nmci - missing coding impossible\n\n\nUNSET, DISPLAYED\n-99\nmbo - missing by omission\n\n\nNOT_REACHED\n-96 oder -99\nmnr - missing not reached oder mbo - missing by omission",
+    "crumbs": [
+      "Kodierung",
+      "IQB-Missings"
+    ]
+  },
+  {
+    "objectID": "coding/missings.html#missing-not-reached-über-unit-grenzen",
+    "href": "coding/missings.html#missing-not-reached-über-unit-grenzen",
+    "title": "IQB-Missings",
+    "section": "Missing not reached über Unit-Grenzen",
+    "text": "Missing not reached über Unit-Grenzen\nDie Ermittlung von NOT_REACHED bezog sich bisher nur auf die jeweilige Unit. Für die Analyse muss diese Sicht jedoch auf das Testinstrument (Testheft) erweitert werden. Items von Units, die nicht in den Antwortdaten zu finden sind, aber beantwortet werden sollten, müssen neu in die Itemmatrix aufgenommen werden. Hierzu muss die Abfolge der Units (Sequenz) für jedes Testinstrument bekannt sein sowie ggf. Blockgrenzen bekannt sein. Welcher Missing-Code vergeben wird, richtet sich dann nach der Position der Unit bzw. danach, ob bis zum Ende des Tests bzw. des Blocks noch Antworten vorliegen.",
     "crumbs": [
       "Kodierung",
       "IQB-Missings"
@@ -298,7 +309,7 @@
     "href": "coding/missings.html#missing-by-design",
     "title": "IQB-Missings",
     "section": "Missing by Design",
-    "text": "Missing by Design\nDie Ermittlung von NOT_REACHED bezog sich bisher nur auf die jeweilige Unit. Für die Analyse muss diese Sicht jedoch auf das Testinstrument (Testheft) erweitert werden. Items von Units, die nicht in den Antwortdaten zu finden sind, aber beantwortet werden sollten, müssen neu in die Itemmatrix aufgenommen werden. Hierzu muss die Abfolge der Units (Sequenz) für jedes Testinstrument bekannt sein sowie ggf. Blockgrenzen bekannt sein. Welcher Missing-Code vergeben wird, richtet sich dann nach der Position der Unit bzw. danach, ob bis zum Ende des Tests bzw. des Blocks noch Antworten vorliegen.\nAnschließend werden üblicherweise Items hinzugefügt, die den Personen nicht vorgelegt wurden und die also planmäßig nicht beantwortet wurden. Dies dient der Vervollständigung der Matrix für die Datenverarbeitung. Den Items wird der Code -94 (mbd - missing by design) zugewiesen.",
+    "text": "Missing by Design\nAnschließend werden üblicherweise Items hinzugefügt, die den Personen nicht vorgelegt wurden und die also planmäßig nicht beantwortet wurden. Dies dient der Vervollständigung der Matrix für die Datenverarbeitung. Den Items wird der Code -94 (mbd - missing by design) zugewiesen.",
     "crumbs": [
       "Kodierung",
       "IQB-Missings"
