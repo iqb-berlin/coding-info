@@ -1,0 +1,44 @@
+---
+lang: de
+title: Gültige Antworten
+---
+
+In die Kodierung gehen nur Fälle ein, die den Status `VALUE_CHANGED` haben:
+
+```{mermaid}
+flowchart TD
+    subgraph Test
+        A[UNSET]
+        style A fill:white
+        B[NOT_REACHED]
+        style B fill:white
+        C[DISPLAYED]
+        style C fill:white
+        D[VALUE_CHANGED]
+        style D fill:white
+    end
+    style Test fill:#b3b3cc
+    A --> F["Fehler in Programmierung"]
+    style F fill:#f60
+    B --> G[NOT_REACHED]
+    style G fill:#fc6
+    C --> H{{TAKE_DISPLAYED_AS_VALUE_CHANGED ?}}
+    style H fill:white
+    H --> |NEIN| L[DISPLAYED]
+    style L fill:#fc6
+    D --> HX{{Empty ?}}
+    T[VALUE_CHANGED]
+    H --> |JA| T
+    T --> HX
+    style HX fill:white
+    HX --> |NEIN| K["Kodierung"]
+    X --> |JA| K["Kodierung"]
+    HX --> |JA| X{{TAKE_EMPTY_AS_VALID ?}}
+    X --> |NEIN| XY[INVALID]
+    style X fill:white
+    style XY fill:#fc6
+```
+
+Der Begriff **leer** bezeichnet einen leeren String `""` oder - wenn ein Array von Werten erwartet wird - ein Array mit 0 Elementen `"[]"`.
+
+`VALUE_CHANGED` meint an dieser Stelle den geprüften Status, d. h. es kann auch `DISPLAYED` einschließen, wenn `TAKE_DISPLAYED_AS_VALUE_CHANGED` gesetzt ist, und prüft, dass der Wert nicht leer ist bzw.  `TAKE_EMPTY_AS_VALID` gesetzt ist.

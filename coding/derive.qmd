@@ -3,94 +3,14 @@ lang: de
 title: Ableitungen
 ---
 
-# Basisvariablen aus der Testdurchführung
-
-```{mermaid}
-flowchart TD
-    subgraph Test
-        A[UNSET]
-        style A fill:white
-        B[NOT_REACHED]
-        style B fill:white
-        C[DISPLAYED]
-        style C fill:white
-        D[VALUE_CHANGED]
-        style D fill:white
-    end
-    style Test fill:#b3b3cc
-    A --> F["Fehler in Programmierung"]
-    style F fill:#f60
-    B --> G[NOT_REACHED]
-    style G fill:#fc6
-    C --> H{{TAKE_DISPLAYED_AS_VALUE_CHANGED ?}}
-    style H fill:white
-    H --> |NEIN| L[DISPLAYED]
-    style L fill:#fc6
-    D --> HX{{Empty ?}}
-    T[VALUE_CHANGED]
-    H --> |JA| T
-    T --> HX
-    style HX fill:white
-    HX --> |NEIN| K["Automatische Kodierung"]
-    X --> |JA| K
-    HX --> |JA| X{{TAKE_EMPTY_AS_VALID ?}}
-    X --> |NEIN| XY[INVALID]
-    style X fill:white
-    style XY fill:#fc6
-
-    subgraph Kodierung_1
-        K1[CODING_COMPLETE]
-        style K1 fill:#6f9
-        K2[CODING_INCOMPLETE]
-        style K2 fill:white
-        K5[CODING_ERROR]
-        style K5 fill:#f60
-        K3[NO_CODING]
-        style K3 fill:#9cf
-        K4[INVALID]
-        style K4 fill:#fc6
-    end
-    style Kodierung_1 fill:#b3b3cc
-    style Kodierung_1 color:#b3b3cc
-    K --> K1
-    K --> K2
-    K --> K5
-    K --> K3
-    K --> K4
-
-    R["Manuelle Kodierung"]
-    K2 --> R
-    K5 --> R
-
-    RE["Rating / Transcript"]
-    style RE fill:#9cf
-    K3 --> RE
-    subgraph Kodierung_2
-        K2_1[CODING_COMPLETE]
-        style K2_1 fill:#6f9
-        K2_4[INVALID]
-        style K2_4 fill:#fc6
-        K2_5[CODING_ERROR]
-        style K2_5 fill:#fc6
-    end
-    style Kodierung_2 fill:#b3b3cc
-    style Kodierung_2 color:#b3b3cc
-    R --> K2_1
-    R --> K2_4
-    R --> K2_5
-
-```
-
-# Abgeleitete Variablen
-
-## Zulässiger Status
+# Zulässiger Status
 
 Ob eine Ableitung möglich ist, ist vom Status der Quellvariablen und von der Ableitungsmethode `sourceType` abhängig. Für jede Quellvariable muss einer der folgenden Status zutreffen, damit eine Ableitung erfolgt:
 
 | Ableitungsmethode | zulässiger Status |
 |------|-------|
-|`MANUAL`|`VALUE_CHANGED`[^1], `CODING_COMPLETE`, `CODING_INCOMPLETE`, `CODING_ERROR`, `NO_CODING`|
-|`COPY_VALUE`, `UNIQUE_VALUES`, `SOLVER`|`CODING_COMPLETE`, `CODING_INCOMPLETE`, `CODING_ERROR`, `NO_CODING`|
+|`MANUAL`|`INVALID`, `VALUE_CHANGED`[^1], `CODING_COMPLETE`, `CODING_INCOMPLETE`, `CODING_ERROR`, `NO_CODING`|
+|`COPY_VALUE`, `UNIQUE_VALUES`, `SOLVER`|`VALUE_CHANGED`[^1], `CODING_COMPLETE`, `CODING_INCOMPLETE`, `CODING_ERROR`, `NO_CODING`|
 |`CONCAT_CODE`, `SUM_CODE`, `SUM_SCORE`|`CODING_COMPLETE`|
 
 : Zulässiger Status nach Ableitungsmethode {.striped}
@@ -99,11 +19,11 @@ Bei der Ableitungsmethode `MANUAL` wird die abgeleitete Variable ggf. neu angele
 
 Bei allen anderen Ableitungsmethoden versucht der Autocoder eine Kodierung entsprechend der Parameter und Regeln.
 
-## Fehlersituation
+# Fehlersituation
 
 Wenn die Quellvariablen nicht die o. g. Bedingungen an den Status erfüllen, muss ein aussagekräftiger Status für die neue Variable gesetzt werden. Für die folgenden Schritte ist die Reihenfolge relevant.
 
-### Schritt 1: Killer
+## Schritt 1: Killer
 
 Wenn eine der Quellvariablen einen der folgenden linken Status hat, dann erhält die abgeleitete Variable den rechten Status - egal, welchen Status die anderen Quellvariablen haben. Die Liste wird von oben nach unten abgearbeitet.
 
@@ -113,11 +33,11 @@ Wenn eine der Quellvariablen einen der folgenden linken Status hat, dann erhält
 1) `CODING_ERROR` &rarr; `CODING_ERROR`
 1) `INVALID` &rarr; `INVALID`
 
-### Schritt 2: Warten auf manuelle Kodierung
+## Schritt 2: Warten auf manuelle Kodierung
 
 Die Ableitungsmethoden `CONCAT_CODE`, `SUM_CODE` und `SUM_SCORE` setzen eine vollständige Kodierung voraus: `CODING_COMPLETE`. Sollte eine oder mehrere Quellvariablen den Status `CODING_INCOMPLETE` oder `DERIVE_PENDING` haben, dann wird der Status der abgeleiteten Variable auf `DERIVE_PENDING` gesetzt.
 
-### Schritt 3: Erben von Fehlerzuständen
+## Schritt 3: Erben von Fehlerzuständen
 
 Für die verbliebenen Fehlerzustände der Ableitungen soll der Status gezielt gesetzt werden, um die Nachbereitung oder das Setzen von Missings zu erleichtern:
 

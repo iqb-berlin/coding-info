@@ -4,11 +4,6 @@ title: Kodieren
 ---
 ![](banner.jpg)
 
-::: {.callout-important}
-## Achtung: Webseite in Entwicklung
-Diese Webseite ist im Aufbau. Die Inhalte sind unvollständig und werden ständig revidiert.
-:::
-
 # Willkommen
 
 In Studien zur Feststellung von Leistungsständen im Bildungswesen liegt der Arbeitsschritt "Kodieren" zwischen der Datenerhebung - also der Durchführung eines Assessments - und der Datenanalyse. Rohantworten führen zu komplexen Datenstrukturen mit einem großen Wertespektrum, die so kaum auswertbar sind. Kodierung heißt hier, diese Werte einfachen Kategorien ("Codes") zuzuordnen, die die Antwort im Sinne der Studienzielstellung symbolisieren. Anschließend lassen sich Häufigkeiten für diese Kategorien ermitteln, Zusammenhänge modellieren, und letztlich können empirisch begründete Empfehlungen gegeben werden.

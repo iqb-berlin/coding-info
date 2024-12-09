@@ -31,18 +31,21 @@ website:
         text: Start
       - section: Datenstrukturen
         href: data-structures/index.qmd
-        contents:        
+        contents:
           - href: data-structures/response.qmd
             text: Antwort/Variable
           - data-structures/coding-scheme.qmd
-          - href: data-structures/missings.qmd
-            text: Missings
           - section: itc-ToolBox Output
             href: data-structures/itc-ToolBox-Output/index.qmd
-            contents:        
+            contents:
               - href: data-structures/itc-ToolBox-Output/tc-merge.qmd
                 text: "Format TC-Merge"
-      - workflow/index.qmd
+      - section: Kodierung
+        href: coding/index.qmd
+        contents:
+          - coding/valid-responses.qmd
+          - coding/derive.qmd
+          - coding/missings.qmd
 
 format:
   html:

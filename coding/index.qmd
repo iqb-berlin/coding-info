@@ -1,0 +1,144 @@
+---
+lang: de
+title: Kodieren
+---
+
+# Allgemeines Verfahren
+
+Bevor die Daten in die Analyse gehen, werden sie aufbereitet. Die Kodierung übernimmt hierbei nicht nur die klassische Funktion, die Antwort einer Kategorie zuzuordnen, sondern setzt auch vielfältige Vorschriften zur Anzeige von Fehlerzuständen um. Die Prozesse der Kodierung setzen direkt an der Datenerzeugung an und haben so eine herausragende Funktion bei der Sicherung der Datenqualität.
+
+```{mermaid}
+%%| fig-cap: Kodierung Ablauf
+flowchart TD
+    subgraph Input
+        T["Antworten"]
+        style T fill:white
+        style T stroke:black
+    end
+    style Input fill:#ffc
+    style Input stroke:#996
+    style Input color:black
+    subgraph Kodierung
+        F[Filter gültige Antworten]
+        style F fill:white
+        style F stroke:white
+        A1[Autocoder 1. Lauf]
+        style A1 fill:white
+        style A1 stroke:white
+        M[Manuelle Kodierung]
+        style M fill:white
+        style M stroke:white
+        A2[Autocoder 2. Lauf]
+        style A2 fill:white
+        style A2 stroke:white
+    end
+    style Kodierung fill:#996
+    style Kodierung stroke:#996
+    style Kodierung color:black
+    subgraph Output
+        K[Kodierte valide Werte]
+        style K fill:white
+        style K stroke:black
+        W[Invalide Werte]
+        style W fill:white
+        style W stroke:black
+        K --> PDS[Primärer Datensatz]
+        W --> PDS
+        style PDS fill:#cf9
+        style PDS stroke:black
+        PDS --> ADS[Analyse-Datensatz]
+        style ADS fill:#cf9
+        style ADS stroke:black
+    end
+    style Output fill:#ffc
+    style Output stroke:#996
+    style Output color:black
+    T --> F
+    F --> A1
+    A1 --> K
+    A1 --> M
+    M --> A2
+    A2 --> W
+    A2 --> K
+    A1 --> W
+    F --> W
+```
+
+Ausgehend von den Rohdaten, die im Format [`iqb-standard`](../data-structures/response.qmd) vorliegen, müssen folgende Arbeitsschritte vorgenommen werden:
+
+* Filter [gültiger Antworten](valid-responses.qmd): Eine Kodierung ist nur für Antworten erforderlich, die gültig sind.
+* [Autocoder](autocoder.qmd) 1. Lauf: Soweit möglich, werden die Vorschriften im [Kodierschema](../data-structures/coding-scheme.qmd) genutzt, um automatisch zu kodieren. Sollten die Vorschriften nicht ausreichen, bleiben Kodierfälle offen. Diese Fälle sind auf besondere Art markiert, um sie der manuellen Kodierung zuzuführen.
+* Bei der manuelle Kodierung erfolgt die Bewertung der Antwort über besonders qualifizierte Personen.
+* Anschließend erfolgt ein zweiter Lauf des Autocoders. Es ist jetzt möglich, mit allen vorliegenden Bewertungen alle nötigen Ableitungen abzuschließen. Für die spätere Beurteilung der Datenqualität ist die Zuweisung von bestimmten Status-Werten für [invalide Kodierfälle](invalid-responses.qmd) nötig.
+* Invalide Werte werden am IQB in [Missings](missings.qmd) rekodiert. Zusammen mit den Scores aus dem primären Datensatz ergeben sie den Analyse-Datensatz.
+
+# Werte für Status einer Antwort
+
+```{mermaid}
+flowchart TD
+    A[Antwort VALUE_CHANGED] --> K["Automatische Kodierung + Ableitung"]
+
+    subgraph Kodierung_1
+        K1[CODING_COMPLETE]
+        style K1 fill:#6f9
+        K6[DERIVE_PENDING]
+        style K6 fill:white
+        K2[CODING_INCOMPLETE]
+        style K2 fill:white
+        K5[CODING_ERROR]
+        style K5 fill:#f60
+        K3[NO_CODING]
+        style K3 fill:#9cf
+        K4[INVALID]
+        style K4 fill:#fc6
+    end
+    style Kodierung_1 fill:#b3b3cc
+    style Kodierung_1 color:#b3b3cc
+    K --> K1
+    K --> K6
+    K --> K2
+    K --> K5
+    K --> K3
+    K --> K4
+
+    K6 --> KK
+
+    R["Manuelle Kodierung"]
+    K2 --> R
+    K5 --> R
+    K3 --> RE["Rating / Transcript"]
+    style RE fill:#9cf
+
+    subgraph Kodierung_2
+        K2_1[CODING_COMPLETE]
+        style K2_1 fill:#6f9
+        K2_4[INVALID]
+        style K2_4 fill:#fc6
+        K2_5[CODING_ERROR]
+        style K2_5 fill:#fc6
+    end
+    style Kodierung_2 fill:#b3b3cc
+    style Kodierung_2 color:#b3b3cc
+    R --> K2_1
+    R --> K2_4
+    R --> K2_5
+
+    KK["Automatische Kodierung + Ableitung"]
+    K2_1 --> KK
+    K2_4 --> KK
+    K2_5 --> KK
+    subgraph Kodierung_3
+        K3_1[CODING_COMPLETE]
+        style K3_1 fill:#6f9
+        K3_4[INVALID]
+        style K3_4 fill:#fc6
+        K3_5[CODING_ERROR]
+        style K3_5 fill:#fc6
+    end
+    style Kodierung_3 fill:#b3b3cc
+    style Kodierung_3 color:#b3b3cc
+    KK --> K3_1
+    KK --> K3_4
+    KK --> K3_5
+
+```
