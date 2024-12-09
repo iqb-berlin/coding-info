@@ -2,38 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://iqb-berlin.github.io/coding-info/index.html</loc>
-    <lastmod>2024-12-05T18:04:43.194Z</lastmod>
-  </url>
-  <url>
-    <loc>https://iqb-berlin.github.io/coding-info/data-structures/derive.html</loc>
-    <lastmod>2024-12-05T18:04:43.194Z</lastmod>
+    <lastmod>2024-12-09T16:58:39.404Z</lastmod>
   </url>
   <url>
     <loc>https://iqb-berlin.github.io/coding-info/data-structures/index.html</loc>
-    <lastmod>2024-12-05T18:04:43.194Z</lastmod>
+    <lastmod>2024-12-09T16:58:39.404Z</lastmod>
   </url>
   <url>
     <loc>https://iqb-berlin.github.io/coding-info/data-structures/itc-ToolBox-Output/index.html</loc>
-    <lastmod>2024-12-05T18:04:43.194Z</lastmod>
+    <lastmod>2024-12-09T16:58:39.404Z</lastmod>
   </url>
   <url>
     <loc>https://iqb-berlin.github.io/coding-info/data-structures/coding-scheme.html</loc>
-    <lastmod>2024-12-05T18:04:43.194Z</lastmod>
+    <lastmod>2024-12-09T16:58:39.404Z</lastmod>
   </url>
   <url>
-    <loc>https://iqb-berlin.github.io/coding-info/workflow/index.html</loc>
-    <lastmod>2024-12-05T18:04:43.194Z</lastmod>
+    <loc>https://iqb-berlin.github.io/coding-info/coding/autocoder.html</loc>
+    <lastmod>2024-12-09T16:58:39.400Z</lastmod>
+  </url>
+  <url>
+    <loc>https://iqb-berlin.github.io/coding-info/coding/index.html</loc>
+    <lastmod>2024-12-09T16:58:39.400Z</lastmod>
+  </url>
+  <url>
+    <loc>https://iqb-berlin.github.io/coding-info/coding/valid-responses.html</loc>
+    <lastmod>2024-12-09T16:58:39.404Z</lastmod>
+  </url>
+  <url>
+    <loc>https://iqb-berlin.github.io/coding-info/coding/invalid-responses.html</loc>
+    <lastmod>2024-12-09T16:58:39.400Z</lastmod>
+  </url>
+  <url>
+    <loc>https://iqb-berlin.github.io/coding-info/coding/missings.html</loc>
+    <lastmod>2024-12-09T16:58:39.400Z</lastmod>
+  </url>
+  <url>
+    <loc>https://iqb-berlin.github.io/coding-info/coding/derive.html</loc>
+    <lastmod>2024-12-09T16:58:39.400Z</lastmod>
   </url>
   <url>
     <loc>https://iqb-berlin.github.io/coding-info/data-structures/itc-ToolBox-Output/tc-merge.html</loc>
-    <lastmod>2024-12-05T18:04:43.194Z</lastmod>
+    <lastmod>2024-12-09T16:58:39.404Z</lastmod>
   </url>
   <url>
     <loc>https://iqb-berlin.github.io/coding-info/data-structures/response.html</loc>
-    <lastmod>2024-12-05T18:04:43.194Z</lastmod>
-  </url>
-  <url>
-    <loc>https://iqb-berlin.github.io/coding-info/data-structures/missings.html</loc>
-    <lastmod>2024-12-05T18:04:43.194Z</lastmod>
+    <lastmod>2024-12-09T16:58:39.404Z</lastmod>
   </url>
 </urlset>

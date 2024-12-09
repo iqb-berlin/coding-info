@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Missings – coding-info</title>
+<title>Ableitungen – coding-info</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../data-structures/itc-ToolBox-Output/index.html" rel="next">
-<link href="../data-structures/coding-scheme.html" rel="prev">
+<link href="../coding/missings.html" rel="next">
+<link href="../coding/valid-responses.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -70,10 +70,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Suchen"
   }
 }</script>
-<meta name="mermaid-theme" content="neutral">
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -103,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data-structures/index.html">Datenstrukturen</a></li><li class="breadcrumb-item"><a href="../data-structures/missings.html">Missings</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../coding/index.html">Kodierung</a></li><li class="breadcrumb-item"><a href="../coding/derive.html">Ableitungen</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -150,12 +146,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Kodierschema</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../data-structures/missings.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Missings</span></a>
-  </div>
-</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../data-structures/itc-ToolBox-Output/index.html" class="sidebar-item-text sidebar-link">
@@ -175,30 +165,51 @@ ul.task-list li input[type="checkbox"] {
   </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../coding/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kodierung</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workflow/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arbeitsschritte</span></a>
+  <a href="../coding/valid-responses.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gültige Antworten</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../coding/derive.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Ableitungen</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../coding/missings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IQB-Missings</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#begriff" id="toc-begriff" class="nav-link active" data-scroll-target="#begriff">Begriff</a></li>
-  <li><a href="#standard-missings-des-iqb" id="toc-standard-missings-des-iqb" class="nav-link" data-scroll-target="#standard-missings-des-iqb">Standard-Missings des IQB</a></li>
-  <li><a href="#verfahren" id="toc-verfahren" class="nav-link" data-scroll-target="#verfahren">Verfahren</a></li>
-  <li><a href="#technische-diskurse" id="toc-technische-diskurse" class="nav-link" data-scroll-target="#technische-diskurse">Technische Diskurse</a>
+  <li><a href="#zulässiger-status" id="toc-zulässiger-status" class="nav-link active" data-scroll-target="#zulässiger-status">Zulässiger Status</a></li>
+  <li><a href="#fehlersituation" id="toc-fehlersituation" class="nav-link" data-scroll-target="#fehlersituation">Fehlersituation</a>
   <ul class="collapse">
-  <li><a href="#missing-by-omission-wenn-leer" id="toc-missing-by-omission-wenn-leer" class="nav-link" data-scroll-target="#missing-by-omission-wenn-leer">Missing by Omission wenn leer?</a></li>
-  <li><a href="#status-displayed-überspringen" id="toc-status-displayed-überspringen" class="nav-link" data-scroll-target="#status-displayed-überspringen">Status <code>DISPLAYED</code> überspringen?</a></li>
-  <li><a href="#wo-ist-das-item" id="toc-wo-ist-das-item" class="nav-link" data-scroll-target="#wo-ist-das-item">Wo ist das Item?</a></li>
+  <li><a href="#schritt-1-killer" id="toc-schritt-1-killer" class="nav-link" data-scroll-target="#schritt-1-killer">Schritt 1: Killer</a></li>
+  <li><a href="#schritt-2-warten-auf-manuelle-kodierung" id="toc-schritt-2-warten-auf-manuelle-kodierung" class="nav-link" data-scroll-target="#schritt-2-warten-auf-manuelle-kodierung">Schritt 2: Warten auf manuelle Kodierung</a></li>
+  <li><a href="#schritt-3-erben-von-fehlerzuständen" id="toc-schritt-3-erben-von-fehlerzuständen" class="nav-link" data-scroll-target="#schritt-3-erben-von-fehlerzuständen">Schritt 3: Erben von Fehlerzuständen</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/iqb-berlin/coding-info/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
@@ -206,9 +217,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data-structures/index.html">Datenstrukturen</a></li><li class="breadcrumb-item"><a href="../data-structures/missings.html">Missings</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../coding/index.html">Kodierung</a></li><li class="breadcrumb-item"><a href="../coding/derive.html">Ableitungen</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Missings</h1>
+<h1 class="title">Ableitungen</h1>
 </div>
 
 
@@ -225,161 +236,78 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="begriff" class="level1">
-<h1>Begriff</h1>
-<p>Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.</p>
-</section>
-<section id="standard-missings-des-iqb" class="level1">
-<h1>Standard-Missings des IQB</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-    C{{"Antwort im System gespeichert?"}} --&gt; |NEIN| B{{"Technisches Problem?"}}
-    B --&gt;|JA| D["missing coding impossible"]
-    style D fill:#ff9
-    B --&gt;|NEIN| E["missing by design"]
-    style E fill:#ff9
-
-    C --&gt;|JA| A{{"Item wurde gesehen?"}}
-    A --&gt;|JA| F{{"Item wurde bearbeitet?"}}
-    style G fill:#ff9
-    F --&gt;|JA| H{{"Antwort ungültig, leer oder Spaßantwort?"}}
-    A --&gt;|NEIN| I{{"nachfolgend bearbeitete oder gesehene Items?"}}
-    F --&gt;|NEIN| J["missing by omission"]
-    I --&gt;|JA| J
-    I --&gt;|NEIN| G["missing not reached"]
-    style J fill:#ff9
-    H --&gt;|JA| K["missing invalid response"]
-    style K fill:#ff9
-    H --&gt;|NEIN| L["Gültige Antwort - Auswertung möglich"]
-    style L fill:#af8
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<section id="zulässiger-status" class="level1">
+<h1>Zulässiger Status</h1>
+<p>Ob eine Ableitung möglich ist, ist vom Status der Quellvariablen und von der Ableitungsmethode <code>sourceType</code> abhängig. Für jede Quellvariable muss einer der folgenden Status zutreffen, damit eine Ableitung erfolgt:</p>
 <table class="table-striped caption-top table">
-<caption>IQB-Missings</caption>
+<caption>Zulässiger Status nach Ableitungsmethode</caption>
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 50%">
-<col style="width: 16%">
+<col style="width: 46%">
+<col style="width: 53%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>ID</th>
-<th>Label</th>
-<th>Beschreibung</th>
-<th style="text-align: right;">Code-Value</th>
+<th>Ableitungsmethode</th>
+<th>zulässiger Status</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>mir</td>
-<td>missing invalid response</td>
-<td>(1) Item wurde bearbeitet und (2a) leere Antwort oder (2b) sonstwie ungültige (Spaß-)Antwort</td>
-<td style="text-align: right;">-98</td>
+<td><code>MANUAL</code></td>
+<td><code>INVALID</code>, <code>VALUE_CHANGED</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, <code>CODING_COMPLETE</code>, <code>CODING_INCOMPLETE</code>, <code>CODING_ERROR</code>, <code>NO_CODING</code></td>
 </tr>
 <tr class="even">
-<td>mbo</td>
-<td>missing by omission</td>
-<td>Item wurde nicht bearbeitet aber gesehen oder es wurde nicht gesehen, aber es gibt nachfolgend gesehene oder bearbeitete Items</td>
-<td style="text-align: right;">-99</td>
+<td><code>COPY_VALUE</code>, <code>UNIQUE_VALUES</code>, <code>SOLVER</code></td>
+<td><code>VALUE_CHANGED</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, <code>CODING_COMPLETE</code>, <code>CODING_INCOMPLETE</code>, <code>CODING_ERROR</code>, <code>NO_CODING</code></td>
 </tr>
 <tr class="odd">
-<td>mnr</td>
-<td>missing not reached</td>
-<td>(1) Item wurde nicht gesehen und (2) es folgen nur nicht gesehene Items</td>
-<td style="text-align: right;">-96</td>
-</tr>
-<tr class="even">
-<td>mci</td>
-<td>missing coding impossible</td>
-<td>(1) Item müsste/könnte bearbeitet worden sein und (2) Antwort ist aufgrund technischer Probleme nicht auswertbar</td>
-<td style="text-align: right;">-97</td>
-</tr>
-<tr class="odd">
-<td>mbd</td>
-<td>missing by design</td>
-<td>Antwort liegt nicht vor, weil das Item der Testperson planmäßig nicht präsentiert wurde</td>
-<td style="text-align: right;">-94</td>
+<td><code>CONCAT_CODE</code>, <code>SUM_CODE</code>, <code>SUM_SCORE</code></td>
+<td><code>CODING_COMPLETE</code></td>
 </tr>
 </tbody>
 </table>
+<p>Bei der Ableitungsmethode <code>MANUAL</code> wird die abgeleitete Variable ggf. neu angelegt und dann der Status <code>CODING_INCOMPLETE</code> gesetzt. Auch wenn Regeln für die Kodierung der abgeleiteten Variable hinterlegt sein sollten, wird nie eine automatische Kodierung versucht. Ist die Variable bereits vorhanden, wird deren Status durch den Autocoder nicht verändert.</p>
+<p>Bei allen anderen Ableitungsmethoden versucht der Autocoder eine Kodierung entsprechend der Parameter und Regeln.</p>
 </section>
-<section id="verfahren" class="level1">
-<h1>Verfahren</h1>
-<p>Die Datenstruktur <a href="../data-structures/response.html"><code>response</code></a>, die durch die TBA-Webanwendung IQB-Testcenter erzeugt wird, sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein Status geliefert. Erst zu einem späteren Zeitpunkt – im Rahmen der Kodierung und Ableitung – wird die Datenstruktur <code>response</code> in einen einzelnen numerischen ganzzahligen Code transformiert. Diese Transformation zu einer <strong>Itemmatrix Person x Antwort-Code</strong> bedeutet in der Regel Informationsverlust, ist aber Voraussetzung für die nachfolgenden Datenanalysen.</p>
-<p>Bei der Erstellung der Itemmatrix werden auch die Missings gesetzt. Die genaue Übersetzung ist <a href="../workflow/index.html">hier beschrieben</a>.</p>
+<section id="fehlersituation" class="level1">
+<h1>Fehlersituation</h1>
+<p>Wenn die Quellvariablen nicht die o. g. Bedingungen an den Status erfüllen, muss ein aussagekräftiger Status für die neue Variable gesetzt werden. Für die folgenden Schritte ist die Reihenfolge relevant.</p>
+<section id="schritt-1-killer" class="level2">
+<h2 class="anchored" data-anchor-id="schritt-1-killer">Schritt 1: Killer</h2>
+<p>Wenn eine der Quellvariablen einen der folgenden linken Status hat, dann erhält die abgeleitete Variable den rechten Status - egal, welchen Status die anderen Quellvariablen haben. Die Liste wird von oben nach unten abgearbeitet.</p>
+<ol type="1">
+<li><code>UNSET</code> → <code>UNSET</code></li>
+<li><code>DERIVE_ERROR</code> → <code>DERIVE_ERROR</code></li>
+<li><code>NO_CODING</code> → <code>DERIVE_ERROR</code></li>
+<li><code>CODING_ERROR</code> → <code>CODING_ERROR</code></li>
+<li><code>INVALID</code> → <code>INVALID</code></li>
+</ol>
 </section>
-<section id="technische-diskurse" class="level1">
-<h1>Technische Diskurse</h1>
-<section id="missing-by-omission-wenn-leer" class="level2">
-<h2 class="anchored" data-anchor-id="missing-by-omission-wenn-leer">Missing by Omission wenn leer?</h2>
-<p>Wenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung (Omission) anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:</p>
-<ul>
-<li>Bei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.</li>
-<li>Der Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option ‘leer’ gibt es nicht.</li>
-<li>Bei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.</li>
-</ul>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Umsetzung
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Ein bearbeiteter, aber leerer Wert wird als invalid bewertet. Dieses Standardverhalten kann durch eine Option im Kodierschema geändert werden, und es gibt auch eine Regel, die auf einen leeren Wert prüft. Dann ist es auch möglich, einen Code für einen leeren Wert zu vergeben.</p>
-</div>
-</div>
+<section id="schritt-2-warten-auf-manuelle-kodierung" class="level2">
+<h2 class="anchored" data-anchor-id="schritt-2-warten-auf-manuelle-kodierung">Schritt 2: Warten auf manuelle Kodierung</h2>
+<p>Die Ableitungsmethoden <code>CONCAT_CODE</code>, <code>SUM_CODE</code> und <code>SUM_SCORE</code> setzen eine vollständige Kodierung voraus: <code>CODING_COMPLETE</code>. Sollte eine oder mehrere Quellvariablen den Status <code>CODING_INCOMPLETE</code> oder <code>DERIVE_PENDING</code> haben, dann wird der Status der abgeleiteten Variable auf <code>DERIVE_PENDING</code> gesetzt.</p>
 </section>
-<section id="status-displayed-überspringen" class="level2">
-<h2 class="anchored" data-anchor-id="status-displayed-überspringen">Status <code>DISPLAYED</code> überspringen?</h2>
-<p>Das IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status <code>DISPLAYED</code>. Wenn eine Interaktion erfolgte, wird der Status <code>VALUE_CHANGED</code> gesetzt (zum Status einer Antwort siehe <a href="../data-structures/response.html">hier</a>). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status <code>VALUE_CHANGED</code> ausgewertet.</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Umsetzung
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Im Kodierschema gibt es eine Option, mit der man für eine Variable festlegen kann, dass der Wert auch bei <code>DISPLAYED</code> ausgewertet wird, also dann wie <code>VALUE_CHANGED</code> behandelt wird.</p>
-</div>
-</div>
-</section>
-<section id="wo-ist-das-item" class="level2">
-<h2 class="anchored" data-anchor-id="wo-ist-das-item">Wo ist das Item?</h2>
-<p>Wenn es als 17. Teilaufgabe ein Item mit der Instruktion “markiere im Text” gibt, weicht der Ort der Beantwortung (also die Interaktion “Markieren” im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Mögliche Umsetzung
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Man könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.</p>
-</div>
-</div>
+<section id="schritt-3-erben-von-fehlerzuständen" class="level2">
+<h2 class="anchored" data-anchor-id="schritt-3-erben-von-fehlerzuständen">Schritt 3: Erben von Fehlerzuständen</h2>
+<p>Für die verbliebenen Fehlerzustände der Ableitungen soll der Status gezielt gesetzt werden, um die Nachbereitung oder das Setzen von Missings zu erleichtern:</p>
+<ol type="1">
+<li>Es gibt mindestens einen zulässigen Status und mindestens einen unzulässigen Status → <code>INVALID</code></li>
+<li>Es gibt keinen zulässigen Status und alle Status sind gleich → Übernahme des Status der Quellvariablen für die abgeleitete Variable</li>
+<li>Die Quellvariablen haben einen Mix aus <code>NOT_REACHED</code>, <code>DISPLAYED</code> oder <code>PARTLY_DISPLAYED</code> → <code>PARTLY_DISPLAYED</code></li>
+</ol>
 
 
 </section>
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
+
+<ol>
+<li id="fn1"><p><code>VALUE_CHANGED</code> meint an dieser Stelle den geprüften Status, d.&nbsp;h. es kann auch <code>DISPLAYED</code> einschließen, wenn <code>TAKE_DISPLAYED_AS_VALUE_CHANGED</code> gesetzt ist, und prüft, dass der Wert nicht leer ist bzw. <code>TAKE_EMPTY_AS_VALID</code> gesetzt ist.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><code>VALUE_CHANGED</code> meint an dieser Stelle den geprüften Status, d.&nbsp;h. es kann auch <code>DISPLAYED</code> einschließen, wenn <code>TAKE_DISPLAYED_AS_VALUE_CHANGED</code> gesetzt ist, und prüft, dass der Wert nicht leer ist bzw. <code>TAKE_EMPTY_AS_VALID</code> gesetzt ist.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -806,13 +734,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../data-structures/coding-scheme.html" class="pagination-link" aria-label="Kodierschema">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Kodierschema</span>
+      <a href="../coding/valid-responses.html" class="pagination-link" aria-label="Gültige Antworten">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Gültige Antworten</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../data-structures/itc-ToolBox-Output/index.html" class="pagination-link" aria-label="itc-ToolBox Output">
-        <span class="nav-page-text">itc-ToolBox Output</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../coding/missings.html" class="pagination-link" aria-label="IQB-Missings">
+        <span class="nav-page-text">IQB-Missings</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

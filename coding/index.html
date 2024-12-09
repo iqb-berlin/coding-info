@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ableitungen – coding-info</title>
+<title>Kodieren – coding-info</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,6 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../coding/valid-responses.html" rel="next">
+<link href="../data-structures/itc-ToolBox-Output/tc-merge.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -100,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Ableitungen</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../coding/index.html">Kodierung</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -147,12 +149,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Kodierschema</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../data-structures/missings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Missings</span></a>
-  </div>
-</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../data-structures/itc-ToolBox-Output/index.html" class="sidebar-item-text sidebar-link">
@@ -172,12 +168,35 @@ ul.task-list li input[type="checkbox"] {
   </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../coding/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Kodierung</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workflow/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arbeitsschritte</span></a>
+  <a href="../coding/valid-responses.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gültige Antworten</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../coding/derive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ableitungen</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../coding/missings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IQB-Missings</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -188,17 +207,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#basisvariablen-aus-der-testdurchführung" id="toc-basisvariablen-aus-der-testdurchführung" class="nav-link active" data-scroll-target="#basisvariablen-aus-der-testdurchführung">Basisvariablen aus der Testdurchführung</a></li>
-  <li><a href="#abgeleitete-variablen" id="toc-abgeleitete-variablen" class="nav-link" data-scroll-target="#abgeleitete-variablen">Abgeleitete Variablen</a>
-  <ul class="collapse">
-  <li><a href="#zulässiger-status" id="toc-zulässiger-status" class="nav-link" data-scroll-target="#zulässiger-status">Zulässiger Status</a></li>
-  <li><a href="#fehlersituation" id="toc-fehlersituation" class="nav-link" data-scroll-target="#fehlersituation">Fehlersituation</a>
-  <ul class="collapse">
-  <li><a href="#schritt-1-killer" id="toc-schritt-1-killer" class="nav-link" data-scroll-target="#schritt-1-killer">Schritt 1: Killer</a></li>
-  <li><a href="#schritt-2-warten-auf-manuelle-kodierung" id="toc-schritt-2-warten-auf-manuelle-kodierung" class="nav-link" data-scroll-target="#schritt-2-warten-auf-manuelle-kodierung">Schritt 2: Warten auf manuelle Kodierung</a></li>
-  <li><a href="#schritt-3-erben-von-fehlerzuständen" id="toc-schritt-3-erben-von-fehlerzuständen" class="nav-link" data-scroll-target="#schritt-3-erben-von-fehlerzuständen">Schritt 3: Erben von Fehlerzuständen</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#allgemeines-verfahren" id="toc-allgemeines-verfahren" class="nav-link active" data-scroll-target="#allgemeines-verfahren">Allgemeines Verfahren</a></li>
+  <li><a href="#werte-für-status-einer-antwort" id="toc-werte-für-status-einer-antwort" class="nav-link" data-scroll-target="#werte-für-status-einer-antwort">Werte für Status einer Antwort</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/iqb-berlin/coding-info/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -207,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Ableitungen</h1>
+<h1 class="title">Kodieren</h1>
 </div>
 
 
@@ -224,48 +234,97 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="basisvariablen-aus-der-testdurchführung" class="level1">
-<h1>Basisvariablen aus der Testdurchführung</h1>
+<section id="allgemeines-verfahren" class="level1">
+<h1>Allgemeines Verfahren</h1>
+<p>Bevor die Daten in die Analyse gehen, werden sie aufbereitet. Die Kodierung übernimmt hierbei nicht nur die klassische Funktion, die Antwort einer Kategorie zuzuordnen, sondern setzt auch vielfältige Vorschriften zur Anzeige von Fehlerzuständen um. Die Prozesse der Kodierung setzen direkt an der Datenerzeugung an und haben so eine herausragende Funktion bei der Sicherung der Datenqualität.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart TD
-    subgraph Test
-        A[UNSET]
-        style A fill:white
-        B[NOT_REACHED]
-        style B fill:white
-        C[DISPLAYED]
-        style C fill:white
-        D[VALUE_CHANGED]
-        style D fill:white
+    subgraph Input
+        T["Antworten"]
+        style T fill:white
+        style T stroke:black
     end
-    style Test fill:#b3b3cc
-    A --&gt; F["Fehler in Programmierung"]
-    style F fill:#f60
-    B --&gt; G[NOT_REACHED]
-    style G fill:#fc6
-    C --&gt; H{{TAKE_DISPLAYED_AS_VALUE_CHANGED ?}}
-    style H fill:white
-    H --&gt; |NEIN| L[DISPLAYED]
-    style L fill:#fc6
-    D --&gt; HX{{Empty ?}}
-    T[VALUE_CHANGED]
-    H --&gt; |JA| T
-    T --&gt; HX
-    style HX fill:white
-    HX --&gt; |NEIN| K["Automatische Kodierung"]
-    X --&gt; |JA| K
-    HX --&gt; |JA| X{{TAKE_EMPTY_AS_VALID ?}}
-    X --&gt; |NEIN| XY[INVALID]
-    style X fill:white
-    style XY fill:#fc6
+    style Input fill:#ffc
+    style Input stroke:#996
+    style Input color:black
+    subgraph Kodierung
+        F[Filter gültige Antworten]
+        style F fill:white
+        style F stroke:white
+        A1[Autocoder 1. Lauf]
+        style A1 fill:white
+        style A1 stroke:white
+        M[Manuelle Kodierung]
+        style M fill:white
+        style M stroke:white
+        A2[Autocoder 2. Lauf]
+        style A2 fill:white
+        style A2 stroke:white
+    end
+    style Kodierung fill:#996
+    style Kodierung stroke:#996
+    style Kodierung color:black
+    subgraph Output
+        K[Kodierte valide Werte]
+        style K fill:white
+        style K stroke:black
+        W[Invalide Werte]
+        style W fill:white
+        style W stroke:black
+        K --&gt; PDS[Primärer Datensatz]
+        W --&gt; PDS
+        style PDS fill:#cf9
+        style PDS stroke:black
+        PDS --&gt; ADS[Analyse-Datensatz]
+        style ADS fill:#cf9
+        style ADS stroke:black
+    end
+    style Output fill:#ffc
+    style Output stroke:#996
+    style Output color:black
+    T --&gt; F
+    F --&gt; A1
+    A1 --&gt; K
+    A1 --&gt; M
+    M --&gt; A2
+    A2 --&gt; W
+    A2 --&gt; K
+    A1 --&gt; W
+    F --&gt; W
+</pre>
+</div>
+<p></p><figcaption> Kodierung Ablauf</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+<p>Ausgehend von den Rohdaten, die im Format <a href="../data-structures/response.html"><code>iqb-standard</code></a> vorliegen, müssen folgende Arbeitsschritte vorgenommen werden:</p>
+<ul>
+<li>Filter <a href="../coding/valid-responses.html">gültiger Antworten</a>: Eine Kodierung ist nur für Antworten erforderlich, die gültig sind.</li>
+<li><a href="../coding/autocoder.html">Autocoder</a> 1. Lauf: Soweit möglich, werden die Vorschriften im <a href="../data-structures/coding-scheme.html">Kodierschema</a> genutzt, um automatisch zu kodieren. Sollten die Vorschriften nicht ausreichen, bleiben Kodierfälle offen. Diese Fälle sind auf besondere Art markiert, um sie der manuellen Kodierung zuzuführen.</li>
+<li>Bei der manuelle Kodierung erfolgt die Bewertung der Antwort über besonders qualifizierte Personen.</li>
+<li>Anschließend erfolgt ein zweiter Lauf des Autocoders. Es ist jetzt möglich, mit allen vorliegenden Bewertungen alle nötigen Ableitungen abzuschließen. Für die spätere Beurteilung der Datenqualität ist die Zuweisung von bestimmten Status-Werten für <a href="../coding/invalid-responses.html">invalide Kodierfälle</a> nötig.</li>
+<li>Invalide Werte werden am IQB in <a href="../coding/missings.html">Missings</a> rekodiert. Zusammen mit den Scores aus dem primären Datensatz ergeben sie den Analyse-Datensatz.</li>
+</ul>
+</section>
+<section id="werte-für-status-einer-antwort" class="level1">
+<h1>Werte für Status einer Antwort</h1>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Antwort VALUE_CHANGED] --&gt; K["Automatische Kodierung + Ableitung"]
 
     subgraph Kodierung_1
         K1[CODING_COMPLETE]
         style K1 fill:#6f9
+        K6[DERIVE_PENDING]
+        style K6 fill:white
         K2[CODING_INCOMPLETE]
         style K2 fill:white
         K5[CODING_ERROR]
@@ -278,18 +337,20 @@ ul.task-list li input[type="checkbox"] {
     style Kodierung_1 fill:#b3b3cc
     style Kodierung_1 color:#b3b3cc
     K --&gt; K1
+    K --&gt; K6
     K --&gt; K2
     K --&gt; K5
     K --&gt; K3
     K --&gt; K4
 
+    K6 --&gt; KK
+
     R["Manuelle Kodierung"]
     K2 --&gt; R
     K5 --&gt; R
-
-    RE["Rating / Transcript"]
+    K3 --&gt; RE["Rating / Transcript"]
     style RE fill:#9cf
-    K3 --&gt; RE
+
     subgraph Kodierung_2
         K2_1[CODING_COMPLETE]
         style K2_1 fill:#6f9
@@ -304,87 +365,35 @@ ul.task-list li input[type="checkbox"] {
     R --&gt; K2_4
     R --&gt; K2_5
 
+    KK["Automatische Kodierung + Ableitung"]
+    K2_1 --&gt; KK
+    K2_4 --&gt; KK
+    K2_5 --&gt; KK
+    subgraph Kodierung_3
+        K3_1[CODING_COMPLETE]
+        style K3_1 fill:#6f9
+        K3_4[INVALID]
+        style K3_4 fill:#fc6
+        K3_5[CODING_ERROR]
+        style K3_5 fill:#fc6
+    end
+    style Kodierung_3 fill:#b3b3cc
+    style Kodierung_3 color:#b3b3cc
+    KK --&gt; K3_1
+    KK --&gt; K3_4
+    KK --&gt; K3_5
+
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
-</section>
-<section id="abgeleitete-variablen" class="level1">
-<h1>Abgeleitete Variablen</h1>
-<section id="zulässiger-status" class="level2">
-<h2 class="anchored" data-anchor-id="zulässiger-status">Zulässiger Status</h2>
-<p>Ob eine Ableitung möglich ist, ist vom Status der Quellvariablen und von der Ableitungsmethode <code>sourceType</code> abhängig. Für jede Quellvariable muss einer der folgenden Status zutreffen, damit eine Ableitung erfolgt:</p>
-<table class="table-striped caption-top table">
-<caption>Zulässiger Status nach Ableitungsmethode</caption>
-<colgroup>
-<col style="width: 46%">
-<col style="width: 53%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Ableitungsmethode</th>
-<th>zulässiger Status</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>MANUAL</code></td>
-<td><code>VALUE_CHANGED</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, <code>CODING_COMPLETE</code>, <code>CODING_INCOMPLETE</code>, <code>CODING_ERROR</code>, <code>NO_CODING</code></td>
-</tr>
-<tr class="even">
-<td><code>COPY_VALUE</code>, <code>UNIQUE_VALUES</code>, <code>SOLVER</code></td>
-<td><code>CODING_COMPLETE</code>, <code>CODING_INCOMPLETE</code>, <code>CODING_ERROR</code>, <code>NO_CODING</code></td>
-</tr>
-<tr class="odd">
-<td><code>CONCAT_CODE</code>, <code>SUM_CODE</code>, <code>SUM_SCORE</code></td>
-<td><code>CODING_COMPLETE</code></td>
-</tr>
-</tbody>
-</table>
-<p>Bei der Ableitungsmethode <code>MANUAL</code> wird die abgeleitete Variable ggf. neu angelegt und dann der Status <code>CODING_INCOMPLETE</code> gesetzt. Auch wenn Regeln für die Kodierung der abgeleiteten Variable hinterlegt sein sollten, wird nie eine automatische Kodierung versucht. Ist die Variable bereits vorhanden, wird deren Status durch den Autocoder nicht verändert.</p>
-<p>Bei allen anderen Ableitungsmethoden versucht der Autocoder eine Kodierung entsprechend der Parameter und Regeln.</p>
-</section>
-<section id="fehlersituation" class="level2">
-<h2 class="anchored" data-anchor-id="fehlersituation">Fehlersituation</h2>
-<p>Wenn die Quellvariablen nicht die o. g. Bedingungen an den Status erfüllen, muss ein aussagekräftiger Status für die neue Variable gesetzt werden. Für die folgenden Schritte ist die Reihenfolge relevant.</p>
-<section id="schritt-1-killer" class="level3">
-<h3 class="anchored" data-anchor-id="schritt-1-killer">Schritt 1: Killer</h3>
-<p>Wenn eine der Quellvariablen einen der folgenden linken Status hat, dann erhält die abgeleitete Variable den rechten Status - egal, welchen Status die anderen Quellvariablen haben. Die Liste wird von oben nach unten abgearbeitet.</p>
-<ol type="1">
-<li><code>UNSET</code> → <code>UNSET</code></li>
-<li><code>DERIVE_ERROR</code> → <code>DERIVE_ERROR</code></li>
-<li><code>NO_CODING</code> → <code>DERIVE_ERROR</code></li>
-<li><code>CODING_ERROR</code> → <code>CODING_ERROR</code></li>
-<li><code>INVALID</code> → <code>INVALID</code></li>
-</ol>
-</section>
-<section id="schritt-2-warten-auf-manuelle-kodierung" class="level3">
-<h3 class="anchored" data-anchor-id="schritt-2-warten-auf-manuelle-kodierung">Schritt 2: Warten auf manuelle Kodierung</h3>
-<p>Die Ableitungsmethoden <code>CONCAT_CODE</code>, <code>SUM_CODE</code> und <code>SUM_SCORE</code> setzen eine vollständige Kodierung voraus: <code>CODING_COMPLETE</code>. Sollte eine oder mehrere Quellvariablen den Status <code>CODING_INCOMPLETE</code> oder <code>DERIVE_PENDING</code> haben, dann wird der Status der abgeleiteten Variable auf <code>DERIVE_PENDING</code> gesetzt.</p>
-</section>
-<section id="schritt-3-erben-von-fehlerzuständen" class="level3">
-<h3 class="anchored" data-anchor-id="schritt-3-erben-von-fehlerzuständen">Schritt 3: Erben von Fehlerzuständen</h3>
-<p>Für die verbliebenen Fehlerzustände der Ableitungen soll der Status gezielt gesetzt werden, um die Nachbereitung oder das Setzen von Missings zu erleichtern:</p>
-<ol type="1">
-<li>Es gibt mindestens einen zulässigen Status und mindestens einen unzulässigen Status → <code>INVALID</code></li>
-<li>Es gibt keinen zulässigen Status und alle Status sind gleich → Übernahme des Status der Quellvariablen für die abgeleitete Variable</li>
-<li>Die Quellvariablen haben einen Mix aus <code>NOT_REACHED</code>, <code>DISPLAYED</code> oder <code>PARTLY_DISPLAYED</code> → <code>PARTLY_DISPLAYED</code></li>
-</ol>
 
 
 </section>
-</section>
-</section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
-
-<ol>
-<li id="fn1"><p><code>VALUE_CHANGED</code> meint an dieser Stelle den geprüften Status, d.&nbsp;h. es kann auch <code>DISPLAYED</code> einschließen, wenn <code>TAKE_DISPLAYED_AS_VALUE_CHANGED</code> gesetzt ist, und prüft, dass der Wert nicht leer ist bzw. <code>TAKE_EMPTY_AS_VALID</code> gesetzt ist.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -809,6 +818,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../data-structures/itc-ToolBox-Output/tc-merge.html" class="pagination-link" aria-label="Format TC-Merge">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Format TC-Merge</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../coding/valid-responses.html" class="pagination-link" aria-label="Gültige Antworten">
+        <span class="nav-page-text">Gültige Antworten</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

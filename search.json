@@ -4,38 +4,10 @@
     "href": "index.html",
     "title": "Kodieren",
     "section": "",
-    "text": "Achtung: Webseite in Entwicklung\n\n\n\nDiese Webseite ist im Aufbau. Die Inhalte sind unvollständig und werden ständig revidiert.\n\n\n\nWillkommen\nIn Studien zur Feststellung von Leistungsständen im Bildungswesen liegt der Arbeitsschritt “Kodieren” zwischen der Datenerhebung - also der Durchführung eines Assessments - und der Datenanalyse. Rohantworten führen zu komplexen Datenstrukturen mit einem großen Wertespektrum, die so kaum auswertbar sind. Kodierung heißt hier, diese Werte einfachen Kategorien (“Codes”) zuzuordnen, die die Antwort im Sinne der Studienzielstellung symbolisieren. Anschließend lassen sich Häufigkeiten für diese Kategorien ermitteln, Zusammenhänge modellieren, und letztlich können empirisch begründete Empfehlungen gegeben werden.\nMit der schrittweisen Nutzung von Computern für Leistungserhebungen eröffnen sich neue Möglichkeiten, die Kodierung zu automatisieren und zu standardisieren. Hierzu entwickelt das IQB Datenstrukturen und Prozesse, die auf diesen Webseiten beschrieben sind.\n\n\nLizenz\nAlle Texte sind unter der Lizenz CC0 veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. DFG-pdf) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.\n\n\nHaftungsausschluss\nAuf diesen Webseiten sind Links auf externe Webseiten in besonderer Weise gekennzeichnet (s. oben die Links zum IQB und zur KMK). Wir prüfen diese Quellen regelmäßig, können aber für diese Seiten und die dort hinterlegten Zusatzmaterialien keine Haftung für Richtigkeit, Vollständigkeit und Aktualität übernehmen. Dafür sind ausschließlich deren Betreiber verantwortlich.\n\n\nTechnische Realisierung\nDieser Webauftritt basiert auf Texten in einer einfachen Syntax Markdown, die anschließend in Html und CSS umgesetzt werden. Hierzu wird Quarto verwendet. Sämtliche Dateien für den Inhalt und die Steuerung sind in einem öffentlich zugänglichen Codeverwaltungssystem gespeichert.\n\n\nKontakt\nTechnische und inhaltliche Fragen zu den Inhalten können Sie an die IT des IQB richten.\nWenn Sie Probleme melden möchten, können Sie auch die Funktion “Problem melden” nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.",
+    "text": "Willkommen\nIn Studien zur Feststellung von Leistungsständen im Bildungswesen liegt der Arbeitsschritt “Kodieren” zwischen der Datenerhebung - also der Durchführung eines Assessments - und der Datenanalyse. Rohantworten führen zu komplexen Datenstrukturen mit einem großen Wertespektrum, die so kaum auswertbar sind. Kodierung heißt hier, diese Werte einfachen Kategorien (“Codes”) zuzuordnen, die die Antwort im Sinne der Studienzielstellung symbolisieren. Anschließend lassen sich Häufigkeiten für diese Kategorien ermitteln, Zusammenhänge modellieren, und letztlich können empirisch begründete Empfehlungen gegeben werden.\nMit der schrittweisen Nutzung von Computern für Leistungserhebungen eröffnen sich neue Möglichkeiten, die Kodierung zu automatisieren und zu standardisieren. Hierzu entwickelt das IQB Datenstrukturen und Prozesse, die auf diesen Webseiten beschrieben sind.\n\n\nLizenz\nAlle Texte sind unter der Lizenz CC0 veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. DFG-pdf) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.\n\n\nHaftungsausschluss\nAuf diesen Webseiten sind Links auf externe Webseiten in besonderer Weise gekennzeichnet (s. oben die Links zum IQB und zur KMK). Wir prüfen diese Quellen regelmäßig, können aber für diese Seiten und die dort hinterlegten Zusatzmaterialien keine Haftung für Richtigkeit, Vollständigkeit und Aktualität übernehmen. Dafür sind ausschließlich deren Betreiber verantwortlich.\n\n\nTechnische Realisierung\nDieser Webauftritt basiert auf Texten in einer einfachen Syntax Markdown, die anschließend in Html und CSS umgesetzt werden. Hierzu wird Quarto verwendet. Sämtliche Dateien für den Inhalt und die Steuerung sind in einem öffentlich zugänglichen Codeverwaltungssystem gespeichert.\n\n\nKontakt\nTechnische und inhaltliche Fragen zu den Inhalten können Sie an die IT des IQB richten.\nWenn Sie Probleme melden möchten, können Sie auch die Funktion “Problem melden” nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.",
     "crumbs": [
       "Start"
     ]
-  },
-  {
-    "objectID": "data-structures/derive.html",
-    "href": "data-structures/derive.html",
-    "title": "Ableitungen",
-    "section": "",
-    "text": "flowchart TD\n    subgraph Test\n        A[UNSET]\n        style A fill:white\n        B[NOT_REACHED]\n        style B fill:white\n        C[DISPLAYED]\n        style C fill:white\n        D[VALUE_CHANGED]\n        style D fill:white\n    end\n    style Test fill:#b3b3cc\n    A --&gt; F[\"Fehler in Programmierung\"]\n    style F fill:#f60\n    B --&gt; G[NOT_REACHED]\n    style G fill:#fc6\n    C --&gt; H{{TAKE_DISPLAYED_AS_VALUE_CHANGED ?}}\n    style H fill:white\n    H --&gt; |NEIN| L[DISPLAYED]\n    style L fill:#fc6\n    D --&gt; HX{{Empty ?}}\n    T[VALUE_CHANGED]\n    H --&gt; |JA| T\n    T --&gt; HX\n    style HX fill:white\n    HX --&gt; |NEIN| K[\"Automatische Kodierung\"]\n    X --&gt; |JA| K\n    HX --&gt; |JA| X{{TAKE_EMPTY_AS_VALID ?}}\n    X --&gt; |NEIN| XY[INVALID]\n    style X fill:white\n    style XY fill:#fc6\n\n    subgraph Kodierung_1\n        K1[CODING_COMPLETE]\n        style K1 fill:#6f9\n        K2[CODING_INCOMPLETE]\n        style K2 fill:white\n        K5[CODING_ERROR]\n        style K5 fill:#f60\n        K3[NO_CODING]\n        style K3 fill:#9cf\n        K4[INVALID]\n        style K4 fill:#fc6\n    end\n    style Kodierung_1 fill:#b3b3cc\n    style Kodierung_1 color:#b3b3cc\n    K --&gt; K1\n    K --&gt; K2\n    K --&gt; K5\n    K --&gt; K3\n    K --&gt; K4\n\n    R[\"Manuelle Kodierung\"]\n    K2 --&gt; R\n    K5 --&gt; R\n\n    RE[\"Rating / Transcript\"]\n    style RE fill:#9cf\n    K3 --&gt; RE\n    subgraph Kodierung_2\n        K2_1[CODING_COMPLETE]\n        style K2_1 fill:#6f9\n        K2_4[INVALID]\n        style K2_4 fill:#fc6\n        K2_5[CODING_ERROR]\n        style K2_5 fill:#fc6\n    end\n    style Kodierung_2 fill:#b3b3cc\n    style Kodierung_2 color:#b3b3cc\n    R --&gt; K2_1\n    R --&gt; K2_4\n    R --&gt; K2_5"
-  },
-  {
-    "objectID": "data-structures/derive.html#zulässiger-status",
-    "href": "data-structures/derive.html#zulässiger-status",
-    "title": "Ableitungen",
-    "section": "Zulässiger Status",
-    "text": "Zulässiger Status\nOb eine Ableitung möglich ist, ist vom Status der Quellvariablen und von der Ableitungsmethode sourceType abhängig. Für jede Quellvariable muss einer der folgenden Status zutreffen, damit eine Ableitung erfolgt:\n\nZulässiger Status nach Ableitungsmethode\n\n\n\n\n\n\nAbleitungsmethode\nzulässiger Status\n\n\n\n\nMANUAL\nVALUE_CHANGED1, CODING_COMPLETE, CODING_INCOMPLETE, CODING_ERROR, NO_CODING\n\n\nCOPY_VALUE, UNIQUE_VALUES, SOLVER\nCODING_COMPLETE, CODING_INCOMPLETE, CODING_ERROR, NO_CODING\n\n\nCONCAT_CODE, SUM_CODE, SUM_SCORE\nCODING_COMPLETE\n\n\n\nBei der Ableitungsmethode MANUAL wird die abgeleitete Variable ggf. neu angelegt und dann der Status CODING_INCOMPLETE gesetzt. Auch wenn Regeln für die Kodierung der abgeleiteten Variable hinterlegt sein sollten, wird nie eine automatische Kodierung versucht. Ist die Variable bereits vorhanden, wird deren Status durch den Autocoder nicht verändert.\nBei allen anderen Ableitungsmethoden versucht der Autocoder eine Kodierung entsprechend der Parameter und Regeln."
-  },
-  {
-    "objectID": "data-structures/derive.html#fehlersituation",
-    "href": "data-structures/derive.html#fehlersituation",
-    "title": "Ableitungen",
-    "section": "Fehlersituation",
-    "text": "Fehlersituation\nWenn die Quellvariablen nicht die o. g. Bedingungen an den Status erfüllen, muss ein aussagekräftiger Status für die neue Variable gesetzt werden. Für die folgenden Schritte ist die Reihenfolge relevant.\n\nSchritt 1: Killer\nWenn eine der Quellvariablen einen der folgenden linken Status hat, dann erhält die abgeleitete Variable den rechten Status - egal, welchen Status die anderen Quellvariablen haben. Die Liste wird von oben nach unten abgearbeitet.\n\nUNSET → UNSET\nDERIVE_ERROR → DERIVE_ERROR\nNO_CODING → DERIVE_ERROR\nCODING_ERROR → CODING_ERROR\nINVALID → INVALID\n\n\n\nSchritt 2: Warten auf manuelle Kodierung\nDie Ableitungsmethoden CONCAT_CODE, SUM_CODE und SUM_SCORE setzen eine vollständige Kodierung voraus: CODING_COMPLETE. Sollte eine oder mehrere Quellvariablen den Status CODING_INCOMPLETE oder DERIVE_PENDING haben, dann wird der Status der abgeleiteten Variable auf DERIVE_PENDING gesetzt.\n\n\nSchritt 3: Erben von Fehlerzuständen\nFür die verbliebenen Fehlerzustände der Ableitungen soll der Status gezielt gesetzt werden, um die Nachbereitung oder das Setzen von Missings zu erleichtern:\n\nEs gibt mindestens einen zulässigen Status und mindestens einen unzulässigen Status → INVALID\nEs gibt keinen zulässigen Status und alle Status sind gleich → Übernahme des Status der Quellvariablen für die abgeleitete Variable\nDie Quellvariablen haben einen Mix aus NOT_REACHED, DISPLAYED oder PARTLY_DISPLAYED → PARTLY_DISPLAYED"
-  },
-  {
-    "objectID": "data-structures/derive.html#footnotes",
-    "href": "data-structures/derive.html#footnotes",
-    "title": "Ableitungen",
-    "section": "Fußnoten",
-    "text": "Fußnoten\n\n\nVALUE_CHANGED meint an dieser Stelle den geprüften Status, d. h. es kann auch DISPLAYED einschließen, wenn TAKE_DISPLAYED_AS_VALUE_CHANGED gesetzt ist, und prüft, dass der Wert nicht leer ist bzw. TAKE_EMPTY_AS_VALID gesetzt ist.↩︎"
   },
   {
     "objectID": "data-structures/index.html",
@@ -279,13 +251,112 @@
     ]
   },
   {
-    "objectID": "workflow/index.html",
-    "href": "workflow/index.html",
-    "title": "Arbeitsschritte",
+    "objectID": "coding/index.html",
+    "href": "coding/index.html",
+    "title": "Kodieren",
     "section": "",
-    "text": "Die Schritte der Datenverarbeitung unterscheiden sich, je nachdem, ob eine genauere Analyse der Itemeigenschaften erfolgen soll (DIF, Distraktorenanalyse usw.) oder die Studie der Ermittlung von Personenkennwerten dient. Nachfolgend wird vom letzteren Fall ausgegangen, da für die Itemanalyse (Erprobung, Pilotierung) jederzeit nach Bedarf abgezweigt werden kann.\n\nRohdaten\n\nBei Speicherplatzproblemen können alle Fälle herausgefiltert werden, die als Status UNSET oder NOT_REACHED gesetzt haben. Deren Werte (Values) sind grundsätzlich zu ignorieren und können aus den Antwortdaten entfernt werden.\nWenn für alle Testpersonen die Antworten für eine Variable leer sind, handelt es sich wahrscheinlich um ein Interaktionselement, das nur theoretisch einen Wert haben könnte, was aber in dieser Studie nicht genutzt wurde (z. B. ein Textelement kann theoretisch eine Markierung erhalten). Diese Variablen können komplett aus den Antwortdaten entfernt werden.\n\nAlle anderen Fälle müssen in den ersten Autocoder-Lauf gegeben werden.\n\n\nErster Autocoder-Lauf\n\nIm Kodierschema kann festgelegt werden, dass ein Antwortstatus DISPLAYED sowie bei VALUE_CHANGED ein leerer Antwortwert relevant sind. In beiden Fällen wird regulär kodiert und der Status CODING_COMPLETE vergeben. Sollten diese beiden Fälle nicht als relevant markiert worden sein, wird DISPLAYED nicht verändert und ein leerer Antwortwert von VALUE_CHANGED in INVALID geändert.\nKann eine Variable nicht abgeleitet werden, weil deren Basisvariablen keinen hinreichenden Status haben, leitet sich der Status der abgeleiteten Variable aus diesen Regeln ab.\nEs gibt nach dem Autocoder-Lauf Fehlerzustände, denen gezielt nachgegangen werden muss. Vielen der Fälle kann man begegnen, indem man das jeweilige Kodierschema ergänzt oder korrigiert.\n\n\n\nManuelle Kodierung\nAlle Fälle für CODING_INCOMPLETE und CODING_ERROR werden manuell kodiert. Als Ergebnis der manuellen Kodierung sind als Status CODING_COMPLETE, CODING_ERROR (technisches Problem beim Kodieren) und INVALID möglich.\n\n\nZweiter Autocoder-Lauf\nNach der manuellen Kodierung folgt ein weiterer Autocoder-Lauf, da es ggf. abgeleitete Variablen gibt, die auf den nun verfügbaren Codes basieren. Eine Kodierung ist abgeschlossen, wenn die Antworten ausschließlich folgende Stati angenommen haben: UNSET, NOT_REACHED, DISPLAYED, INVALID, CODING_COMPLETE, CODING_ERROR und NO_CODING.\nDie folgenden Stati dürfen nicht auftreten: VALUE_CHANGED, CODING_INCOMPLETE und DERIVE_ERROR. Eine Ausnahme bildet der Sonderfall, wenn für eine Variable NO_CODING festgelegt wurde. Dann bleibt deren Status VALUE_CHANGED erhalten.\n\n\nRekodierung (Itemmatrix)\nNach dem zweiten Autocoder-Lauf liegen die Antworten weiterhin in der Datenstruktur “Antwort” vor. Für eine Datenanalyse werden anschließend sämtliche Codes bzw. der daraus resultierenden Scores in eine Matrix Person x Item überführt.\nDie Unit-Definition enthält eine Liste, wo zu jedem Item eine Variable benannt ist, die den Itemwert liefert (Basis- oder abgeleitete Variable). Sollte kein gültiger Code bzw. Score für die Itemvariable ermittelt worden sein, wird ein Missing-Code aus dem Status der Itemvariablen ermittelt.\nDie nachfolgende Liste deckt Standardfälle als Orientierung ab.\n\n\n\n\n\n\n\n\nStatus\nNeuer Code\nBeschreibung\n\n\n\n\nINVALID\n-98\nmir - missing invalid response\n\n\nCODING_ERROR\n-97\nmci - missing coding impossible\n\n\nUNSET, DISPLAYED\n-99\nmbo - missing by omission\n\n\nNOT_REACHED\n-96 oder -99\nmnr - missing not reached oder mbo - missing by omission\n\n\n\nDie Ermittlung von NOT_REACHED bezog sich bisher nur auf die jeweilige Unit. Für die Analyse muss diese Sicht jedoch auf das Testinstrument (Testheft) erweitert werden. Items von Units, die nicht in den Antwortdaten zu finden sind, aber beantwortet werden sollten, müssen neu in die Itemmatrix aufgenommen werden. Hierzu muss die Abfolge der Units (Sequenz) für jedes Testinstrument bekannt sein sowie ggf. Blockgrenzen bekannt sein. Welcher Missing-Code vergeben wird, richtet sich dann nach der Position der Unit bzw. danach, ob bis zum Ende des Tests bzw. des Blocks noch Antworten vorliegen.\nAnschließend werden üblicherweise Items hinzugefügt, die den Personen nicht vorgelegt wurden und die also planmäßig nicht beantwortet wurden. Dies dient der Vervollständigung der Matrix für die Datenverarbeitung. Den Items wird der Code -94 (mbd - missing by design) zugewiesen.",
+    "text": "Allgemeines Verfahren\nBevor die Daten in die Analyse gehen, werden sie aufbereitet. Die Kodierung übernimmt hierbei nicht nur die klassische Funktion, die Antwort einer Kategorie zuzuordnen, sondern setzt auch vielfältige Vorschriften zur Anzeige von Fehlerzuständen um. Die Prozesse der Kodierung setzen direkt an der Datenerzeugung an und haben so eine herausragende Funktion bei der Sicherung der Datenqualität.\n\n\n\n\n\nflowchart TD\n    subgraph Input\n        T[\"Antworten\"]\n        style T fill:white\n        style T stroke:black\n    end\n    style Input fill:#ffc\n    style Input stroke:#996\n    style Input color:black\n    subgraph Kodierung\n        F[Filter gültige Antworten]\n        style F fill:white\n        style F stroke:white\n        A1[Autocoder 1. Lauf]\n        style A1 fill:white\n        style A1 stroke:white\n        M[Manuelle Kodierung]\n        style M fill:white\n        style M stroke:white\n        A2[Autocoder 2. Lauf]\n        style A2 fill:white\n        style A2 stroke:white\n    end\n    style Kodierung fill:#996\n    style Kodierung stroke:#996\n    style Kodierung color:black\n    subgraph Output\n        K[Kodierte valide Werte]\n        style K fill:white\n        style K stroke:black\n        W[Invalide Werte]\n        style W fill:white\n        style W stroke:black\n        K --&gt; PDS[Primärer Datensatz]\n        W --&gt; PDS\n        style PDS fill:#cf9\n        style PDS stroke:black\n        PDS --&gt; ADS[Analyse-Datensatz]\n        style ADS fill:#cf9\n        style ADS stroke:black\n    end\n    style Output fill:#ffc\n    style Output stroke:#996\n    style Output color:black\n    T --&gt; F\n    F --&gt; A1\n    A1 --&gt; K\n    A1 --&gt; M\n    M --&gt; A2\n    A2 --&gt; W\n    A2 --&gt; K\n    A1 --&gt; W\n    F --&gt; W\n\n\n Kodierung Ablauf \n\n\n\nAusgehend von den Rohdaten, die im Format iqb-standard vorliegen, müssen folgende Arbeitsschritte vorgenommen werden:\n\nFilter gültiger Antworten: Eine Kodierung ist nur für Antworten erforderlich, die gültig sind.\nAutocoder 1. Lauf: Soweit möglich, werden die Vorschriften im Kodierschema genutzt, um automatisch zu kodieren. Sollten die Vorschriften nicht ausreichen, bleiben Kodierfälle offen. Diese Fälle sind auf besondere Art markiert, um sie der manuellen Kodierung zuzuführen.\nBei der manuelle Kodierung erfolgt die Bewertung der Antwort über besonders qualifizierte Personen.\nAnschließend erfolgt ein zweiter Lauf des Autocoders. Es ist jetzt möglich, mit allen vorliegenden Bewertungen alle nötigen Ableitungen abzuschließen. Für die spätere Beurteilung der Datenqualität ist die Zuweisung von bestimmten Status-Werten für invalide Kodierfälle nötig.\nInvalide Werte werden am IQB in Missings rekodiert. Zusammen mit den Scores aus dem primären Datensatz ergeben sie den Analyse-Datensatz.\n\n\n\nWerte für Status einer Antwort\n\n\n\n\n\nflowchart TD\n    A[Antwort VALUE_CHANGED] --&gt; K[\"Automatische Kodierung + Ableitung\"]\n\n    subgraph Kodierung_1\n        K1[CODING_COMPLETE]\n        style K1 fill:#6f9\n        K6[DERIVE_PENDING]\n        style K6 fill:white\n        K2[CODING_INCOMPLETE]\n        style K2 fill:white\n        K5[CODING_ERROR]\n        style K5 fill:#f60\n        K3[NO_CODING]\n        style K3 fill:#9cf\n        K4[INVALID]\n        style K4 fill:#fc6\n    end\n    style Kodierung_1 fill:#b3b3cc\n    style Kodierung_1 color:#b3b3cc\n    K --&gt; K1\n    K --&gt; K6\n    K --&gt; K2\n    K --&gt; K5\n    K --&gt; K3\n    K --&gt; K4\n\n    K6 --&gt; KK\n\n    R[\"Manuelle Kodierung\"]\n    K2 --&gt; R\n    K5 --&gt; R\n    K3 --&gt; RE[\"Rating / Transcript\"]\n    style RE fill:#9cf\n\n    subgraph Kodierung_2\n        K2_1[CODING_COMPLETE]\n        style K2_1 fill:#6f9\n        K2_4[INVALID]\n        style K2_4 fill:#fc6\n        K2_5[CODING_ERROR]\n        style K2_5 fill:#fc6\n    end\n    style Kodierung_2 fill:#b3b3cc\n    style Kodierung_2 color:#b3b3cc\n    R --&gt; K2_1\n    R --&gt; K2_4\n    R --&gt; K2_5\n\n    KK[\"Automatische Kodierung + Ableitung\"]\n    K2_1 --&gt; KK\n    K2_4 --&gt; KK\n    K2_5 --&gt; KK\n    subgraph Kodierung_3\n        K3_1[CODING_COMPLETE]\n        style K3_1 fill:#6f9\n        K3_4[INVALID]\n        style K3_4 fill:#fc6\n        K3_5[CODING_ERROR]\n        style K3_5 fill:#fc6\n    end\n    style Kodierung_3 fill:#b3b3cc\n    style Kodierung_3 color:#b3b3cc\n    KK --&gt; K3_1\n    KK --&gt; K3_4\n    KK --&gt; K3_5",
     "crumbs": [
-      "Arbeitsschritte"
+      "Kodierung"
+    ]
+  },
+  {
+    "objectID": "coding/valid-responses.html",
+    "href": "coding/valid-responses.html",
+    "title": "Gültige Antworten",
+    "section": "",
+    "text": "In die Kodierung gehen nur Fälle ein, die den Status VALUE_CHANGED haben:\n\n\n\n\n\nflowchart TD\n    subgraph Test\n        A[UNSET]\n        style A fill:white\n        B[NOT_REACHED]\n        style B fill:white\n        C[DISPLAYED]\n        style C fill:white\n        D[VALUE_CHANGED]\n        style D fill:white\n    end\n    style Test fill:#b3b3cc\n    A --&gt; F[\"Fehler in Programmierung\"]\n    style F fill:#f60\n    B --&gt; G[NOT_REACHED]\n    style G fill:#fc6\n    C --&gt; H{{TAKE_DISPLAYED_AS_VALUE_CHANGED ?}}\n    style H fill:white\n    H --&gt; |NEIN| L[DISPLAYED]\n    style L fill:#fc6\n    D --&gt; HX{{Empty ?}}\n    T[VALUE_CHANGED]\n    H --&gt; |JA| T\n    T --&gt; HX\n    style HX fill:white\n    HX --&gt; |NEIN| K[\"Kodierung\"]\n    X --&gt; |JA| K[\"Kodierung\"]\n    HX --&gt; |JA| X{{TAKE_EMPTY_AS_VALID ?}}\n    X --&gt; |NEIN| XY[INVALID]\n    style X fill:white\n    style XY fill:#fc6\n\n\n\n\n\n\nDer Begriff leer bezeichnet einen leeren String \"\" oder - wenn ein Array von Werten erwartet wird - ein Array mit 0 Elementen \"[]\".\nVALUE_CHANGED meint an dieser Stelle den geprüften Status, d. h. es kann auch DISPLAYED einschließen, wenn TAKE_DISPLAYED_AS_VALUE_CHANGED gesetzt ist, und prüft, dass der Wert nicht leer ist bzw. TAKE_EMPTY_AS_VALID gesetzt ist.",
+    "crumbs": [
+      "Kodierung",
+      "Gültige Antworten"
+    ]
+  },
+  {
+    "objectID": "coding/missings.html",
+    "href": "coding/missings.html",
+    "title": "IQB-Missings",
+    "section": "",
+    "text": "Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.",
+    "crumbs": [
+      "Kodierung",
+      "IQB-Missings"
+    ]
+  },
+  {
+    "objectID": "coding/missings.html#status-missing",
+    "href": "coding/missings.html#status-missing",
+    "title": "IQB-Missings",
+    "section": "Status → Missing",
+    "text": "Status → Missing\n\n\n\n\n\n\n\n\nStatus\nNeuer Code\nBeschreibung\n\n\n\n\nINVALID\n-98\nmir - missing invalid response\n\n\nCODING_ERROR\n-97\nmci - missing coding impossible\n\n\nUNSET, DISPLAYED\n-99\nmbo - missing by omission\n\n\nNOT_REACHED\n-96 oder -99\nmnr - missing not reached oder mbo - missing by omission",
+    "crumbs": [
+      "Kodierung",
+      "IQB-Missings"
+    ]
+  },
+  {
+    "objectID": "coding/missings.html#missing-by-design",
+    "href": "coding/missings.html#missing-by-design",
+    "title": "IQB-Missings",
+    "section": "Missing by Design",
+    "text": "Missing by Design\nDie Ermittlung von NOT_REACHED bezog sich bisher nur auf die jeweilige Unit. Für die Analyse muss diese Sicht jedoch auf das Testinstrument (Testheft) erweitert werden. Items von Units, die nicht in den Antwortdaten zu finden sind, aber beantwortet werden sollten, müssen neu in die Itemmatrix aufgenommen werden. Hierzu muss die Abfolge der Units (Sequenz) für jedes Testinstrument bekannt sein sowie ggf. Blockgrenzen bekannt sein. Welcher Missing-Code vergeben wird, richtet sich dann nach der Position der Unit bzw. danach, ob bis zum Ende des Tests bzw. des Blocks noch Antworten vorliegen.\nAnschließend werden üblicherweise Items hinzugefügt, die den Personen nicht vorgelegt wurden und die also planmäßig nicht beantwortet wurden. Dies dient der Vervollständigung der Matrix für die Datenverarbeitung. Den Items wird der Code -94 (mbd - missing by design) zugewiesen.",
+    "crumbs": [
+      "Kodierung",
+      "IQB-Missings"
+    ]
+  },
+  {
+    "objectID": "coding/derive.html",
+    "href": "coding/derive.html",
+    "title": "Ableitungen",
+    "section": "",
+    "text": "Ob eine Ableitung möglich ist, ist vom Status der Quellvariablen und von der Ableitungsmethode sourceType abhängig. Für jede Quellvariable muss einer der folgenden Status zutreffen, damit eine Ableitung erfolgt:\n\nZulässiger Status nach Ableitungsmethode\n\n\n\n\n\n\nAbleitungsmethode\nzulässiger Status\n\n\n\n\nMANUAL\nINVALID, VALUE_CHANGED1, CODING_COMPLETE, CODING_INCOMPLETE, CODING_ERROR, NO_CODING\n\n\nCOPY_VALUE, UNIQUE_VALUES, SOLVER\nVALUE_CHANGED2, CODING_COMPLETE, CODING_INCOMPLETE, CODING_ERROR, NO_CODING\n\n\nCONCAT_CODE, SUM_CODE, SUM_SCORE\nCODING_COMPLETE\n\n\n\nBei der Ableitungsmethode MANUAL wird die abgeleitete Variable ggf. neu angelegt und dann der Status CODING_INCOMPLETE gesetzt. Auch wenn Regeln für die Kodierung der abgeleiteten Variable hinterlegt sein sollten, wird nie eine automatische Kodierung versucht. Ist die Variable bereits vorhanden, wird deren Status durch den Autocoder nicht verändert.\nBei allen anderen Ableitungsmethoden versucht der Autocoder eine Kodierung entsprechend der Parameter und Regeln.",
+    "crumbs": [
+      "Kodierung",
+      "Ableitungen"
+    ]
+  },
+  {
+    "objectID": "coding/derive.html#schritt-1-killer",
+    "href": "coding/derive.html#schritt-1-killer",
+    "title": "Ableitungen",
+    "section": "Schritt 1: Killer",
+    "text": "Schritt 1: Killer\nWenn eine der Quellvariablen einen der folgenden linken Status hat, dann erhält die abgeleitete Variable den rechten Status - egal, welchen Status die anderen Quellvariablen haben. Die Liste wird von oben nach unten abgearbeitet.\n\nUNSET → UNSET\nDERIVE_ERROR → DERIVE_ERROR\nNO_CODING → DERIVE_ERROR\nCODING_ERROR → CODING_ERROR\nINVALID → INVALID",
+    "crumbs": [
+      "Kodierung",
+      "Ableitungen"
+    ]
+  },
+  {
+    "objectID": "coding/derive.html#schritt-2-warten-auf-manuelle-kodierung",
+    "href": "coding/derive.html#schritt-2-warten-auf-manuelle-kodierung",
+    "title": "Ableitungen",
+    "section": "Schritt 2: Warten auf manuelle Kodierung",
+    "text": "Schritt 2: Warten auf manuelle Kodierung\nDie Ableitungsmethoden CONCAT_CODE, SUM_CODE und SUM_SCORE setzen eine vollständige Kodierung voraus: CODING_COMPLETE. Sollte eine oder mehrere Quellvariablen den Status CODING_INCOMPLETE oder DERIVE_PENDING haben, dann wird der Status der abgeleiteten Variable auf DERIVE_PENDING gesetzt.",
+    "crumbs": [
+      "Kodierung",
+      "Ableitungen"
+    ]
+  },
+  {
+    "objectID": "coding/derive.html#schritt-3-erben-von-fehlerzuständen",
+    "href": "coding/derive.html#schritt-3-erben-von-fehlerzuständen",
+    "title": "Ableitungen",
+    "section": "Schritt 3: Erben von Fehlerzuständen",
+    "text": "Schritt 3: Erben von Fehlerzuständen\nFür die verbliebenen Fehlerzustände der Ableitungen soll der Status gezielt gesetzt werden, um die Nachbereitung oder das Setzen von Missings zu erleichtern:\n\nEs gibt mindestens einen zulässigen Status und mindestens einen unzulässigen Status → INVALID\nEs gibt keinen zulässigen Status und alle Status sind gleich → Übernahme des Status der Quellvariablen für die abgeleitete Variable\nDie Quellvariablen haben einen Mix aus NOT_REACHED, DISPLAYED oder PARTLY_DISPLAYED → PARTLY_DISPLAYED",
+    "crumbs": [
+      "Kodierung",
+      "Ableitungen"
+    ]
+  },
+  {
+    "objectID": "coding/derive.html#footnotes",
+    "href": "coding/derive.html#footnotes",
+    "title": "Ableitungen",
+    "section": "Fußnoten",
+    "text": "Fußnoten\n\n\nVALUE_CHANGED meint an dieser Stelle den geprüften Status, d. h. es kann auch DISPLAYED einschließen, wenn TAKE_DISPLAYED_AS_VALUE_CHANGED gesetzt ist, und prüft, dass der Wert nicht leer ist bzw. TAKE_EMPTY_AS_VALID gesetzt ist.↩︎\nVALUE_CHANGED meint an dieser Stelle den geprüften Status, d. h. es kann auch DISPLAYED einschließen, wenn TAKE_DISPLAYED_AS_VALUE_CHANGED gesetzt ist, und prüft, dass der Wert nicht leer ist bzw. TAKE_EMPTY_AS_VALID gesetzt ist.↩︎",
+    "crumbs": [
+      "Kodierung",
+      "Ableitungen"
     ]
   },
   {
@@ -320,50 +391,6 @@
     "crumbs": [
       "Datenstrukturen",
       "Antwort/Variable"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html",
-    "href": "data-structures/missings.html",
-    "title": "Missings",
-    "section": "",
-    "text": "Mit dem Begriff “Missings” werden Zustände in den Daten kodiert, die von einer normalen auswertbaren Antwort abweichen. Statt eines Wertes, der für die Antwort bzw. für den Code einer Antwort steht, wird in den Datensatz ein Wert eingetragen, der eine fehlerhafte bzw. von der erwarteten Beantwortung abweichende Situation beschreibt. Üblicherweise sind gültige, zulässige Antworten mit positiven Zahlen ausgedrückt, ein Missing jedoch mit einem negativen Wert.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#missing-by-omission-wenn-leer",
-    "href": "data-structures/missings.html#missing-by-omission-wenn-leer",
-    "title": "Missings",
-    "section": "Missing by Omission wenn leer?",
-    "text": "Missing by Omission wenn leer?\nWenn eine Eingabe bearbeitet wurde und dann wieder herausgelöscht, könnte man überlegen, statt einer ungültigen Antwort eine beabsichtigte Auslassung (Omission) anzunehmen. Die Testperson wollte wohl den Ausgangszustand wiederherstellen. Hier gibt es einige Probleme:\n\nBei Interaktionenselementen kann man oft einen Wert als Vorbelegung festlegen. Ein Herauslöschen würde nicht den Anfangszustand wiederherstellen.\nDer Aspect-Player hat ein Eingabeelement, das mit einem Satz ohne Satzzeichen vorbelegt ist. Die Testperson kann nur eingeschränkt Zeichen einfügen oder löschen. Der Wert der Eingabe ist stets mindestens die Vorbelegung. Die Option ‘leer’ gibt es nicht.\nBei einigen Interaktionselementen ist die Testperson vielleicht überzeugt, den Ausgangszustand wiederhergestellt zu haben, es gibt aber unsichtbare Reste der Bearbeitung (z. B. Textmarkierung, GeoGebra: Verschieben und Zurückschieben von Punkten). Das wird unfairerweise dann unsystematisch unterschiedlich bewertet.\n\n\n\n\n\n\n\nUmsetzung\n\n\n\nEin bearbeiteter, aber leerer Wert wird als invalid bewertet. Dieses Standardverhalten kann durch eine Option im Kodierschema geändert werden, und es gibt auch eine Regel, die auf einen leeren Wert prüft. Dann ist es auch möglich, einen Code für einen leeren Wert zu vergeben.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#status-displayed-überspringen",
-    "href": "data-structures/missings.html#status-displayed-überspringen",
-    "title": "Missings",
-    "section": "Status DISPLAYED überspringen?",
-    "text": "Status DISPLAYED überspringen?\nDas IQB-Testsystem registriert, wenn ein Interaktionselement in den Sichtbereich kommt: Status DISPLAYED. Wenn eine Interaktion erfolgte, wird der Status VALUE_CHANGED gesetzt (zum Status einer Antwort siehe hier). Es gibt nun Interaktionselemente, deren Ausgangswert mit hoher Wahrscheinlichkeit der gewünschte Endwert sein soll und das ist dann auch gelegentlich die richtige Antwort. Im Kodierprozess werden standardmäßig nur Antworten mit Status VALUE_CHANGED ausgewertet.\n\n\n\n\n\n\nUmsetzung\n\n\n\nIm Kodierschema gibt es eine Option, mit der man für eine Variable festlegen kann, dass der Wert auch bei DISPLAYED ausgewertet wird, also dann wie VALUE_CHANGED behandelt wird.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
-    ]
-  },
-  {
-    "objectID": "data-structures/missings.html#wo-ist-das-item",
-    "href": "data-structures/missings.html#wo-ist-das-item",
-    "title": "Missings",
-    "section": "Wo ist das Item?",
-    "text": "Wo ist das Item?\nWenn es als 17. Teilaufgabe ein Item mit der Instruktion “markiere im Text” gibt, weicht der Ort der Beantwortung (also die Interaktion “Markieren” im Stimulus) räumlich stark vom Ort des Items ab, wie er überlicherweise verstanden wird. Die Frage, ob das Item gesehen wurde, wird aktuell falsch beantwortet: Wenn der Stimulustext gesehen wurde.\n\n\n\n\n\n\nMögliche Umsetzung\n\n\n\nMan könnte für Elemente der Unit, die keine Interaktionselemente sind, eine Art Dummy-Variable einrichten. Deren Wert ist unwichtig, aber sie liefert einen Status. Dann könnte ein Textelement (Instruktion des Items) mit in die Kodierung einfließen.",
-    "crumbs": [
-      "Datenstrukturen",
-      "Missings"
     ]
   }
 ]
