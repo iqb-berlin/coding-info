@@ -42,21 +42,24 @@ flowchart TD
 
 : IQB-Missings {.striped}
 
-# Verfahren
+# Mapping auf `response`-Status
 
 Die Datenstruktur [`response`](response.qmd), die durch die TBA-Webanwendung IQB-Testcenter erzeugt wird, sieht Missings nicht vor. Statt dessen wird neben dem Antwortwert ein Status geliefert. Erst zu einem späteren Zeitpunkt -- im Rahmen der Kodierung und Ableitung -- wird die Datenstruktur `response` in einen einzelnen numerischen ganzzahligen Code transformiert. Diese Transformation zu einer **Itemmatrix Person x Antwort-Code** bedeutet in der Regel Informationsverlust, ist aber Voraussetzung für die nachfolgenden Datenanalysen.
 
-## Status &rarr; Missing
+## Fälle innerhalb einer Unit
 
 | Status | Neuer Code | Beschreibung |
-|---|---:|------------|
+|-----|---:|------------|
 | `INVALID` | -98 | mir - missing invalid response |
 | `CODING_ERROR` | -97 | mci - missing coding impossible |
 | `UNSET`, `DISPLAYED` | -99 | mbo - missing by omission |
 | `NOT_REACHED` | -96 oder -99 | mnr - missing not reached oder mbo - missing by omission |
 
-## Missing by Design
+
+## Missing not reached über Unit-Grenzen
 
 Die Ermittlung von `NOT_REACHED` bezog sich bisher nur auf die jeweilige Unit. Für die Analyse muss diese Sicht jedoch auf das Testinstrument (Testheft) erweitert werden. Items von Units, die nicht in den Antwortdaten zu finden sind, aber beantwortet werden sollten, müssen neu in die Itemmatrix aufgenommen werden. Hierzu muss die Abfolge der Units (Sequenz) für jedes Testinstrument bekannt sein sowie ggf. Blockgrenzen bekannt sein. Welcher Missing-Code vergeben wird, richtet sich dann nach der Position der Unit bzw. danach, ob bis zum Ende des Tests bzw. des Blocks noch Antworten vorliegen.
+
+## Missing by Design
 
 Anschließend werden üblicherweise Items hinzugefügt, die den Personen nicht vorgelegt wurden und die also planmäßig nicht beantwortet wurden. Dies dient der Vervollständigung der Matrix für die Datenverarbeitung. Den Items wird der Code -94 (mbd - missing by design) zugewiesen.
