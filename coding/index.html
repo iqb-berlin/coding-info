@@ -192,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../coding/missings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IQB-Missings</span></a>
+ <span class="menu-text">Missings</span></a>
   </div>
 </li>
       </ul>
@@ -305,7 +305,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Filter <a href="../coding/valid-responses.html">gültiger Antworten</a>: Eine Kodierung ist nur für Antworten erforderlich, die gültig sind.</li>
 <li><a href="../coding/autocoder.html">Autocoder</a> 1. Lauf: Soweit möglich, werden die Vorschriften im <a href="../data-structures/coding-scheme.html">Kodierschema</a> genutzt, um automatisch zu kodieren. Sollten die Vorschriften nicht ausreichen, bleiben Kodierfälle offen. Diese Fälle sind auf besondere Art markiert, um sie der manuellen Kodierung zuzuführen.</li>
-<li>Bei der manuelle Kodierung erfolgt die Bewertung der Antwort über besonders qualifizierte Personen.</li>
+<li>Bei der manuellen Kodierung erfolgt die Bewertung der Antwort über besonders qualifizierte Personen.</li>
 <li>Anschließend erfolgt ein zweiter Lauf des Autocoders. Es ist jetzt möglich, mit allen vorliegenden Bewertungen alle nötigen Ableitungen abzuschließen. Für die spätere Beurteilung der Datenqualität ist die Zuweisung von bestimmten Status-Werten für <a href="../coding/invalid-responses.html">invalide Kodierfälle</a> nötig.</li>
 <li>Invalide Werte werden am IQB in <a href="../coding/missings.html">Missings</a> rekodiert. Zusammen mit den Scores aus dem primären Datensatz ergeben sie den Analyse-Datensatz.</li>
 </ul>
@@ -318,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart TD
-    A[Antwort VALUE_CHANGED] --&gt; K["Automatische Kodierung + Ableitung"]
+    A[Antwort VALUE_CHANGED] --&gt; K["Automatische Kodierung und Ableitung"]
 
     subgraph Kodierung_1
         K1[CODING_COMPLETE]
@@ -365,7 +365,7 @@ ul.task-list li input[type="checkbox"] {
     R --&gt; K2_4
     R --&gt; K2_5
 
-    KK["Automatische Kodierung + Ableitung"]
+    KK["Automatische Kodierung und Ableitung"]
     K2_1 --&gt; KK
     K2_4 --&gt; KK
     K2_5 --&gt; KK

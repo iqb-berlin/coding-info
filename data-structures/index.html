@@ -192,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../coding/missings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IQB-Missings</span></a>
+ <span class="menu-text">Missings</span></a>
   </div>
 </li>
       </ul>
@@ -281,7 +281,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Für diese Dokumentation spielt dies allerdings <strong>keine Rolle</strong>. Alle Texte beziehen sich auf die Frage, wo der Wert für das Item herkommt.</p>
 </section>
 <section id="sicht-des-testsystems" class="level1">
 <h1>Sicht des Testsystems</h1>
@@ -300,7 +299,7 @@ ul.task-list li input[type="checkbox"] {
             style B fill:white
         end
         style Testdurchführung fill:#b3b3cc
-        E[Kodierung\nAbleitung]
+        E[Kodierung Ableitung]
         style E fill:#ff9
         C(Kodierschema)
         style C fill:white
@@ -316,14 +315,14 @@ ul.task-list li input[type="checkbox"] {
     A --&gt; E
     B --&gt; E
     C --&gt; E
-    G[Analysedatensatz\nPerson x Item]
+    G[Analysedatensatz Person x Item]
     D --&gt; G
     F(Missingschema) --&gt; G
     style F fill:white
-    K(Unitposition\nim Testheft) --&gt; G
+    K(Unitposition im Testheft) --&gt; G
     style K fill:white
     J --&gt; G
-    L(Metadaten\naus versch. Quellen) --&gt; G
+    L(Metadaten aus versch. Quellen) --&gt; G
     style L fill:white
 </pre>
 </div>
@@ -337,8 +336,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="itemwert" class="level1">
 <h1>Itemwert</h1>
 <p>Zunächst besteht der Itemwert aus dem Score-Wert einer Variablen. Für jedes Item ist hierzu in einer Itemliste eine Variable benannt. Dies kann eine Basisvariable oder eine abgeleitete Variable sein. Der Score-Wert ergibt sich nach der Kodierung, also nach der vollständigen Anwendung des Kodierschemas. Üblicherweise handelt es sich bei dem Scorewert um eine ganze Zahl, i. d.&nbsp;R. 0 oder 1.</p>
-<p>Sollten allerdings für die Itemvariable keine gültigen Antwortwerte vorliegen, wird eine negative Zahl für den Itemwert gesetzt. Diese Zahl symbolisiert nach einer allgemeinen Konvention verschiedene Missing-Zustände, die nicht nur aus den Antworten einer Unit ermittelt werden können, sondern zusätzliche Informationen erfordern.</p>
-<p>In der Tradition der Kompetenzdiagnostik werden zwar zunächst Analysen gerechnet, später jedoch die Missing-Werte rekodiert: Zu 0 = falsch oder zu einem allgemeinen Missing-Wert, der vom verwendeten Analysesystem abhängt (sog. sysmis).</p>
+<p>Sollten allerdings für die Itemvariable keine gültigen Antwortwerte vorliegen, wird eine negative Zahl für den Itemwert gesetzt. Diese Zahl symbolisiert nach einer allgemeinen Konvention verschiedene <a href="../coding/missings.html">Missing-Zustände</a>, die nicht nur aus den Antworten einer Unit ermittelt werden können, sondern zusätzliche Informationen erfordern.</p>
 
 
 </section>

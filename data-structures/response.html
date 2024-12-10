@@ -189,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../coding/missings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IQB-Missings</span></a>
+ <span class="menu-text">Missings</span></a>
   </div>
 </li>
       </ul>
@@ -205,10 +205,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#übersicht" id="toc-übersicht" class="nav-link active" data-scroll-target="#übersicht">Übersicht</a></li>
-  <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status">Status</a>
-  <ul class="collapse">
-  <li><a href="#status-bei-ableitung" id="toc-status-bei-ableitung" class="nav-link" data-scroll-target="#status-bei-ableitung">Status bei Ableitung</a></li>
-  </ul></li>
+  <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status">Status</a></li>
   <li><a href="#value-types" id="toc-value-types" class="nav-link" data-scroll-target="#value-types">Value Types</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/iqb-berlin/coding-info/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
@@ -297,6 +294,10 @@ ul.task-list li input[type="checkbox"] {
 <h1>Status</h1>
 <p>Der Status-Wert übernimmt eine wichtige Anzeigefunktion für die Position einer Antwort im Entstehungs- und Verarbeitungsprozess. Die Datenstruktur wird nicht nur bei der Beantwortung der Testitems oder Fragen im Player genutzt, sondern auch während der Kodierung und Ableitung von neuen Variablen.</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 86%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Wert</th>
@@ -326,7 +327,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td><code>DERIVE_ERROR</code></td>
-<td>Dieser Status zeigt an, dass eine Ableitung fehlgeschlagen ist. Dies kann sich beispielsweise auf einen Typkonflikt (numerisch, Text) beziehen und ist in den meisten Fällen über eine Anpassung des Kodierschemas korrigierbar. Der Status bezieht sich allerdings nicht darauf, ob die zugrundeliegenden Variablen einen unzureichenden Status haben (<a href="#status-bei-ableitung">s. unten</a>), sondern es geht um technische Fehler beim Ableitungsprozess.</td>
+<td>Dieser Status zeigt an, dass eine Ableitung fehlgeschlagen ist. Dies kann sich beispielsweise auf einen Typkonflikt (numerisch, Text) beziehen und ist in den meisten Fällen über eine Anpassung des Kodierschemas korrigierbar. Der Status bezieht sich allerdings nicht darauf, ob die zugrundeliegenden Variablen einen unzureichenden Status haben, sondern es geht um technische Fehler beim Ableitungsprozess.</td>
 </tr>
 <tr class="odd">
 <td><code>DERIVE_PENDING</code></td>
@@ -354,54 +355,19 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<section id="status-bei-ableitung" class="level2">
-<h2 class="anchored" data-anchor-id="status-bei-ableitung">Status bei Ableitung</h2>
-<p>Das Kodierschema des IQB erlaubt das Definieren neuer Variablen auf der Grundlage eines Wertes oder eines Codes anderer Variablen der Unit. Diese sog. Ableitung kann nur erfolgen, wenn die Quellvariablen einen hinreichenden Status haben:</p>
-<ul>
-<li>Variablen, deren Wert (Value) in die abgeleitete Variable eingeht, müssen vor der Kodierung den Status <code>VALUE_CHANGED</code> haben. Es ist auch der Status <code>DISPLAYED</code> möglich, wenn dies bei der Quellvariablen markiert wurde.</li>
-<li>Variablen, deren Code oder Score in die abgeleitete Variable eingeht, müssen den Status <code>CODING_COMPLETE</code> haben.</li>
-</ul>
-<p>Wenn eine oder mehrere Variablen, deren Werte oder Codes für die Ableitung verwendet werden sollen, einen abweichenden Status haben, erfolgt keine Ableitung. Ist der Status bei allen Variablen gleich, dann wird dieser übernommen. Ansonsten gelten folgende Regeln:</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Reihenfolge wichtig
+Status bei Ableitung
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Die folgende Liste wird genau in dieser Reihenfolge abgearbeitet. Sobald ein Fall zutrifft, wird nicht mit der nächsten Bedingung fortgesetzt.</p>
+<p>Für die Interpretation der aggregierten (abgeleiteten) Variablen spielt der Status eine herausragende Rolle. <a href="../coding/missings.html#fälle-innerhalb-einer-unit">Siehe hier</a> für eine detaillierte Beschreibung.</p>
 </div>
 </div>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 73%">
-<col style="width: 26%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Bedingung</th>
-<th>Status der abgeleiteten Variable</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Mindestens eine der Variablen hat den Status <code>CODING_ERROR</code></td>
-<td><code>CODING_ERROR</code></td>
-</tr>
-<tr class="even">
-<td>Mindestens eine der Variablen hat den Status <code>CODING_COMPLETE</code> und mindestens eine andere einen unzulässigen Status</td>
-<td><code>INVALID</code></td>
-</tr>
-<tr class="odd">
-<td>Mindestens eine der Variablen hat den Status <code>PARTLY_DISPLAYED</code> oder <code>DISPLAYED</code> und mindestens eine andere <code>NOT_REACHED</code> oder <code>UNSET</code></td>
-<td><code>PARTLY_DISPLAYED</code></td>
-</tr>
-</tbody>
-</table>
-</section>
 </section>
 <section id="value-types" class="level1">
 <h1>Value Types</h1>
@@ -414,6 +380,19 @@ Reihenfolge wichtig
 <li>null</li>
 <li>boolean</li>
 </ul>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Vorsicht
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In Computersprachen, die eine strikte Typisierung erzwingen, ist diese Variabilität des Datentyps ärgerlich. JSON als Datenformat bietet dies zwar an, in der Praxis ist aber oft eine Transformation in den Datentyp <code>String</code> gebräuchlich.</p>
+</div>
+</div>
 
 
 </section>
