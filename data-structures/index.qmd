@@ -43,8 +43,6 @@ classDiagram
     Unit "1" --> "1..*" Item
 ```
 
-Für diese Dokumentation spielt dies allerdings **keine Rolle**. Alle Texte beziehen sich auf die Frage, wo der Wert für das Item herkommt.
-
 # Sicht des Testsystems
 
 Die Quelle für die Antworten sind vor allem die Interaktionselemente der Aufgabe (Eingabefelder, Ankreuzkästchen, Ablegelisten usw.). Außerdem können Ereignisse (zeitbezogene Zustandsänderungen) Informationen liefern, die in Variablen gespeichert werden (Logvariablen).
@@ -59,7 +57,7 @@ flowchart TD
             style B fill:white
         end
         style Testdurchführung fill:#b3b3cc
-        E[Kodierung\nAbleitung]
+        E[Kodierung Ableitung]
         style E fill:#ff9
         C(Kodierschema)
         style C fill:white
@@ -75,14 +73,14 @@ flowchart TD
     A --> E
     B --> E
     C --> E
-    G[Analysedatensatz\nPerson x Item]
+    G[Analysedatensatz Person x Item]
     D --> G
     F(Missingschema) --> G
     style F fill:white
-    K(Unitposition\nim Testheft) --> G
+    K(Unitposition im Testheft) --> G
     style K fill:white
     J --> G
-    L(Metadaten\naus versch. Quellen) --> G
+    L(Metadaten aus versch. Quellen) --> G
     style L fill:white
 ```
 
@@ -94,6 +92,4 @@ Ein Kodierschema enthält alle Informationen für die manuelle oder automatische
 
 Zunächst besteht der Itemwert aus dem Score-Wert einer Variablen. Für jedes Item ist hierzu in einer Itemliste eine Variable benannt. Dies kann eine Basisvariable oder eine abgeleitete Variable sein. Der Score-Wert ergibt sich nach der Kodierung, also nach der vollständigen Anwendung des Kodierschemas. Üblicherweise handelt es sich bei dem Scorewert um eine ganze Zahl, i. d. R. 0 oder 1.
 
-Sollten allerdings für die Itemvariable keine gültigen Antwortwerte vorliegen, wird eine negative Zahl für den Itemwert gesetzt. Diese Zahl symbolisiert nach einer allgemeinen Konvention verschiedene Missing-Zustände, die nicht nur aus den Antworten einer Unit ermittelt werden können, sondern zusätzliche Informationen erfordern.
-
-In der Tradition der Kompetenzdiagnostik werden zwar zunächst Analysen gerechnet, später jedoch die Missing-Werte rekodiert: Zu 0 = falsch oder zu einem allgemeinen Missing-Wert, der vom verwendeten Analysesystem abhängt (sog. sysmis).
+Sollten allerdings für die Itemvariable keine gültigen Antwortwerte vorliegen, wird eine negative Zahl für den Itemwert gesetzt. Diese Zahl symbolisiert nach einer allgemeinen Konvention verschiedene [Missing-Zustände](../coding/missings.qmd), die nicht nur aus den Antworten einer Unit ermittelt werden können, sondern zusätzliche Informationen erfordern.

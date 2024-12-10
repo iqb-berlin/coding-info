@@ -68,7 +68,7 @@ Ausgehend von den Rohdaten, die im Format [`iqb-standard`](../data-structures/re
 
 * Filter [gültiger Antworten](valid-responses.qmd): Eine Kodierung ist nur für Antworten erforderlich, die gültig sind.
 * [Autocoder](autocoder.qmd) 1. Lauf: Soweit möglich, werden die Vorschriften im [Kodierschema](../data-structures/coding-scheme.qmd) genutzt, um automatisch zu kodieren. Sollten die Vorschriften nicht ausreichen, bleiben Kodierfälle offen. Diese Fälle sind auf besondere Art markiert, um sie der manuellen Kodierung zuzuführen.
-* Bei der manuelle Kodierung erfolgt die Bewertung der Antwort über besonders qualifizierte Personen.
+* Bei der manuellen Kodierung erfolgt die Bewertung der Antwort über besonders qualifizierte Personen.
 * Anschließend erfolgt ein zweiter Lauf des Autocoders. Es ist jetzt möglich, mit allen vorliegenden Bewertungen alle nötigen Ableitungen abzuschließen. Für die spätere Beurteilung der Datenqualität ist die Zuweisung von bestimmten Status-Werten für [invalide Kodierfälle](invalid-responses.qmd) nötig.
 * Invalide Werte werden am IQB in [Missings](missings.qmd) rekodiert. Zusammen mit den Scores aus dem primären Datensatz ergeben sie den Analyse-Datensatz.
 
@@ -76,7 +76,7 @@ Ausgehend von den Rohdaten, die im Format [`iqb-standard`](../data-structures/re
 
 ```{mermaid}
 flowchart TD
-    A[Antwort VALUE_CHANGED] --> K["Automatische Kodierung + Ableitung"]
+    A[Antwort VALUE_CHANGED] --> K["Automatische Kodierung und Ableitung"]
 
     subgraph Kodierung_1
         K1[CODING_COMPLETE]
@@ -123,7 +123,7 @@ flowchart TD
     R --> K2_4
     R --> K2_5
 
-    KK["Automatische Kodierung + Ableitung"]
+    KK["Automatische Kodierung und Ableitung"]
     K2_1 --> KK
     K2_4 --> KK
     K2_5 --> KK

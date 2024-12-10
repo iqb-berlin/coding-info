@@ -1,6 +1,6 @@
 ---
 lang: de
-title: IQB-Missings
+title: Missings
 ---
 
 # Begriff

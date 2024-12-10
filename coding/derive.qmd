@@ -10,7 +10,7 @@ Ob eine Ableitung möglich ist, ist vom Status der Quellvariablen und von der Ab
 | Ableitungsmethode | zulässiger Status |
 |------|-------|
 |`MANUAL`|`INVALID`, `VALUE_CHANGED`[^1], `CODING_COMPLETE`, `CODING_INCOMPLETE`, `CODING_ERROR`, `NO_CODING`|
-|`COPY_VALUE`, `UNIQUE_VALUES`, `SOLVER`|`VALUE_CHANGED`[^1], `CODING_COMPLETE`, `CODING_INCOMPLETE`, `CODING_ERROR`, `NO_CODING`|
+|`COPY_VALUE`, `UNIQUE_VALUES`, `SOLVER`|`VALUE_CHANGED`, `CODING_COMPLETE`, `CODING_INCOMPLETE`, `CODING_ERROR`, `NO_CODING`|
 |`CONCAT_CODE`, `SUM_CODE`, `SUM_SCORE`|`CODING_COMPLETE`|
 
 : Zulässiger Status nach Ableitungsmethode {.striped}
