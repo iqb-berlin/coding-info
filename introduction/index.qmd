@@ -1,0 +1,54 @@
+---
+lang: de
+title: Einführung
+---
+
+An dieser Stelle soll ein Grundverständnis für die an der Kodierung beteiligten IQB-Programmierungen erfolgen. Mehr Details sind den nachfolgenden Kapiteln zu entnehmen.
+
+## Der Schemer
+
+Bei der Aufgabenerstellung im Studio werden Frageelemente in einer Unit angeordnet. Die Beantwortung dieser Frageelemente erzeugt Antwortwerte. Um Schlussfolgerungen hinsichtlich der Bewertung einer Antwort zu ziehen, werden die Antwortwerte Kategorien zugeordnet. Im einfachsten Fall gibt es die Kategorien richtig und falsch, sowie Kategorien für fehlende Werte. Die Zuordnung erfolgt durch die Erstellung von Regeln und Instruktionen. Diese sagen dann ganz grob ausgedrückt, diese Antwort ist falsch, diese Antwort ist richtig. Zur Erststellung solcher Regeln und Instruktion wird ein Verona-Modul mit dem Namen: **Schemer** verwendet.
+
+#### Programmierungen
+
+[Hier](https://github.com/iqb-berlin/coding-components) geht es zum GitHub-Repo der Schemer Programmierungen.
+
+#### Bedienung
+
+Das Schemer-Modul wird in das IQB-Studio eingebunden und kann über den Reiter: **Kodierung** bedient werden. Mehr zur Bedienung des Schemers ist [hier](https://iqb-berlin.github.io/tba-info/Studio/Kodierschema/) zu finden.
+
+#### Datenstruktur
+
+Die im Schemer definierten Regeln und Instruktionen werden in einer bestimmten Datenstruktur hinterlegt. Die Datenstruktur richtet sich nach einer Spezifikation. Diese ist [hier](https://iqb-berlin.github.io/responses/) unter **coding-scheme@iqb-standard@3.2/variableCodings** zu finden. Mehr zu den hier hinterlegten Variablen, deren Bedeutung und Zustandsmöglichkeiten ist im Kapitel: **Datenstrukturen/Kodierschema** nachzulesen. 
+
+#### Output/Input des Schemers
+
+Nach dem Export einer Unit durch das IQB-Studio werden automatisch die zugehörigen Instruktionen und Kodierregeln in einer VOCS-Datei ausgegeben. Die zuvor beschriebene Datenstruktur ist in dieser Datei wiederzufinden. Anschließend kann diese Datei in weitere Anwendungen geladen werden.
+
+**IQB-Testcenter:**
+
+Im Testcenter werden Kodierregeln für das adaptive Testen benötigt. Die VOCS-Datei wird dazu einfach als Ressource zu einer Unit in das Testcenter geladen.
+
+**Coding-Box (Auto-Coder):**
+
+Eine Anwendung mit dem Namen **Coding-Box** gleicht die Antwortdaten des Testcenters mit dem festgelegten Kodierschema ab und führt die Dekodierung der Antworten durch. Um den Abgleich vornehmen zu können, muss die VOCS-Datei in die Coding-Box geladen werden.
+
+**IQB-Studio**
+
+Sobald im Studio Kodierregeln erstellt und gespeichert wurden, kann im Reiter: "Vorschau" die Funktion der Kodierregeln überprüft werden. Ist die Funktion der Kodieranweisung sichergestellt, können diese aus dem Studio exportiert werden.
+
+## Type-Definitionen
+
+::: {.callout-tip}
+Dieser Punkt ist für Anwender\*innen nicht interessant, wird aber der Vollständigkeit halber an dieser Stelle mit aufgeführt.
+:::
+
+Wie zuvor beschrieben kann die VOCS-Datei in bestimmte Anwendungen geladen werden. Damit die jeweilige Anwendung die Datenstruktur dieser Datei lesen und anwenden kann, müssen Definitionsdateien in die Anwendungen integriert werden. Die Definitionsdateien sind [hier](https://github.com/iqb-berlin/responses) zu finden.
+
+## Coding-Box (Auto-Coder)
+
+Die Coding-Box wendet die hinterlegten Kodierregeln auf die Antworten an und dekodiert somit die gegeben Antworten.
+
+#### Programmierungen
+
+[Hier](https://github.com/iqb-berlin/coding-box) geht es zum GitHub-Repo der Coding-Box Programmierungen.
