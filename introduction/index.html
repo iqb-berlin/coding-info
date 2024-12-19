@@ -211,8 +211,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#der-schemer" id="toc-der-schemer" class="nav-link active" data-scroll-target="#der-schemer">Der Schemer</a></li>
-  <li><a href="#type-definitionen" id="toc-type-definitionen" class="nav-link" data-scroll-target="#type-definitionen">Type-Definitionen</a></li>
-  <li><a href="#coding-box-auto-coder" id="toc-coding-box-auto-coder" class="nav-link" data-scroll-target="#coding-box-auto-coder">Coding-Box (Auto-Coder)</a></li>
+  <li><a href="#autocoder" id="toc-autocoder" class="nav-link" data-scroll-target="#autocoder">Autocoder</a></li>
+  <li><a href="#kodierbox" id="toc-kodierbox" class="nav-link" data-scroll-target="#kodierbox">Kodierbox</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/iqb-berlin/coding-info/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -242,55 +242,36 @@ ul.task-list li input[type="checkbox"] {
 <section id="der-schemer" class="level2">
 <h2 class="anchored" data-anchor-id="der-schemer">Der Schemer</h2>
 <p>Bei der Aufgabenerstellung im Studio werden Frageelemente in einer Unit angeordnet. Die Beantwortung dieser Frageelemente erzeugt Antwortwerte. Um Schlussfolgerungen hinsichtlich der Bewertung einer Antwort zu ziehen, werden die Antwortwerte Kategorien zugeordnet. Im einfachsten Fall gibt es die Kategorien richtig und falsch, sowie Kategorien für fehlende Werte. Die Zuordnung erfolgt durch die Erstellung von Regeln und Instruktionen. Diese sagen dann ganz grob ausgedrückt, diese Antwort ist falsch, diese Antwort ist richtig. Zur Erststellung solcher Regeln und Instruktion wird ein Verona-Modul mit dem Namen: <strong>Schemer</strong> verwendet.</p>
-<section id="programmierungen" class="level4">
-<h4 class="anchored" data-anchor-id="programmierungen">Programmierungen</h4>
-<p><a href="https://github.com/iqb-berlin/coding-components">Hier</a> geht es zum GitHub-Repo der Schemer Programmierungen.</p>
-</section>
+<p><a href="https://github.com/iqb-berlin/coding-components">Hier</a> geht es zum GitHub-Repository der Schemer Programmierungen.</p>
 <section id="bedienung" class="level4">
 <h4 class="anchored" data-anchor-id="bedienung">Bedienung</h4>
 <p>Das Schemer-Modul wird in das IQB-Studio eingebunden und kann über den Reiter: <strong>Kodierung</strong> bedient werden. Mehr zur Bedienung des Schemers ist <a href="https://iqb-berlin.github.io/tba-info/Studio/Kodierschema/">hier</a> zu finden.</p>
 </section>
 <section id="datenstruktur" class="level4">
 <h4 class="anchored" data-anchor-id="datenstruktur">Datenstruktur</h4>
-<p>Die im Schemer definierten Regeln und Instruktionen werden in einer bestimmten Datenstruktur hinterlegt. Die Datenstruktur richtet sich nach einer Spezifikation. Diese ist <a href="https://iqb-berlin.github.io/responses/">hier</a> unter <strong>coding-scheme@iqb-standard<span class="citation" data-cites="3.2/variableCodings">@3.2/variableCodings</span></strong> zu finden. Mehr zu den hier hinterlegten Variablen, deren Bedeutung und Zustandsmöglichkeiten ist im Kapitel: <strong>Datenstrukturen/Kodierschema</strong> nachzulesen.</p>
+<p>Die im Schemer definierten Regeln und Instruktionen werden in einer bestimmten Datenstruktur hinterlegt. Die Datenstruktur richtet sich nach einer Spezifikation. Diese ist <a href="https://iqb-berlin.github.io/responses/">hier</a> unter <strong>coding-scheme@iqb-standard<span class="citation" data-cites="3.2/variableCodings">@3.2/variableCodings</span></strong> zu finden. Mehr zu den hier hinterlegten Variablen, deren Bedeutung und Zustandsmöglichkeiten ist <a href="https://iqb-berlin.github.io/coding-info/data-structures/coding-scheme.html">hier</a> nachzulesen.</p>
 </section>
 <section id="outputinput-des-schemers" class="level4">
 <h4 class="anchored" data-anchor-id="outputinput-des-schemers">Output/Input des Schemers</h4>
 <p>Nach dem Export einer Unit durch das IQB-Studio werden automatisch die zugehörigen Instruktionen und Kodierregeln in einer VOCS-Datei ausgegeben. Die zuvor beschriebene Datenstruktur ist in dieser Datei wiederzufinden. Anschließend kann diese Datei in weitere Anwendungen geladen werden.</p>
 <p><strong>IQB-Testcenter:</strong></p>
 <p>Im Testcenter werden Kodierregeln für das adaptive Testen benötigt. Die VOCS-Datei wird dazu einfach als Ressource zu einer Unit in das Testcenter geladen.</p>
-<p><strong>Coding-Box (Auto-Coder):</strong></p>
-<p>Eine Anwendung mit dem Namen <strong>Coding-Box</strong> gleicht die Antwortdaten des Testcenters mit dem festgelegten Kodierschema ab und führt die Dekodierung der Antworten durch. Um den Abgleich vornehmen zu können, muss die VOCS-Datei in die Coding-Box geladen werden.</p>
+<p><strong>Kodierbox:</strong></p>
+<p>In die Kodierbox werden Antworten und Logs aus dem Testcenter, plus des zugehörigen Kodierschemas (VOCS-Dateien) geladen. Die eigentliche Kodierung der Antworten erfolgt dann anhand dieser Daten und des Autocoders.</p>
 <p><strong>IQB-Studio</strong></p>
 <p>Sobald im Studio Kodierregeln erstellt und gespeichert wurden, kann im Reiter: “Vorschau” die Funktion der Kodierregeln überprüft werden. Ist die Funktion der Kodieranweisung sichergestellt, können diese aus dem Studio exportiert werden.</p>
 </section>
 </section>
-<section id="type-definitionen" class="level2">
-<h2 class="anchored" data-anchor-id="type-definitionen">Type-Definitionen</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tipp
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Dieser Punkt ist für Anwender*innen nicht interessant, wird aber der Vollständigkeit halber an dieser Stelle mit aufgeführt.</p>
-</div>
-</div>
-<p>Wie zuvor beschrieben kann die VOCS-Datei in bestimmte Anwendungen geladen werden. Damit die jeweilige Anwendung die Datenstruktur dieser Datei lesen und anwenden kann, müssen Definitionsdateien in die Anwendungen integriert werden. Die Definitionsdateien sind <a href="https://github.com/iqb-berlin/responses">hier</a> zu finden.</p>
+<section id="autocoder" class="level2">
+<h2 class="anchored" data-anchor-id="autocoder">Autocoder</h2>
+<p>Der Autocoder ist ein Sammelsurium an Klassen und Interfaces, die für die Kodierung notwendig sind. Sowohl die Kodierbox als auch die Kodiervorschau im Studio benötigt diese Klassen und Interfaces. <a href="https://github.com/iqb-berlin/responses">Hier</a> geht es zum entsprechenden GitHub-Repository.</p>
 </section>
-<section id="coding-box-auto-coder" class="level2">
-<h2 class="anchored" data-anchor-id="coding-box-auto-coder">Coding-Box (Auto-Coder)</h2>
-<p>Die Coding-Box wendet die hinterlegten Kodierregeln auf die Antworten an und dekodiert somit die gegeben Antworten.</p>
-<section id="programmierungen-1" class="level4">
-<h4 class="anchored" data-anchor-id="programmierungen-1">Programmierungen</h4>
-<p><a href="https://github.com/iqb-berlin/coding-box">Hier</a> geht es zum GitHub-Repo der Coding-Box Programmierungen.</p>
+<section id="kodierbox" class="level2">
+<h2 class="anchored" data-anchor-id="kodierbox">Kodierbox</h2>
+<p>Hier findet die eigentliche Kodierung der Antworten mit Hilfe der Antwortdaten aus dem Testcenter und dem Kodierschema statt. Um die Kodierung zu prüfen, können die Antworten in einem sogenannten Replay-Modus wiedergegeben werden. Nach dem ersten Autocoder-Lauf wird eine Kodierliste für manuell zu kodierende Fälle erzeugt. In naher Zukunft wird diese Liste der IEA vorgelegt und zu einem späteren Zeitpunkt werden IQB-intern die manuellen Fälle von den Kodierer*innen bewertet. Im Anschluss an die manuelle Kodierung erfolgt ein zweiter Autocoder-Lauf, welcher dann einen primären Datensatz erzeugt. Dieser kann exportiert werden und für weitere wissenschaftliche Erkenntnisse transformiert und ausgewertet werden.</p>
+<p><a href="https://github.com/iqb-berlin/coding-box">Hier</a> geht es zum GitHub-Repo der Kodierbox Programmierungen.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
