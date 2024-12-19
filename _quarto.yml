@@ -29,6 +29,8 @@ website:
     contents:
       - href: index.qmd
         text: Start
+      - href: introduction/index.qmd
+        text: Einführung
       - section: Datenstrukturen
         href: data-structures/index.qmd
         contents:
