@@ -125,6 +125,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Start</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introduction/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einführung</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../data-structures/index.html" class="sidebar-item-text sidebar-link">
@@ -335,7 +341,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td><code>NO_CODING</code></td>
-<td>Bei diesem Status hat eine Kodierprozedur festgestellt, dass keine Informationen für eine Kodierung vorliegen (keine Codes im Kodierschema definiert). Das kann ein Fehler sein, aber es kann sich auch um offene Antworten handeln, die über andere Wege kodiert werden sollen (z. B. Rating oder Übersetzung in Berufe-Codes außerhalb der regulären Kodierprozesse).</td>
+<td>Bei diesem Status wurde festgestellt, dass keine Informationen für eine Kodierung vorliegen (keine Codes sind im Kodierschema definiert). Das stellt eine Fehlersituation dar.</td>
 </tr>
 <tr class="odd">
 <td><code>INVALID</code></td>
@@ -350,6 +356,10 @@ ul.task-list li input[type="checkbox"] {
 <td>Während der Kodierung ist ein Fehler aufgetreten, der die Bewertung der Antwort verhindert hat. Dies kann ein technischer Fehler bei der Anzeige (Replay) für das manuelle Kodieren sein, aber auch Typkonflikte zwischen dem Wert und dem Kodierschema können die Ursache sein.</td>
 </tr>
 <tr class="even">
+<td><code>INTENDED_INCOMPLETE</code></td>
+<td>Die Kodierung der Variablen ist nicht abgeschlossen, aber dies stellt keinen Fehler dar. Es handelt sich hier z. B. um Variablen, die über andere Wege kodiert werden sollen (z. B. Rating oder Übersetzung in Berufe-Codes außerhalb der regulären Kodierprozesse). Es kann auch sein, dass der Variablenwert erst durch eine Ableitung ausgewertet wird und innerhalb der Variable keine isolierte Bewertung möglich ist.</td>
+</tr>
+<tr class="odd">
 <td><code>CODING_COMPLETE</code></td>
 <td>Die Kodierung der Variablen ist erfolgreich abgeschlossen.</td>
 </tr>
